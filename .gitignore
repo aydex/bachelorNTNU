@@ -67,5 +67,7 @@ libpeerconnection.log
 npm-debug.log
 /tmp/
 /scripts/bower/bower-*
-.bash-history
+.bash_history
 .cache/
+.ssh/
+/webhook
