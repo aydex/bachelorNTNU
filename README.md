@@ -1,7 +1,3 @@
 # bachelor
 
-trying if the server is updated
-
-much unnecessary
-
-asd
+Last test to see if PHP-webhook is functional
