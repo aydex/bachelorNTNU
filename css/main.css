@@ -1,0 +1,31 @@
+table{
+	margin:auto;
+}
+
+th{
+	cursor:pointer;
+}
+
+tr:nth-child(odd){
+	background-color:#EAEAEA;
+}
+
+td, th{
+	height:35px;
+	padding:0 5px;
+	text-align: center;
+}
+
+td:nth-child(odd){
+	border:none;
+}
+
+td:nth-child(even){
+	border:none;
+	border-left:1px solid gray;
+	border-right:1px solid gray;
+}
+
+.name{
+	text-align: left;
+}
