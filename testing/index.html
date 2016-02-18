@@ -13,7 +13,7 @@
 
 <div data-ng-app="myApp" data-ng-controller="namesCtrl">
 
-<input type="text" data-ng-model="searchName" placeholder="Name to search by">
+<input type="text" data-ng-model="searchName" data-ng-change="searchDelay()" placeholder="Name to search by">
 
 <table border="1">
 <tr>
@@ -49,11 +49,24 @@
 </div>
 
 <script>
-angular.module('myApp', []).controller('namesCtrl', function($scope, $http) {
+angular.module('myApp', []).controller('namesCtrl', function($scope, $http, $timeout) {
+    var _timeout;
+
     $scope.reverse  = false;
-    $http.get("/api/test.php?name=bern")
-    .then(function (response) {$scope.names = response.data.records;});
-    
+
+    $scope.searchDelay = function(){
+        if(_timeout){ //if there is already a timeout in process cancel it
+            $timeout.cancel(_timeout);
+        }
+        _timeout = $timeout(function(){
+            console.log("loading things");
+            $http.get("/api/test.php?name=" + $scope.searchName)
+                .then(function (response) {$scope.names = response.data.records;});
+
+            _timeout = null;
+        },500);
+    }
+
     $scope.orderByMe = function(x) {
         if($scope.myOrderBy != x){
             $scope.reverse = !$scope.reverse;
