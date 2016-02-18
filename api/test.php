@@ -18,7 +18,7 @@ $sql 	= $config->db->prepare($query);
 
 $sql->execute($params);
 
-$rows = $sql->fetchAll();
+$rows = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 foreach($rows as $row) {
     if($output != ""){$output .= ",";}
@@ -31,4 +31,7 @@ foreach($rows as $row) {
 $output ='{"records":['.$output.']}';
 echo $output;
 
+
+$json_output = json_encode($rows);
+echo $json_output;
 ?>
