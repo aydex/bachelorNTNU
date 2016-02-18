@@ -4,8 +4,9 @@
         <meta charset="UTF-8" />
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/test/css/main.css">
+        <link rel="stylesheet" href="css/main.css">
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script src="app/app.js"></script>
     </head>
 <body>
 
@@ -47,36 +48,5 @@
 </table>
 
 </div>
-
-<script>
-angular.module('myApp', []).controller('namesCtrl', function($scope, $http, $timeout) {
-    var _timeout;
-
-    $scope.reverse  = false;
-
-    $scope.searchDelay = function(){
-        if(_timeout){ //if there is already a timeout in process cancel it
-            $timeout.cancel(_timeout);
-        }
-        _timeout = $timeout(function(){
-            console.log("loading things");
-            $http.post("/test/api/test.php?name=" + $scope.searchName)
-                .then(function (response) {$scope.names = response.data.records;});
-
-            _timeout = null;
-        },500);
-    }
-
-    $scope.orderByMe = function(x) {
-        if($scope.myOrderBy != x){
-            $scope.reverse = !$scope.reverse;
-        }
-        $scope.myOrderBy = x;
-    }
-    $scope.reverseOrder = function(){
-        $scope.reverse = !$scope.reverse;
-    }
-});
-</script>
 </body>
 </html>
