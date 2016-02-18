@@ -12,7 +12,7 @@ use bachelor\Query;
 $config = new Config();
 $query  = new Query($config->db);
 
-$name = htmlspecialchars($_GET['name']);
+$name = htmlspecialchars($_REQUEST['name']);
 
 
 echo $query->selectPerson($name);
