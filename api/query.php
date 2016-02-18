@@ -4,7 +4,7 @@ namespace bachelor;
 
 use PDO;
 
-class QueryClass
+class Query
 {
 	private $db;
 
@@ -13,21 +13,32 @@ class QueryClass
         $this->db = $db;
     }
 
-    public function select_person($name)
+    public function selectPerson($name)
     {
+    	$toAdd = "";
+		$params = array("%$name%");
+    	if($name != ""){
+    		$toAdd = " WHERE Navn LIKE ?";
+    	}
 
-    	$sql = $this->db->prepare("SELECT * FROM kommunalrapport.Personer WHERE navn LIKE %?%");
-        $sql->execute(array("as"));
+    	$query = "SELECT * FROM kommunalrapport.Personer";
 
-        echo $name;
+    	$result = $this->runAndPrepare($query, $toAdd, $params);
 
-        $this->show_row($sql);
+    	return json_encode(array("records" => $this->returnRows($result)));
     }
 
-    private function show_row($sql){
-    	$row = $sql->fetch();
-        
+    private function runAndPrepare($query, $toAdd, $params){
+    	$sql = $this->db->prepare($query . $toAdd);
+    	if($toAdd != ""){
+    		$sql->execute($params);
+    	}else{
+    		$sql->execute();
+    	}
+    	return $sql;
+    }
 
-        print_r($row);
+    private function returnRows($sql){
+    	return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 }	
