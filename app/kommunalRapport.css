@@ -1,0 +1,38 @@
+header{
+	height: 70px;
+	background-color: #003762;
+	margin: 0 40px 0 40px;
+}
+
+#search {
+	margin-top: 50px;
+	margin-left: 15%;
+	width: 65%;
+	height: 35px;
+	font-size: 20px;
+}
+
+table{
+	margin-left: 17%;
+	margin-top: 30px;
+}
+
+table, tr {
+	text-align: center;
+}
+
+table, th , td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+table th {
+	background-color: grey;
+}
+table tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
