@@ -1,10 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/main.css">
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    </head>
 <body>
-this is the test branch 
+
+<p>Click the table headers to change the sorting order:</p>
+
+<div data-ng-app="myApp" data-ng-controller="namesCtrl">
+
+<input type="text" data-ng-model="searchName" data-ng-change="searchDelay()" placeholder="Name to search by">
+
+<table border="1">
+<tr>
+<th data-ng-click="orderByMe('Personid'); reverseOrder()">
+    Personid
+    <span data-ng-show="myOrderBy == 'Personid' && !reverse" class="fa fa-caret-up"></span>
+    <span data-ng-show="myOrderBy == 'Personid' && reverse" class="fa fa-caret-down"></span>
+</th>
+<th ng-click="orderByMe('AnonymisertPersonnr'); reverseOrder()">
+    AnonymisertPersonnr
+    <span data-ng-show="myOrderBy == 'AnonymisertPersonnr' && !reverse" class="fa fa-caret-up"></span>
+    <span data-ng-show="myOrderBy == 'AnonymisertPersonnr' && reverse" class="fa fa-caret-down"></span>
+</th>
+<th ng-click="orderByMe('Personidtypekode'); reverseOrder()">
+    Personidtypekode
+    <span data-ng-show="myOrderBy == 'Personidtypekode' && !reverse" class="fa fa-caret-up"></span>
+    <span data-ng-show="myOrderBy == 'Personidtypekode' && reverse" class="fa fa-caret-down"></span>
+</th>
+<th ng-click="orderByMe('Navn'); reverseOrder()">
+    Navn
+    <span data-ng-show="myOrderBy == 'Navn' && !reverse" class="fa fa-caret-up"></span>
+    <span data-ng-show="myOrderBy == 'Navn' && reverse" class="fa fa-caret-down"></span>
+</th>
+</tr>
+<tr data-ng-repeat="x in names | orderBy:myOrderBy:reverse | filter:searchName">
+<td>{{x.Personid}}</td>
+<td>{{x.AnonymisertPersonnr}}</td>
+<td>{{x.Personidtypekode}}</td>
+<td class="name">{{x.Navn}}</td>
+</tr>
+</table>
+
+</div>
+
+<script>
+angular.module('myApp', []).controller('namesCtrl', function($scope, $http, $timeout) {
+    var _timeout;
+
+    $scope.reverse  = false;
+
+    $scope.searchDelay = function(){
+        if(_timeout){ //if there is already a timeout in process cancel it
+            $timeout.cancel(_timeout);
+        }
+        _timeout = $timeout(function(){
+            console.log("loading things");
+            $http.post("/api/test.php?name=" + $scope.searchName)
+                .then(function (response) {$scope.names = response.data.records;});
+
+            _timeout = null;
+        },500);
+    }
+
+    $scope.orderByMe = function(x) {
+        if($scope.myOrderBy != x){
+            $scope.reverse = !$scope.reverse;
+        }
+        $scope.myOrderBy = x;
+    }
+    $scope.reverseOrder = function(){
+        $scope.reverse = !$scope.reverse;
+    }
+});
+</script>
+
 </body>
 </html>

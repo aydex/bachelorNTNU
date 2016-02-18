@@ -29,7 +29,9 @@ class Query
     }
 
     private function runAndPrepare($query, $toAdd, $params){
-    	$sql = $this->db->prepare($query . $toAdd);
+        //ini_set('memory_limit', '750M');
+        //Må ha løsning for hvor mange som kan vises/lage pagination
+    	$sql = $this->db->prepare($query . $toAdd . " LIMIT 5555");
     	if($toAdd != ""){
     		$sql->execute($params);
     	}else{
