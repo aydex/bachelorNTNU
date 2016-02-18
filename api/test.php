@@ -14,6 +14,7 @@ $query  = new Query($config->db);
 
 $name = htmlspecialchars($_GET['name']);
 
+
 echo $query->selectPerson($name);
 
 ?>
