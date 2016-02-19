@@ -1,52 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html data-ng-app="kommunalApp">
     <head>
+        <title>Kommunal Rapport</title>
         <meta charset="UTF-8" />
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css" />
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
-        <link rel="stylesheet" href="css/main.css" />
-        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-        <script src="app/app.js"></script>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="/css/reset.css">
+        <link rel="stylesheet" href="/css/table.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
+        <script src="/app/app.js"></script>
+        <base href="/">
     </head>
 <body>
 
-<p>Click the table headers to change the sorting order:</p>
+    <header></header>
 
-<div data-ng-app="myApp" data-ng-controller="namesCtrl">
+    <div id="main">
 
-<input type="text" data-ng-model="searchName" data-ng-change="searchDelay()" placeholder="Name to search by">
+        <!-- angular templating -->
+        <!-- this is where content will be injected -->
 
-<table border="1">
-<tr>
-<th data-ng-click="orderByMe('Personid'); reverseOrder()">
-    Personid
-    <span data-ng-show="myOrderBy == 'Personid' && !reverse" class="fa fa-caret-up"></span>
-    <span data-ng-show="myOrderBy == 'Personid' && reverse" class="fa fa-caret-down"></span>
-</th>
-<th ng-click="orderByMe('AnonymisertPersonnr'); reverseOrder()">
-    AnonymisertPersonnr
-    <span data-ng-show="myOrderBy == 'AnonymisertPersonnr' && !reverse" class="fa fa-caret-up"></span>
-    <span data-ng-show="myOrderBy == 'AnonymisertPersonnr' && reverse" class="fa fa-caret-down"></span>
-</th>
-<th ng-click="orderByMe('Personidtypekode'); reverseOrder()">
-    Personidtypekode
-    <span data-ng-show="myOrderBy == 'Personidtypekode' && !reverse" class="fa fa-caret-up"></span>
-    <span data-ng-show="myOrderBy == 'Personidtypekode' && reverse" class="fa fa-caret-down"></span>
-</th>
-<th ng-click="orderByMe('Navn'); reverseOrder()">
-    Navn
-    <span data-ng-show="myOrderBy == 'Navn' && !reverse" class="fa fa-caret-up"></span>
-    <span data-ng-show="myOrderBy == 'Navn' && reverse" class="fa fa-caret-down"></span>
-</th>
-</tr>
-<tr data-ng-repeat="x in names | orderBy:myOrderBy:reverse | filter:searchName">
-<td>{{x.Personid}}</td>
-<td>{{x.AnonymisertPersonnr}}</td>
-<td>{{x.Personidtypekode}}</td>
-<td class="name">{{x.Navn}}</td>
-</tr>
-</table>
+        <div data-ng-view>
+            
+        </div>
 
-</div>
+    </div>
+    
 </body>
 </html>

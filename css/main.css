@@ -1,31 +1,31 @@
-table{
+header{
+	height: 70px;
+	background-color: #003762;
+	margin: 0 40px 0 40px;
+}
+
+#searchElements{
+	margin-top: 50px;
+	margin-left: 15%;
+	margin-bottom: 20px;
+}
+
+#search {
+	width: 65%;
+	height: 35px;
+	font-size: 20px;
+}
+
+#main{
+	width:94%;
 	margin:auto;
 }
 
-th{
-	cursor:pointer;
-}
-
-tr:nth-child(odd){
-	background-color:#EAEAEA;
-}
-
-td, th{
-	height:35px;
-	padding:0 5px;
+.text-center{
 	text-align: center;
 }
 
-td:nth-child(odd){
-	border:none;
-}
-
-td:nth-child(even){
-	border:none;
-	border-left:1px solid gray;
-	border-right:1px solid gray;
-}
-
-.name{
-	text-align: left;
+div p{
+	color: grey;
+	margin-left: 3%;
 }
