@@ -1,0 +1,37 @@
+<!--søkeicon i søkefeltet-->
+<div id="searchElements">
+    <p>Click the table headers to change the sorting order:</p>
+    <i class="material-icons">search</i>
+    <input type="text" data-ng-model="searchName" data-ng-change="searchDelay()" placeholder="Name to search by" id="search">
+</div>
+
+<table ng-show="showTable">
+<tr>
+<th data-ng-click="orderByMe('Personid'); reverseOrder()">
+    Personid
+    <span data-ng-show="myOrderBy == 'Personid' && !reverse" class="fa fa-caret-up"></span>
+    <span data-ng-show="myOrderBy == 'Personid' && reverse" class="fa fa-caret-down"></span>
+</th>
+<th ng-click="orderByMe('AnonymisertPersonnr'); reverseOrder()">
+    AnonymisertPersonnr
+    <span data-ng-show="myOrderBy == 'AnonymisertPersonnr' && !reverse" class="fa fa-caret-up"></span>
+    <span data-ng-show="myOrderBy == 'AnonymisertPersonnr' && reverse" class="fa fa-caret-down"></span>
+</th>
+<th ng-click="orderByMe('Personidtypekode'); reverseOrder()">
+    Personidtypekode
+    <span data-ng-show="myOrderBy == 'Personidtypekode' && !reverse" class="fa fa-caret-up"></span>
+    <span data-ng-show="myOrderBy == 'Personidtypekode' && reverse" class="fa fa-caret-down"></span>
+</th>
+<th ng-click="orderByMe('Navn'); reverseOrder()">
+    Navn
+    <span data-ng-show="myOrderBy == 'Navn' && !reverse" class="fa fa-caret-up"></span>
+    <span data-ng-show="myOrderBy == 'Navn' && reverse" class="fa fa-caret-down"></span>
+</th>
+</tr>
+<tr data-ng-repeat="x in names | orderBy:myOrderBy:reverse | filter:searchName">
+<td>{{x.Personid}}</td>
+<td>{{x.AnonymisertPersonnr}}</td>
+<td>{{x.Personidtypekode}}</td>
+<td class="name">{{x.Navn}}</td>
+</tr>
+</table>
