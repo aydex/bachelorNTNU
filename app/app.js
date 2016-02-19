@@ -14,9 +14,14 @@ angular.module('myApp', []).controller('namesCtrl', function($scope, $http, $tim
         _timeout = $timeout(function(){
             console.log("loading things");
             $http.get("./api/test.php?name=" + $scope.searchName)
-                .then(function (response) {$scope.names = response.data.records;});
+                .then(function (response) {
+                    $scope.names = response.data.records;
+                    $scope.showTable = 'true';
+                });
 
             _timeout = null;
+
+
         },500);
     }
 
