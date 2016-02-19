@@ -13,27 +13,32 @@ class Query
         $this->db = $db;
     }
 
-    public function selectPerson($name)
+    public function selectPerson($name, $page=0, $pageSize=0)
     {
     	$toAdd = "";
-		$params = array("%$name%");
-    	if($name != ""){
-    		$toAdd = " WHERE Navn LIKE ?";
-    	}
-
+		$params = array($name);
     	$query = "SELECT * FROM kommunalrapport.Personer";
 
-    	$result = $this->runAndPrepare($query, $toAdd, $params);
+        if ($page != 0 && $pageSize != 0) {
+            $toAdd = " WHERE Navn LIKE ? LIMIT ?, ?";
+            array_push($params, $page, $pageSize);
+            var_dump($params);
+            //$sql->bindParam("sii", $params[0], $params[1], $params[2]);
+        } elseif ($name != "") {
+    		$toAdd = " WHERE Navn LIKE ? LIMIT 1000";
+        }
 
-    	return json_encode(array("records" => $this->returnRows($result)));
+    	//$result = $this->runAndPrepare($query, $toAdd, $params);
+        $result = $this->runAndPrepare($query, $toAdd, $params);
+
+        return json_encode(array("records" => $this->returnRows($result)));
     }
 
     private function runAndPrepare($query, $toAdd, $params){
-        //ini_set('memory_limit', '750M');
-        //Må ha løsning for hvor mange som kan vises/lage pagination
-    	$sql = $this->db->prepare($query . $toAdd . " LIMIT 5555");
+    	$sql = $this->db->prepare($query . $toAdd);
     	if($toAdd != ""){
     		$sql->execute($params);
+            echo $sql->queryString;
     	}else{
     		$sql->execute();
     	}

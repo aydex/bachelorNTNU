@@ -13,7 +13,7 @@ angular.module('myApp', []).controller('namesCtrl', function($scope, $http, $tim
         }
         _timeout = $timeout(function(){
             console.log("loading things");
-            $http.get("./api/test.php?name=" + $scope.searchName)
+            $http.get("../api/test.php?name=" + $scope.searchName)
                 .then(function (response) {$scope.names = response.data.records;});
 
             _timeout = null;

@@ -6,8 +6,6 @@
  * Time: 10.32
  */
 
-// set up the connection variables
-
 namespace bachelor;
 
 use PDO;
@@ -15,9 +13,9 @@ use PDO;
 class Config
 {
 
-	static $db;
+    public $db;
 
-	public function __construct(){
+    public function __construct(){
 		$config = parse_ini_file("../bachelor.ini");
 
 		$db_name  = $config["db_name"];
