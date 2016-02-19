@@ -2,21 +2,33 @@
 <html>
     <head>
         <meta charset="UTF-8" />
+        <link type="text/css" rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" type="text/css" href="css/kommunalRapport.css">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css" />
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"/>
         <link rel="stylesheet" href="css/main.css" />
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
         <script src="app/app.js"></script>
     </head>
 <body>
 
+    <header>
+
+    </header>
+
 <p>Click the table headers to change the sorting order:</p>
 
 <div data-ng-app="myApp" data-ng-controller="namesCtrl">
+<!--søkeicon i søkefeltet-->
+<p>
+    <i class="material-icons">search</i>
+    <input type="text" data-ng-model="searchName" data-ng-change="searchDelay()" placeholder="Name to search by" id="search">
+</p>
 
-<input type="text" data-ng-model="searchName" data-ng-change="searchDelay()" placeholder="Name to search by">
-
-<table border="1">
+<table border="1" width="60%">
 <tr>
 <th data-ng-click="orderByMe('Personid'); reverseOrder()">
     Personid
