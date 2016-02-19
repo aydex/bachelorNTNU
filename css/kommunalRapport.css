@@ -5,12 +5,20 @@ header{
 }
 
 #search {
-	margin-top: 50px;
-	margin-left: 15%;
 	width: 65%;
 	height: 35px;
 	font-size: 20px;
+}
+
+#searchElements{
+	margin-top: 50px;
+	margin-left: 15%;
 	margin-bottom: 20px;
+}
+
+div p{
+	color: grey;
+	margin-left: 3%;
 }
 
 table{

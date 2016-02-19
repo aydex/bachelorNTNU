@@ -19,14 +19,15 @@
 
     </header>
 
-<p>Click the table headers to change the sorting order:</p>
+
 
 <div data-ng-app="myApp" data-ng-controller="namesCtrl">
 <!--søkeicon i søkefeltet-->
-<p>
+<div id="searchElements">
+    <p>Click the table headers to change the sorting order:</p>
     <i class="material-icons">search</i>
     <input type="text" data-ng-model="searchName" data-ng-change="searchDelay()" placeholder="Name to search by" id="search">
-</p>
+</div>
 
 <table border="1" width="60%">
 <tr>
