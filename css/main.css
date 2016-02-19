@@ -1,31 +1,22 @@
-table{
-	margin:auto;
+header{
+	height: 70px;
+	background-color: #003762;
+	margin: 0 40px 0 40px;
 }
 
-th{
-	cursor:pointer;
+#searchElements{
+	margin-top: 50px;
+	margin-left: 15%;
+	margin-bottom: 20px;
 }
 
-tr:nth-child(odd){
-	background-color:#EAEAEA;
+#search {
+	width: 65%;
+	height: 35px;
+	font-size: 20px;
 }
 
-td, th{
-	height:35px;
-	padding:0 5px;
-	text-align: center;
-}
-
-td:nth-child(odd){
-	border:none;
-}
-
-td:nth-child(even){
-	border:none;
-	border-left:1px solid gray;
-	border-right:1px solid gray;
-}
-
-.name{
-	text-align: left;
+div p{
+	color: grey;
+	margin-left: 3%;
 }
