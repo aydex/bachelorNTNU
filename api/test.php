@@ -22,11 +22,10 @@ if (isset($_REQUEST['name'])) {
 }
 
 if (isset($_REQUEST['page']) && isset($_REQUEST['pageSize'])) {
-    $page = $_REQUEST['page'];
-    $pageSize = $_REQUEST['pageSize'];
+    $page = (int)$_REQUEST['page'];
+    $pageSize = (int)$_REQUEST['pageSize'];
 }
 
-
-echo $query->selectPerson($name, $page, $pageSize);
+echo $query->selectPersonPaged($name, $page, $pageSize);
 
 ?>

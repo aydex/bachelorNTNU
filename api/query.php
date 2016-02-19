@@ -13,32 +13,42 @@ class Query
         $this->db = $db;
     }
 
-    public function selectPerson($name, $page=0, $pageSize=0)
-    {
-    	$toAdd = "";
-		$params = array($name);
-    	$query = "SELECT * FROM kommunalrapport.Personer";
+    public function selectPersonPaged($name, $page=1, $pageSize=10) {
+        $query = "SELECT * FROM kommunalrapport.Personer WHERE Navn LIKE :name LIMIT :offset, :pageSize";
 
-        if ($page != 0 && $pageSize != 0) {
-            $toAdd = " WHERE Navn LIKE ? LIMIT ?, ?";
-            array_push($params, $page, $pageSize);
-            var_dump($params);
-            //$sql->bindParam("sii", $params[0], $params[1], $params[2]);
-        } elseif ($name != "") {
-    		$toAdd = " WHERE Navn LIKE ? LIMIT 1000";
+        $offset = ($page - 1)*$pageSize;
+        $name = "%$name%";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->bindValue(':pageSize', $pageSize, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return json_encode(array("records" => $result));
+    }
+
+    public function selectPerson($name)
+    {
+        $toAdd = "";
+		$params = array("%$name%");
+        if($name != "") {
+            $toAdd = " WHERE Navn LIKE ?";
         }
 
-    	//$result = $this->runAndPrepare($query, $toAdd, $params);
+    	$query = "SELECT * FROM kommunalrapport.Personer";
+
         $result = $this->runAndPrepare($query, $toAdd, $params);
 
         return json_encode(array("records" => $this->returnRows($result)));
     }
 
     private function runAndPrepare($query, $toAdd, $params){
-    	$sql = $this->db->prepare($query . $toAdd);
+    	$sql = $this->db->prepare($query . $toAdd . " LIMIT 5555");
     	if($toAdd != ""){
     		$sql->execute($params);
-            echo $sql->queryString;
     	}else{
     		$sql->execute();
     	}

@@ -56,7 +56,7 @@ kommunalApp.controller('nameSearchController', function($scope, $http, $timeout)
         }
         _timeout = $timeout(function(){
             console.log("loading things");
-            $http.get("./api/test.php?name=" + $scope.searchName)
+            $http.get("./api/test.php?name=" + $scope.searchName + "&page=1&pageSize=10")
                 .then(function (response) {
                     $scope.names = response.data.records;
                     $scope.showTable = 'true';
@@ -64,14 +64,14 @@ kommunalApp.controller('nameSearchController', function($scope, $http, $timeout)
 
             _timeout = null;
         },500);
-    }
+    };
 
     $scope.orderByMe = function(x) {
         if($scope.myOrderBy != x){
             $scope.reverse = !$scope.reverse;
         }
         $scope.myOrderBy = x;
-    }
+    };
     $scope.reverseOrder = function(){
         $scope.reverse = !$scope.reverse;
     }
