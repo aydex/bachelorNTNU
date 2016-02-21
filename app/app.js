@@ -55,8 +55,14 @@ kommunalApp.controller('nameSearchController', function($scope, $http, $timeout)
             $timeout.cancel(_timeout);
         }
         _timeout = $timeout(function(){
+            $scope.search.page = 1;
+
             console.log("loading things");
-            $http.get("./api/test.php?name=" + $scope.searchName + "&page=1&pageSize=10")
+            console.log("Searching for " + $scope.search.nameSearch + " with page size " +
+                $scope.search.pageSize + " at page " + $scope.search.page);
+
+            $http.get("./api/test.php?name=" + $scope.search.nameSearch + "&page=" +
+                $scope.search.page + "&pageSize=" + $scope.search.pageSize)
                 .then(function (response) {
                     $scope.names = response.data.records;
                     $scope.showTable = 'true';
