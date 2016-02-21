@@ -55,8 +55,14 @@ kommunalApp.controller('nameSearchController', function($scope, $http, $timeout)
             $timeout.cancel(_timeout);
         }
         _timeout = $timeout(function(){
+            $scope.search.page = 1;
+
             console.log("loading things");
-            $http.get("./api/test.php?name=" + $scope.searchName)
+            console.log("Searching for " + $scope.search.nameSearch + " with page size " +
+                $scope.search.pageSize + " at page " + $scope.search.page);
+
+            $http.get("./api/test.php?name=" + $scope.search.nameSearch + "&page=" +
+                $scope.search.page + "&pageSize=" + $scope.search.pageSize)
                 .then(function (response) {
                     $scope.names = response.data.records;
                     $scope.showTable = 'true';
@@ -64,14 +70,14 @@ kommunalApp.controller('nameSearchController', function($scope, $http, $timeout)
 
             _timeout = null;
         },500);
-    }
+    };
 
     $scope.orderByMe = function(x) {
         if($scope.myOrderBy != x){
             $scope.reverse = !$scope.reverse;
         }
         $scope.myOrderBy = x;
-    }
+    };
     $scope.reverseOrder = function(){
         $scope.reverse = !$scope.reverse;
     }
@@ -90,7 +96,7 @@ angular.module('myApp', []).controller('namesCtrl', function($scope, $http, $tim
         }
         _timeout = $timeout(function(){
             console.log("loading things");
-            $http.get("./api/test.php?name=" + $scope.searchName)
+            $http.get("../api/test.php?name=" + $scope.searchName)
                 .then(function (response) {$scope.names = response.data.records;});
 
             _timeout = null;

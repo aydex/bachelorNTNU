@@ -12,9 +12,20 @@ use bachelor\Query;
 $config = new Config();
 $query  = new Query($config->db);
 
-$name = htmlspecialchars($_REQUEST['name']);
+$name = "";
+$page = 0;
+$pageSize = 0;
 
+if (isset($_REQUEST['name'])) {
+    $name = htmlspecialchars($_REQUEST['name']);
 
-echo $query->selectPerson($name);
+}
+
+if (isset($_REQUEST['page']) && isset($_REQUEST['pageSize'])) {
+    $page = (int)$_REQUEST['page'];
+    $pageSize = (int)$_REQUEST['pageSize'];
+}
+
+echo $query->selectPersonPaged($name, $page, $pageSize);
 
 ?>
