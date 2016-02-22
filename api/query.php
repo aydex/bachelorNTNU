@@ -52,6 +52,7 @@ class Query
                     AND D.Deltagerid = O.Deltagerid
                     AND OT.Omsetningstypekode = O.Omsetningstypekode
                     AND E.Eiendomsid = O.Eiendomsid
+                    AND K.Kommunenr = E.Kommunenr
                     LIMIT :offset, :pageSize";
 
         $offset = ($page - 1)*$pageSize;
