@@ -1,0 +1,7 @@
+Options +FollowSymLinks
+RewriteEngine On
+
+DirectoryIndex index.html
+
+RewriteCond %{REQUEST_URI} ^(?!(.*\/(api|css|views|app)\/.*))(.*)$
+RewriteRule ^(.*)$ index.html [L]

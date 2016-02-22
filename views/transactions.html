@@ -1,0 +1,54 @@
+<a href="/">Forside</a>
+Transactions for id: {{ message }}
+
+<table data-ng-show="showTable">
+    <tr>
+    	<th data-ng-click="orderByMe('Id'); reverseOrder()">
+            Id
+            <span data-ng-show="orderBy == 'Id' && !reverse" class="fa fa-caret-up"></span>
+            <span data-ng-show="orderBy == 'Id' && reverse" class="fa fa-caret-down"></span>
+        </th>
+        <th data-ng-click="orderByMe('Eiendomsid'); reverseOrder()">
+            Eiendomsid
+            <span data-ng-show="orderBy == 'Eiendomsid' && !reverse" class="fa fa-caret-up"></span>
+            <span data-ng-show="orderBy == 'Eiendomsid' && reverse" class="fa fa-caret-down"></span>
+        </th>
+        <th data-ng-click="orderByMe('Kommune'); reverseOrder()">
+            Kommune
+            <span data-ng-show="orderBy == 'Kommune' && !reverse" class="fa fa-caret-up"></span>
+            <span data-ng-show="orderBy == 'Kommune' && reverse" class="fa fa-caret-down"></span>
+        </th>
+        <th data-ng-click="orderByMe('Navn'); reverseOrder()">
+            Navn
+            <span data-ng-show="orderBy == 'Navn' && !reverse" class="fa fa-caret-up"></span>
+            <span data-ng-show="orderBy == 'Navn' && reverse" class="fa fa-caret-down"></span>
+        </th>
+        <th data-ng-click="orderByMe('Rolle'); reverseOrder()">
+            Rolle
+            <span data-ng-show="orderBy == 'Rolle' && !reverse" class="fa fa-caret-up"></span>
+            <span data-ng-show="orderBy == 'Rolle' && reverse" class="fa fa-caret-down"></span>
+        </th>
+        <th data-ng-click="orderByMe('Salgssum'); reverseOrder()">
+            Salgssum
+            <span data-ng-show="orderBy == 'Salgssum' && !reverse" class="fa fa-caret-up"></span>
+            <span data-ng-show="orderBy == 'Salgssum' && reverse" class="fa fa-caret-down"></span>
+        </th>
+        <th data-ng-click="orderByMe('Type'); reverseOrder()">
+            Type
+            <span data-ng-show="orderBy == 'Type' && !reverse" class="fa fa-caret-up"></span>
+            <span data-ng-show="orderBy == 'Type' && reverse" class="fa fa-caret-down"></span>
+        </th>
+    </tr>
+    <tr data-ng-repeat="x in transactions | orderBy:orderBy:reverse">
+        <!--<a data-ng-href="detailed/{{ x.Personid }}">-->
+            <td>{{x.id}}</td>
+            <td>{{x.Eiendomsid}}</td>
+            <td>{{x.Kommune}}</td>
+            <td>{{x.Navn}}</td>
+            <td>{{x.Rolle}}</td>
+            <td>{{x.Salgssum}}</td>
+            <td>{{x.Type}}</td>
+
+        <!--</a>-->
+    </tr>
+</table>
