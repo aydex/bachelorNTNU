@@ -13,14 +13,14 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             controller  : 'mainController'
         })
 
-        .when('/testview', {
-            templateUrl : '/views/testview.html',
-            controller  : 'testController'
+        .when('/search', {
+            templateUrl : '/views/search.html',
+            controller  : 'searchController'
         })
 
-        .when('/namesearch', {
-            templateUrl : '/views/namesearch.html',
-            controller  : 'nameSearchController'
+        .when('/search/transactions/:targetId', {
+            templateUrl : '/views/transactions.html',
+            controller  : 'transactionController'
         })
 
         .otherwise({
@@ -44,8 +44,8 @@ kommunalApp.controller('testController', function($scope) {
 
 });
 
-kommunalApp.controller('nameSearchController', function($scope, $http, $timeout) {
-    console.log("nameSearchController");
+kommunalApp.controller('searchController', function($scope, $http, $timeout, $location) {
+
     var _timeout;
 
     $scope.reverse  = false;
@@ -54,63 +54,54 @@ kommunalApp.controller('nameSearchController', function($scope, $http, $timeout)
         if(_timeout){ //if there is already a timeout in process cancel it
             $timeout.cancel(_timeout);
         }
-        _timeout = $timeout(function(){
-            $scope.search.page = 1;
 
-            console.log("loading things");
-            console.log("Searching for " + $scope.search.nameSearch + " with page size " +
-                $scope.search.pageSize + " at page " + $scope.search.page);
+        if($scope.search.nameSearch != ""){
+            _timeout = $timeout(function(){
 
-            $http.get("./api/test.php?name=" + $scope.search.nameSearch + "&page=" +
-                $scope.search.page + "&pageSize=" + $scope.search.pageSize)
-                .then(function (response) {
-                    $scope.names = response.data.records;
-                    $scope.showTable = 'true';
-                });
+                $scope.search.loading = true;
+                $scope.search.page    = 1;
 
-            _timeout = null;
-        },500);
+                console.log("Searching for " + $scope.search.nameSearch + " with page size " +
+                    $scope.search.pageSize + " at page " + $scope.search.page);
+
+                $http.get("./api/test.php?name=" + $scope.search.nameSearch + "&page=" +
+                    $scope.search.page + "&pageSize=" + $scope.search.pageSize)
+                    .then(function (response) {
+
+                        $scope.names          = response.data.records;
+                        $scope.showTable      = 'true';
+                        $scope.search.loading = false;
+
+                    });
+
+                _timeout = null;
+            },500);
+        }
+
+
+    };
+
+    $scope.showTransactions = function(id){
+        $location.path("/search/transactions/" + id);
+        //$routeParams ==> {chapterId:1, sectionId:2, search:'moby'}
     };
 
     $scope.orderByMe = function(x) {
-        if($scope.myOrderBy != x){
+        if($scope.orderBy != x){
             $scope.reverse = !$scope.reverse;
         }
-        $scope.myOrderBy = x;
+        $scope.orderBy = x;
     };
     $scope.reverseOrder = function(){
         $scope.reverse = !$scope.reverse;
-    }
+    };
 });
 
-/*
-angular.module('myApp', []).controller('namesCtrl', function($scope, $http, $timeout) {
-    console.log("myApp controller");
-    var _timeout;
+kommunalApp.controller('transactionController', function($scope, $routeParams){
+    $scope.message = $routeParams.targetId;
+    $scope.showTable = true;
 
-    $scope.reverse  = false;
+    //Query for transaction with person
 
-    $scope.searchDelay = function(){
-        if(_timeout){ //if there is already a timeout in process cancel it
-            $timeout.cancel(_timeout);
-        }
-        _timeout = $timeout(function(){
-            console.log("loading things");
-            $http.get("../api/test.php?name=" + $scope.searchName)
-                .then(function (response) {$scope.names = response.data.records;});
 
-            _timeout = null;
-        },500);
-    }
-
-    $scope.orderByMe = function(x) {
-        if($scope.myOrderBy != x){
-            $scope.reverse = !$scope.reverse;
-        }
-        $scope.myOrderBy = x;
-    }
-    $scope.reverseOrder = function(){
-        $scope.reverse = !$scope.reverse;
-    }
 });
-*/

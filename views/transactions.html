@@ -1,0 +1,23 @@
+<a href="/">Forside</a>
+Transactions for id: {{ message }}
+
+<table data-ng-show="showTable">
+    <tr>
+        <th data-ng-click="orderBy('THING1'); reverseOrder()">
+            THING1
+            <span data-ng-show="orderBy == 'THING1' && !reverse" class="fa fa-caret-up"></span>
+            <span data-ng-show="orderBy == 'THING1' && reverse" class="fa fa-caret-down"></span>
+        </th>
+        <th data-ng-click="orderBy('THING2'); reverseOrder()">
+            THING2
+            <span data-ng-show="orderBy == 'THING2' && !reverse" class="fa fa-caret-up"></span>
+            <span data-ng-show="orderBy == 'THING2' && reverse" class="fa fa-caret-down"></span>
+        </th>
+    </tr>
+    <tr data-ng-repeat="x in names | orderBy:orderBy:reverse | filter:searchName" data-ng-click="showTransactions(x.Personid)">
+        <!--<a data-ng-href="detailed/{{ x.Personid }}">-->
+            <td>{{x.Personid}}</td>
+            <td>{{x.AnonymisertPersonnr}}</td>
+        <!--</a>-->
+    </tr>
+</table>

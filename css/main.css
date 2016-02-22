@@ -4,12 +4,6 @@ header{
 	margin: 0 40px 0 40px;
 }
 
-#searchElements{
-	margin-top: 50px;
-	margin-left: 15%;
-	margin-bottom: 20px;
-}
-
 #pageElements {
     margin-left: 15%;
 }
@@ -32,4 +26,94 @@ header{
 div p{
 	color: grey;
 	margin-left: 3%;
+}
+
+/**************************************************
+***************************************************
+***************************************************
+********************SEARCH CSS*********************
+***************************************************
+***************************************************/
+
+#searchElements{
+	margin-top: 50px;
+	margin-left: 15%;
+	margin-bottom: 20px;
+}
+
+#search{
+    margin-left: -25px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #2d2d2d;
+    padding-left: 40px;
+    padding-right: 20px;
+
+}
+
+input:focus{
+	outline:0;
+}
+
+#search:focus{
+	border:none;
+	border-bottom:1px solid #2d2d2d;
+}
+
+#search:disabled{
+	color:gray;
+}
+
+#searchIcon{
+	font-size:17px;
+}
+
+table{
+	margin-left: 17%;
+	margin-top: 30px;
+ 	border: 1; 
+ 	width: 60%;
+}
+
+table, tr {
+	text-align: center;
+}
+
+table, th , td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	padding: 5px;
+}
+
+th{
+	cursor:pointer;
+	background-color:darkGrey;
+}
+
+tr:nth-child(odd){
+	background-color:#EAEAEA;
+}
+
+td, th{
+	height:35px;
+	padding:0 5px;
+	text-align: center;
+}
+
+td{
+	cursor:pointer;
+}
+
+td:nth-child(odd){
+	border:none;
+}
+
+td:nth-child(even){
+	border:none;
+	border-left:1px solid gray;
+	border-right:1px solid gray;
+}
+
+.name{
+	text-align: left;
 }
