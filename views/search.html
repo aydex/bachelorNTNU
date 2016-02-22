@@ -1,0 +1,48 @@
+<!--søkeicon i søkefeltet-->
+<a href="/">Forside</a>
+<div id="searchElements">
+    <form id="searchForm" data-ng-submit="searchForm(searchForm)">
+        <p>Trykk på feltene for å endre rekkefølge:</p>
+        <i class="material-icons" id="searchIcon">search</i>
+        <input type="text" data-ng-model="search.nameSearch" data-ng-disabled="search.loading" data-ng-change="searchDelay()" placeholder="Navn, kommune, bedrift å søke på.." id="search" autocomplete="off">
+    </form>
+</div>
+
+<div id="pageElements">
+    Sidestørrelse: <input type="radio" data-ng-model="search.pageSize" value="10" data-ng-change="searchDelay()" id="10" data-ng-init="search.pageSize = 10">10
+    <input type="radio" data-ng-model="search.pageSize" data-ng-change="searchDelay()" value="50" id="50">50
+    <input type="radio" data-ng-model="search.pageSize" data-ng-change="searchDelay()" value="100" id="100">100
+</div>
+
+<table data-ng-show="showTable">
+    <tr>
+        <th data-ng-click="orderByMe('Personid'); reverseOrder()">
+            Personid
+            <span data-ng-show="orderBy == 'Personid' && !reverse" class="fa fa-caret-up"></span>
+            <span data-ng-show="orderBy == 'Personid' && reverse" class="fa fa-caret-down"></span>
+        </th>
+        <th data-ng-click="orderByMe('AnonymisertPersonnr'); reverseOrder()">
+            AnonymisertPersonnr
+            <span data-ng-show="orderBy == 'AnonymisertPersonnr' && !reverse" class="fa fa-caret-up"></span>
+            <span data-ng-show="orderBy == 'AnonymisertPersonnr' && reverse" class="fa fa-caret-down"></span>
+        </th>
+        <th data-ng-click="orderByMe('Personidtypekode'); reverseOrder()">
+            Personidtypekode
+            <span data-ng-show="orderBy == 'Personidtypekode' && !reverse" class="fa fa-caret-up"></span>
+            <span data-ng-show="orderBy == 'Personidtypekode' && reverse" class="fa fa-caret-down"></span>
+        </th>
+        <th data-ng-click="orderByMe('Navn'); reverseOrder()">
+            Navn
+            <span data-ng-show="orderBy == 'Navn' && !reverse" class="fa fa-caret-up"></span>
+            <span data-ng-show="orderBy == 'Navn' && reverse" class="fa fa-caret-down"></span>
+        </th>
+    </tr>
+    <tr data-ng-repeat="x in names | orderBy:orderBy:reverse | filter:searchName" data-ng-click="showTransactions(x.Personid)">
+        <!--<a data-ng-href="detailed/{{ x.Personid }}">-->
+            <td>{{x.Personid}}</td>
+            <td>{{x.AnonymisertPersonnr}}</td>
+            <td>{{x.Personidtypekode}}</td>
+            <td class="name">{{x.Navn}}</td>
+        <!--</a>-->
+    </tr>
+</table>
