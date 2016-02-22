@@ -16,16 +16,20 @@ $name = "";
 $page = 0;
 $pageSize = 0;
 
-if (isset($_REQUEST['name'])) {
-    $name = htmlspecialchars($_REQUEST['name']);
-
-}
 
 if (isset($_REQUEST['page']) && isset($_REQUEST['pageSize'])) {
     $page = (int)$_REQUEST['page'];
     $pageSize = (int)$_REQUEST['pageSize'];
 }
 
-echo $query->selectPersonPaged($name, $page, $pageSize);
+if (isset($_REQUEST['name'])) {
+    $name = htmlspecialchars($_REQUEST['name']);
+    echo $query->selectPersonPaged($name, $page, $pageSize);
+
+}else if(isset($_REQUEST['transaction'])){
+	$pId = htmlspecialchars($_REQUEST['transaction']);
+	echo $query->selectTransaction($pId, $page, $pageSize);
+}
+
 
 ?>

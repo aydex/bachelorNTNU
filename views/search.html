@@ -16,20 +16,15 @@
 
 <table data-ng-show="showTable">
     <tr>
-        <th data-ng-click="orderByMe('Personid'); reverseOrder()">
-            Personid
-            <span data-ng-show="orderBy == 'Personid' && !reverse" class="fa fa-caret-up"></span>
-            <span data-ng-show="orderBy == 'Personid' && reverse" class="fa fa-caret-down"></span>
+        <th data-ng-click="orderByMe('id'); reverseOrder()">
+            id
+            <span data-ng-show="orderBy == 'id' && !reverse" class="fa fa-caret-up"></span>
+            <span data-ng-show="orderBy == 'id' && reverse" class="fa fa-caret-down"></span>
         </th>
-        <th data-ng-click="orderByMe('AnonymisertPersonnr'); reverseOrder()">
-            AnonymisertPersonnr
-            <span data-ng-show="orderBy == 'AnonymisertPersonnr' && !reverse" class="fa fa-caret-up"></span>
-            <span data-ng-show="orderBy == 'AnonymisertPersonnr' && reverse" class="fa fa-caret-down"></span>
-        </th>
-        <th data-ng-click="orderByMe('Personidtypekode'); reverseOrder()">
-            Personidtypekode
-            <span data-ng-show="orderBy == 'Personidtypekode' && !reverse" class="fa fa-caret-up"></span>
-            <span data-ng-show="orderBy == 'Personidtypekode' && reverse" class="fa fa-caret-down"></span>
+        <th data-ng-click="orderByMe('Type'); reverseOrder()">
+            Type
+            <span data-ng-show="orderBy == 'Type' && !reverse" class="fa fa-caret-up"></span>
+            <span data-ng-show="orderBy == 'Type' && reverse" class="fa fa-caret-down"></span>
         </th>
         <th data-ng-click="orderByMe('Navn'); reverseOrder()">
             Navn
@@ -37,11 +32,10 @@
             <span data-ng-show="orderBy == 'Navn' && reverse" class="fa fa-caret-down"></span>
         </th>
     </tr>
-    <tr data-ng-repeat="x in names | orderBy:orderBy:reverse | filter:searchName" data-ng-click="showTransactions(x.Personid)">
+    <tr data-ng-repeat="x in names | orderBy:orderBy:reverse | filter:searchName" data-ng-click="showTransactions(x.id)">
         <!--<a data-ng-href="detailed/{{ x.Personid }}">-->
-            <td>{{x.Personid}}</td>
-            <td>{{x.AnonymisertPersonnr}}</td>
-            <td>{{x.Personidtypekode}}</td>
+            <td>{{x.id}}</td>
+            <td>{{x.Type}}</td>
             <td class="name">{{x.Navn}}</td>
         <!--</a>-->
     </tr>

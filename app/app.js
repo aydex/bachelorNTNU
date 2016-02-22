@@ -97,11 +97,32 @@ kommunalApp.controller('searchController', function($scope, $http, $timeout, $lo
     };
 });
 
-kommunalApp.controller('transactionController', function($scope, $routeParams){
-    $scope.message = $routeParams.targetId;
+kommunalApp.controller('transactionController', function($scope, $routeParams, $http){
+    $scope.message   = $routeParams.targetId;
     $scope.showTable = true;
+    $scope.page      = 1;
+    $scope.pageSize  = 10;
+    $scope.reverse   = false;
 
     //Query for transaction with person
+    $http.get("./api/test.php?transaction=" + $routeParams.targetId + "&page=" +
+        1 + "&pageSize=" + 50)
+        .then(function (response) {
 
+            $scope.transactions   = response.data.records;
+            /*$scope.showTable      = 'true';
+            $scope.search.loading = false;*/
+
+        });
+
+    $scope.orderByMe = function(x) {
+        if($scope.orderBy != x){
+            $scope.reverse = !$scope.reverse;
+        }
+        $scope.orderBy = x;
+    };
+    $scope.reverseOrder = function(){
+        $scope.reverse = !$scope.reverse;
+    };
 
 });
