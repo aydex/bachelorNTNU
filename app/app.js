@@ -8,28 +8,45 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
     $routeProvider
 
         //route for homepage
-        .when('/', {
+        /*.when('/', {
             templateUrl : '/views/frontpage.html',
             controller  : 'mainController'
-        })
+        })*/
 
         .when('/search', {
             templateUrl : '/views/search.html',
             controller  : 'searchController'
         })
 
-        .when('/search/transactions/:targetId', {
+        .when('/transactions/deltager/:name/:targetId', {
             templateUrl : '/views/transactions.html',
-            controller  : 'transactionController'
+            controller  : 'transactionPersonController'
+        })
+
+        .when('/transactions/property/:targetId', {
+            templateUrl : '/views/transactionsProperty.html',
+            controller  : 'transactionPropertyController'
         })
 
         .otherwise({
-            redirectTo: '/'
+            redirectTo: '/search'
         });
 
         
     // use the HTML5 History API
     $locationProvider.html5Mode(true);
+});
+
+kommunalApp.run(function($rootScope, $http) {
+
+    $rootScope.doQuery = function(type, id, page, pageSize) {
+        return $http.get("./api/test.php?" + type + "=" + id + "&page=" +
+            page + "&pageSize=" + pageSize)
+            .then(function (response) {
+                return response.data.records;
+            });
+    }
+
 });
 
 kommunalApp.controller('mainController', function($scope) {
@@ -38,17 +55,27 @@ kommunalApp.controller('mainController', function($scope) {
 
 });
 
-kommunalApp.controller('testController', function($scope) {
-
-    $scope.message = "I am from the testController";
-
-});
-
-kommunalApp.controller('searchController', function($scope, $http, $timeout, $location) {
+kommunalApp.controller('searchController', function($scope, $rootScope, $timeout, $location) {
 
     var _timeout;
+    var queryPromis
 
-    $scope.reverse  = false;
+    $scope.page           = 1;
+    $scope.reverse        = false;
+    $scope.showNavigation = true;
+    $scope.searched       = false;
+
+    $scope.queryPerson  = function() {
+        queryPromis = $rootScope.doQuery("name", $scope.search.nameSearch, 
+                                                    $scope.page, $scope.search.pageSize);
+        queryPromis.then(function(result){
+            $scope.names          = result;
+            $scope.showTable      = 'true';
+            $scope.showNavigation = true;
+            $scope.more_results   = result.length >= $scope.search.pageSize ? true : false;
+            $scope.searched       = true;
+        });
+    }
 
     $scope.searchDelay = function(){
         if(_timeout){ //if there is already a timeout in process cancel it
@@ -58,71 +85,183 @@ kommunalApp.controller('searchController', function($scope, $http, $timeout, $lo
         if($scope.search.nameSearch != ""){
             _timeout = $timeout(function(){
 
-                $scope.search.loading = true;
-                $scope.search.page    = 1;
+                /*$scope.search.loading = true;*/
 
                 console.log("Searching for " + $scope.search.nameSearch + " with page size " +
-                    $scope.search.pageSize + " at page " + $scope.search.page);
+                    $scope.search.pageSize + " at page " + $scope.page);
 
-                $http.get("./api/test.php?name=" + $scope.search.nameSearch + "&page=" +
-                    $scope.search.page + "&pageSize=" + $scope.search.pageSize)
-                    .then(function (response) {
-
-                        $scope.names          = response.data.records;
-                        $scope.showTable      = 'true';
-                        $scope.search.loading = false;
-
-                    });
+                $scope.queryPerson();
 
                 _timeout = null;
             },500);
         }
 
 
-    };
+    }
 
-    $scope.showTransactions = function(id){
-        $location.path("/search/transactions/" + id);
+    $scope.navigate = function(way) {
+        $scope.page          += way;
+        $scope.showNavigation = false;
+        $scope.queryPerson();
+    }
+
+    $scope.showTransactionsPerson = function(id, name){
+        $location.path("/transactions/deltager/" + name + "/" + id);
         //$routeParams ==> {chapterId:1, sectionId:2, search:'moby'}
-    };
+    }
 
     $scope.orderByMe = function(x) {
         if($scope.orderBy != x){
             $scope.reverse = !$scope.reverse;
         }
         $scope.orderBy = x;
-    };
+    }
+
     $scope.reverseOrder = function(){
         $scope.reverse = !$scope.reverse;
-    };
+    }
 });
 
-kommunalApp.controller('transactionController', function($scope, $routeParams, $http){
-    $scope.message   = $routeParams.targetId;
-    $scope.showTable = true;
-    $scope.page      = 1;
-    $scope.pageSize  = 10;
-    $scope.reverse   = false;
+kommunalApp.controller('transactionPersonController', function($scope, $rootScope, $routeParams, $location) {
+    $scope.message        = $routeParams.targetId;
+    $scope.name           = $routeParams.name;
+    $scope.showTable      = true;
+    $scope.page           = 1;
+    $scope.pageSize       = 10;
+    $scope.reverse        = false;
+    $scope.type           = "Transaksjoner for " + $scope.name;
+    $scope.showNavigation = true;
 
-    //Query for transaction with person
-    $http.get("./api/test.php?transaction=" + $routeParams.targetId + "&page=" +
-        1 + "&pageSize=" + 50)
-        .then(function (response) {
-
-            $scope.transactions   = response.data.records;
-            /*$scope.showTable      = 'true';
-            $scope.search.loading = false;*/
-
+    $scope.queryTransaction = function() {
+        var queryPromis = $rootScope.doQuery("transactionFromPerson", $routeParams.targetId, 
+                                    $scope.page, $scope.pageSize);
+        queryPromis.then(function(result){
+            $scope.transactions = $scope.filterResults(result);
+            $scope.more_results   = result.length >= $scope.pageSize ? true : false;
+            $scope.showNavigation = true;
         });
+    }
+
+    $scope.filterResults = function(results) {
+        var involvement;
+        var involvementType;
+        var final_output;
+        var add;
+        var seller = "";
+        var buyer  = "";
+
+        for(x in results) {
+            involvement = results[x].Involvering.split(",");
+            for(y in involvement) {
+                involvementType = involvement[y].split(":");
+                if(involvementType[1].toLowerCase() == "k") {
+                    buyer = "Kjøpt " + involvementType[0];
+                } else if(involvementType[1].toLowerCase() == "s") {
+                    seller = "Solgt " + involvementType[0];
+                }
+            }
+
+            add = buyer != "" && seller != "" ? " og " : "";
+            results[x].Involvering = buyer + add + seller;  
+        }
+        return results;
+    }
+
+    $scope.navigate = function(way) {
+        $scope.page          += way;
+        $scope.showNavigation = false;
+        $scope.queryTransaction();
+    }
 
     $scope.orderByMe = function(x) {
         if($scope.orderBy != x){
             $scope.reverse = !$scope.reverse;
         }
         $scope.orderBy = x;
-    };
+    }
+
     $scope.reverseOrder = function(){
         $scope.reverse = !$scope.reverse;
-    };
+    }
 
+    $scope.showTransactionsProperty = function(id){
+        $location.path("/transactions/property/" + id);
+    }
+
+    $scope.queryTransaction();
+
+});
+
+kommunalApp.controller('transactionPropertyController', function($scope, $rootScope, $routeParams, $http) {
+
+    $scope.message        = $routeParams.targetId;
+    $scope.showTable      = true;
+    $scope.page           = 1;
+    $scope.pageSize       = 10;
+    $scope.reverse        = false;
+    $scope.type           = "Alle transaksjoner med eiendommen";
+    $scope.showNavigation = true;
+
+    $scope.queryTransaction = function(){
+        var queryPromis = $rootScope.doQuery("transactionFromProperty", $routeParams.targetId, 
+                                    $scope.page, $scope.pageSize);
+        queryPromis.then(function(result){
+            
+            results = $scope.getParticipantsCorrectly(result);
+
+            $scope.transactions = result;
+            $scope.more_results   = result.length >= $scope.pageSize ? true : false;
+            $scope.showNavigation = true;
+        });
+    }
+
+    $scope.navigate = function(way) {
+        $scope.page          += way;
+        $scope.showNavigation = false;
+        $scope.queryTransaction();
+    }
+
+    $scope.getParticipantsCorrectly = function(results) {
+        var current_deltagere;
+        var current_deltager;
+
+        for(x in results) {
+
+            current_deltagere = results[x].Deltagere.split(",");
+
+            var buyer        = [];
+            var seller       = [];
+
+            for(y in current_deltagere) {
+                current_deltager = current_deltagere[y].split(":");
+
+                if(current_deltager[0].toLowerCase() == "k") {
+                    if(current_deltager[1] != "UKJENT")
+                        buyer.push(current_deltager[1] + "(" + current_deltager[3] + "/" + current_deltager[4] + ")");
+                }else if(current_deltager[0].toLowerCase() == "s"){
+                    if(current_deltager[1] != "UKJENT")
+                        seller.push(current_deltager[1] + "(" + current_deltager[3] + "/" + current_deltager[4] + ")");
+                }
+            }
+            results[x].seller = seller.length == 0 ? "Ukjent" : seller.join(" og ");
+            results[x].buyer  = buyer.length == 0 ? "Ukjent" : buyer.join(" og ");
+            delete results[x].Deltagere;
+
+        }
+
+        return results;
+    }
+
+    $scope.orderByMe = function(x) {
+        if($scope.orderBy != x){
+            $scope.reverse = !$scope.reverse;
+        }
+        $scope.orderBy = x;
+    }
+
+    $scope.reverseOrder = function(){
+        $scope.reverse = !$scope.reverse;
+    }
+
+    $scope.queryTransaction();
 });

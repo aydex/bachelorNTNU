@@ -117,3 +117,11 @@ td:nth-child(even){
 .name{
 	text-align: left;
 }
+
+#transaksjonsType{
+	text-align: center;
+}
+
+.propertyTable tr td{
+	cursor:text;
+}

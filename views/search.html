@@ -4,7 +4,7 @@
     <form id="searchForm" data-ng-submit="searchForm(searchForm)">
         <p>Trykk på feltene for å endre rekkefølge:</p>
         <i class="material-icons" id="searchIcon">search</i>
-        <input type="text" data-ng-model="search.nameSearch" data-ng-disabled="search.loading" data-ng-change="searchDelay()" placeholder="Navn, kommune, bedrift å søke på.." id="search" autocomplete="off">
+        <input type="text" data-ng-model="search.nameSearch" data-ng-change="searchDelay()" placeholder="Navn, kommune, bedrift å søke på.." id="search" autocomplete="off">
     </form>
 </div>
 
@@ -32,7 +32,7 @@
             <span data-ng-show="orderBy == 'Navn' && reverse" class="fa fa-caret-down"></span>
         </th>
     </tr>
-    <tr data-ng-repeat="x in names | orderBy:orderBy:reverse | filter:searchName" data-ng-click="showTransactions(x.id)">
+    <tr data-ng-repeat="x in names | orderBy:orderBy:reverse | filter:searchName" data-ng-click="showTransactionsPerson(x.id, x.Navn)">
         <!--<a data-ng-href="detailed/{{ x.Personid }}">-->
             <td>{{x.id}}</td>
             <td>{{x.Type}}</td>
@@ -40,3 +40,6 @@
         <!--</a>-->
     </tr>
 </table>
+
+<p id="pageNumber" data-ng-show="searched">Side: {{ page }} <a href="#" data-ng-click="navigate(-1)" data-ng-show="page > 1 && showNavigation">Forrige side</a> <a href="#" data-ng-show="more_results && showNavigation" data-ng-click="navigate(1)">Neste side</a>
+</p>
