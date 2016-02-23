@@ -15,7 +15,7 @@ class Query
 
     public function selectPersonPaged($name, $page=1, $pageSize=10) {
         //$query = "SELECT * FROM kommunalrapport.Deltagere WHERE Navn LIKE :name LIMIT :offset, :pageSize";
-        $query = "SELECT Deltagerid AS id, 
+        $query = "SELECT SQL_CALC_FOUND_ROWS Deltagerid AS id,
                     CASE
                         WHEN Deltagertype = 'F'
                             THEN 'Privatperson'
@@ -36,14 +36,16 @@ class Query
 
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        return json_encode(array("records" => $result));
+        $count = $this->countRows();
+
+        return json_encode(array("records" => $result, "count" => $count));
     }
 
     public function selectTransaction($id, $page=1, $pageSize=10) {
         $query = "SELECT O.id, O.Eiendomsid, K.Kommunenavn AS Kommune,
-                    CASE 
-                        WHEN PartType = 'K' 
-                            THEN 'Kjøper' 
+                    CASE
+                        WHEN PartType = 'K'
+                            THEN 'Kjøper'
                         WHEN PartType = 'S'
                             THEN 'Selger'
                     END AS Rolle, D.Navn, OT.Omsetningstypenavn AS Type, Salgssum
@@ -96,4 +98,13 @@ class Query
     private function returnRows($sql){
     	return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
-}	
+
+    public function countRows() {
+        $query = "SELECT FOUND_ROWS()";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+}

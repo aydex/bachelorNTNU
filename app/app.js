@@ -72,13 +72,18 @@ kommunalApp.controller('searchController', function($scope, $http, $timeout, $lo
                         $scope.showTable      = 'true';
                         $scope.search.loading = false;
 
+                        angular.forEach(response.data.count[0], function(value) {
+                                console.log(value);
+                                $scope.search.count = value;
+                                $scope.search.pageCount = Math.ceil(value/$scope.search.pageSize);
+                            }
+                        );
+                        console.log($scope.search.pageCount);
                     });
 
                 _timeout = null;
             },500);
         }
-
-
     };
 
     $scope.showTransactions = function(id){
@@ -95,6 +100,37 @@ kommunalApp.controller('searchController', function($scope, $http, $timeout, $lo
     $scope.reverseOrder = function(){
         $scope.reverse = !$scope.reverse;
     };
+
+    $scope.nextPage = function() {
+        if ($scope.search.page <= $scope.search.pageCount) {
+            $scope.search.page += 1;
+            $scope.search.loading = true;
+            $scope.showTable = 'false';
+            $http.get("./api/test.php?name=" + $scope.search.nameSearch + "&page=" +
+                    $scope.search.page + "&pageSize=" + $scope.search.pageSize)
+                .then(function (response) {
+
+                    $scope.names          = response.data.records;
+                    $scope.showTable      = 'true';
+                    $scope.search.loading = false;
+                });
+        }
+    };
+    $scope.prevPage = function() {
+        if ($scope.search.page >= 1) {
+            $scope.search.page -= 1;
+            $scope.search.loading = true;
+            $scope.showTable = 'false';
+            $http.get("./api/test.php?name=" + $scope.search.nameSearch + "&page=" +
+                    $scope.search.page + "&pageSize=" + $scope.search.pageSize)
+                .then(function (response) {
+
+                    $scope.names          = response.data.records;
+                    $scope.showTable      = 'true';
+                    $scope.search.loading = false;
+                });
+        }
+    }
 });
 
 kommunalApp.controller('transactionController', function($scope, $routeParams, $http){

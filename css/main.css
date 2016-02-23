@@ -117,3 +117,35 @@ td:nth-child(even){
 .name{
 	text-align: left;
 }
+
+
+/****************************************/
+/**************  NAV CSS  ***************/
+/****************************************/
+
+#prevPage {
+    left: 0;
+    margin-left: 5%;
+    margin-top: 10%;
+    font-size: 100px;
+    position: fixed;
+}
+
+#nextPage {
+    right: 0;
+    margin-right: 10%;
+    margin-top: 10%;
+    font-size: 100px;
+    position: fixed;
+}
+
+.navButtonActive {
+    cursor: pointer;
+    color: #2d2d2d;
+}
+
+.navButtonInactive {
+    cursor: default;
+    color: lightgray;
+}
+
