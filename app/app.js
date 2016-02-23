@@ -93,6 +93,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         if($scope.search.nameSearch != ""){
             _timeout = $timeout(function(){
 
+                $scope.page = 1;
                 /*$scope.search.loading = true;*/
 
                 console.log("Searching for " + $scope.search.nameSearch + " with page size " +
