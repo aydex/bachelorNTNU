@@ -118,7 +118,6 @@ td:nth-child(even){
 	text-align: left;
 }
 
-
 /****************************************/
 /**************  NAV CSS  ***************/
 /****************************************/
@@ -147,5 +146,13 @@ td:nth-child(even){
 .navButtonInactive {
     cursor: default;
     color: lightgray;
+}
+
+#transaksjonsType{
+	text-align: center;
+}
+
+.propertyTable tr td{
+	cursor:text;
 }
 

@@ -21,6 +21,8 @@ class Query
                             THEN 'Privatperson'
                         WHEN Deltagertype = 'S'
                             THEN 'Selskap'
+                        WHEN Deltagertype = 'L'
+                            THEN 'Løpe'
                         END AS Type, Navn AS Navn FROM kommunalrapport.Deltagere
                     WHERE Navn LIKE :name
                     LIMIT :offset, :pageSize;";
@@ -41,26 +43,56 @@ class Query
         return json_encode(array("records" => $result, "count" => $count));
     }
 
-    public function selectTransaction($id, $page=1, $pageSize=10) {
-        $query = "SELECT O.id, O.Eiendomsid, K.Kommunenavn AS Kommune,
-                    CASE
-                        WHEN PartType = 'K'
-                            THEN 'Kjøper'
+    public function selectTransaction($id, $page=1, $pageSize=10, $deltager) {
+
+        if($deltager) {
+            $query_inner     = "SELECT Kommunenavn, Eiendomsid, ForstRegistrert, 
+                                SistRegistrert, AntallTransaksjoner, 
+                                GROUP_CONCAT(CONCAT_WS(':', Dokumentdato, PartType) SEPARATOR ', ') AS Involvering 
+                                FROM Omsetninger 
+                                NATURAL JOIN Dokumenter 
+                                NATURAL JOIN Eiendomshistorie 
+                                NATURAL JOIN Eiendommer 
+                                NATURAL JOIN Kommuner 
+                                WHERE Deltagerid= :query_target
+                                GROUP BY Eiendomsid";
+
+            $query_extention = "O.Deltagerid";
+        } else if(!$deltager) {
+            $query_inner     = "SELECT Dokumentdato, OmsetningsTypenavn, Salgssum, Dokumentnr, 
+                                GROUP_CONCAT(CONCAT_WS(':', PartType, Navn, Deltagerid, AndelTeller, AndelNevner)SEPARATOR ',') AS Deltagere 
+                                FROM Omsetninger 
+                                NATURAL JOIN Dokumenter 
+                                NATURAL JOIN Deltagere 
+                                NATURAL JOIN Omsetningstyper 
+                                WHERE Eiendomsid=:query_target 
+                                GROUP BY InterntDokumentnr";
+
+            $query_extention = "O.Eiendomsid";
+        }
+
+        /*$query = "SELECT O.id, O.Eiendomsid, K.Kommunenavn AS Kommune,
+                    CASE 
+                        WHEN PartType = 'K' 
+                            THEN 'Kjøper' 
+>>>>>>> origin/viewstest
                         WHEN PartType = 'S'
                             THEN 'Selger'
                     END AS Rolle, D.Navn, OT.Omsetningstypenavn AS Type, Salgssum
                     FROM Omsetninger AS O, Deltagere AS D, Omsetningstyper AS OT, Eiendommer AS E, Kommuner AS K
-                    WHERE O.Deltagerid = :personid
+                    WHERE $query_extention = :query_target
                     AND D.Deltagerid = O.Deltagerid
                     AND OT.Omsetningstypekode = O.Omsetningstypekode
                     AND E.Eiendomsid = O.Eiendomsid
                     AND K.Kommunenr = E.Kommunenr
+*/
+        $query = "  $query_inner
                     LIMIT :offset, :pageSize";
 
         $offset = ($page - 1)*$pageSize;
 
         $stmt = $this->db->prepare($query);
-        $stmt->bindValue(':personid', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':query_target', $id, PDO::PARAM_INT);
         $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
         $stmt->bindValue(':pageSize', $pageSize, PDO::PARAM_INT);
         $stmt->execute();
