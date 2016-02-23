@@ -191,7 +191,7 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
         if((way == -1 && $scope.page > 1 && $scope.showNavigation) || (way == 1 && $scope.more_results && $scope.showNavigation)){
             $scope.page          += way;
             $scope.showNavigation = false;
-            $scope.queryPerson();
+            $scope.queryTransaction();
         }
     }
 
@@ -246,7 +246,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
         if((way == -1 && $scope.page > 1 && $scope.showNavigation) || (way == 1 && $scope.more_results && $scope.showNavigation)){
             $scope.page          += way;
             $scope.showNavigation = false;
-            $scope.queryPerson();
+            $scope.queryTransaction();
         }
     }
 
