@@ -16,8 +16,9 @@
 
 
 <div id="tableContainer">
-    <span ng-class="{'navButtonInactive' : search.page <= 1 || search.pageCount <= 2, 'navButtonActive' : search.page > 1}" class="fa fa-chevron-left" ng-click="navigate(-1)" id="prevPage"></span>
-    <span ng-class="{'navButtonInactive' : search.page == search.pageCount || search.pageCount <=2, 'navButtonActive' : search.pageCount >= 2}" class="fa fa-chevron-right" ng-click="navigate(1)" id="nextPage"></span>
+    {{ page }}
+    <span data-ng-class="{'navButtonInactive' : page = 1, 'navButtonActive' : page > 1}" class="fa fa-chevron-left" data-ng-click="navigate(-1)" id="prevPage"></span>
+    <span data-ng-class="{'navButtonInactive' : page == pageCount || pageCount <=2 || !searched, 'navButtonActive' : pageCount >= 2}" class="fa fa-chevron-right" data-ng-click="navigate(1)" id="nextPage"></span>
 <table data-ng-show="showTable">
     <tr>
         <th data-ng-click="orderByMe('id'); reverseOrder()">
