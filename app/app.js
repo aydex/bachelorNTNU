@@ -60,29 +60,27 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     var _timeout;
     var queryPromis
 
+    $scope.page           = 1;
     $scope.reverse        = false;
     $scope.showNavigation = true;
     $scope.searched       = false;
-    $scope.page           = 1;
 
     $scope.queryPerson  = function() {
-
         queryPromis = $rootScope.doQuery("name", $scope.search.nameSearch, 
                                                     $scope.page, $scope.search.pageSize);
         queryPromis.then(function(result){
+
+            angular.forEach(result.count[0], function(value) {
+                $scope.count = value;
+                //$scope.count = Math.ceil($scope.page * $scope.search.pageSize);
+            });
+
             $scope.names          = result.records;
             $scope.showTable      = 'true';
             $scope.showNavigation = true;
-            $scope.more_results   = result.records.length >= $scope.search.pageSize ? true : false;
+            $scope.more_results   = $scope.count > ($scope.page * $scope.search.pageSize) ? true : false;
             $scope.searched       = true;
-
-            console.log(result);
-
-            angular.forEach(result.count[0], function(value) {
-                    $scope.search.pageCount = Math.ceil(value/$scope.search.pageSize);
-                }
-            );
-            console.log($scope.search.pageCount);
+            $scope.hideNavigation = !$scope.more_results && $scope.page == 1 ? false : true;
 
         });
     }
@@ -99,21 +97,23 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
 
                 console.log("Searching for " + $scope.search.nameSearch + " with page size " +
                     $scope.search.pageSize + " at page " + $scope.page);
-                
+
                 $scope.queryPerson();
 
                 _timeout = null;
             },500);
         }
+
+
     }
 
-    /*
     $scope.navigate = function(way) {
-        $scope.search.page          += way;
-        $scope.showNavigation = false;
-        $scope.queryPerson();
-    }*/
-
+        if((way == -1 && $scope.page > 1 && $scope.showNavigation) || (way == 1 && $scope.more_results && $scope.showNavigation)){
+            $scope.page          += way;
+            $scope.showNavigation = false;
+            $scope.queryPerson();
+        }
+    }
 
     $scope.showTransactionsPerson = function(id, name){
         $location.path("/transactions/deltager/" + name + "/" + id);
@@ -130,34 +130,6 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     $scope.reverseOrder = function(){
         $scope.reverse = !$scope.reverse;
     }
-
-    $scope.navigate = function(way) {
-
-        if (($scope.page < $scope.search.pageCount && way == 1) || ($scope.page > 1 && way == -1)) {
-            $scope.page =  $scope.page + way;
-            console.log("pushed, way: " + way)
-            console.log("Pagecount: " + $scope.search.pageCount)
-            console.log("Page: " + $scope.page);
-            $scope.queryPerson();
-        }
-    }
-    /*
-    $scope.prevPage = function() {
-        if ($scope.search.page >= 1) {
-            $scope.search.page -= 1;
-            $scope.search.loading = true;
-            $scope.showTable = 'false';
-            $http.get("./api/test.php?name=" + $scope.search.nameSearch + "&page=" +
-                    $scope.search.page + "&pageSize=" + $scope.search.pageSize)
-                .then(function (response) {
-
-                    $scope.names          = response.data.records;
-                    $scope.showTable      = 'true';
-                    $scope.search.loading = false;
-                });
-        }
-
-    }*/
 });
 
 kommunalApp.controller('transactionPersonController', function($scope, $rootScope, $routeParams, $location) {
@@ -165,18 +137,27 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
     $scope.name           = $routeParams.name;
     $scope.showTable      = true;
     $scope.page           = 1;
-    $scope.search.pageSize       = 10;
+    $scope.pageSize       = 10;
     $scope.reverse        = false;
     $scope.type           = "Transaksjoner for " + $scope.name;
     $scope.showNavigation = true;
 
     $scope.queryTransaction = function() {
         var queryPromis = $rootScope.doQuery("transactionFromPerson", $routeParams.targetId, 
-                                    $scope.search.page, $scope.search.pageSize);
+                                    $scope.page, $scope.pageSize);
         queryPromis.then(function(result){
-            $scope.transactions = $scope.filterResults(result.records);
-            $scope.more_results   = result.records.length >= $scope.search.pageSize ? true : false;
+
+            console.log(result);
+
+            angular.forEach(result.count[0], function(value) {
+                $scope.count = value;
+                //$scope.count = Math.ceil($scope.page * $scope.search.pageSize);
+            });
+
+            $scope.more_results   = $scope.count > ($scope.page * $scope.pageSize) ? true : false;
+            $scope.transactions   = $scope.filterResults(result.records);
             $scope.showNavigation = true;
+            $scope.hideNavigation = !$scope.more_results && $scope.page == 1 ? false : true;
         });
     }
 
@@ -206,9 +187,11 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
     }
 
     $scope.navigate = function(way) {
-        $scope.page          += way;
-        $scope.showNavigation = false;
-        $scope.queryTransaction();
+        if((way == -1 && $scope.page > 1 && $scope.showNavigation) || (way == 1 && $scope.more_results && $scope.showNavigation)){
+            $scope.page          += way;
+            $scope.showNavigation = false;
+            $scope.queryPerson();
+        }
     }
 
     $scope.orderByMe = function(x) {
@@ -235,28 +218,35 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
     $scope.message        = $routeParams.targetId;
     $scope.showTable      = true;
     $scope.page           = 1;
-    $scope.search.pageSize       = 10;
+    $scope.pageSize       = 10;
     $scope.reverse        = false;
     $scope.type           = "Alle transaksjoner med eiendommen";
     $scope.showNavigation = true;
 
     $scope.queryTransaction = function(){
         var queryPromis = $rootScope.doQuery("transactionFromProperty", $routeParams.targetId, 
-                                    $scope.search.page, $scope.search.pageSize);
+                                    $scope.page, $scope.pageSize);
         queryPromis.then(function(result){
             
-            results = $scope.getParticipantsCorrectly(result.records);
+            angular.forEach(result.count[0], function(value) {
+                $scope.count = value;
+                //$scope.count = Math.ceil($scope.page * $scope.search.pageSize);
+            });
 
-            $scope.transactions = results;
-            $scope.more_results   = results.length >= $scope.search.pageSize ? true : false;
+            $scope.more_results   = $scope.count > ($scope.page * $scope.pageSize) ? true : false;
+            results               = $scope.getParticipantsCorrectly(result.records);
+            $scope.transactions   = result.records;
             $scope.showNavigation = true;
+            $scope.hideNavigation = !$scope.more_results && $scope.page == 1 ? false : true;
         });
     }
 
     $scope.navigate = function(way) {
-        $scope.page          += way;
-        $scope.showNavigation = false;
-        $scope.queryTransaction();
+        if((way == -1 && $scope.page > 1 && $scope.showNavigation) || (way == 1 && $scope.more_results && $scope.showNavigation)){
+            $scope.page          += way;
+            $scope.showNavigation = false;
+            $scope.queryPerson();
+        }
     }
 
     $scope.getParticipantsCorrectly = function(results) {

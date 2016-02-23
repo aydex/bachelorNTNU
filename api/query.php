@@ -46,7 +46,7 @@ class Query
     public function selectTransaction($id, $page=1, $pageSize=10, $deltager) {
 
         if($deltager) {
-            $query_inner     = "SELECT Kommunenavn, Eiendomsid, ForstRegistrert, 
+            $query_inner     = "SELECT SQL_CALC_FOUND_ROWS Kommunenavn, Eiendomsid, ForstRegistrert, 
                                 SistRegistrert, AntallTransaksjoner, 
                                 GROUP_CONCAT(CONCAT_WS(':', Dokumentdato, PartType) SEPARATOR ', ') AS Involvering 
                                 FROM Omsetninger 
@@ -59,7 +59,7 @@ class Query
 
             $query_extention = "O.Deltagerid";
         } else if(!$deltager) {
-            $query_inner     = "SELECT Dokumentdato, OmsetningsTypenavn, Salgssum, Dokumentnr, 
+            $query_inner     = "SELECT SQL_CALC_FOUND_ROWS Dokumentdato, OmsetningsTypenavn, Salgssum, Dokumentnr, 
                                 GROUP_CONCAT(CONCAT_WS(':', PartType, Navn, Deltagerid, AndelTeller, AndelNevner)SEPARATOR ',') AS Deltagere 
                                 FROM Omsetninger 
                                 NATURAL JOIN Dokumenter 
@@ -71,21 +71,6 @@ class Query
             $query_extention = "O.Eiendomsid";
         }
 
-        /*$query = "SELECT O.id, O.Eiendomsid, K.Kommunenavn AS Kommune,
-                    CASE 
-                        WHEN PartType = 'K' 
-                            THEN 'Kjøper' 
->>>>>>> origin/viewstest
-                        WHEN PartType = 'S'
-                            THEN 'Selger'
-                    END AS Rolle, D.Navn, OT.Omsetningstypenavn AS Type, Salgssum
-                    FROM Omsetninger AS O, Deltagere AS D, Omsetningstyper AS OT, Eiendommer AS E, Kommuner AS K
-                    WHERE $query_extention = :query_target
-                    AND D.Deltagerid = O.Deltagerid
-                    AND OT.Omsetningstypekode = O.Omsetningstypekode
-                    AND E.Eiendomsid = O.Eiendomsid
-                    AND K.Kommunenr = E.Kommunenr
-*/
         $query = "  $query_inner
                     LIMIT :offset, :pageSize";
 
@@ -99,7 +84,9 @@ class Query
 
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        return json_encode(array("records" => $results));
+        $count = $this->countRows();
+
+        return json_encode(array("records" => $results, "count" => $count));
     }
 
     public function selectPerson($name)
