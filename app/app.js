@@ -255,7 +255,6 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
         var current_deltager;
 
         for(x in results) {
-
             current_deltagere = results[x].Deltagere.split(",");
 
             var buyer        = [];
@@ -263,17 +262,16 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
 
             for(y in current_deltagere) {
                 current_deltager = current_deltagere[y].split(":");
-
                 if(current_deltager[0].toLowerCase() == "k") {
-                    if(current_deltager[1] != "UKJENT")
-                        buyer.push(current_deltager[1] + "(" + current_deltager[3] + "/" + current_deltager[4] + ")");
+                    buyer.push(current_deltager[1] + ":" + current_deltager[3] + ":" + current_deltager[4]);
                 }else if(current_deltager[0].toLowerCase() == "s"){
-                    if(current_deltager[1] != "UKJENT")
-                        seller.push(current_deltager[1] + "(" + current_deltager[3] + "/" + current_deltager[4] + ")");
+                    seller.push(current_deltager[1] + ":" + current_deltager[3] + ":" + current_deltager[4] );
                 }
             }
-            results[x].seller = seller.length == 0 ? "Ukjent" : seller.join(" og ");
-            results[x].buyer  = buyer.length == 0 ? "Ukjent" : buyer.join(" og ");
+            //results[x].seller = seller.length == 0 ? "Ukjent" : seller.join(" og ");
+            //results[x].buyer  = buyer.length == 0 ? "Ukjent" : buyer.join(" og ");
+            results[x].seller = seller;
+            results[x].buyer  = buyer;
             delete results[x].Deltagere;
 
         }
@@ -293,4 +291,53 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
     }
 
     $scope.queryTransaction();
+});
+
+
+kommunalApp.filter('prisFilter', function($filter){
+        return function(input){
+            var lengde = input.length
+            var out = "";
+            while (lengde >= 0){
+                out = input.substring(lengde-3, lengde) + " " +out;
+                lengde-=3;
+            }
+            return out;
+    }
+});
+
+kommunalApp.filter('navnFilter', function($filter, $sce){
+    return function(input){
+        var capitalFirstLetters = function(word){
+            return word.replace(/[\S]+/g, function(innerWord){
+                return innerWord.substring(0,1).toUpperCase() + innerWord.substring(1, innerWord.length).toLowerCase();
+            });
+        }
+        var out = [];
+        var navn;
+        var forNavn;
+        var etterNavn;
+        var andelTeller;
+        var andelNevner;
+        if (input.length == 0){
+            console.log("null")
+            return $sce.trustAsHtml("Ukjent");;
+        }
+        angular.forEach(input, function(value){
+            navn = value.split(":")[0];
+            if (navn.indexOf("KOMMUNE") == -1){
+                forNavn = navn.substring(navn.indexOf(" "), navn.length);
+                etterNavn = navn.substring(0, navn.indexOf(" "));
+                navn = forNavn + " " + etterNavn;
+            } 
+            navn = capitalFirstLetters(navn);
+            andelTeller = value.split(":")[1];
+            andelNevner = value.split(":")[2];
+            out.push("<sup>" + andelTeller +"</sup>&frasl;<sub>" + andelNevner + "</sub> " + navn);
+        })
+
+        return $sce.trustAsHtml(out.join(" <br> "));
+    }
+
+
 });
