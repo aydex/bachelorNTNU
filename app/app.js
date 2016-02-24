@@ -384,14 +384,15 @@ kommunalApp.filter('deltagerTypeFilter', function($filter){
 });
 
 kommunalApp.filter('nameFilter', function($filter){
-        return function(input, type){
+        return function(input, type, keepMiddleNames){
 
             var out = capitalFirstLetters(input);
             if (type == "F"){
                 out = setLastnameAfterFirstname(out);
+                if (!keepMiddleNames){
+                    out = abbreviateMiddleNames(out);
+                }
             }
-
-            out = abbreviateMiddleNames(out);
             return out;
         }
 });
@@ -408,7 +409,13 @@ var capitalFirstLetters = function(word){
 }
 
 var abbreviateMiddleNames = function(name){
-    var navn = name.split(/\b\s+\b/); 
+    var navn = name.split(/\s+(?=\S)/); 
+    if (navn[0] == ""){
+        navn.splice(0,1);
+    }
+    
+    console.log(navn)
+
     if (navn.length > 2){
         for (var i = navn.length - 2; i >= 1; i--) {
             navn[i] = navn[i].substring(0,1) + ".";
