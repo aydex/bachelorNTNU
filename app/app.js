@@ -75,17 +75,22 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
                 //$scope.count = Math.ceil($scope.page * $scope.search.pageSize);
             });
 
+
+
+
             $scope.names          = result.records;
-            $scope.showTable      = 'true';
+            $scope.showTable      = $scope.names.length > 0 ? true : false;
+            $scope.noResultShow   = $scope.names.length == 0 && $scope.search.nameSearch.length > 0 ? true : false;
             $scope.showNavigation = true;
             $scope.more_results   = $scope.count > ($scope.page * $scope.search.pageSize) ? true : false;
             $scope.searched       = true;
             $scope.hideNavigation = !$scope.more_results && $scope.page == 1 ? false : true;
-
+            $scope.totalPages     = Math.ceil($scope.count / $scope.search.pageSize);
         });
     }
 
     $scope.searchDelay = function(){
+
         if(_timeout){ //if there is already a timeout in process cancel it
             $timeout.cancel(_timeout);
         }
@@ -99,13 +104,22 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
                 console.log("Searching for " + $scope.search.nameSearch + " with page size " +
                     $scope.search.pageSize + " at page " + $scope.page);
 
+                
+
                 $scope.queryPerson();
 
+
+
                 _timeout = null;
-            },500);
+            }, 500);
+
         }
+        if ($scope.search.nameSearch.length == 0 && ($scope.showTable || $scope.noResultShow || $scope.hideNavigation)){
+            $scope.showTable = false;
+            $scope.noResultShow = false;
+            $scope.hideNavigation = false;
 
-
+        }
     }
 
     $scope.navigate = function(way) {
@@ -147,6 +161,7 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
         var queryPromis = $rootScope.doQuery("transactionFromPerson", $routeParams.targetId, 
                                     $scope.page, $scope.pageSize);
         queryPromis.then(function(result){
+
 
             console.log(result);
 

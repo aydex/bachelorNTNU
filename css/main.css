@@ -4,8 +4,17 @@ header{
 	margin: 0 40px 0 40px;
 }
 
+#container{
+	position: relative;
+}
+
+#backButton {
+	position: absolute;
+}
+
 #pageElements {
     margin-left: 15%;
+    position: inherit;
 }
 
 #search {
@@ -68,9 +77,19 @@ input:focus{
 	font-size:17px;
 }
 
-table{
+#tableDescription {
 	margin-left: 17%;
 	margin-top: 30px;
+}
+
+#noResultDescription {
+	margin-left: 17%;
+	margin-top: 30px;
+	font-size: 30px;
+}
+
+table{
+	margin-left: 17%;
  	border: 1; 
  	width: 60%;
 }
@@ -88,6 +107,17 @@ table, th , td {
 th{
 	cursor:pointer;
 	background-color:darkGrey;
+}
+
+#idColumn{
+	width: 13%;
+}
+
+#typeColumn{
+	width: 20%;
+}
+
+#nameColumn{
 }
 
 tr:nth-child(odd){
