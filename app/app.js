@@ -334,6 +334,7 @@ kommunalApp.filter('navnFilter', function($filter, $sce){
             andelTeller = value.split(":")[1];
             andelNevner = value.split(":")[2];
             out.push("<sup>" + andelTeller +"</sup>&frasl;<sub>" + andelNevner + "</sub> " + navn);
+            //out.push("(" + andelTeller +"/" + andelNevner + ") " + navn);
         })
 
         return $sce.trustAsHtml(out.join(" <br> "));
