@@ -328,6 +328,7 @@ kommunalApp.filter('participantNameFilter', function($filter, $sce){
                 navn = setLastnameAfterFirstname(navn);
             } 
             navn = capitalFirstLetters(navn);
+            navn = abbreviateMiddleNames(navn);
             andelTeller = value.split(":")[2];
             andelNevner = value.split(":")[3];
 
@@ -387,13 +388,12 @@ kommunalApp.filter('nameFilter', function($filter){
 
             var out = capitalFirstLetters(input);
             if (type == "F"){
-                out = setLastnameAfterFirstname(input);
+                out = setLastnameAfterFirstname(out);
             }
+
+            out = abbreviateMiddleNames(out);
             return out;
         }
-       
-            
-    
 });
 
 var setLastnameAfterFirstname = function(name){
@@ -406,3 +406,17 @@ var capitalFirstLetters = function(word){
         return innerWord.substring(0,1).toUpperCase() + innerWord.substring(1, innerWord.length).toLowerCase();
     });
 }
+
+var abbreviateMiddleNames = function(name){
+    var navn = name.split(/\b\s+\b/); 
+    if (navn.length > 2){
+        for (var i = navn.length - 2; i >= 1; i--) {
+            navn[i] = navn[i].substring(0,1) + ".";
+        }
+    }
+    return navn.join(" ");
+
+};
+
+
+
