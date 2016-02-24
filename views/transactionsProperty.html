@@ -34,15 +34,15 @@ Transactions for id: {{ message}},
                 <span data-ng-show="orderBy == 'Dokumentnr' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Dokumentnr' && reverse" class="fa fa-caret-down"></span>
             </th>
-            <th data-ng-click="orderByMe('buyer'); reverseOrder()">
-                Kjøper
-                <span data-ng-show="orderBy == 'buyer' && !reverse" class="fa fa-caret-up"></span>
-                <span data-ng-show="orderBy == 'buyer' && reverse" class="fa fa-caret-down"></span>
-            </th>
             <th data-ng-click="orderByMe('seller'); reverseOrder()">
                 Selger
                 <span data-ng-show="orderBy == 'seller' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'seller' && reverse" class="fa fa-caret-down"></span>
+            </th>
+            <th data-ng-click="orderByMe('buyer'); reverseOrder()">
+                Kjøper
+                <span data-ng-show="orderBy == 'buyer' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'buyer' && reverse" class="fa fa-caret-down"></span>
             </th>
         </tr>
         <tr data-ng-repeat="x in transactions | orderBy:orderBy:reverse" data-ng-click="showTransactionsProperty(x.Eiendomsid)">
@@ -51,8 +51,9 @@ Transactions for id: {{ message}},
                 <td>{{x.OmsetningsTypenavn}}</td>
                 <td>{{x.Salgssum | priceFilter }}</td>
                 <td>{{x.Dokumentnr}}</td>
-                <td ng-bind-html="x.buyer | participantNameFilter"></td>
                 <td ng-bind-html="x.seller | participantNameFilter"></td>
+                <td ng-bind-html="x.buyer | participantNameFilter"></td>
+                
 
             <!--</a>-->
         </tr>

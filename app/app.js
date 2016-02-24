@@ -317,7 +317,6 @@ kommunalApp.filter('participantNameFilter', function($filter, $sce){
         var andelTeller;
         var andelNevner;
         if (input.length == 0){
-            console.log("null")
             return $sce.trustAsHtml("Ukjent");;
         }
         
@@ -326,9 +325,11 @@ kommunalApp.filter('participantNameFilter', function($filter, $sce){
             navn = value.split(":")[0];
             if (deltagerType == "F"){
                 navn = setLastnameAfterFirstname(navn);
+                navn = abbreviateMiddleNames(navn);
             } 
             navn = capitalFirstLetters(navn);
-            navn = abbreviateMiddleNames(navn);
+
+            
             andelTeller = value.split(":")[2];
             andelNevner = value.split(":")[3];
 
