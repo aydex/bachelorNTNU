@@ -308,11 +308,7 @@ kommunalApp.filter('priceFilter', function($filter){
 
 kommunalApp.filter('participantNameFilter', function($filter, $sce){
     return function(input){
-        var capitalFirstLetters = function(word){
-            return word.replace(/[\S]+/g, function(innerWord){
-                return innerWord.substring(0,1).toUpperCase() + innerWord.substring(1, innerWord.length).toLowerCase();
-            });
-        }
+      
         var out = [];
         var navn;
         var forNavn;
@@ -329,20 +325,13 @@ kommunalApp.filter('participantNameFilter', function($filter, $sce){
             deltagerType = value.split(":")[1];
             navn = value.split(":")[0];
             if (deltagerType == "F"){
-                forNavn = navn.substring(navn.indexOf(" "), navn.length);
-                etterNavn = navn.substring(0, navn.indexOf(" "));
-                navn = forNavn + " " + etterNavn;
+                navn = setLastnameAfterFirstname(navn);
             } 
             navn = capitalFirstLetters(navn);
             andelTeller = value.split(":")[2];
             andelNevner = value.split(":")[3];
 
-            if (navn.indexOf("Kommune") != -1){
-                navn = "<a>" + navn + "</a>"
-            }
-
-            out.push("<span class=deltagerType"+ deltagerType+ ">" + navn + " <sup>" + andelTeller +"</sup>&frasl;<sub>" + andelNevner + "</sub></span>");
-            //out.push("(" + andelTeller +"/" + andelNevner + ") " + navn);
+            out.push("<span class=deltagerType"+ deltagerType + ">" + navn + " <sup>" + andelTeller +"</sup>&frasl;<sub>" + andelNevner + "</sub></span>");
         })
 
         return $sce.trustAsHtml(out.join(" <br> "));
@@ -383,35 +372,37 @@ kommunalApp.filter('participationHistoryFilter', function($filter){
     }
 });
 
-kommunalApp.filter('nameFilter', function($filter){
-        return function(input){
-            console.log(input)
-            var format = function(string){
-                var year = string.split(":")[0].split("-")[0];
-                var type = string.split(":")[1];
-
-
-                if (year == "0001"){
-                    year = "ukjent år";
-                }
-
-                switch(type){
-                    case "K": type = "Kjøpt"; break;
-                    case "S": type = "Solgt"; break;
-                }
-
-                return type + " " + year;
+kommunalApp.filter('deltagerTypeFilter', function($filter){
+        return function(typeKode){
+            switch(typeKode){
+                case "F": return "Privatperson"; break;
+                case "L": return "Løpe"; break;
+                case "S": return "Selskap"; break;
             }
-            if (input.indexOf(",") == -1){
-                return format(input);
-            }
-
-            var out = [];
-            var involvement = input.split(",");
-            angular.forEach(involvement, function(entry){
-                out.push(format(entry));
-            })
-
-            return out.join(", ");
-    }
+        }
 });
+
+kommunalApp.filter('nameFilter', function($filter){
+        return function(input, type){
+
+            var out = capitalFirstLetters(input);
+            if (type == "F"){
+                out = setLastnameAfterFirstname(input);
+            }
+            return out;
+        }
+       
+            
+    
+});
+
+var setLastnameAfterFirstname = function(name){
+    var forNavn = name.substring(name.indexOf(" "), name.length);
+    var etterNavn = name.substring(0, name.indexOf(" "));
+    return forNavn + " " + etterNavn
+}
+var capitalFirstLetters = function(word){
+    return word.replace(/[\S]+/g, function(innerWord){
+        return innerWord.substring(0,1).toUpperCase() + innerWord.substring(1, innerWord.length).toLowerCase();
+    });
+}
