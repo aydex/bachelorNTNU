@@ -156,7 +156,7 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
             });
 
             $scope.more_results   = $scope.count > ($scope.page * $scope.pageSize) ? true : false;
-            $scope.transactions   = $scope.filterResults(result.records);
+            $scope.transactions   = result.records;
             $scope.showNavigation = true;
             $scope.hideNavigation = !$scope.more_results && $scope.page == 1 ? false : true;
         });
@@ -263,9 +263,9 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             for(y in current_deltagere) {
                 current_deltager = current_deltagere[y].split(":");
                 if(current_deltager[0].toLowerCase() == "k") {
-                    buyer.push(current_deltager[1] + ":" + current_deltager[3] + ":" + current_deltager[4]);
+                    buyer.push(current_deltager[1] + ":" + current_deltager[3] + ":" + current_deltager[4]+ ":" + current_deltager[5]);
                 }else if(current_deltager[0].toLowerCase() == "s"){
-                    seller.push(current_deltager[1] + ":" + current_deltager[3] + ":" + current_deltager[4] );
+                    seller.push(current_deltager[1] + ":" + current_deltager[3] + ":" + current_deltager[4]+ ":" + current_deltager[5] );
                 }
             }
             //results[x].seller = seller.length == 0 ? "Ukjent" : seller.join(" og ");
@@ -294,7 +294,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
 });
 
 
-kommunalApp.filter('prisFilter', function($filter){
+kommunalApp.filter('priceFilter', function($filter){
         return function(input){
             var lengde = input.length
             var out = "";
@@ -306,7 +306,7 @@ kommunalApp.filter('prisFilter', function($filter){
     }
 });
 
-kommunalApp.filter('navnFilter', function($filter, $sce){
+kommunalApp.filter('nameFilter', function($filter, $sce){
     return function(input){
         var capitalFirstLetters = function(word){
             return word.replace(/[\S]+/g, function(innerWord){
@@ -317,28 +317,68 @@ kommunalApp.filter('navnFilter', function($filter, $sce){
         var navn;
         var forNavn;
         var etterNavn;
+        var deltagerType;
         var andelTeller;
         var andelNevner;
         if (input.length == 0){
             console.log("null")
             return $sce.trustAsHtml("Ukjent");;
         }
+        
         angular.forEach(input, function(value){
+            deltagerType = value.split(":")[1];
             navn = value.split(":")[0];
-            if (navn.indexOf("KOMMUNE") == -1){
+            if (deltagerType == "F"){
                 forNavn = navn.substring(navn.indexOf(" "), navn.length);
                 etterNavn = navn.substring(0, navn.indexOf(" "));
                 navn = forNavn + " " + etterNavn;
             } 
             navn = capitalFirstLetters(navn);
-            andelTeller = value.split(":")[1];
-            andelNevner = value.split(":")[2];
-            out.push("<sup>" + andelTeller +"</sup>&frasl;<sub>" + andelNevner + "</sub> " + navn);
+            andelTeller = value.split(":")[2];
+            andelNevner = value.split(":")[3];
+
+            if (navn.indexOf("Kommune") != -1){
+                navn = "<a>" + navn + "</a>"
+            }
+
+            out.push("<span class=deltagerType"+ deltagerType+ ">" + navn + " <sup>" + andelTeller +"</sup>&frasl;<sub>" + andelNevner + "</sub></span>");
             //out.push("(" + andelTeller +"/" + andelNevner + ") " + navn);
         })
 
         return $sce.trustAsHtml(out.join(" <br> "));
     }
+});
 
 
+kommunalApp.filter('participationFilter', function($filter){
+        return function(input){
+            console.log(input)
+            var format = function(string){
+                var year = string.split(":")[0].split("-")[0];
+                var type = string.split(":")[1];
+
+
+                if (year == "0001"){
+                    year = "ukjent år";
+                }
+
+                switch(type){
+                    case "K": type = "Kjøpt"; break;
+                    case "S": type = "Solgt"; break;
+                }
+
+                return type + " " + year;
+            }
+            if (input.indexOf(",") == -1){
+                return format(input);
+            }
+
+            var out = [];
+            var involvement = input.split(",");
+            angular.forEach(involvement, function(entry){
+                out.push(format(entry));
+            })
+
+            return out.join(", ");
+    }
 });

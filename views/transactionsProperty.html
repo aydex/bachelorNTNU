@@ -49,10 +49,10 @@ Transactions for id: {{ message }},
             <!--<a data-ng-href="detailed/{{ x.Personid }}">-->
                 <td>{{x.Dokumentdato}}</td>
                 <td>{{x.OmsetningsTypenavn}}</td>
-                <td>{{x.Salgssum | prisFilter }}</td>
+                <td>{{x.Salgssum | priceFilter }}</td>
                 <td>{{x.Dokumentnr}}</td>
-                <td ng-bind-html="x.buyer | navnFilter"></td>
-                <td  ng-bind-html="x.seller | navnFilter"></td>
+                <td ng-bind-html="x.buyer | nameFilter"></td>
+                <td  ng-bind-html="x.seller | nameFilter"></td>
 
             <!--</a>-->
         </tr>

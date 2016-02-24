@@ -60,7 +60,7 @@ class Query
             $query_extention = "O.Deltagerid";
         } else if(!$deltager) {
             $query_inner     = "SELECT SQL_CALC_FOUND_ROWS Dokumentdato, OmsetningsTypenavn, Salgssum, Dokumentnr, 
-                                GROUP_CONCAT(CONCAT_WS(':', PartType, Navn, Deltagerid, AndelTeller, AndelNevner)SEPARATOR ',') AS Deltagere 
+                                GROUP_CONCAT(CONCAT_WS(':', PartType, Navn, Deltagerid, Deltagertype, AndelTeller, AndelNevner)SEPARATOR ',') AS Deltagere 
                                 FROM Omsetninger 
                                 NATURAL JOIN Dokumenter 
                                 NATURAL JOIN Deltagere 
