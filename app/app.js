@@ -414,8 +414,6 @@ var abbreviateMiddleNames = function(name){
         navn.splice(0,1);
     }
     
-    console.log(navn)
-
     if (navn.length > 2){
         for (var i = navn.length - 2; i >= 1; i--) {
             navn[i] = navn[i].substring(0,1) + ".";
