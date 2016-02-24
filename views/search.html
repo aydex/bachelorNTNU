@@ -41,7 +41,7 @@
             <!--<a data-ng-href="detailed/{{ x.Personid }}">-->
                 <td>{{x.id}}</td>
                 <td>{{x.Type}}</td>
-                <td class="name">{{x.Navn}}</td>
+                <td class="name">{{x.Navn | nameFilter}}</td>
             <!--</a>-->
         </tr>
     </table>

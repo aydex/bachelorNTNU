@@ -306,7 +306,7 @@ kommunalApp.filter('priceFilter', function($filter){
     }
 });
 
-kommunalApp.filter('nameFilter', function($filter, $sce){
+kommunalApp.filter('participantNameFilter', function($filter, $sce){
     return function(input){
         var capitalFirstLetters = function(word){
             return word.replace(/[\S]+/g, function(innerWord){
@@ -350,7 +350,40 @@ kommunalApp.filter('nameFilter', function($filter, $sce){
 });
 
 
-kommunalApp.filter('participationFilter', function($filter){
+kommunalApp.filter('participationHistoryFilter', function($filter){
+        return function(input){
+            console.log(input)
+            var format = function(string){
+                var year = string.split(":")[0].split("-")[0];
+                var type = string.split(":")[1];
+
+
+                if (year == "0001"){
+                    year = "ukjent år";
+                }
+
+                switch(type){
+                    case "K": type = "Kjøpt"; break;
+                    case "S": type = "Solgt"; break;
+                }
+
+                return type + " " + year;
+            }
+            if (input.indexOf(",") == -1){
+                return format(input);
+            }
+
+            var out = [];
+            var involvement = input.split(",");
+            angular.forEach(involvement, function(entry){
+                out.push(format(entry));
+            })
+
+            return out.join(", ");
+    }
+});
+
+kommunalApp.filter('nameFilter', function($filter){
         return function(input){
             console.log(input)
             var format = function(string){

@@ -51,8 +51,8 @@ Transactions for id: {{ message }},
                 <td>{{x.OmsetningsTypenavn}}</td>
                 <td>{{x.Salgssum | priceFilter }}</td>
                 <td>{{x.Dokumentnr}}</td>
-                <td ng-bind-html="x.buyer | nameFilter"></td>
-                <td  ng-bind-html="x.seller | nameFilter"></td>
+                <td ng-bind-html="x.buyer | participantNameFilter"></td>
+                <td  ng-bind-html="x.seller | participantNameFilter"></td>
 
             <!--</a>-->
         </tr>
