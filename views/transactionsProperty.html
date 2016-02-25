@@ -57,9 +57,8 @@ Transactions for id: {{ message}},
                 <td data-ng-bind="x.OmsetningsTypenavn"></td>
                 <td data-ng-bind="x.Salgssum | priceFilter "></td>
                 <td data-ng-bind="x.Dokumentnr"></td>
-                <td data-ng-bind-html="x.buyer | participantNameFilter"></td>
                 <td data-ng-bind-html="x.seller | participantNameFilter"></td>
-
+                <td data-ng-bind-html="x.buyer | participantNameFilter"></td>
             <!--</a>-->
         </tr>
     </table>

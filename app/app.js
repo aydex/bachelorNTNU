@@ -169,7 +169,6 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
         var queryPromis = $rootScope.doQuery("transactionFromPerson", $routeParams.targetId, 
                                     $scope.page, $scope.pageSize);
         queryPromis.then(function(result){
-
             angular.forEach(result.count[0], function(value) {
                 $scope.count = value;
                 //$scope.count = Math.ceil($scope.page * $scope.search.pageSize);
@@ -327,29 +326,27 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
     $scope.getParticipantsCorrectly = function(results) {
         var current_deltagere;
         var current_deltager;
-
         for(x in results) {
             current_deltagere = results[x].Deltagere.split(",");
-
             var buyer        = [];
             var seller       = [];
 
             for(y in current_deltagere) {
                 current_deltager = current_deltagere[y].split(":");
+                var deltager = {navn:current_deltager[1], deltagerid:current_deltager[2], deltagertype:current_deltager[3], andelTeller:current_deltager[4], andelNevner:current_deltager[5]}
                 if(current_deltager[0].toLowerCase() == "k") {
-                    buyer.push(current_deltager[1] + ":" + current_deltager[3] + ":" + current_deltager[4]+ ":" + current_deltager[5]);
+                    buyer.push(deltager);
+
                 }else if(current_deltager[0].toLowerCase() == "s"){
-                    seller.push(current_deltager[1] + ":" + current_deltager[3] + ":" + current_deltager[4]+ ":" + current_deltager[5] );
-                }
+                    seller.push(deltager);
+                } 
+                
             }
-            //results[x].seller = seller.length == 0 ? "Ukjent" : seller.join(" og ");
-            //results[x].buyer  = buyer.length == 0 ? "Ukjent" : buyer.join(" og ");
+
             results[x].seller = seller;
             results[x].buyer  = buyer;
             delete results[x].Deltagere;
-
         }
-
         return results;
     }
 
@@ -380,33 +377,35 @@ kommunalApp.filter('priceFilter', function($filter){
 });
 
 kommunalApp.filter('participantNameFilter', function($filter, $sce){
-    return function(input){
-      
+    return function(input){      
         var out = [];
         var navn;
         var forNavn;
         var etterNavn;
         var deltagerType;
+        var deltagerid;
         var andelTeller;
         var andelNevner;
+
+    
         if (input.length == 0){
             return $sce.trustAsHtml("Ukjent");
         }
         
         angular.forEach(input, function(value){
-            deltagerType = value.split(":")[1];
-            navn = value.split(":")[0];
+            deltagerType = value.deltagertype
+            navn = value.navn;
             if (deltagerType == "F"){
                 navn = setLastnameAfterFirstname(navn);
                 navn = abbreviateMiddleNames(navn);
             } 
             navn = capitalFirstLetters(navn);
 
-            
-            andelTeller = value.split(":")[2];
-            andelNevner = value.split(":")[3];
+            andelTeller = value.andelTeller;
+            andelNevner = value.andelNevner;
+            deltagerid = value.deltagerid;
 
-            out.push("<span class=deltagerType"+ deltagerType + ">" + navn + " <sup>" + andelTeller +"</sup>&frasl;<sub>" + andelNevner + "</sub></span>");
+            out.push("<span class='deltagerType"+ deltagerType + " deltager" + deltagerid + "'>" + navn + " <sup>" + andelTeller +"</sup>&frasl;<sub>" + andelNevner + "</sub></span>");
         })
 
         return $sce.trustAsHtml(out.join(" <br> "));
@@ -493,7 +492,6 @@ var abbreviateMiddleNames = function(name){
         }
     }
     return navn.join(" ");
-
 };
 
 
