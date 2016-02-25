@@ -29,12 +29,12 @@ if (isset($_REQUEST['name'])) {
 }else if(isset($_REQUEST['transactionFromPerson'])){
 
 	$pId = htmlspecialchars($_REQUEST['transactionFromPerson']);
-	echo $query->selectTransaction($pId, $page, $pageSize, true);
+	echo $query->selectTransaction($pId, $page, $pageSize);
 
 }else if(isset($_REQUEST['transactionFromProperty'])){
 
 	$eId = htmlspecialchars($_REQUEST['transactionFromProperty']);
-	echo $query->selectTransaction($eId, $page, $pageSize, false);
+	echo $query->selectTransactionProperty($eId, $page, $pageSize);
 
 }
 

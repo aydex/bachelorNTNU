@@ -69,10 +69,10 @@ input:focus{
 }
 
 table{
-	margin-left: 17%;
 	margin-top: 30px;
  	border: 1; 
  	width: 60%;
+ 	margin:auto;
 }
 
 table, tr {
@@ -161,3 +161,16 @@ td:nth-child(even){
 	text-align: center;
 }
 
+.selected-row{
+	background: green !important;
+}
+
+
+/****************************************/
+/************  CHART CSS  ***************/
+/****************************************/
+
+#chartContainer{
+	width:60%;
+	margin:auto;
+}
