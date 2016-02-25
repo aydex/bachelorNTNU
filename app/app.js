@@ -271,18 +271,23 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
         data.addColumn('number', 'Sum');
         data.addColumn({type: 'string', name: 'Dokumentnr', role: 'tooltip'});
         chartArray = [['År', 'Salg']];
-        dokumentnrList = [];
+        dokumentnrList = {};
+
 
         angular.forEach(labels, function(pair, key) {
             chartArray.push([labels[key], parseInt(dataSet[key]), dokumentnr[key]]);
             dokumentnrList[key] = dokumentnr[key];
+            dokumentnrList[dokumentnr[key]] = key;
             data.addRow([labels[key], parseInt(dataSet[key]), 'År: ' + labels[key] + '\n Sum: ' + parseInt(dataSet[key]) + ' kr\n Dokumentnr: ' + dokumentnr[key]]);
         });
 
+        console.log(dokumentnrList);
+
         var options = {
-            title: 'Eiendomshistorikk'
+            title: 'Eiendomshistorikk',
+            tooltip: {trigger: 'both'}
         };
-        var chart = new google.visualization.LineChart(document.getElementById('chartdiv'));
+        chart = new google.visualization.LineChart(document.getElementById('chartdiv'));
 
         chart.draw(data, options);
 
@@ -291,15 +296,40 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             if(cords != undefined) {
                 y = cords.row + 1;
                 $scope.markTableRow(y);
-                $scope.setSelected(dokumentnrList[cords.row]);
+                $scope.markTableRow(dokumentnrList[cords.row]);
+                $scope.$apply();
+            }
+        });
+
+        google.visualization.events.addListener(chart, 'onmouseover', function(e){
+            cords = e;
+            y = cords.row + 1;
+            $scope.markTableRow(y);
+            $scope.markTableRow(dokumentnrList[cords.row]);
+            $scope.$apply();
+        });
+
+        google.visualization.events.addListener(chart, 'onmouseout', function(e){
+            cords = chart.getSelection()[0];
+            if(!cords) {
+                $scope.selectedDokumentnr = null;
                 $scope.$apply();
             }
         });
 
     };
 
-    $scope.markTableRow = function(dokumentnr) {
-        $scope.selectedIndex = dokumentnr;
+    $scope.setSelected = function (selectedDokumentnr) {
+        chart.setSelection({row:null, column:null});
+        row    = selectedDokumentnr ? dokumentnrList[selectedDokumentnr] : null;
+        column = selectedDokumentnr ? 1 : null;
+        chart.setSelection([{row:row,column:column}])
+
+        $scope.selectedDokumentnr = selectedDokumentnr;
+    };
+
+    $scope.markTableRow = function(selectedDokumentnr) {
+        $scope.selectedDokumentnr = selectedDokumentnr;
     };
 
 
@@ -354,9 +384,6 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
 
     $scope.queryTransaction();
 
-    $scope.setSelected = function (selectedDokumentnr) {
-        $scope.selectedDokumentnr = selectedDokumentnr;
-    };
 });
 
 kommunalApp.filter('priceFilter', function($filter){

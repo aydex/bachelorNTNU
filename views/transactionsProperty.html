@@ -52,7 +52,7 @@ Transactions for id: {{ message}},
             </th>
         </tr>
         <tr data-ng-repeat="x in transactions | orderBy:orderBy:reverse" data-ng-click="setSelected(x.Dokumentnr)"
-            data-ng-class="{ 'selected-row': x.Dokumentnr == selectedDokumentnr }">
+            data-ng-class="{ 'selected-row': x.Dokumentnr == selectedDokumentnr }" data-ng-mouseover="setSelected(x.Dokumentnr)" data-ng-mouseout="setSelected(null)">
 
             <!--<a data-ng-href="detailed/{{ x.Personid }}">-->
                 <td data-ng-bind="x.Dokumentdato"></td>
