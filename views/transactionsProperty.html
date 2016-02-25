@@ -1,5 +1,5 @@
 <a href="/">Forside</a>
-Transactions for id: {{ message }}, 
+Transactions for id: {{ message}}, 
 <h3 id="transaksjonsType">{{ type }}</h3>
 
 <div id="pageElements">
@@ -26,7 +26,7 @@ Transactions for id: {{ message }},
                 <span data-ng-show="orderBy == 'Dokumentdato' && reverse" class="fa fa-caret-down"></span>
             </th>
             <th data-ng-click="orderByMe('OmsetningsTypenavn'); reverseOrder()">
-                OmsetningsTypenavn
+                Omsetningstype
                 <span data-ng-show="orderBy == 'OmsetningsTypenavn' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'OmsetningsTypenavn' && reverse" class="fa fa-caret-down"></span>
             </th>
@@ -36,19 +36,19 @@ Transactions for id: {{ message }},
                 <span data-ng-show="orderBy == 'Salgssum' && reverse" class="fa fa-caret-down"></span>
             </th>
             <th data-ng-click="orderByMe('Dokumentnr'); reverseOrder()">
-                Dokumentnr
+                Dokumentnummer
                 <span data-ng-show="orderBy == 'Dokumentnr' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Dokumentnr' && reverse" class="fa fa-caret-down"></span>
-            </th>
-            <th data-ng-click="orderByMe('buyer'); reverseOrder()">
-                Kjøper
-                <span data-ng-show="orderBy == 'buyer' && !reverse" class="fa fa-caret-up"></span>
-                <span data-ng-show="orderBy == 'buyer' && reverse" class="fa fa-caret-down"></span>
             </th>
             <th data-ng-click="orderByMe('seller'); reverseOrder()">
                 Selger
                 <span data-ng-show="orderBy == 'seller' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'seller' && reverse" class="fa fa-caret-down"></span>
+            </th>
+            <th data-ng-click="orderByMe('buyer'); reverseOrder()">
+                Kjøper
+                <span data-ng-show="orderBy == 'buyer' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'buyer' && reverse" class="fa fa-caret-down"></span>
             </th>
         </tr>
         <tr data-ng-repeat="x in transactions | orderBy:orderBy:reverse" data-ng-class="{ 'selected-row': x.Dokumentnr == selectedIndex }">
@@ -57,8 +57,8 @@ Transactions for id: {{ message }},
                 <td data-ng-bind="x.OmsetningsTypenavn"></td>
                 <td data-ng-bind="x.Salgssum | priceFilter "></td>
                 <td data-ng-bind="x.Dokumentnr"></td>
-                <td data-ng-bind-html="x.buyer | nameFilter"></td>
-                <td data-ng-bind-html="x.seller | nameFilter"></td>
+                <td data-ng-bind-html="x.buyer | participantNameFilter"></td>
+                <td data-ng-bind-html="x.seller | participantNameFilter"></td>
 
             <!--</a>-->
         </tr>

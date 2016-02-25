@@ -363,13 +363,9 @@ kommunalApp.filter('priceFilter', function($filter){
     }
 });
 
-kommunalApp.filter('nameFilter', function($filter, $sce){
+kommunalApp.filter('participantNameFilter', function($filter, $sce){
     return function(input){
-        var capitalFirstLetters = function(word){
-            return word.replace(/[\S]+/g, function(innerWord){
-                return innerWord.substring(0,1).toUpperCase() + innerWord.substring(1, innerWord.length).toLowerCase();
-            });
-        }
+      
         var out = [];
         var navn;
         var forNavn;
@@ -378,7 +374,6 @@ kommunalApp.filter('nameFilter', function($filter, $sce){
         var andelTeller;
         var andelNevner;
         if (input.length == 0){
-
             return $sce.trustAsHtml("Ukjent");
         }
         
@@ -386,20 +381,16 @@ kommunalApp.filter('nameFilter', function($filter, $sce){
             deltagerType = value.split(":")[1];
             navn = value.split(":")[0];
             if (deltagerType == "F"){
-                forNavn = navn.substring(navn.indexOf(" "), navn.length);
-                etterNavn = navn.substring(0, navn.indexOf(" "));
-                navn = forNavn + " " + etterNavn;
+                navn = setLastnameAfterFirstname(navn);
+                navn = abbreviateMiddleNames(navn);
             } 
             navn = capitalFirstLetters(navn);
+
+            
             andelTeller = value.split(":")[2];
             andelNevner = value.split(":")[3];
 
-            if (navn.indexOf("Kommune") != -1){
-                navn = "<a>" + navn + "</a>"
-            }
-
-            out.push("<span class=deltagerType"+ deltagerType+ ">" + navn + " <sup>" + andelTeller +"</sup>&frasl;<sub>" + andelNevner + "</sub></span>");
-            //out.push("(" + andelTeller +"/" + andelNevner + ") " + navn);
+            out.push("<span class=deltagerType"+ deltagerType + ">" + navn + " <sup>" + andelTeller +"</sup>&frasl;<sub>" + andelNevner + "</sub></span>");
         })
 
         return $sce.trustAsHtml(out.join(" <br> "));
@@ -407,7 +398,7 @@ kommunalApp.filter('nameFilter', function($filter, $sce){
 });
 
 
-kommunalApp.filter('participationFilter', function($filter){
+kommunalApp.filter('participationHistoryFilter', function($filter){
         return function(input){
             var format = function(string){
                 var year = string.split(":")[0].split("-")[0];
@@ -438,3 +429,56 @@ kommunalApp.filter('participationFilter', function($filter){
             return out.join(", ");
     }
 });
+
+kommunalApp.filter('deltagerTypeFilter', function($filter){
+        return function(typeKode){
+            switch(typeKode){
+                case "F": return "Privatperson"; break;
+                case "L": return "Løpe"; break;
+                case "S": return "Selskap"; break;
+            }
+        }
+});
+
+kommunalApp.filter('nameFilter', function($filter){
+        return function(input, type, keepMiddleNames){
+
+            var out = capitalFirstLetters(input);
+            if (type == "F"){
+                out = setLastnameAfterFirstname(out);
+                if (!keepMiddleNames){
+                    out = abbreviateMiddleNames(out);
+                }
+            }
+            return out;
+        }
+});
+
+var setLastnameAfterFirstname = function(name){
+    var forNavn = name.substring(name.indexOf(" "), name.length);
+    var etterNavn = name.substring(0, name.indexOf(" "));
+    return forNavn + " " + etterNavn
+}
+var capitalFirstLetters = function(word){
+    return word.replace(/[\S]+/g, function(innerWord){
+        return innerWord.substring(0,1).toUpperCase() + innerWord.substring(1, innerWord.length).toLowerCase();
+    });
+}
+
+var abbreviateMiddleNames = function(name){
+    var navn = name.split(/\s+(?=\S)/); 
+    if (navn[0] == ""){
+        navn.splice(0,1);
+    }
+    
+    if (navn.length > 2){
+        for (var i = navn.length - 2; i >= 1; i--) {
+            navn[i] = navn[i].substring(0,1) + ".";
+        }
+    }
+    return navn.join(" ");
+
+};
+
+
+
