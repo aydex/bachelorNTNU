@@ -156,7 +156,7 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
             });
 
             $scope.more_results   = $scope.count > ($scope.page * $scope.pageSize) ? true : false;
-            $scope.transactions   = $scope.filterResults(result.records);
+            $scope.transactions   = result.records;
             $scope.showNavigation = true;
             $scope.hideNavigation = !$scope.more_results && $scope.page == 1 ? false : true;
         });
@@ -255,7 +255,6 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
         var current_deltager;
 
         for(x in results) {
-
             current_deltagere = results[x].Deltagere.split(",");
 
             var buyer        = [];
@@ -263,17 +262,16 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
 
             for(y in current_deltagere) {
                 current_deltager = current_deltagere[y].split(":");
-
                 if(current_deltager[0].toLowerCase() == "k") {
-                    if(current_deltager[1] != "UKJENT")
-                        buyer.push(current_deltager[1] + "(" + current_deltager[3] + "/" + current_deltager[4] + ")");
+                    buyer.push(current_deltager[1] + ":" + current_deltager[3] + ":" + current_deltager[4]+ ":" + current_deltager[5]);
                 }else if(current_deltager[0].toLowerCase() == "s"){
-                    if(current_deltager[1] != "UKJENT")
-                        seller.push(current_deltager[1] + "(" + current_deltager[3] + "/" + current_deltager[4] + ")");
+                    seller.push(current_deltager[1] + ":" + current_deltager[3] + ":" + current_deltager[4]+ ":" + current_deltager[5] );
                 }
             }
-            results[x].seller = seller.length == 0 ? "Ukjent" : seller.join(" og ");
-            results[x].buyer  = buyer.length == 0 ? "Ukjent" : buyer.join(" og ");
+            //results[x].seller = seller.length == 0 ? "Ukjent" : seller.join(" og ");
+            //results[x].buyer  = buyer.length == 0 ? "Ukjent" : buyer.join(" og ");
+            results[x].seller = seller;
+            results[x].buyer  = buyer;
             delete results[x].Deltagere;
 
         }
@@ -294,3 +292,137 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
 
     $scope.queryTransaction();
 });
+
+
+kommunalApp.filter('priceFilter', function($filter){
+        return function(input){
+            var lengde = input.length
+            var out = "";
+            while (lengde >= 0){
+                out = input.substring(lengde-3, lengde) + " " +out;
+                lengde-=3;
+            }
+            return out;
+    }
+});
+
+kommunalApp.filter('participantNameFilter', function($filter, $sce){
+    return function(input){
+      
+        var out = [];
+        var navn;
+        var forNavn;
+        var etterNavn;
+        var deltagerType;
+        var andelTeller;
+        var andelNevner;
+        if (input.length == 0){
+            return $sce.trustAsHtml("Ukjent");;
+        }
+        
+        angular.forEach(input, function(value){
+            deltagerType = value.split(":")[1];
+            navn = value.split(":")[0];
+            if (deltagerType == "F"){
+                navn = setLastnameAfterFirstname(navn);
+                navn = abbreviateMiddleNames(navn);
+            } 
+            navn = capitalFirstLetters(navn);
+
+            
+            andelTeller = value.split(":")[2];
+            andelNevner = value.split(":")[3];
+
+            out.push("<span class=deltagerType"+ deltagerType + ">" + navn + " <sup>" + andelTeller +"</sup>&frasl;<sub>" + andelNevner + "</sub></span>");
+        })
+
+        return $sce.trustAsHtml(out.join(" <br> "));
+    }
+});
+
+
+kommunalApp.filter('participationHistoryFilter', function($filter){
+        return function(input){
+            console.log(input)
+            var format = function(string){
+                var year = string.split(":")[0].split("-")[0];
+                var type = string.split(":")[1];
+
+
+                if (year == "0001"){
+                    year = "ukjent år";
+                }
+
+                switch(type){
+                    case "K": type = "Kjøpt"; break;
+                    case "S": type = "Solgt"; break;
+                }
+
+                return type + " " + year;
+            }
+            if (input.indexOf(",") == -1){
+                return format(input);
+            }
+
+            var out = [];
+            var involvement = input.split(",");
+            angular.forEach(involvement, function(entry){
+                out.push(format(entry));
+            })
+
+            return out.join(", ");
+    }
+});
+
+kommunalApp.filter('deltagerTypeFilter', function($filter){
+        return function(typeKode){
+            switch(typeKode){
+                case "F": return "Privatperson"; break;
+                case "L": return "Løpe"; break;
+                case "S": return "Selskap"; break;
+            }
+        }
+});
+
+kommunalApp.filter('nameFilter', function($filter){
+        return function(input, type, keepMiddleNames){
+
+            var out = capitalFirstLetters(input);
+            if (type == "F"){
+                out = setLastnameAfterFirstname(out);
+                if (!keepMiddleNames){
+                    out = abbreviateMiddleNames(out);
+                }
+            }
+            return out;
+        }
+});
+
+var setLastnameAfterFirstname = function(name){
+    var forNavn = name.substring(name.indexOf(" "), name.length);
+    var etterNavn = name.substring(0, name.indexOf(" "));
+    return forNavn + " " + etterNavn
+}
+var capitalFirstLetters = function(word){
+    return word.replace(/[\S]+/g, function(innerWord){
+        return innerWord.substring(0,1).toUpperCase() + innerWord.substring(1, innerWord.length).toLowerCase();
+    });
+}
+
+var abbreviateMiddleNames = function(name){
+    var navn = name.split(/\s+(?=\S)/); 
+    if (navn[0] == ""){
+        navn.splice(0,1);
+    }
+    
+    if (navn.length > 2){
+        for (var i = navn.length - 2; i >= 1; i--) {
+            navn[i] = navn[i].substring(0,1) + ".";
+        }
+    }
+    return navn.join(" ");
+
+};
+
+
+

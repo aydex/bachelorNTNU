@@ -15,15 +15,7 @@ class Query
 
     public function selectPersonPaged($name, $page=1, $pageSize=10) {
         //$query = "SELECT * FROM kommunalrapport.Deltagere WHERE Navn LIKE :name LIMIT :offset, :pageSize";
-        $query = "SELECT SQL_CALC_FOUND_ROWS Deltagerid AS id,
-                    CASE
-                        WHEN Deltagertype = 'F'
-                            THEN 'Privatperson'
-                        WHEN Deltagertype = 'S'
-                            THEN 'Selskap'
-                        WHEN Deltagertype = 'L'
-                            THEN 'Løpe'
-                        END AS Type, Navn AS Navn FROM kommunalrapport.Deltagere
+        $query = "SELECT SQL_CALC_FOUND_ROWS Deltagerid AS id, Deltagertype AS Type, Navn AS Navn FROM kommunalrapport.Deltagere
                     WHERE Navn LIKE :name
                     LIMIT :offset, :pageSize;";
 
@@ -60,7 +52,7 @@ class Query
             $query_extention = "O.Deltagerid";
         } else if(!$deltager) {
             $query_inner     = "SELECT SQL_CALC_FOUND_ROWS Dokumentdato, OmsetningsTypenavn, Salgssum, Dokumentnr, 
-                                GROUP_CONCAT(CONCAT_WS(':', PartType, Navn, Deltagerid, AndelTeller, AndelNevner)SEPARATOR ',') AS Deltagere 
+                                GROUP_CONCAT(CONCAT_WS(':', PartType, Navn, Deltagerid, Deltagertype, AndelTeller, AndelNevner)SEPARATOR ',') AS Deltagere 
                                 FROM Omsetninger 
                                 NATURAL JOIN Dokumenter 
                                 NATURAL JOIN Deltagere 

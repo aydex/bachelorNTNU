@@ -40,8 +40,8 @@
         <tr data-ng-repeat="x in names | orderBy:orderBy:reverse | filter:searchName" data-ng-click="showTransactionsPerson(x.id, x.Navn)">
             <!--<a data-ng-href="detailed/{{ x.Personid }}">-->
                 <td>{{x.id}}</td>
-                <td>{{x.Type}}</td>
-                <td class="name">{{x.Navn}}</td>
+                <td>{{x.Type | deltagerTypeFilter}}</td>
+                <td class="name">{{x.Navn | nameFilter: x.Type: false}}</td>
             <!--</a>-->
         </tr>
     </table>
