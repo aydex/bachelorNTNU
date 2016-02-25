@@ -312,7 +312,6 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
         var current_deltager;
         for(x in results) {
             current_deltagere = results[x].Deltagere.split(",");
-
             var buyer        = [];
             var seller       = [];
 
@@ -321,9 +320,11 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
                 var deltager = {navn:current_deltager[1], deltagerid:current_deltager[2], deltagertype:current_deltager[3], andelTeller:current_deltager[4], andelNevner:current_deltager[5]}
                 if(current_deltager[0].toLowerCase() == "k") {
                     buyer.push(deltager);
+
                 }else if(current_deltager[0].toLowerCase() == "s"){
                     seller.push(deltager);
-                }
+                } 
+                
             }
 
             results[x].seller = seller;
