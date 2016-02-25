@@ -69,10 +69,10 @@ input:focus{
 }
 
 table{
-	margin-left: 17%;
 	margin-top: 30px;
  	border: 1; 
  	width: 60%;
+ 	margin:auto;
 }
 
 table, tr {
@@ -115,5 +115,62 @@ td:nth-child(even){
 }
 
 .name{
-	text-align: left;
+	text-align: right;
+}
+
+
+/****************************************/
+/**************  NAV CSS  ***************/
+/****************************************/
+
+#prevPage {
+    left: 0;
+    margin-left: 5%;
+    margin-top: 10%;
+    font-size: 100px;
+    position: fixed;
+}
+
+#nextPage {
+    right: 0;
+    margin-right: 10%;
+    margin-top: 10%;
+    font-size: 100px;
+    position: fixed;
+}
+
+.navButtonActive {
+    cursor: pointer;
+    color: #2d2d2d;
+}
+
+.navButtonInactive {
+    cursor: default;
+    color: lightgray;
+}
+
+#transaksjonsType{
+	text-align: center;
+}
+
+.propertyTable tr td{
+	cursor:text;
+}
+
+#pageNumber{
+	text-align: center;
+}
+
+.selected-row{
+	background: green !important;
+}
+
+
+/****************************************/
+/************  CHART CSS  ***************/
+/****************************************/
+
+#chartContainer{
+	width:60%;
+	margin:auto;
 }

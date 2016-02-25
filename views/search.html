@@ -4,7 +4,7 @@
     <form id="searchForm" data-ng-submit="searchForm(searchForm)">
         <p>Trykk på feltene for å endre rekkefølge:</p>
         <i class="material-icons" id="searchIcon">search</i>
-        <input type="text" data-ng-model="search.nameSearch" data-ng-disabled="search.loading" data-ng-change="searchDelay()" placeholder="Navn, kommune, bedrift å søke på.." id="search" autocomplete="off">
+        <input type="text" data-ng-model="search.nameSearch" data-ng-change="searchDelay()" placeholder="Navn, kommune, bedrift å søke på.." id="search" autocomplete="off">
     </form>
 </div>
 
@@ -14,29 +14,36 @@
     <input type="radio" data-ng-model="search.pageSize" data-ng-change="searchDelay()" value="100" id="100">100
 </div>
 
-<table data-ng-show="showTable">
-    <tr>
-        <th data-ng-click="orderByMe('id'); reverseOrder()">
-            id
-            <span data-ng-show="orderBy == 'id' && !reverse" class="fa fa-caret-up"></span>
-            <span data-ng-show="orderBy == 'id' && reverse" class="fa fa-caret-down"></span>
-        </th>
-        <th data-ng-click="orderByMe('Type'); reverseOrder()">
-            Type
-            <span data-ng-show="orderBy == 'Type' && !reverse" class="fa fa-caret-up"></span>
-            <span data-ng-show="orderBy == 'Type' && reverse" class="fa fa-caret-down"></span>
-        </th>
-        <th data-ng-click="orderByMe('Navn'); reverseOrder()">
-            Navn
-            <span data-ng-show="orderBy == 'Navn' && !reverse" class="fa fa-caret-up"></span>
-            <span data-ng-show="orderBy == 'Navn' && reverse" class="fa fa-caret-down"></span>
-        </th>
-    </tr>
-    <tr data-ng-repeat="x in names | orderBy:orderBy:reverse | filter:searchName" data-ng-click="showTransactions(x.id)">
-        <!--<a data-ng-href="detailed/{{ x.Personid }}">-->
-            <td>{{x.id}}</td>
-            <td>{{x.Type}}</td>
-            <td class="name">{{x.Navn}}</td>
-        <!--</a>-->
-    </tr>
-</table>
+
+<div id="tableContainer">
+    <span data-ng-class="{'navButtonInactive' : page == 1 || !showNavigation, 'navButtonActive' : page > 1 && showNavigation}" class="fa fa-chevron-left" data-ng-show="hideNavigation" data-ng-click="navigate(-1)" id="prevPage"></span>
+    <span data-ng-class="{'navButtonInactive' : !more_results || !showNavigation, 'navButtonActive' : more_results && showNavigation }" class="fa fa-chevron-right" data-ng-show="hideNavigation" data-ng-click="navigate(1)" id="nextPage"></span>
+    <table data-ng-show="showTable">
+        <tr>
+            <th data-ng-click="orderByMe('id'); reverseOrder()">
+                id
+                <span data-ng-show="orderBy == 'id' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'id' && reverse" class="fa fa-caret-down"></span>
+            </th>
+            <th data-ng-click="orderByMe('Type'); reverseOrder()">
+                Type
+                <span data-ng-show="orderBy == 'Type' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'Type' && reverse" class="fa fa-caret-down"></span>
+            </th>
+            <th data-ng-click="orderByMe('Navn'); reverseOrder()">
+                Navn
+                <span data-ng-show="orderBy == 'Navn' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'Navn' && reverse" class="fa fa-caret-down"></span>
+            </th>
+        </tr>
+        <tr data-ng-repeat="x in names | orderBy:orderBy:reverse | filter:searchName" data-ng-click="showTransactionsPerson(x.id, x.Navn)">
+            <!--<a data-ng-href="detailed/{{ x.Personid }}">-->
+                <td data-ng-bind="x.id"></td>
+                <td data-ng-bind="x.Type | deltagerTypeFilter"></td>
+                <td data-ng-bind="x.Navn | nameFilter: x.Type: false" class="name"></td>
+            <!--</a>-->
+        </tr>
+    </table>
+</div>
+
+<p id="pageNumber" data-ng-bind="pageDisplay"></p>
