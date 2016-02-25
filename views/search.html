@@ -2,7 +2,7 @@
 <a href="/">Forside</a>
 <div id="searchElements">
     <form id="searchForm" data-ng-submit="searchForm(searchForm)">
-        <p>Trykk på feltene for å endre rekkefølge:</p>
+        
         <i class="material-icons" id="searchIcon">search</i>
         <input type="text" data-ng-model="search.nameSearch" data-ng-change="searchDelay()" placeholder="Navn, kommune, bedrift å søke på.." id="search" autocomplete="off">
     </form>
@@ -12,8 +12,9 @@
     Sidestørrelse: <input type="radio" data-ng-model="search.pageSize" value="10" data-ng-change="searchDelay()" id="10">10
     <input type="radio" data-ng-model="search.pageSize" data-ng-change="searchDelay()" value="50" id="50">50
     <input type="radio" data-ng-model="search.pageSize" data-ng-change="searchDelay()" value="100" id="100">100
+    <br>
+    <span>Trykk på feltene for å endre rekkefølge:</span>
 </div>
-
 
 <div id="tableContainer">
     <span data-ng-class="{'navButtonInactive' : page == 1 || !showNavigation, 'navButtonActive' : page > 1 && showNavigation}" class="fa fa-chevron-left" data-ng-show="hideNavigation" data-ng-click="navigate(-1)" id="prevPage"></span>
