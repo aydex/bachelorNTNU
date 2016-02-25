@@ -443,43 +443,6 @@ kommunalApp.filter('priceFilter', function($filter){
     }
 });
 
-kommunalApp.filter('participantNameFilter', function($filter, $sce){
-    return function(input){      
-        var out = [];
-        var navn;
-        var forNavn;
-        var etterNavn;
-        var deltagerType;
-        var deltagerid;
-        var andelTeller;
-        var andelNevner;
-
-    
-        if (input.length == 0){
-            return $sce.trustAsHtml("Ukjent");
-        }
-        
-        angular.forEach(input, function(value){
-            deltagerType = value.deltagertype
-            navn = value.navn;
-            if (deltagerType == "F"){
-                navn = setLastnameAfterFirstname(navn);
-                navn = abbreviateMiddleNames(navn);
-            } 
-            navn = capitalFirstLetters(navn);
-
-            andelTeller = value.andelTeller;
-            andelNevner = value.andelNevner;
-            deltagerid = value.deltagerid;
-
-            out.push("<span class='deltagerType"+ deltagerType + " deltager" + deltagerid + "'>" + navn + " <sup>" + andelTeller +"</sup>&frasl;<sub>" + andelNevner + "</sub></span>");
-        })
-
-        return $sce.trustAsHtml(out.join(" <br> "));
-    }
-});
-
-
 kommunalApp.filter('participationHistoryFilter', function($filter){
         return function(input){
             var format = function(string){
@@ -564,13 +527,35 @@ var abbreviateMiddleNames = function(name){
 kommunalApp.directive('transactionProperty', function(){
     return{
         restrict: 'EA',
-        replace: true,
+        replace: false,
         scope: {
             transaction: '='
         },
-        templateUrl: 'http://bachelor.dev/templates/transactionsPropertyTableRow.html',
+        templateUrl: 'views/transactionsPropertyTableRow.html',
         link: function(scope, element, attr) {
-            console.log(scope.transaction);
+            var handleEntry = function(list){
+                angular.forEach(list, function(entry){
+                    entry.navn = capitalFirstLetters(entry.navn);
+                    entry.kommune = false;
+                    entry.ukjent = false;
+                    if (entry.deltagertype == "F"){
+                        entry.navn = setLastnameAfterFirstname(entry.navn);
+                        entry.navn = abbreviateMiddleNames(entry.navn);
+                    } else if (entry.deltagertype == "S" && (entry.navn.indexOf("Kommune") != -1)){
+                        entry.kommune = true;
+                        entry.vaapenImgUrl = 'images/kommunevapen/' + entry.navn.replace(" Kommune", "") + '.svg.png';
+                    }
+                });
+
+            }            
+            handleEntry(scope.transaction.buyer);
+            handleEntry(scope.transaction.seller);
+
+            if (scope.transaction.buyer.length == 0){
+                scope.transaction.buyer.push({ukjent: true})
+            } else if (scope.transaction.seller.length == 0){
+                scope.transaction.seller.push({ukjent: true})
+            }
         }
     }
 })
