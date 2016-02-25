@@ -239,7 +239,6 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
     $scope.selectedDokumentnr = null;
 
     $scope.message        = $routeParams.targetId;
-    $scope.showTable      = true;
     $scope.page           = 1;
     $scope.pageDisplay    = "Side: " + $scope.page;
     $scope.pageSize       = 10;
@@ -258,15 +257,18 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
                                     $scope.page, $scope.pageSize);
         queryPromis.then(function(result){
             
+            $scope.showTable      = true;
             $scope.more_results   = $scope.count > ($scope.page * $scope.pageSize);
             results               = $scope.getParticipantsCorrectly(result.records);
             $scope.transactions   = result.records;
             $scope.showNavigation = true;
             $scope.hideNavigation = !(!$scope.more_results && $scope.page == 1);
+            $scope.labels         = [];
+            $scope.data           = [[], []];
 
             var storedString   = result.combined[0].Sammendrag;
             var priceDatePairs = storedString.split(",");
-            dokumentnr     = [];
+            dokumentnr         = [];
 
             angular.forEach(priceDatePairs, function(pair, key){
                 var splitValues = pair.split(":");
@@ -274,6 +276,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
                 $scope.data[0].push(splitValues[0]);
                 dokumentnr.push(results[key].Dokumentnr);
             });
+
 
             $scope.populateChart($scope.labels, $scope.data[0], dokumentnr);
 
@@ -287,6 +290,10 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
         data.addColumn('number', 'Sum');
         data.addColumn({type: 'string', name: 'Dokumentnr', role: 'tooltip'});
         chartArray = [['År', 'Salg']];
+
+        console.log(labels, dataSet, dokumentnr);
+
+
         dokumentnrList = {};
 
 
@@ -301,9 +308,10 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
 
         var options = {
             title: 'Eiendomshistorikk',
-            tooltip: {trigger: 'both'}
+            tooltip: {trigger: 'both'},
         };
         chart = new google.visualization.LineChart(document.getElementById('chartdiv'));
+
 
         chart.draw(data, options);
 

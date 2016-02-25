@@ -7,7 +7,7 @@ Transactions for id: {{ message}},
     </div>
 </div>
 
-<div id="pageElements">
+<div id="pageElements" data-ng-show="hideNavigation">
     Sidestørrelse: <input type="radio" data-ng-model="pageSize" value="10" data-ng-change="queryTransaction()()" id="10" data-ng-init="pageSize = 10">10
     <input type="radio" data-ng-model="pageSize" data-ng-change="queryTransaction()()" value="50" id="50">50
     <input type="radio" data-ng-model="pageSize" data-ng-change="queryTransaction()()" value="100" id="100">100
