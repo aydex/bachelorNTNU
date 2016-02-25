@@ -51,7 +51,9 @@ Transactions for id: {{ message}},
                 <span data-ng-show="orderBy == 'buyer' && reverse" class="fa fa-caret-down"></span>
             </th>
         </tr>
-        <tr data-ng-repeat="x in transactions | orderBy:orderBy:reverse" data-ng-class="{ 'selected-row': x.Dokumentnr == selectedIndex }">
+        <tr data-ng-repeat="x in transactions | orderBy:orderBy:reverse" data-ng-click="setSelected(x.Dokumentnr)"
+            data-ng-class="{ 'selected-row': x.Dokumentnr == selectedDokumentnr }">
+
             <!--<a data-ng-href="detailed/{{ x.Personid }}">-->
                 <td data-ng-bind="x.Dokumentdato"></td>
                 <td data-ng-bind="x.OmsetningsTypenavn"></td>
