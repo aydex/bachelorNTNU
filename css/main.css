@@ -155,7 +155,7 @@ td:nth-child(even){
 }
 
 .propertyTable tr td{
-	cursor:text;
+	cursor:default;
 }
 
 #pageNumber{
