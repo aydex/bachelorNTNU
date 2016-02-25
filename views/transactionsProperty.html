@@ -8,6 +8,12 @@ Transactions for id: {{ message }},
     <input type="radio" data-ng-model="pageSize" data-ng-change="queryTransaction()()" value="100" id="100">100
 </div>
 
+<div id="chartContainer">
+<div id="chartdiv">
+    <!--<canvas id="line" class="chart chart-line" chart-data="data" chart-series="series" chart-labels="labels" chart-legend="true" chart-hover="onHover" chart-options="options"></canvas>-->
+</div>
+</div>
+
 <div id="tableContainer">
     {{ page }}
     <span data-ng-class="{'navButtonInactive' : page == 1 || !showNavigation, 'navButtonActive' : page > 1 && showNavigation}" class="fa fa-chevron-left" data-ng-show="hideNavigation" data-ng-click="navigate(-1)" id="prevPage"></span>
@@ -45,20 +51,18 @@ Transactions for id: {{ message }},
                 <span data-ng-show="orderBy == 'seller' && reverse" class="fa fa-caret-down"></span>
             </th>
         </tr>
-        <tr data-ng-repeat="x in transactions | orderBy:orderBy:reverse" data-ng-click="showTransactionsProperty(x.Eiendomsid)">
+        <tr data-ng-repeat="x in transactions | orderBy:orderBy:reverse" data-ng-class="{ 'selected-row': x.Dokumentnr == selectedIndex }">
             <!--<a data-ng-href="detailed/{{ x.Personid }}">-->
-                <td>{{x.Dokumentdato}}</td>
-                <td>{{x.OmsetningsTypenavn}}</td>
-                <td>{{x.Salgssum | priceFilter }}</td>
-                <td>{{x.Dokumentnr}}</td>
-                <td ng-bind-html="x.buyer | nameFilter"></td>
-                <td  ng-bind-html="x.seller | nameFilter"></td>
+                <td data-ng-bind="x.Dokumentdato"></td>
+                <td data-ng-bind="x.OmsetningsTypenavn"></td>
+                <td data-ng-bind="x.Salgssum | priceFilter "></td>
+                <td data-ng-bind="x.Dokumentnr"></td>
+                <td data-ng-bind-html="x.buyer | nameFilter"></td>
+                <td data-ng-bind-html="x.seller | nameFilter"></td>
 
             <!--</a>-->
         </tr>
     </table>
 </div>
 
-<p id="pageNumber">
-    Side: {{ page }} 
-</p>
+<p id="pageNumber" data-ng-bind="pageDisplay"></p>
