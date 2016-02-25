@@ -1,6 +1,11 @@
-<a href="/">Forside</a>
-Transactions for id: {{ message}}, 
-<h3 id="transaksjonsType">{{ type }}</h3>
+<div id="navbar">
+    <a href="/">Forside</a><br>
+    <a href="#" data-ng-click="back()">Tilbake</a>
+    Transactions for id: {{ message}}, 
+    <h3 id="transaksjonsType" data-ng-bind="type"></h3>
+
+
+</div>
 
 <div id="chartContainer">
     <div id="chartdiv">

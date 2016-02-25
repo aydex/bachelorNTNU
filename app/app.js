@@ -17,7 +17,8 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
 
         .when('/search', {
             templateUrl : '/views/search.html',
-            controller  : 'searchController'
+            controller  : 'searchController',
+            reloadOnSearch: false
         })
 
         .when('/search/:searchName/:page/:pageSize', {
@@ -44,7 +45,7 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 });
 
-kommunalApp.run(function($rootScope, $http) {
+kommunalApp.run(function($rootScope, $http, $window) {
 
     $rootScope.doQuery = function(type, id, page, pageSize) {
         return $http.get("./api/test.php?" + type + "=" + id + "&page=" +
@@ -55,6 +56,11 @@ kommunalApp.run(function($rootScope, $http) {
             });
     }
 
+    $rootScope.back = function(){
+        $window.history.back();
+        //$location.path("/search/" + $scope.name + "/" + $scope.page + "/" + $scope.pageSize);
+    }
+
 });
 
 kommunalApp.controller('mainController', function($scope) {
@@ -63,7 +69,7 @@ kommunalApp.controller('mainController', function($scope) {
 
 });
 
-kommunalApp.controller('searchController', function($scope, $rootScope, $timeout, $location, $routeParams) {
+kommunalApp.controller('searchController', function($scope, $rootScope, $timeout, $location, $routeParams, $window) {
 
     var _timeout;
     var queryPromis;
@@ -72,6 +78,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     $scope.reverse        = false;
     $scope.showNavigation = true;
     $scope.searched       = false;
+    $scope.lastSearched   = "";
     $scope.search         = {
         nameSearch: "",
         pageSize  : 10
@@ -87,7 +94,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
                 $scope.count = value;
                 //$scope.count = Math.ceil($scope.page * $scope.search.pageSize);
             });
-
+            $scope.lastSearched   = $scope.search.nameSearch;
             $scope.names          = result.records;
             $scope.showTable      = 'true';
             $scope.showNavigation = true;
@@ -108,11 +115,17 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
 
                 /*$scope.search.loading = true;*/
 
+                if($scope.lastSearch != $scope.search.nameSearch){
+                    $scope.page = 1;
+                    $scope.pageDisplay       = "Side: " + $scope.page;
+                }
+
                 console.log("Searching for " + $scope.search.nameSearch + " with page size " +
                     $scope.search.pageSize + " at page " + $scope.page);
 
-                //$scope.queryPerson();
-                $location.path("/search/" + $scope.search.nameSearch + "/" + $scope.page + "/" + $scope.search.pageSize);
+                $scope.queryPerson();
+                //$location.search(name, 123);
+                //$location.path("/search/" + $scope.search.nameSearch + "/" + $scope.page + "/" + $scope.search.pageSize);
 
                 _timeout = null;
             },500);
@@ -130,10 +143,10 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     $scope.navigate = function(way) {
         if((way == -1 && $scope.page > 1 && $scope.showNavigation) || (way == 1 && $scope.more_results && $scope.showNavigation)){
             $scope.page          += way;
-            /*$scope.pageDisplay    = "Side: " + $scope.page;
+            $scope.pageDisplay    = "Side: " + $scope.page;
             $scope.showNavigation = false;
-            $scope.queryPerson();*/
-            $location.path("/search/" + $scope.search.nameSearch + "/" + $scope.page + "/" + $scope.search.pageSize);
+            $scope.queryPerson();
+            //$location.path("/search/" + $scope.search.nameSearch + "/" + $scope.page + "/" + $scope.search.pageSize);
         }
     }
 
