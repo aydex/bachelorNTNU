@@ -314,6 +314,10 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             if(!cords) {
                 $scope.selectedDokumentnr = null;
                 $scope.$apply();
+            } else {
+                console.log(dokumentnrList[cords.row]);
+                $scope.markTableRow(dokumentnrList[cords.row-1]);
+                $scope.$apply();
             }
         });
 
