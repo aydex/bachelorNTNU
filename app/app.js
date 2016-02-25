@@ -20,6 +20,11 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             controller  : 'searchController'
         })
 
+        .when('/search/:searchName/:page/:pageSize', {
+            templateUrl : '/views/search.html',
+            controller  : 'searchController'
+        })
+
         .when('/transactions/deltager/:name/:targetId', {
             templateUrl : '/views/transactions.html',
             controller  : 'transactionPersonController'
@@ -58,18 +63,22 @@ kommunalApp.controller('mainController', function($scope) {
 
 });
 
-kommunalApp.controller('searchController', function($scope, $rootScope, $timeout, $location) {
+kommunalApp.controller('searchController', function($scope, $rootScope, $timeout, $location, $routeParams) {
 
     var _timeout;
     var queryPromis
 
     $scope.page           = 1;
-    $scope.pageDisplay    = "Side: " + $scope.page;
     $scope.reverse        = false;
     $scope.showNavigation = true;
     $scope.searched       = false;
+    $scope.search         = {
+        nameSearch: "",
+        pageSize  : 10
+    }
 
     $scope.queryPerson  = function() {
+
         queryPromis = $rootScope.doQuery("name", $scope.search.nameSearch, 
                                                     $scope.page, $scope.search.pageSize);
         queryPromis.then(function(result){
@@ -97,27 +106,34 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         if($scope.search.nameSearch != ""){
             _timeout = $timeout(function(){
 
-                $scope.page = 1;
                 /*$scope.search.loading = true;*/
 
                 console.log("Searching for " + $scope.search.nameSearch + " with page size " +
                     $scope.search.pageSize + " at page " + $scope.page);
 
-                $scope.queryPerson();
+                //$scope.queryPerson();
+                $location.path("/search/" + $scope.search.nameSearch + "/" + $scope.page + "/" + $scope.search.pageSize);
 
                 _timeout = null;
             },500);
         }
+    }
 
-
+    if($routeParams.searchName) {
+        $scope.search.nameSearch = $routeParams.searchName;
+        $scope.page              = parseInt($routeParams.page);
+        $scope.search.pageSize   = parseInt($routeParams.pageSize);
+        $scope.pageDisplay       = "Side: " + $scope.page;
+        $scope.queryPerson();
     }
 
     $scope.navigate = function(way) {
         if((way == -1 && $scope.page > 1 && $scope.showNavigation) || (way == 1 && $scope.more_results && $scope.showNavigation)){
             $scope.page          += way;
-            $scope.pageDisplay    = "Side: " + $scope.page;
+            /*$scope.pageDisplay    = "Side: " + $scope.page;
             $scope.showNavigation = false;
-            $scope.queryPerson();
+            $scope.queryPerson();*/
+            $location.path("/search/" + $scope.search.nameSearch + "/" + $scope.page + "/" + $scope.search.pageSize);
         }
     }
 
