@@ -59,17 +59,17 @@
                 <span data-ng-show="orderBy == 'buyer' && reverse" class="fa fa-caret-down"></span>
             </th>
         </tr>
-        <tr data-ng-repeat="x in transactions | orderBy:orderBy:reverse" data-ng-click="setSelected(x.Dokumentnr)"
-            data-ng-class="{ 'selected-row': x.Dokumentnr == selectedDokumentnr }" data-ng-mouseover="setSelected(x.Dokumentnr)" data-ng-mouseout="setSelected(null)">
+        <tr transaction-property transaction="transaction" data-ng-repeat="transaction in transactions | orderBy:orderBy:reverse" data-ng-click="setSelected(x.Dokumentnr)"
+            data-ng-class="{ 'selected-row': transaction.Dokumentnr == selectedDokumentnr }" data-ng-mouseover="setSelected(transaction.Dokumentnr)" data-ng-mouseout="setSelected(null)">
 
-            <!--<a data-ng-href="detailed/{{ x.Personid }}">-->
+            <!--<a data-ng-href="detailed/{{ x.Personid }}"
                 <td data-ng-bind="x.Dokumentdato"></td>
                 <td data-ng-bind="x.OmsetningsTypenavn"></td>
                 <td data-ng-bind="x.Salgssum | priceFilter "></td>
                 <td data-ng-bind="x.Dokumentnr"></td>
                 <td data-ng-bind-html="x.seller | participantNameFilter"></td>
                 <td data-ng-bind-html="x.buyer | participantNameFilter"></td>
-            <!--</a>-->
+            </a>-->
         </tr>
     </table>
 </div>

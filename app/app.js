@@ -561,5 +561,17 @@ var abbreviateMiddleNames = function(name){
     return navn.join(" ");
 };
 
-
+kommunalApp.directive('transactionProperty', function(){
+    return{
+        restrict: 'EA',
+        replace: true,
+        scope: {
+            transaction: '='
+        },
+        templateUrl: 'http://bachelor.dev/templates/transactionsPropertyTableRow.html',
+        link: function(scope, element, attr) {
+            console.log(scope.transaction);
+        }
+    }
+})
 
