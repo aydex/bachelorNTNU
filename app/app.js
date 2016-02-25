@@ -515,6 +515,13 @@ kommunalApp.filter('nameFilter', function($filter){
         }
 });
 
+kommunalApp.filter('capitalFirstLettersFilter', function($filter){
+        return function(input){
+            var out = capitalFirstLetters(input);
+            return out;
+        }
+});
+
 var setLastnameAfterFirstname = function(name){
     var forNavn = name.substring(name.indexOf(" "), name.length);
     var etterNavn = name.substring(0, name.indexOf(" "));
@@ -540,7 +547,7 @@ var abbreviateMiddleNames = function(name){
     return navn.join(" ");
 };
 
-kommunalApp.directive('transactionProperty', function(){
+kommunalApp.directive('transactionPropertyTable', function(){
     return{
         restrict: 'EA',
         replace: false,
@@ -559,7 +566,9 @@ kommunalApp.directive('transactionProperty', function(){
                         entry.navn = abbreviateMiddleNames(entry.navn);
                     } else if (entry.deltagertype == "S" && (entry.navn.indexOf("Kommune") != -1)){
                         entry.kommune = true;
-                        entry.vaapenImgUrl = 'images/kommunevapen/' + entry.navn.replace(" Kommune", "") + '.svg.png';
+                        var urlNavn = entry.navn.replace(" Kommune", "");
+                        urlNavn = urlNavn.replace(" ", "_")
+                        entry.vaapenImgUrl = 'images/kommunevapen/' + urlNavn + '.svg.png';
                     }
                 });
 
@@ -575,4 +584,32 @@ kommunalApp.directive('transactionProperty', function(){
         }
     }
 })
+
+kommunalApp.directive('transactionTable', function(){
+    return{
+        restrict: 'EA',
+        replace: false,
+        scope: {
+            transaction: '='
+        },
+        templateUrl: 'views/transactionsTableRow.html',
+        link: function(scope, element, attr) {
+            scope.transaction.vaapenImgUrl = 'images/kommunevapen/'+scope.transaction.Kommunenavn + '.svg.png'; 
+            var involvements = scope.transaction.Involvering.split(", ");
+            var out = []
+            angular.forEach(involvements, function(entry){
+                var year = entry.split(":")[0].split("-")[0];
+                var type = entry.split(":")[1];
+
+                if (type == "K"){
+                    type = "Kjøpt";
+                } else if (type == "S"){
+                    type = "Solgt";
+                }
+                out.push(type + " "+year);
+            })
+            scope.transaction.involvements = out.join(", ");
+        }
+    }
+});
 

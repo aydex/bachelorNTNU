@@ -59,7 +59,7 @@
                 <span data-ng-show="orderBy == 'buyer' && reverse" class="fa fa-caret-down"></span>
             </th>
         </tr>
-        <tr transaction-property transaction="transaction" data-ng-repeat="transaction in transactions | orderBy:orderBy:reverse" data-ng-click="setSelected(x.Dokumentnr)"
+        <tr transaction-property-table transaction="transaction" data-ng-repeat="transaction in transactions | orderBy:orderBy:reverse" data-ng-click="setSelected(x.Dokumentnr)"
             data-ng-class="{ 'selected-row': transaction.Dokumentnr == selectedDokumentnr }" data-ng-mouseover="setSelected(transaction.Dokumentnr)" data-ng-mouseout="setSelected(null)">
         </tr>
     </table>
