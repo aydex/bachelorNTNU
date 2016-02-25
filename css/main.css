@@ -5,7 +5,8 @@ header{
 }
 
 #pageElements {
-    margin-left: 15%;
+    margin:auto;
+    width:60%;
 }
 
 #search {
@@ -154,7 +155,7 @@ td:nth-child(even){
 }
 
 .propertyTable tr td{
-	cursor:text;
+	cursor:default;
 }
 
 #pageNumber{
@@ -162,7 +163,7 @@ td:nth-child(even){
 }
 
 .selected-row{
-	background: green !important;
+	background: rgba(105, 105, 105, 0.4) !important;
 }
 
 
