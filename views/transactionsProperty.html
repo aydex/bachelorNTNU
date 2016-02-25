@@ -1,13 +1,18 @@
-<a href="/">Forside</a>
-Transactions for id: {{ message}}, 
-<h3 id="transaksjonsType">{{ type }}</h3>
+<div id="navbar">
+    <a href="/">Forside</a><br>
+    <a href="#" data-ng-click="back()">Tilbake</a>
+    Transactions for id: {{ message}}, 
+    <h3 id="transaksjonsType" data-ng-bind="type"></h3>
+
+
+</div>
 
 <div id="chartContainer">
     <div id="chartdiv">
     </div>
 </div>
 
-<div id="pageElements">
+<div id="pageElements" data-ng-show="hideNavigation">
     Sidestørrelse: <input type="radio" data-ng-model="pageSize" value="10" data-ng-change="queryTransaction()()" id="10" data-ng-init="pageSize = 10">10
     <input type="radio" data-ng-model="pageSize" data-ng-change="queryTransaction()()" value="50" id="50">50
     <input type="radio" data-ng-model="pageSize" data-ng-change="queryTransaction()()" value="100" id="100">100
