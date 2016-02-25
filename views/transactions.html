@@ -1,6 +1,5 @@
 <a href="/">Forside</a>
-Transactions for id: {{ message }}, 
-<h3 id="transaksjonsType">{{ type }}</h3>
+<h3 id="transaksjonsType" data-ng-bind="type"></h3>
 
 <div id="pageElements">
     Sidestørrelse: <input type="radio" data-ng-model="pageSize" value="10" data-ng-change="queryTransaction()()" id="10" data-ng-init="pageSize = 10">10
@@ -9,7 +8,6 @@ Transactions for id: {{ message }},
 </div>
 
 <div id="tableContainer">
-    {{ page }}
     <span data-ng-class="{'navButtonInactive' : page == 1 || !showNavigation, 'navButtonActive' : page > 1 && showNavigation}" class="fa fa-chevron-left" data-ng-show="hideNavigation" data-ng-click="navigate(-1)" id="prevPage"></span>
     <span data-ng-class="{'navButtonInactive' : !more_results || !showNavigation, 'navButtonActive' : more_results && showNavigation }" class="fa fa-chevron-right" data-ng-show="hideNavigation" data-ng-click="navigate(1)" id="nextPage"></span>
     <table data-ng-show="showTable">
@@ -47,18 +45,15 @@ Transactions for id: {{ message }},
         </tr>
         <tr data-ng-repeat="x in transactions | orderBy:orderBy:reverse" data-ng-click="showTransactionsProperty(x.Eiendomsid)">
             <!--<a data-ng-href="detailed/{{ x.Personid }}">-->
-                <td>{{x.Eiendomsid}}</td>
-                <td>{{x.Kommunenavn}}</td>
-                <td>{{x.ForstRegistrert}}</td>
-                <td>{{x.SistRegistrert}}</td>
-                <td>{{x.AntallTransaksjoner}}</td>
-                <td>{{x.Involvering | participationHistoryFilter}}</td>
-
+                <td data-ng-bind="x.Eiendomsid"></td>
+                <td data-ng-bind="x.Kommunenavn"></td>
+                <td data-ng-bind="x.Kommunenavn"></td>
+                <td data-ng-bind="x.SistRegistrert"></td>
+                <td data-ng-bind="x.AntallTransaksjoner"></td>
+                <td data-ng-bind="x.Involvering | participationHistoryFilter"></td>
             <!--</a>-->
         </tr>
     </table>
 </div>
 
-<p id="pageNumber">
-    Side: {{ page }} 
-</p>
+<p id="pageNumber" data-ng-bind="pageDisplay"></p>
