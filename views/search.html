@@ -1,8 +1,7 @@
 <!--søkeicon i søkefeltet-->
-<a href="/">Forside</a>
+<a id ="backButton" href="/" data-ng-show="showTable">Forside</a>
 <div id="searchElements">
     <form id="searchForm" data-ng-submit="searchForm(searchForm)">
-        
         <i class="material-icons" id="searchIcon">search</i>
         <input type="text" data-ng-model="search.nameSearch" data-ng-change="searchDelay()" placeholder="Navn, kommune, bedrift å søke på.." id="search" autocomplete="off">
     </form>
@@ -19,19 +18,20 @@
 <div id="tableContainer">
     <span data-ng-class="{'navButtonInactive' : page == 1 || !showNavigation, 'navButtonActive' : page > 1 && showNavigation}" class="fa fa-chevron-left" data-ng-show="hideNavigation" data-ng-click="navigate(-1)" id="prevPage"></span>
     <span data-ng-class="{'navButtonInactive' : !more_results || !showNavigation, 'navButtonActive' : more_results && showNavigation }" class="fa fa-chevron-right" data-ng-show="hideNavigation" data-ng-click="navigate(1)" id="nextPage"></span>
+    <p id="noResultDescription" data-ng-show="noResultShow">Ingen resultater...</p>
     <table data-ng-show="showTable">
         <tr>
-            <th data-ng-click="orderByMe('id'); reverseOrder()">
+            <th id="idColumn" data-ng-click="orderByMe('id'); reverseOrder()">
                 id
                 <span data-ng-show="orderBy == 'id' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'id' && reverse" class="fa fa-caret-down"></span>
             </th>
-            <th data-ng-click="orderByMe('Type'); reverseOrder()">
+            <th id ="typeColumn" data-ng-click="orderByMe('Type'); reverseOrder()">
                 Type
                 <span data-ng-show="orderBy == 'Type' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Type' && reverse" class="fa fa-caret-down"></span>
             </th>
-            <th data-ng-click="orderByMe('Navn'); reverseOrder()">
+            <th id ="nameColumn" data-ng-click="orderByMe('Navn'); reverseOrder()">
                 Navn
                 <span data-ng-show="orderBy == 'Navn' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Navn' && reverse" class="fa fa-caret-down"></span>
@@ -48,3 +48,4 @@
 </div>
 
 <p id="pageNumber" data-ng-bind="pageDisplay"></p>
+
