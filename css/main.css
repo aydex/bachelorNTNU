@@ -4,13 +4,21 @@ header{
 	margin: 0 40px 0 40px;
 }
 
+#container{
+	position: relative;
+}
+
+#backButton {
+	position: absolute;
+}
+
 #pageElements {
     margin:auto;
     width:60%;
 }
 
 #search {
-	width: 65%;
+	width: 100%;
 	height: 35px;
 	font-size: 20px;
 }
@@ -37,9 +45,10 @@ div p{
 ***************************************************/
 
 #searchElements{
-	margin-top: 50px;
-	margin-left: 15%;
-	margin-bottom: 20px;
+	margin: auto;
+    margin-bottom: 20px;
+    width: 60%;
+    margin-top: 50px;
 }
 
 #search{
@@ -71,6 +80,16 @@ input:focus{
 
 table{
 	margin-top: 30px;
+}
+
+#noResultDescription {
+	margin-left: 17%;
+	margin-top: 30px;
+	font-size: 30px;
+}
+
+table{
+	margin-left: 17%;
  	border: 1; 
  	width: 60%;
  	margin:auto;
@@ -89,6 +108,17 @@ table, th , td {
 th{
 	cursor:pointer;
 	background-color:darkGrey;
+}
+
+#idColumn{
+	width: 13%;
+}
+
+#typeColumn{
+	width: 20%;
+}
+
+#nameColumn{
 }
 
 tr:nth-child(odd){
