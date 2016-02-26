@@ -542,11 +542,12 @@ kommunalApp.directive('transactionPropertyTable', function(){
             }            
             handleEntry(scope.transaction.buyer);
             handleEntry(scope.transaction.seller);
+            var emptyObject = {ukjent: true, kommune: false};
 
             if (scope.transaction.buyer.length == 0){
-                scope.transaction.buyer.push({ukjent: true})
+                scope.transaction.buyer.push(emptyObject);
             } else if (scope.transaction.seller.length == 0){
-                scope.transaction.seller.push({ukjent: true})
+                scope.transaction.seller.push(emptyObject);
             }
         }
     }
@@ -561,7 +562,6 @@ kommunalApp.directive('transactionTable', function(){
         },
         templateUrl: 'views/transactionsTableRow.html',
         link: function(scope, element, attr) {
-            scope.transaction.vaapenImgUrl = 'images/kommunevapen/'+scope.transaction.Kommunenavn + '.svg.png'; 
             var involvements = scope.transaction.Involvering.split(", ");
             var out = []
             angular.forEach(involvements, function(entry){
