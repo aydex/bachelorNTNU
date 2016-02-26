@@ -147,6 +147,11 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         }
     }
 
+    $scope.pageSizeChange = function(){
+        $scope.page = 1;
+        $scope.queryPerson();
+    }
+
     /*if($routeParams.searchName) {
         $scope.search.nameSearch = $routeParams.searchName;
         $scope.page              = parseInt($routeParams.page);
@@ -231,7 +236,12 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
             results[x].Involvering = buyer + add + seller;  
         }
         return results;
-    };
+    }
+
+    $scope.pageSizeChange = function(){
+        $scope.page = 1;
+        $scope.queryTransaction();
+    }
 
     $scope.navigate = function(way) {
         if((way == -1 && $scope.page > 1 && $scope.showNavigation) || (way == 1 && $scope.more_results && $scope.showNavigation)){
@@ -239,22 +249,22 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
             $scope.showNavigation = false;
             $scope.queryTransaction();
         }
-    };
+    }
 
     $scope.orderByMe = function(x) {
         if($scope.orderBy != x){
             $scope.reverse = !$scope.reverse;
         }
         $scope.orderBy = x;
-    };
+    }
 
     $scope.reverseOrder = function(){
         $scope.reverse = !$scope.reverse;
-    };
+    }
 
     $scope.showTransactionsProperty = function(id){
         $location.path("/transactions/property/" + id);
-    };
+    }
 
     $scope.queryTransaction();
 
@@ -281,8 +291,6 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
     $scope.unalteredTransactions;
 
     $scope.queryTransaction = function(){
-
-        $scope.page = 1;
 
         var queryPromis = $rootScope.doQuery("transactionFromProperty", $routeParams.targetId, 
                                     $scope.page, $scope.pageSize);
@@ -320,12 +328,15 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
                 dokumentnr.push(results[key].Dokumentnr);
             });
 
-            console.log($scope.labels.sort());
-
             $scope.populateChart($scope.labels, $scope.data[0], dokumentnr);
 
         });
-    };
+    }
+
+    $scope.pageSizeChange = function(){
+        $scope.page = 1;
+        $scope.queryTransaction();
+    }
 
     $scope.populateChart = function(labels, dataSet, dokumentnr) {
         var data = new google.visualization.DataTable();
@@ -363,7 +374,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             title: 'Eiendomshistorikk',
             tooltip: {trigger: 'both'},
             pointSize: 5,
-        };
+        }
 
         
         if(chart == undefined){
@@ -401,7 +412,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             }
         });
 
-    };
+    }
 
     angular.element($window).bind('resize', function(){
         $scope.populateChart($scope.labels, $scope.data[0], dokumentnr);
@@ -414,11 +425,11 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
         chart.setSelection([{row:row,column:column}])
 
         $scope.selectedDokumentnr = selectedDokumentnr;
-    };
+    }
 
     $scope.markTableRow = function(selectedDokumentnr) {
         $scope.selectedDokumentnr = selectedDokumentnr;
-    };
+    }
 
 
     $scope.navigate = function(way) {
@@ -456,18 +467,18 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             delete results[x].Deltagere;
         }
         return results;
-    };
+    }
 
     $scope.orderByMe = function(x) {
         if($scope.orderBy != x){
             $scope.reverse = !$scope.reverse;
         }
         $scope.orderBy = x;
-    };
+    }
 
     $scope.reverseOrder = function(){
         $scope.reverse = !$scope.reverse;
-    };
+    }
 
     $scope.queryTransaction();
 
@@ -540,7 +551,7 @@ var abbreviateMiddleNames = function(name){
         }
     }
     return navn.join(" ");
-};
+}
 
 var isMunicipality = function(type, name){
     if(type == "S" && name.toLowerCase().indexOf("kommune") != -1) return true;
