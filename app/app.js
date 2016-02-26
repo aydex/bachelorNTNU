@@ -459,37 +459,6 @@ kommunalApp.filter('priceFilter', function($filter){
     }
 });
 
-kommunalApp.filter('participationHistoryFilter', function($filter){
-        return function(input){
-            var format = function(string){
-                var year = string.split(":")[0].split("-")[0];
-                var type = string.split(":")[1];
-
-
-                if (year == "0001"){
-                    year = "ukjent år";
-                }
-
-                switch(type){
-                    case "K": type = "Kjøpt"; break;
-                    case "S": type = "Solgt"; break;
-                }
-
-                return type + " " + year;
-            }
-            if (input.indexOf(",") == -1){
-                return format(input);
-            }
-
-            var out = [];
-            var involvement = input.split(",");
-            angular.forEach(involvement, function(entry){
-                out.push(format(entry));
-            })
-
-            return out.join(", ");
-    }
-});
 
 kommunalApp.filter('deltagerTypeFilter', function($filter){
         return function(typeKode){
@@ -600,6 +569,10 @@ kommunalApp.directive('transactionTable', function(){
             angular.forEach(involvements, function(entry){
                 var year = entry.split(":")[0].split("-")[0];
                 var type = entry.split(":")[1];
+
+                if (year == "0001"){
+                    year = "ukjent år";
+                }
 
                 if (type == "K"){
                     type = "Kjøpt";
