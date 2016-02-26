@@ -1,7 +1,3 @@
-/**
- * Created by adrianh on 09.02.16.
- */
-
 google.load('visualization', '1', {packages:['corechart']});
 
 var kommunalApp = angular.module('kommunalApp', ['ngRoute']);
@@ -69,13 +65,15 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     var queryPromis;
 
     $scope.page           = 1;
+    $scope.orderBy        = null;
+    $scope.order          = "ASC";
     $scope.reverse        = false;
     $scope.showNavigation = true;
     $scope.searched       = false;
     $scope.search         = {
         nameSearch: "",
         pageSize  : 10
-    }
+    };
 
     $scope.queryPerson  = function() {
 
@@ -96,7 +94,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             $scope.hideNavigation = !(!$scope.more_results && $scope.page == 1);
 
         });
-    }
+    };
 
     $scope.searchDelay = function(){
         if(_timeout){ //if there is already a timeout in process cancel it
@@ -117,7 +115,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
                 _timeout = null;
             },500);
         }
-    }
+    };
 
     if($routeParams.searchName) {
         $scope.search.nameSearch = $routeParams.searchName;
@@ -135,19 +133,23 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             $scope.queryPerson();*/
             $location.path("/search/" + $scope.search.nameSearch + "/" + $scope.page + "/" + $scope.search.pageSize);
         }
-    }
+    };
 
     $scope.showTransactionsPerson = function(id, name){
         $location.path("/transactions/deltager/" + name + "/" + id);
         //$routeParams ==> {chapterId:1, sectionId:2, search:'moby'}
-    }
+    };
 
     $scope.orderByMe = function(x) {
         if($scope.orderBy != x){
-            $scope.reverse = !$scope.reverse;
+            if ($scope.order == "ASC") {
+                $scope.order = "DESC"
+            } else {
+                $scope.order = "ASC";
+            }
         }
         $scope.orderBy = x;
-    }
+    };
 
     $scope.reverseOrder = function(){
         $scope.reverse = !$scope.reverse;
@@ -179,7 +181,7 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
             $scope.showNavigation = true;
             $scope.hideNavigation = !(!$scope.more_results && $scope.page == 1);
         });
-    }
+    };
 
     $scope.filterResults = function(results) {
         var involvement;
@@ -189,9 +191,9 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
         var seller = "";
         var buyer  = "";
 
-        for(x in results) {
+        for(var x in results) {
             involvement = results[x].Involvering.split(",");
-            for(y in involvement) {
+            for(var y in involvement) {
                 involvementType = involvement[y].split(":");
                 if(involvementType[1].toLowerCase() == "k") {
                     buyer = "Kjøpt " + involvementType[0];
@@ -418,9 +420,9 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
 
 });
 
-kommunalApp.filter('priceFilter', function($filter){
+kommunalApp.filter('priceFilter', function(){
         return function(input){
-            var lengde = input.length
+            var lengde = input.length;
             var out = "";
             while (lengde >= 0){
                 out = input.substring(lengde-3, lengde) + " " +out;
@@ -434,8 +436,6 @@ kommunalApp.filter('participantNameFilter', function($filter, $sce){
     return function(input){      
         var out = [];
         var navn;
-        var forNavn;
-        var etterNavn;
         var deltagerType;
         var deltagerid;
         var andelTeller;
@@ -447,7 +447,7 @@ kommunalApp.filter('participantNameFilter', function($filter, $sce){
         }
         
         angular.forEach(input, function(value){
-            deltagerType = value.deltagertype
+            deltagerType = value.deltagertype;
             navn = value.navn;
             if (deltagerType == "F"){
                 navn = setLastnameAfterFirstname(navn);
@@ -460,14 +460,14 @@ kommunalApp.filter('participantNameFilter', function($filter, $sce){
             deltagerid = value.deltagerid;
 
             out.push("<span class='deltagerType"+ deltagerType + " deltager" + deltagerid + "'>" + navn + " <sup>" + andelTeller +"</sup>&frasl;<sub>" + andelNevner + "</sub></span>");
-        })
+        });
 
         return $sce.trustAsHtml(out.join(" <br> "));
     }
 });
 
 
-kommunalApp.filter('participationHistoryFilter', function($filter){
+kommunalApp.filter('participationHistoryFilter', function(){
         return function(input){
             var format = function(string){
                 var year = string.split(":")[0].split("-")[0];
@@ -484,7 +484,7 @@ kommunalApp.filter('participationHistoryFilter', function($filter){
                 }
 
                 return type + " " + year;
-            }
+            };
             if (input.indexOf(",") == -1){
                 return format(input);
             }
@@ -493,13 +493,13 @@ kommunalApp.filter('participationHistoryFilter', function($filter){
             var involvement = input.split(",");
             angular.forEach(involvement, function(entry){
                 out.push(format(entry));
-            })
+            });
 
             return out.join(", ");
     }
 });
 
-kommunalApp.filter('deltagerTypeFilter', function($filter){
+kommunalApp.filter('deltagerTypeFilter', function(){
         return function(typeKode){
             switch(typeKode){
                 case "F": return "Privatperson"; break;
@@ -509,7 +509,7 @@ kommunalApp.filter('deltagerTypeFilter', function($filter){
         }
 });
 
-kommunalApp.filter('nameFilter', function($filter){
+kommunalApp.filter('nameFilter', function(){
         return function(input, type, keepMiddleNames){
 
             var out = capitalFirstLetters(input);
@@ -527,12 +527,12 @@ var setLastnameAfterFirstname = function(name){
     var forNavn = name.substring(name.indexOf(" "), name.length);
     var etterNavn = name.substring(0, name.indexOf(" "));
     return forNavn + " " + etterNavn
-}
+};
 var capitalFirstLetters = function(word){
     return word.replace(/[\S]+/g, function(innerWord){
         return innerWord.substring(0,1).toUpperCase() + innerWord.substring(1, innerWord.length).toLowerCase();
     });
-}
+};
 
 var abbreviateMiddleNames = function(name){
     var navn = name.split(/\s+(?=\S)/); 
