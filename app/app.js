@@ -298,6 +298,8 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             $scope.totalPages     = Math.ceil($scope.count / $scope.pageSize);
             $scope.pageDisplay    = "Side: " + $scope.page + " av " + $scope.totalPages;
 
+            console.log(result.records);
+
             var storedString   = result.combined[0].Sammendrag;
             var priceDatePairs = storedString.split(",");
             dokumentnr         = [];
@@ -321,26 +323,25 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
         data.addColumn('string', 'År');
         data.addColumn('number', 'Sum');
         data.addColumn({type: 'string', name: 'Dokumentnr', role: 'tooltip'});
-        chartArray = [['År', 'Salg']];
-
-        console.log(labels, dataSet, dokumentnr);
-
+        data.addColumn({type: 'string', role: 'annotation'});
+        data.addColumn({type: 'string', role: 'annotationText'});
 
         dokumentnrList = {};
 
 
         angular.forEach(labels, function(pair, key) {
-            chartArray.push([labels[key], parseInt(dataSet[key]), dokumentnr[key]]);
             dokumentnrList[key] = dokumentnr[key];
             dokumentnrList[dokumentnr[key]] = key;
-            data.addRow([labels[key], parseInt(dataSet[key]), 'År: ' + labels[key] + '\n Sum: ' + parseInt(dataSet[key]) + ' kr\n Dokumentnr: ' + dokumentnr[key]]);
+            data.addRow([labels[key], parseInt(dataSet[key]), 'År: ' + labels[key] + '\n Sum: ' + parseInt(dataSet[key]) + ' kr\n Dokumentnr: ' + dokumentnr[key],
+                'K', 'Test Annotation']);
         });
 
-        console.log(dokumentnrList);
+        console.log(labels);
 
         var options = {
             title: 'Eiendomshistorikk',
             tooltip: {trigger: 'both'},
+            pointSize: 5,
         };
         chart = new google.visualization.LineChart(document.getElementById('chartdiv'));
 
