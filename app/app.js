@@ -333,8 +333,6 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             data.addRow([labels[key], parseInt(dataSet[key]), 'År: ' + labels[key] + '\n Sum: ' + parseInt(dataSet[key]) + ' kr\n Dokumentnr: ' + dokumentnr[key]]);
         });
 
-        console.log(dokumentnrList);
-
         var options = {
             title: 'Eiendomshistorikk',
             tooltip: {trigger: 'both'},
@@ -516,6 +514,11 @@ var abbreviateMiddleNames = function(name){
     return navn.join(" ");
 };
 
+var isMunicipality = function(type, name){
+    if(type == "S" && name.indexOf("Kommune") != -1) return true;
+    return false;
+}
+
 kommunalApp.directive('transactionPropertyTable', function(){
     return{
         restrict: 'EA',
@@ -530,10 +533,10 @@ kommunalApp.directive('transactionPropertyTable', function(){
                     entry.navn = capitalFirstLetters(entry.navn);
                     entry.kommune = false;
                     entry.ukjent = false;
-                    if (entry.deltagertype == "F"){
+                    if (entry.deltagertype == "F") {
                         entry.navn = setLastnameAfterFirstname(entry.navn);
                         entry.navn = abbreviateMiddleNames(entry.navn);
-                    } else if (entry.deltagertype == "S" && (entry.navn.indexOf("Kommune") != -1)){
+                    } else if (isMunicipality(entry.deltagertype, entry.navn)) {
                         entry.kommune = true;
                         entry.kommunenavn = entry.navn.replace(" Kommune", "");
                     }
@@ -594,6 +597,7 @@ kommunalApp.directive('kommunevaapen', function(){
         },
         template: '<img class="kommunevaapen" src="images/kommunevapen/{{name}}.svg.png"></img>',
         link: function(scope, element, attr) {
+            console.log("asd");
             scope.name = capitalFirstLetters(scope.name);
         }
     }
