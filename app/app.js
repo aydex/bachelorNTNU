@@ -535,9 +535,7 @@ kommunalApp.directive('transactionPropertyTable', function(){
                         entry.navn = abbreviateMiddleNames(entry.navn);
                     } else if (entry.deltagertype == "S" && (entry.navn.indexOf("Kommune") != -1)){
                         entry.kommune = true;
-                        var urlNavn = entry.navn.replace(" Kommune", "");
-                        urlNavn = urlNavn.replace(" ", "_")
-                        entry.vaapenImgUrl = 'images/kommunevapen/' + urlNavn + '.svg.png';
+                        entry.kommunenavn = entry.navn.replace(" Kommune", "");
                     }
                 });
 
@@ -590,14 +588,13 @@ kommunalApp.directive('transactionTable', function(){
 kommunalApp.directive('kommunevaapen', function(){
     return{
         restrict: 'EA',
-        replace: false,
+        replace: true,
         scope: {
             name: '='
         },
-        template: '<img class="kommunevaapen src="images/kommunevapen/{{name}}.svg.png"/>',
+        template: '<img class="kommunevaapen" src="images/kommunevapen/{{name}}.svg.png"></img>',
         link: function(scope, element, attr) {
             console.log(scope.name);
-
         }
     }
 });
