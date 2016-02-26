@@ -594,7 +594,7 @@ kommunalApp.directive('kommunevaapen', function(){
         },
         template: '<img class="kommunevaapen" src="images/kommunevapen/{{name}}.svg.png"></img>',
         link: function(scope, element, attr) {
-            console.log(scope.name);
+            scope.name = capitalFirstLetters(scope.name);
         }
     }
 });
