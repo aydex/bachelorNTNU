@@ -18,14 +18,14 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
         .when('/search', {
             templateUrl : '/views/search.html',
             controller  : 'searchController',
-            reloadOnSearch: false
+            //reloadOnSearch: false
         })
 
-        .when('/search/:searchName/:page/:pageSize', {
+        /*.when('/search/:searchName/:page/:pageSize', {
             templateUrl : '/views/search.html',
             controller  : 'searchController'
-        })
-
+        })*/
+        
         .when('/transactions/deltager/:name/:targetId', {
             templateUrl : '/views/transactions.html',
             controller  : 'transactionPersonController'
@@ -69,7 +69,7 @@ kommunalApp.controller('mainController', function($scope) {
 
 });
 
-kommunalApp.controller('searchController', function($scope, $rootScope, $timeout, $location, $routeParams, $window) {
+kommunalApp.controller('searchController', function($scope, $rootScope, $timeout, $location) {
 
     var _timeout;
     var queryPromis;
@@ -104,6 +104,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             $scope.searched       = true;
             $scope.hideNavigation = !$scope.more_results && $scope.page == 1 ? false : true;
             $scope.totalPages     = Math.ceil($scope.count / $scope.search.pageSize);
+            $scope.pageDisplay    = "Side: " + $scope.page + " av " + $scope.totalPages;
 
         });
     }
@@ -121,7 +122,6 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
 
                 if($scope.lastSearch != $scope.search.nameSearch){
                     $scope.page = 1;
-                    $scope.pageDisplay       = "Side: " + $scope.page;
                 }
 
                 console.log("Searching for " + $scope.search.nameSearch + " with page size " +
@@ -147,19 +147,16 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         }
     }
 
-    if($routeParams.searchName) {
+    /*if($routeParams.searchName) {
         $scope.search.nameSearch = $routeParams.searchName;
         $scope.page              = parseInt($routeParams.page);
         $scope.search.pageSize   = parseInt($routeParams.pageSize);
-        $scope.pageDisplay       = "Side: " + $scope.page;
         $scope.queryPerson();
-
-    }
+    }*/
 
     $scope.navigate = function(way) {
         if((way == -1 && $scope.page > 1 && $scope.showNavigation) || (way == 1 && $scope.more_results && $scope.showNavigation)){
             $scope.page          += way;
-            $scope.pageDisplay    = "Side: " + $scope.page;
             $scope.showNavigation = false;
             $scope.queryPerson();
             //$location.path("/search/" + $scope.search.nameSearch + "/" + $scope.page + "/" + $scope.search.pageSize);
@@ -188,7 +185,6 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
     $scope.name           = $routeParams.name;
     $scope.showTable      = true;
     $scope.page           = 1;
-    $scope.pageDisplay    = "Side: " + $scope.page;
     $scope.pageSize       = 10;
     $scope.reverse        = false;
     $scope.type           = "Transaksjoner for " + $scope.name;
@@ -207,6 +203,8 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
             $scope.transactions   = result.records;
             $scope.showNavigation = true;
             $scope.hideNavigation = !(!$scope.more_results && $scope.page == 1);
+            $scope.totalPages     = Math.ceil($scope.count / $scope.pageSize);
+            $scope.pageDisplay    = "Side: " + $scope.page + " av " + $scope.totalPages;
         });
     }
 
@@ -238,7 +236,6 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
     $scope.navigate = function(way) {
         if((way == -1 && $scope.page > 1 && $scope.showNavigation) || (way == 1 && $scope.more_results && $scope.showNavigation)){
             $scope.page          += way;
-            $scope.pageDisplay    = "Side: " + $scope.page;
             $scope.showNavigation = false;
             $scope.queryTransaction();
         }
@@ -269,7 +266,6 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
 
     $scope.message        = $routeParams.targetId;
     $scope.page           = 1;
-    $scope.pageDisplay    = "Side: " + $scope.page;
     $scope.pageSize       = 10;
     $scope.reverse        = false;
     $scope.type           = "Alle transaksjoner med eiendommen";
@@ -286,6 +282,11 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
                                     $scope.page, $scope.pageSize);
         queryPromis.then(function(result){
             
+            angular.forEach(result.count[0], function(value) {
+                $scope.count = value;
+                //$scope.count = Math.ceil($scope.page * $scope.search.pageSize);
+            });
+
             $scope.showTable      = true;
             $scope.more_results   = $scope.count > ($scope.page * $scope.pageSize);
             results               = $scope.getParticipantsCorrectly(result.records);
@@ -294,6 +295,8 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             $scope.hideNavigation = !(!$scope.more_results && $scope.page == 1);
             $scope.labels         = [];
             $scope.data           = [[], []];
+            $scope.totalPages     = Math.ceil($scope.count / $scope.pageSize);
+            $scope.pageDisplay    = "Side: " + $scope.page + " av " + $scope.totalPages;
 
             var storedString   = result.combined[0].Sammendrag;
             var priceDatePairs = storedString.split(",");
@@ -397,7 +400,6 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
     $scope.navigate = function(way) {
         if((way == -1 && $scope.page > 1 && $scope.showNavigation) || (way == 1 && $scope.more_results && $scope.showNavigation)){
             $scope.page          += way;
-            $scope.pageDisplay    = "Side: " + $scope.page;
             $scope.showNavigation = false;
             $scope.queryTransaction();
         }
