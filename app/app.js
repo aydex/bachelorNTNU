@@ -586,3 +586,19 @@ kommunalApp.directive('transactionTable', function(){
     }
 });
 
+
+kommunalApp.directive('kommunevaapen', function(){
+    return{
+        restrict: 'EA',
+        replace: false,
+        scope: {
+            name: '='
+        },
+        template: '<img class="kommunevaapen src="images/kommunevapen/{{name}}.svg.png"/>',
+        link: function(scope, element, attr) {
+            console.log(scope.name);
+
+        }
+    }
+});
+
