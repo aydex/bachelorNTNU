@@ -271,7 +271,7 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
 
 });
 
-kommunalApp.controller('transactionPropertyController', function($scope, $rootScope, $routeParams, $http, $window) {
+kommunalApp.controller('transactionPropertyController', function($scope, $rootScope, $routeParams, $http, $window, $filter) {
 
     $scope.selectedDokumentnr = null;
 
@@ -367,7 +367,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
 
             dokumentnrList[key] = dokumentnr[key];
             dokumentnrList[dokumentnr[key]] = key;
-            data.addRow([labels[key], parseInt(dataSet[key]), 'År: ' + labels[key] + '\n Sum: ' + parseInt(dataSet[key]) + ' kr\n Dokumentnr: ' + dokumentnr[key],
+            data.addRow([labels[key], parseInt(dataSet[key]), 'Dokumentdato: ' + labels[key] + '\n Salgssum: ' + $filter('priceFilter')(dataSet[key]) + ' \n Dokumentnr: ' + dokumentnr[key],
                 annotation, annotationText]);
         });
 
