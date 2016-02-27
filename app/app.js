@@ -26,7 +26,7 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             controller  : 'searchController'
         })*/
         
-        .when('/transactions/deltager/:name/:targetId', {
+        .when('/transactions/deltager/:name/:targetId/:type', {
             templateUrl : '/views/transactions.html',
             controller  : 'transactionPersonController'
         })
@@ -168,8 +168,8 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         }
     }
 
-    $scope.showTransactionsPerson = function(id, name){
-        $location.path("/transactions/deltager/" + name + "/" + id);
+    $scope.showTransactionsPerson = function(id, name, type){
+        $location.path("/transactions/deltager/" + name + "/" + id + "/" +type);
         //$routeParams ==> {chapterId:1, sectionId:2, search:'moby'}
     }
 
@@ -185,15 +185,16 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     }
 });
 
-kommunalApp.controller('transactionPersonController', function($scope, $rootScope, $routeParams, $location) {
+kommunalApp.controller('transactionPersonController', function($scope, $rootScope, $routeParams, $location, $filter) {
     $scope.message        = $routeParams.targetId;
     $scope.name           = $routeParams.name;
     $scope.showTable      = true;
     $scope.page           = 1;
     $scope.pageSize       = 10;
     $scope.reverse        = false;
-    $scope.type           = "Transaksjoner for " + $scope.name;
+    $scope.type           = "Transaksjoner for " + $filter('nameFilter')($scope.name, $routeParams.type, true);
     $scope.showNavigation = true;
+    console.log($routeParams)
 
     $scope.queryTransaction = function() {
         var queryPromis = $rootScope.doQuery("transactionFromPerson", $routeParams.targetId, 
