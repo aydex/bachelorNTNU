@@ -73,6 +73,7 @@ class Query
                     NATURAL JOIN Omsetningstyper 
                     WHERE Eiendomsid=:query_target 
                     GROUP BY InterntDokumentnr
+                    #ORDER BY Dokumentdato DESC
                     LIMIT :offset, :pageSize";
 
         $query_2 = "SELECT Sammendrag 
@@ -90,13 +91,13 @@ class Query
 
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+        $count = $this->countRows();
+
         $stmt = $this->db->prepare($query_2);
         $stmt->bindValue(':query_target', $id, PDO::PARAM_INT);
         $stmt->execute();
 
         $results_combined = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        $count = $this->countRows();
 
         return json_encode(array("records" => $results, "count" => $count, "combined" => $results_combined));
     }
