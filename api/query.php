@@ -13,11 +13,18 @@ class Query
         $this->db = $db;
     }
 
-    public function selectPersonPaged($name, $page=1, $pageSize=10) {
-        //$query = "SELECT * FROM kommunalrapport.Deltagere WHERE Navn LIKE :name LIMIT :offset, :pageSize";
-        $query = "SELECT SQL_CALC_FOUND_ROWS Deltagerid AS id, Deltagertype AS Type, Navn AS Navn FROM kommunalrapport.Deltagere
-                    WHERE Navn LIKE :name
-                    LIMIT :offset, :pageSize;";
+    public function selectPersonPaged($name, $page=1, $pageSize=10, $order="ASC", $orderBy) {
+        if ($order == "DESC") {
+            $query = "SELECT SQL_CALC_FOUND_ROWS Deltagerid AS id, Deltagertype AS Type, Navn AS Navn FROM kommunalrapport.Deltagere
+                        WHERE Navn LIKE :name
+                        ORDER BY ". $orderBy ." DESC
+                        LIMIT :offset, :pageSize";
+        } else {
+            $query = "SELECT SQL_CALC_FOUND_ROWS Deltagerid AS id, Deltagertype AS Type, Navn AS Navn FROM kommunalrapport.Deltagere
+                        WHERE Navn LIKE :name
+                        ORDER BY ". $orderBy ." ASC
+                        LIMIT :offset, :pageSize";
+        }
 
         $offset = ($page - 1)*$pageSize;
         $name = "%$name%";
@@ -35,19 +42,37 @@ class Query
         return json_encode(array("records" => $result, "count" => $count));
     }
 
-    public function selectTransaction($id, $page=1, $pageSize=10) {
+    public function selectTransaction($id, $page=1, $pageSize=10, $order, $orderBy) {
+        if ($order == "DESC") {
+            $query = "SELECT SQL_CALC_FOUND_ROWS Kommunenavn, Eiendomsid, ForstRegistrert,
+                                 SistRegistrert, AntallTransaksjoner,
+                                 GROUP_CONCAT(CONCAT_WS(':', Dokumentdato, PartType) SEPARATOR ', ') AS Involvering
+                                 FROM Omsetninger
+                                 NATURAL JOIN Dokumenter
+                                 NATURAL JOIN Eiendomshistorie
+                                 NATURAL JOIN Eiendommer
+                                 NATURAL JOIN Kommuner
+                                 WHERE Deltagerid= :query_target
+                                 GROUP BY Eiendomsid
+                                 ORDER BY ". $orderBy ." DESC
+                                 LIMIT :offset, :pageSize";
 
-        $query = "SELECT SQL_CALC_FOUND_ROWS Kommunenavn, Kommunenr, Eiendomsid, ForstRegistrert, 
-                 SistRegistrert, AntallTransaksjoner, 
-                 GROUP_CONCAT(CONCAT_WS(':', Dokumentdato, PartType) SEPARATOR ', ') AS Involvering 
-                 FROM Omsetninger 
-                 NATURAL JOIN Dokumenter 
-                 NATURAL JOIN Eiendomshistorie 
-                 NATURAL JOIN Eiendommer 
-                 NATURAL JOIN Kommuner 
-                 WHERE Deltagerid= :query_target
-                 GROUP BY Eiendomsid
-                 LIMIT :offset, :pageSize";
+        } else {
+            $query = "SELECT SQL_CALC_FOUND_ROWS Kommunenavn, Kommunenr, Eiendomsid, ForstRegistrert,
+                     SistRegistrert, AntallTransaksjoner,
+                     GROUP_CONCAT(CONCAT_WS(':', Dokumentdato, PartType) SEPARATOR ', ') AS Involvering
+                     FROM Omsetninger
+                     NATURAL JOIN Dokumenter
+                     NATURAL JOIN Eiendomshistorie
+                     NATURAL JOIN Eiendommer
+                     NATURAL JOIN Kommuner
+                     WHERE Deltagerid= :query_target
+                     GROUP BY Eiendomsid
+                     ORDER BY ". $orderBy ." ASC
+                     LIMIT :offset, :pageSize";
+
+
+        }
 
         $offset = ($page - 1)*$pageSize;
 
@@ -64,17 +89,30 @@ class Query
         return json_encode(array("records" => $results, "count" => $count));
     }
 
-    public function selectTransactionProperty($id, $page=1, $pageSize=10) {
-        $query_1 = "SELECT SQL_CALC_FOUND_ROWS Dokumentdato, OmsetningsTypenavn, Salgssum, Dokumentnr, 
-                    GROUP_CONCAT(CONCAT_WS(':', PartType, Navn, Kommune, Deltagerid, Deltagertype, AndelTeller, AndelNevner)SEPARATOR ',') AS Deltagere 
-                    FROM Omsetninger 
-                    NATURAL JOIN Dokumenter 
-                    NATURAL JOIN Deltagere 
-                    NATURAL JOIN Omsetningstyper 
-                    WHERE Eiendomsid=:query_target 
-                    GROUP BY InterntDokumentnr
-                    #ORDER BY Dokumentdato DESC
-                    LIMIT :offset, :pageSize";
+
+    public function selectTransactionProperty($id, $page=1, $pageSize=10, $order, $orderBy) {
+        if ($order == "ASC") {
+            $query_1 = "SELECT SQL_CALC_FOUND_ROWS Dokumentdato, OmsetningsTypenavn, Salgssum, Dokumentnr,
+                        GROUP_CONCAT(CONCAT_WS(':', PartType, Navn, Kommune, Deltagerid, Deltagertype, AndelTeller, AndelNevner)SEPARATOR ',') AS Deltagere
+                        FROM Omsetninger
+                        NATURAL JOIN Dokumenter
+                        NATURAL JOIN Deltagere
+                        NATURAL JOIN Omsetningstyper
+                        WHERE Eiendomsid=:query_target
+                        GROUP BY InterntDokumentnr
+                        ORDER BY ". $orderBy ." ASC";
+        } else {
+            $query_1 = "SELECT SQL_CALC_FOUND_ROWS Dokumentdato, OmsetningsTypenavn, Salgssum, Dokumentnr,
+                        GROUP_CONCAT(CONCAT_WS(':', PartType, Navn, Deltagerid, Deltagertype, AndelTeller, AndelNevner)SEPARATOR ',') AS Deltagere
+                        FROM Omsetninger
+                        NATURAL JOIN Dokumenter
+                        NATURAL JOIN Deltagere
+                        NATURAL JOIN Omsetningstyper
+                        WHERE Eiendomsid=:query_target
+                        GROUP BY InterntDokumentnr
+                        ORDER BY ". $orderBy ." DESC";
+
+        }
 
         $query_2 = "SELECT Sammendrag 
                     FROM Eiendomshistorie 
@@ -85,8 +123,8 @@ class Query
 
         $stmt = $this->db->prepare($query_1);
         $stmt->bindValue(':query_target', $id, PDO::PARAM_INT);
-        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-        $stmt->bindValue(':pageSize', $pageSize, PDO::PARAM_INT);
+        //$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        //$stmt->bindValue(':pageSize', $pageSize, PDO::PARAM_INT);
         $stmt->execute();
 
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);

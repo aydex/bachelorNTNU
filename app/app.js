@@ -1,7 +1,3 @@
-/**
- * Created by adrianh on 09.02.16.
- */
-
 google.load('visualization', '1', {packages:['corechart']});
 
 var kommunalApp = angular.module('kommunalApp', ['ngRoute']);
@@ -21,10 +17,10 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             //reloadOnSearch: false
         })
 
-        /*.when('/search/:searchName/:page/:pageSize', {
+        .when('/search/:searchName/:page/:pageSize', {
             templateUrl : '/views/search.html',
             controller  : 'searchController'
-        })*/
+        })
         
         .when('/transactions/deltager/:name/:targetId/:type', {
             templateUrl : '/views/transactions.html',
@@ -47,14 +43,14 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
 
 kommunalApp.run(function($rootScope, $http, $window) {
 
-    $rootScope.doQuery = function(type, id, page, pageSize) {
-        return $http.get("./api/test.php?" + type + "=" + id + "&page=" +
-            page + "&pageSize=" + pageSize)
+    $rootScope.doQuery = function(type, id, page, pageSize, order, orderBy) {
+        return $http.get("./api/ask.php?" + type + "=" + id + "&page=" +
+            page + "&pageSize=" + pageSize + "&order=" + order + "&orderBy=" + orderBy)
             .then(function (response) {
                 return {records: response.data.records, count: response.data.count, 
                     combined: response.data.combined};
             });
-    }
+    };
 
     $rootScope.back = function(){
         $window.history.back();
@@ -69,12 +65,14 @@ kommunalApp.controller('mainController', function($scope) {
 
 });
 
-kommunalApp.controller('searchController', function($scope, $rootScope, $timeout, $location) {
+kommunalApp.controller('searchController', function($scope, $rootScope, $timeout, $location, $routeParams) {
 
     var _timeout;
     var queryPromis;
 
     $scope.page           = 1;
+    $scope.orderBy        = null;
+    $scope.order          = "ASC";
     $scope.reverse        = false;
     $scope.showNavigation = true;
     $scope.searched       = false;
@@ -82,12 +80,12 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     $scope.search         = {
         nameSearch: "",
         pageSize  : 10
-    }
+    };
 
     $scope.queryPerson  = function() {
 
         queryPromis = $rootScope.doQuery("name", $scope.search.nameSearch, 
-                                                    $scope.page, $scope.search.pageSize);
+                                                    $scope.page, $scope.search.pageSize, $scope.order, $scope.orderBy);
         queryPromis.then(function(result){
 
             angular.forEach(result.count[0], function(value) {
@@ -97,17 +95,17 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
 
             $scope.lastSearched   = $scope.search.nameSearch;
             $scope.names          = result.records;
-            $scope.showTable      = $scope.names.length > 0 ? true : false;
-            $scope.noResultShow   = $scope.names.length == 0 && $scope.search.nameSearch.length > 0 ? true : false;
+            $scope.showTable      = $scope.names.length > 0;
+            $scope.noResultShow   = !!($scope.names.length == 0 && $scope.search.nameSearch.length > 0);
             $scope.showNavigation = true;
             $scope.more_results   = $scope.count > ($scope.page * $scope.search.pageSize);
             $scope.searched       = true;
-            $scope.hideNavigation = !$scope.more_results && $scope.page == 1 ? false : true;
+            $scope.hideNavigation = !(!$scope.more_results && $scope.page == 1);
             $scope.totalPages     = Math.ceil($scope.count / $scope.search.pageSize);
             $scope.pageDisplay    = "Side: " + $scope.page + " av " + $scope.totalPages;
 
         });
-    }
+    };
 
     $scope.searchDelay = function(){
 
@@ -125,13 +123,14 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
                 }
 
                 console.log("Searching for " + $scope.search.nameSearch + " with page size " +
-                    $scope.search.pageSize + " at page " + $scope.page);
+                    $scope.search.pageSize + " at page " + $scope.page + " ordered by " + $scope.orderBy +
+                    " " + $scope.order);
 
                 
 
-                $scope.queryPerson();
+                //$scope.queryPerson();
                 //$location.search(name, 123);
-                //$location.path("/search/" + $scope.search.nameSearch + "/" + $scope.page + "/" + $scope.search.pageSize);
+                $location.path("/search/" + $scope.search.nameSearch + "/" + $scope.page + "/" + $scope.search.pageSize);
 
 
 
@@ -145,19 +144,20 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             $scope.hideNavigation = false;
 
         }
-    }
+    };
 
     $scope.pageSizeChange = function(){
         $scope.page = 1;
         $scope.queryPerson();
-    }
+    };
 
-    /*if($routeParams.searchName) {
+    if($routeParams.searchName) {
+        document.getElementById("search").focus();
         $scope.search.nameSearch = $routeParams.searchName;
         $scope.page              = parseInt($routeParams.page);
         $scope.search.pageSize   = parseInt($routeParams.pageSize);
         $scope.queryPerson();
-    }*/
+    }
 
     $scope.navigate = function(way) {
         if((way == -1 && $scope.page > 1 && $scope.showNavigation) || (way == 1 && $scope.more_results && $scope.showNavigation)){
@@ -166,19 +166,27 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             $scope.queryPerson();
             //$location.path("/search/" + $scope.search.nameSearch + "/" + $scope.page + "/" + $scope.search.pageSize);
         }
-    }
+    };
 
     $scope.showTransactionsPerson = function(id, name, type){
         $location.path("/transactions/deltager/" + name + "/" + id + "/" +type);
         //$routeParams ==> {chapterId:1, sectionId:2, search:'moby'}
-    }
+    };
 
     $scope.orderByMe = function(x) {
-        if($scope.orderBy != x){
-            $scope.reverse = !$scope.reverse;
+        if($scope.orderBy == x){
+            if ($scope.order == "ASC") {
+                $scope.order = "DESC"
+            } else {
+                $scope.order = "ASC";
+            }
+        } else {
+            $scope.order = "ASC";
+            $scope.reverse = false;
         }
         $scope.orderBy = x;
-    }
+        $scope.queryPerson();
+    };
 
     $scope.reverseOrder = function(){
         $scope.reverse = !$scope.reverse;
@@ -191,6 +199,8 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
     $scope.showTable      = true;
     $scope.page           = 1;
     $scope.pageSize       = 10;
+    $scope.orderBy        = null;
+    $scope.order          = "ASC";
     $scope.reverse        = false;
     $scope.type           = "Transaksjoner for " + $filter('nameFilter')($scope.name, $routeParams.type, true);
     $scope.showNavigation = true;
@@ -198,7 +208,7 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
 
     $scope.queryTransaction = function() {
         var queryPromis = $rootScope.doQuery("transactionFromPerson", $routeParams.targetId, 
-                                    $scope.page, $scope.pageSize);
+                                    $scope.page, $scope.pageSize, $scope.order, $scope.orderBy);
         queryPromis.then(function(result){
             angular.forEach(result.count[0], function(value) {
                 $scope.count = value;
@@ -212,19 +222,18 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
             $scope.totalPages     = Math.ceil($scope.count / $scope.pageSize);
             $scope.pageDisplay    = "Side: " + $scope.page + " av " + $scope.totalPages;
         });
-    }
+    };
 
     $scope.filterResults = function(results) {
         var involvement;
         var involvementType;
-        var final_output;
         var add;
         var seller = "";
         var buyer  = "";
 
-        for(x in results) {
+        for(var x in results) {
             involvement = results[x].Involvering.split(",");
-            for(y in involvement) {
+            for(var y in involvement) {
                 involvementType = involvement[y].split(":");
                 if(involvementType[1].toLowerCase() == "k") {
                     buyer = "Kjøpt " + involvementType[0];
@@ -242,7 +251,7 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
     $scope.pageSizeChange = function(){
         $scope.page = 1;
         $scope.queryTransaction();
-    }
+    };
 
     $scope.navigate = function(way) {
         if((way == -1 && $scope.page > 1 && $scope.showNavigation) || (way == 1 && $scope.more_results && $scope.showNavigation)){
@@ -250,22 +259,30 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
             $scope.showNavigation = false;
             $scope.queryTransaction();
         }
-    }
+    };
 
     $scope.orderByMe = function(x) {
-        if($scope.orderBy != x){
-            $scope.reverse = !$scope.reverse;
+        if($scope.orderBy == x){
+            if ($scope.order == "ASC") {
+                $scope.order = "DESC"
+            } else {
+                $scope.order = "ASC";
+            }
+        } else {
+            $scope.order = "ASC";
+            $scope.reverse = false;
         }
         $scope.orderBy = x;
-    }
+        $scope.queryTransaction();
+    };
 
     $scope.reverseOrder = function(){
         $scope.reverse = !$scope.reverse;
-    }
+    };
 
     $scope.showTransactionsProperty = function(id){
         $location.path("/transactions/property/" + id);
-    }
+    };
 
     $scope.queryTransaction();
 
@@ -278,6 +295,8 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
     $scope.message        = $routeParams.targetId;
     $scope.page           = 1;
     $scope.pageSize       = 10;
+    $scope.orderBy        = null;
+    $scope.order          = "ASC";
     $scope.reverse        = false;
     $scope.type           = "Alle transaksjoner med eiendommen";
     $scope.showNavigation = true;
@@ -294,7 +313,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
     $scope.queryTransaction = function(){
 
         var queryPromis = $rootScope.doQuery("transactionFromProperty", $routeParams.targetId, 
-                                    $scope.page, $scope.pageSize);
+                                    $scope.page, $scope.pageSize, $scope.order, $scope.orderBy);
         queryPromis.then(function(result){
             
             angular.forEach(result.count[0], function(value) {
@@ -303,16 +322,16 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             });
 
             $scope.showTable      = true;
-            $scope.more_results   = $scope.count > ($scope.page * $scope.pageSize);
+            //$scope.more_results   = $scope.count > ($scope.page * $scope.pageSize);
             results               = $scope.getParticipantsCorrectly(result.records);
 
             $scope.transactions   = result.records;
             $scope.showNavigation = true;
-            $scope.hideNavigation = !(!$scope.more_results && $scope.page == 1);
+            $scope.hideNavigation = false;
             $scope.labels         = [];
             $scope.data           = [[], []];
             $scope.totalPages     = Math.ceil($scope.count / $scope.pageSize);
-            $scope.pageDisplay    = "Side: " + $scope.page + " av " + $scope.totalPages;
+            $scope.pageDisplay    = "Side: " + $scope.page;
 
             $scope.unalteredTransactions = result.records;
 
@@ -320,7 +339,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             var priceDatePairs = storedString.split(",");
             dokumentnr         = [];
 
-            priceDatePairs = priceDatePairs.slice(($scope.page - 1) * $scope.pageSize, $scope.pageSize * $scope.page);
+            //priceDatePairs = priceDatePairs.slice(($scope.page - 1) * $scope.pageSize, $scope.pageSize * $scope.page);
 
             angular.forEach(priceDatePairs, function(pair, key){
                 var splitValues = pair.split(":");
@@ -413,7 +432,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             }
         });
 
-    }
+    };
 
     angular.element($window).bind('resize', function(){
         $scope.populateChart($scope.labels, $scope.data[0], dokumentnr);
@@ -426,11 +445,11 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
         chart.setSelection([{row:row,column:column}])
 
         $scope.selectedDokumentnr = selectedDokumentnr;
-    }
+    };
 
     $scope.markTableRow = function(selectedDokumentnr) {
         $scope.selectedDokumentnr = selectedDokumentnr;
-    }
+    };
 
 
     $scope.navigate = function(way) {
@@ -439,7 +458,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             $scope.showNavigation = false;
             $scope.queryTransaction();
         }
-    }
+    };
 
     $scope.getParticipantsCorrectly = function(results) {
         var current_deltagere;
@@ -468,26 +487,41 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             delete results[x].Deltagere;
         }
         return results;
-    }
+    };
 
     $scope.orderByMe = function(x) {
+        if($scope.orderBy == x){
+            if ($scope.order == "ASC") {
+                $scope.order = "DESC"
+            } else {
+                $scope.order = "ASC";
+            }
+        } else {
+            $scope.order = "ASC";
+            $scope.reverse = false;
+        }
+        $scope.orderBy = x;
+        $scope.queryTransaction();
+    };
+
+    /*$scope.orderByMe = function(x) {
         if($scope.orderBy != x){
             $scope.reverse = !$scope.reverse;
         }
         $scope.orderBy = x;
-    }
+    }*/
 
     $scope.reverseOrder = function(){
         $scope.reverse = !$scope.reverse;
-    }
+    };
 
     $scope.queryTransaction();
 
 });
 
-kommunalApp.filter('priceFilter', function($filter){
+kommunalApp.filter('priceFilter', function(){
         return function(input){
-            var lengde = input.length
+            var lengde = input.length;
             var out = "";
             while (lengde >= 0){
                 out = input.substring(lengde-3, lengde) + " " +out;
@@ -497,8 +531,74 @@ kommunalApp.filter('priceFilter', function($filter){
     }
 });
 
+kommunalApp.filter('participantNameFilter', function($filter, $sce){
+    return function(input){      
+        var out = [];
+        var navn;
+        var deltagerType;
+        var deltagerid;
+        var andelTeller;
+        var andelNevner;
 
-kommunalApp.filter('deltagerTypeFilter', function($filter){
+    
+        if (input.length == 0){
+            return $sce.trustAsHtml("Ukjent");
+        }
+        
+        angular.forEach(input, function(value){
+            deltagerType = value.deltagertype;
+            navn = value.navn;
+            if (deltagerType == "F"){
+                navn = setLastnameAfterFirstname(navn);
+                navn = abbreviateMiddleNames(navn);
+            } 
+            navn = capitalFirstLetters(navn);
+
+            andelTeller = value.andelTeller;
+            andelNevner = value.andelNevner;
+            deltagerid = value.deltagerid;
+
+            out.push("<span class='deltagerType"+ deltagerType + " deltager" + deltagerid + "'>" + navn + " <sup>" + andelTeller +"</sup>&frasl;<sub>" + andelNevner + "</sub></span>");
+        });
+
+        return $sce.trustAsHtml(out.join(" <br> "));
+    }
+});
+
+
+kommunalApp.filter('participationHistoryFilter', function(){
+        return function(input){
+            var format = function(string){
+                var year = string.split(":")[0].split("-")[0];
+                var type = string.split(":")[1];
+
+
+                if (year == "0001"){
+                    year = "ukjent år";
+                }
+
+                switch(type){
+                    case "K": type = "Kjøpt"; break;
+                    case "S": type = "Solgt"; break;
+                }
+
+                return type + " " + year;
+            };
+            if (input.indexOf(",") == -1){
+                return format(input);
+            }
+
+            var out = [];
+            var involvement = input.split(",");
+            angular.forEach(involvement, function(entry){
+                out.push(format(entry));
+            });
+
+            return out.join(", ");
+    }
+});
+
+kommunalApp.filter('deltagerTypeFilter', function(){
         return function(typeKode){
             switch(typeKode){
                 case "F": return "Privatperson"; break;
@@ -508,7 +608,7 @@ kommunalApp.filter('deltagerTypeFilter', function($filter){
         }
 });
 
-kommunalApp.filter('nameFilter', function($filter){
+kommunalApp.filter('nameFilter', function(){
         return function(input, type, keepMiddleNames){
 
             var out = capitalFirstLetters(input);
@@ -533,12 +633,12 @@ var setLastnameAfterFirstname = function(name){
     var forNavn = name.substring(name.indexOf(" "), name.length);
     var etterNavn = name.substring(0, name.indexOf(" "));
     return forNavn + " " + etterNavn
-}
+};
 var capitalFirstLetters = function(word){
     return word.replace(/[\S]+/g, function(innerWord){
         return innerWord.substring(0,1).toUpperCase() + innerWord.substring(1, innerWord.length).toLowerCase();
     });
-}
+};
 
 var abbreviateMiddleNames = function(name){
     var navn = name.split(/\s+(?=\S)/); 
@@ -552,12 +652,12 @@ var abbreviateMiddleNames = function(name){
         }
     }
     return navn.join(" ");
-}
+};
 
 var isMunicipality = function(type, name){
     if(type == "S" && name.toLowerCase().indexOf("kommune") != -1) return true;
     return false;
-}
+};
 
 var getRole = function(transaction, role) {
     
@@ -566,7 +666,7 @@ var getRole = function(transaction, role) {
         navn        : "",
         kommune     : false,
         role        : ""
-    }
+    };
     var kommune = false;
 
     if(transaction.buyer.length > 0){
@@ -597,7 +697,7 @@ var getRole = function(transaction, role) {
 
     return part;
     
-}
+};
 
 kommunalApp.directive('transactionPropertyTable', function(){
     return{
@@ -613,6 +713,8 @@ kommunalApp.directive('transactionPropertyTable', function(){
                     entry.navn = capitalFirstLetters(entry.navn);
                     entry.kommune = false;
                     entry.ukjent = false;
+                    entry.searchurl = "transactions/deltager/" + encodeURI(entry.navn) +"/" + entry.deltagerid +"/" + entry.deltagertype
+                    console.log(entry.searchurl)
                     if (entry.deltagertype == "F") {
                         entry.navn = setLastnameAfterFirstname(entry.navn);
                         entry.navn = abbreviateMiddleNames(entry.navn);
@@ -622,7 +724,7 @@ kommunalApp.directive('transactionPropertyTable', function(){
                     }
                 });
 
-            }            
+            };
             handleEntry(scope.transaction.buyer);
             handleEntry(scope.transaction.seller);
             var emptyObject = {ukjent: true, kommune: false};
@@ -634,7 +736,7 @@ kommunalApp.directive('transactionPropertyTable', function(){
             }
         }
     }
-})
+});
 
 kommunalApp.directive('transactionTable', function(){
     return{
@@ -646,7 +748,7 @@ kommunalApp.directive('transactionTable', function(){
         templateUrl: 'views/transactionsTableRow.html',
         link: function(scope, element, attr) {
             var involvements = scope.transaction.Involvering.split(", ");
-            var out = []
+            var out = [];
             angular.forEach(involvements, function(entry){
                 var year = entry.split(":")[0].split("-")[0];
                 var type = entry.split(":")[1];
@@ -661,7 +763,7 @@ kommunalApp.directive('transactionTable', function(){
                     type = "Solgt";
                 }
                 out.push(type + " "+year);
-            })
+            });
             scope.transaction.involvements = out.join(", ");
         }
     }
