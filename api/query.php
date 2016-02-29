@@ -37,7 +37,7 @@ class Query
 
     public function selectTransaction($id, $page=1, $pageSize=10) {
 
-        $query = "SELECT SQL_CALC_FOUND_ROWS Kommunenavn, Eiendomsid, ForstRegistrert, 
+        $query = "SELECT SQL_CALC_FOUND_ROWS Kommunenavn, Kommunenr, Eiendomsid, ForstRegistrert, 
                  SistRegistrert, AntallTransaksjoner, 
                  GROUP_CONCAT(CONCAT_WS(':', Dokumentdato, PartType) SEPARATOR ', ') AS Involvering 
                  FROM Omsetninger 
@@ -66,7 +66,7 @@ class Query
 
     public function selectTransactionProperty($id, $page=1, $pageSize=10) {
         $query_1 = "SELECT SQL_CALC_FOUND_ROWS Dokumentdato, OmsetningsTypenavn, Salgssum, Dokumentnr, 
-                    GROUP_CONCAT(CONCAT_WS(':', PartType, Navn, Deltagerid, Deltagertype, AndelTeller, AndelNevner)SEPARATOR ',') AS Deltagere 
+                    GROUP_CONCAT(CONCAT_WS(':', PartType, Navn, Kommune, Deltagerid, Deltagertype, AndelTeller, AndelNevner)SEPARATOR ',') AS Deltagere 
                     FROM Omsetninger 
                     NATURAL JOIN Dokumenter 
                     NATURAL JOIN Deltagere 

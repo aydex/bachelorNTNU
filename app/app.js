@@ -453,7 +453,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
 
             for(var y in current_deltagere) {
                 current_deltager = current_deltagere[y].split(":");
-                var deltager = {navn:current_deltager[1], deltagerid:current_deltager[2], deltagertype:current_deltager[3], andelTeller:current_deltager[4], andelNevner:current_deltager[5]}
+                var deltager = {navn:current_deltager[1], kommunenr:current_deltager[2], deltagerid:current_deltager[3], deltagertype:current_deltager[4], andelTeller:current_deltager[5], andelNevner:current_deltager[6]}
                 if(current_deltager[0].toLowerCase() == "k") {
                     buyer.push(deltager);
 
@@ -673,11 +673,10 @@ kommunalApp.directive('kommunevaapen', function(){
         restrict: 'EA',
         replace: true,
         scope: {
-            name: '='
+            id: '='
         },
-        template: '<img class="kommunevaapen" src="images/kommunevapen/{{name}}.svg.png"></img>',
+        template: '<img class="kommunevaapen" src="images/kommunevaapen/{{id}}.svg.png"></img>',
         link: function(scope, element, attr) {
-            scope.name = capitalFirstLetters(scope.name);
         }
     }
 });
