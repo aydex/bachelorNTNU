@@ -13,11 +13,18 @@ class Query
         $this->db = $db;
     }
 
-    public function selectPersonPaged($name, $page=1, $pageSize=10) {
-        //$query = "SELECT * FROM kommunalrapport.Deltagere WHERE Navn LIKE :name LIMIT :offset, :pageSize";
-        $query = "SELECT SQL_CALC_FOUND_ROWS Deltagerid AS id, Deltagertype AS Type, Navn AS Navn FROM kommunalrapport.Deltagere
-                    WHERE Navn LIKE :name
-                    LIMIT :offset, :pageSize;";
+    public function selectPersonPaged($name, $page=1, $pageSize=10, $order="ASC", $orderBy) {
+        if ($order == "DESC") {
+            $query = "SELECT SQL_CALC_FOUND_ROWS Deltagerid AS id, Deltagertype AS Type, Navn AS Navn FROM kommunalrapport.Deltagere
+                        WHERE Navn LIKE :name
+                        ORDER BY ". $orderBy ." DESC
+                        LIMIT :offset, :pageSize";
+        } else {
+            $query = "SELECT SQL_CALC_FOUND_ROWS Deltagerid AS id, Deltagertype AS Type, Navn AS Navn FROM kommunalrapport.Deltagere
+                        WHERE Navn LIKE :name
+                        ORDER BY ". $orderBy ." ASC
+                        LIMIT :offset, :pageSize";
+        }
 
         $offset = ($page - 1)*$pageSize;
         $name = "%$name%";

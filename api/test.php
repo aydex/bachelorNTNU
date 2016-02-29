@@ -15,16 +15,20 @@ $query  = new Query($config->db);
 $name = "";
 $page = 0;
 $pageSize = 0;
+$order="";
+$orderBy="";
 
 if (isset($_REQUEST['page']) && isset($_REQUEST['pageSize'])) {
     $page = (int)$_REQUEST['page'];
     $pageSize = (int)$_REQUEST['pageSize'];
 }
 
-if (isset($_REQUEST['name'])) {
+if (isset($_REQUEST['name']) && isset($_REQUEST['orderBy'])) {
 
     $name = htmlspecialchars($_REQUEST['name']);
-    echo $query->selectPersonPaged($name, $page, $pageSize);
+    $order = htmlspecialchars($_REQUEST['order']);
+    $orderBy = htmlspecialchars($_REQUEST['orderBy']);
+    echo $query->selectPersonPaged($name, $page, $pageSize, $order, $orderBy);
 
 }else if(isset($_REQUEST['transactionFromPerson'])){
 

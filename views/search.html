@@ -37,7 +37,7 @@
                 <span data-ng-show="orderBy == 'Navn' && reverse" class="fa fa-caret-down"></span>
             </th>
         </tr>
-        <tr data-ng-repeat="x in names | orderBy:orderBy:reverse | filter:searchName" data-ng-click="showTransactionsPerson(x.id, x.Navn)">
+        <tr data-ng-repeat="x in names | filter:searchName" data-ng-click="showTransactionsPerson(x.id, x.Navn)">
             <!--<a data-ng-href="detailed/{{ x.Personid }}">-->
                 <td data-ng-bind="x.id"></td>
                 <td data-ng-bind="x.Type | deltagerTypeFilter"></td>

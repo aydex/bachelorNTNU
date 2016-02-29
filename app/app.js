@@ -43,9 +43,9 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
 
 kommunalApp.run(function($rootScope, $http, $window) {
 
-    $rootScope.doQuery = function(type, id, page, pageSize) {
+    $rootScope.doQuery = function(type, id, page, pageSize, order, orderBy) {
         return $http.get("./api/test.php?" + type + "=" + id + "&page=" +
-            page + "&pageSize=" + pageSize)
+            page + "&pageSize=" + pageSize + "&order=" + order + "&orderBy=" + orderBy)
             .then(function (response) {
                 return {records: response.data.records, count: response.data.count, 
                     combined: response.data.combined};
@@ -85,7 +85,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     $scope.queryPerson  = function() {
 
         queryPromis = $rootScope.doQuery("name", $scope.search.nameSearch, 
-                                                    $scope.page, $scope.search.pageSize);
+                                                    $scope.page, $scope.search.pageSize, $scope.order, $scope.orderBy);
         queryPromis.then(function(result){
 
             angular.forEach(result.count[0], function(value) {
@@ -95,12 +95,12 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
 
             $scope.lastSearched   = $scope.search.nameSearch;
             $scope.names          = result.records;
-            $scope.showTable      = $scope.names.length > 0 ? true : false;
-            $scope.noResultShow   = $scope.names.length == 0 && $scope.search.nameSearch.length > 0 ? true : false;
+            $scope.showTable      = $scope.names.length > 0;
+            $scope.noResultShow   = !!($scope.names.length == 0 && $scope.search.nameSearch.length > 0);
             $scope.showNavigation = true;
             $scope.more_results   = $scope.count > ($scope.page * $scope.search.pageSize);
             $scope.searched       = true;
-            $scope.hideNavigation = !$scope.more_results && $scope.page == 1 ? false : true;
+            $scope.hideNavigation = !(!$scope.more_results && $scope.page == 1);
             $scope.totalPages     = Math.ceil($scope.count / $scope.search.pageSize);
             $scope.pageDisplay    = "Side: " + $scope.page + " av " + $scope.totalPages;
 
@@ -123,7 +123,8 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
                 }
 
                 console.log("Searching for " + $scope.search.nameSearch + " with page size " +
-                    $scope.search.pageSize + " at page " + $scope.page);
+                    $scope.search.pageSize + " at page " + $scope.page + " ordered by " + $scope.orderBy +
+                    " " + $scope.order);
 
                 
 
@@ -143,7 +144,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             $scope.hideNavigation = false;
 
         }
-    }
+    };
 
     /*if($routeParams.searchName) {
         $scope.search.nameSearch = $routeParams.searchName;
@@ -167,14 +168,18 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     };
 
     $scope.orderByMe = function(x) {
-        if($scope.orderBy != x){
+        if($scope.orderBy == x){
             if ($scope.order == "ASC") {
                 $scope.order = "DESC"
             } else {
                 $scope.order = "ASC";
             }
+        } else {
+            $scope.order = "ASC";
+            $scope.reverse = false;
         }
         $scope.orderBy = x;
+        $scope.queryPerson();
     };
 
     $scope.reverseOrder = function(){
