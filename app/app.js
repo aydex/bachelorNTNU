@@ -48,7 +48,7 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
 kommunalApp.run(function($rootScope, $http, $window) {
 
     $rootScope.doQuery = function(type, id, page, pageSize) {
-        return $http.get("./api/test.php?" + type + "=" + id + "&page=" +
+        return $http.get("./api/ask.php?" + type + "=" + id + "&page=" +
             page + "&pageSize=" + pageSize)
             .then(function (response) {
                 return {records: response.data.records, count: response.data.count, 
