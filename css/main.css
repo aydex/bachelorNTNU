@@ -1,8 +1,13 @@
 /****Header*****/
 
+@font-face{
+	font-family: "AmplitudeWide Book";
+	src: url(../images/AmplitudeWide-Book.otf) format("truetype");
+}
+
 html{
 	text-align: center;
-	font-family: "AmplitudeWide Book",Arial,serif;
+	font-family: "AmplitudeWide Book", Arial, serif;
 }
 
 header{
@@ -57,6 +62,10 @@ header{
 .login{
 	color:white;
 	font-size: 15px;
+}
+
+.login:hover{
+	color:white;
 }
 
 #separator{
