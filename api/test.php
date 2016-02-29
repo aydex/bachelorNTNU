@@ -23,22 +23,27 @@ if (isset($_REQUEST['page']) && isset($_REQUEST['pageSize'])) {
     $pageSize = (int)$_REQUEST['pageSize'];
 }
 
+if (isset($_REQUEST['order']) && isset($_REQUEST['orderBy'])) {
+
+    $order = htmlspecialchars($_REQUEST['order']);
+    $orderBy = htmlspecialchars($_REQUEST['orderBy']);
+
+}
+
 if (isset($_REQUEST['name']) && isset($_REQUEST['orderBy'])) {
 
     $name = htmlspecialchars($_REQUEST['name']);
-    $order = htmlspecialchars($_REQUEST['order']);
-    $orderBy = htmlspecialchars($_REQUEST['orderBy']);
     echo $query->selectPersonPaged($name, $page, $pageSize, $order, $orderBy);
 
 }else if(isset($_REQUEST['transactionFromPerson'])){
 
 	$pId = htmlspecialchars($_REQUEST['transactionFromPerson']);
-	echo $query->selectTransaction($pId, $page, $pageSize);
+	echo $query->selectTransaction($pId, $page, $pageSize, $order, $orderBy);
 
 }else if(isset($_REQUEST['transactionFromProperty'])){
 
 	$eId = htmlspecialchars($_REQUEST['transactionFromProperty']);
-	echo $query->selectTransactionProperty($eId, $page, $pageSize);
+	echo $query->selectTransactionProperty($eId, $page, $pageSize, $order, $orderBy);
 
 }
 

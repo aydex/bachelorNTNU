@@ -193,13 +193,15 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
     $scope.showTable      = true;
     $scope.page           = 1;
     $scope.pageSize       = 10;
+    $scope.orderBy        = null;
+    $scope.order          = "ASC";
     $scope.reverse        = false;
     $scope.type           = "Transaksjoner for " + $scope.name;
     $scope.showNavigation = true;
 
     $scope.queryTransaction = function() {
         var queryPromis = $rootScope.doQuery("transactionFromPerson", $routeParams.targetId, 
-                                    $scope.page, $scope.pageSize);
+                                    $scope.page, $scope.pageSize, $scope.order, $scope.orderBy);
         queryPromis.then(function(result){
             angular.forEach(result.count[0], function(value) {
                 $scope.count = value;
@@ -248,10 +250,18 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
     };
 
     $scope.orderByMe = function(x) {
-        if($scope.orderBy != x){
-            $scope.reverse = !$scope.reverse;
+        if($scope.orderBy == x){
+            if ($scope.order == "ASC") {
+                $scope.order = "DESC"
+            } else {
+                $scope.order = "ASC";
+            }
+        } else {
+            $scope.order = "ASC";
+            $scope.reverse = false;
         }
         $scope.orderBy = x;
+        $scope.queryTransaction();
     };
 
     $scope.reverseOrder = function(){
@@ -273,6 +283,8 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
     $scope.message        = $routeParams.targetId;
     $scope.page           = 1;
     $scope.pageSize       = 10;
+    $scope.orderBy        = null;
+    $scope.order          = "ASC";
     $scope.reverse        = false;
     $scope.type           = "Alle transaksjoner med eiendommen";
     $scope.showNavigation = true;
@@ -285,7 +297,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
 
     $scope.queryTransaction = function(){
         var queryPromis = $rootScope.doQuery("transactionFromProperty", $routeParams.targetId, 
-                                    $scope.page, $scope.pageSize);
+                                    $scope.page, $scope.pageSize, $scope.order, $scope.orderBy);
         queryPromis.then(function(result){
             
             angular.forEach(result.count[0], function(value) {
@@ -441,11 +453,26 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
     };
 
     $scope.orderByMe = function(x) {
+        if($scope.orderBy == x){
+            if ($scope.order == "ASC") {
+                $scope.order = "DESC"
+            } else {
+                $scope.order = "ASC";
+            }
+        } else {
+            $scope.order = "ASC";
+            $scope.reverse = false;
+        }
+        $scope.orderBy = x;
+        $scope.queryTransaction();
+    };
+
+    /*$scope.orderByMe = function(x) {
         if($scope.orderBy != x){
             $scope.reverse = !$scope.reverse;
         }
         $scope.orderBy = x;
-    };
+    }*/
 
     $scope.reverseOrder = function(){
         $scope.reverse = !$scope.reverse;

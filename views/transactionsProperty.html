@@ -48,18 +48,20 @@
                 <span data-ng-show="orderBy == 'Dokumentnr' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Dokumentnr' && reverse" class="fa fa-caret-down"></span>
             </th>
-            <th data-ng-click="orderByMe('seller'); reverseOrder()">
+            <!--<th data-ng-click="orderByMe('seller'); reverseOrder()">-->
+            <th>
                 Selger
-                <span data-ng-show="orderBy == 'seller' && !reverse" class="fa fa-caret-up"></span>
-                <span data-ng-show="orderBy == 'seller' && reverse" class="fa fa-caret-down"></span>
+                <!--<span data-ng-show="orderBy == 'seller' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'seller' && reverse" class="fa fa-caret-down"></span>-->
             </th>
-            <th data-ng-click="orderByMe('buyer'); reverseOrder()">
+            <!--<th data-ng-click="orderByMe('buyer'); reverseOrder()">-->
+            <th>
                 Kjøper
-                <span data-ng-show="orderBy == 'buyer' && !reverse" class="fa fa-caret-up"></span>
-                <span data-ng-show="orderBy == 'buyer' && reverse" class="fa fa-caret-down"></span>
+                <!--<span data-ng-show="orderBy == 'buyer' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'buyer' && reverse" class="fa fa-caret-down"></span>-->
             </th>
         </tr>
-        <tr data-ng-repeat="x in transactions | orderBy:orderBy:reverse" data-ng-click="setSelected(x.Dokumentnr)"
+        <tr data-ng-repeat="x in transactions" data-ng-click="setSelected(x.Dokumentnr)"
             data-ng-class="{ 'selected-row': x.Dokumentnr == selectedDokumentnr }" data-ng-mouseover="setSelected(x.Dokumentnr)" data-ng-mouseout="setSelected(null)">
 
             <!--<a data-ng-href="detailed/{{ x.Personid }}">-->
