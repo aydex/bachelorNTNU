@@ -1,8 +1,62 @@
+/****Header*****/
+
+
 header{
-	height: 70px;
+	height: 76px;
 	background-color: #003762;
-	margin: 0 40px 0 40px;
+	max-width: 1180px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 20px;
+	/*display: inline-block;*/
+	padding-right: 16%;
+
 }
+
+#menu_circle{
+	width: 36px;
+	height: 36px;
+	float:left;
+	margin-right: 20px;
+}
+
+#tempLogo {
+	color: white;
+	font-size: 25px;
+	
+}
+
+#search_circle{
+	width: 36px;
+	height: 36px;
+	float: right;
+	margin-left: 40px;
+}
+
+#navigationHeader{
+	right: 70px;
+	float:right;
+	
+}
+
+#login{
+	color:white;
+	font-size: 17px;
+}
+
+#separator{
+	color: #336699;
+	font-size: 20px;
+	padding: 10px;
+}
+
+#abonner{
+	color:white;
+	font-size: 17px;
+}
+
+
+/**headerEnd***/
 
 #container{
 	position: relative;
