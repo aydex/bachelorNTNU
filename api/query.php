@@ -44,7 +44,7 @@ class Query
 
     public function selectTransaction($id, $page=1, $pageSize=10, $order, $orderBy) {
         if ($order == "DESC") {
-            $query = "SELECT SQL_CALC_FOUND_ROWS Kommunenavn, Eiendomsid, ForstRegistrert,
+            $query = "SELECT SQL_CALC_FOUND_ROWS Kommunenavn, Kommunenr, Eiendomsid, ForstRegistrert,
                                  SistRegistrert, AntallTransaksjoner,
                                  GROUP_CONCAT(CONCAT_WS(':', Dokumentdato, PartType) SEPARATOR ', ') AS Involvering
                                  FROM Omsetninger
