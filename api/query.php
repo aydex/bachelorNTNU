@@ -98,8 +98,7 @@ class Query
                         NATURAL JOIN Omsetningstyper
                         WHERE Eiendomsid=:query_target
                         GROUP BY InterntDokumentnr
-                        ORDER BY ". $orderBy ." ASC
-                        LIMIT :offset, :pageSize";
+                        ORDER BY ". $orderBy ." ASC";
         } else {
             $query_1 = "SELECT SQL_CALC_FOUND_ROWS Dokumentdato, OmsetningsTypenavn, Salgssum, Dokumentnr,
                         GROUP_CONCAT(CONCAT_WS(':', PartType, Navn, Deltagerid, Deltagertype, AndelTeller, AndelNevner)SEPARATOR ',') AS Deltagere
@@ -109,8 +108,7 @@ class Query
                         NATURAL JOIN Omsetningstyper
                         WHERE Eiendomsid=:query_target
                         GROUP BY InterntDokumentnr
-                        ORDER BY ". $orderBy ." DESC
-                        LIMIT :offset, :pageSize";
+                        ORDER BY ". $orderBy ." DESC";
 
         }
 
@@ -123,19 +121,19 @@ class Query
 
         $stmt = $this->db->prepare($query_1);
         $stmt->bindValue(':query_target', $id, PDO::PARAM_INT);
-        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-        $stmt->bindValue(':pageSize', $pageSize, PDO::PARAM_INT);
+        //$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        //$stmt->bindValue(':pageSize', $pageSize, PDO::PARAM_INT);
         $stmt->execute();
 
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $count = $this->countRows();
 
         $stmt = $this->db->prepare($query_2);
         $stmt->bindValue(':query_target', $id, PDO::PARAM_INT);
         $stmt->execute();
 
         $results_combined = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        $count = $this->countRows();
 
         return json_encode(array("records" => $results, "count" => $count, "combined" => $results_combined));
     }

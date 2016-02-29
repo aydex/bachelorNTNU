@@ -125,6 +125,10 @@ tr:nth-child(odd){
 	background-color:#EAEAEA;
 }
 
+tr:hover{
+
+}
+
 td, th{
 	height:35px;
 	padding:0 5px;
@@ -149,6 +153,24 @@ td:nth-child(even){
 	text-align: right;
 }
 
+.kommunevaapen{
+	height: 20px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.transactionurl{
+	color: #2d2d2d;
+}
+
+.transactionurl:hover{
+	color: #2d2d2d;
+	text-decoration: none;
+}
+
+.selected-row, tr:hover{
+	background: rgba(105, 105, 105, 0.4) !important;
+}
 
 /****************************************/
 /**************  NAV CSS  ***************/
@@ -192,10 +214,6 @@ td:nth-child(even){
 	text-align: center;
 }
 
-.selected-row{
-	background: rgba(105, 105, 105, 0.4) !important;
-}
-
 
 /****************************************/
 /************  CHART CSS  ***************/
@@ -205,3 +223,5 @@ td:nth-child(even){
 	width:60%;
 	margin:auto;
 }
+
+

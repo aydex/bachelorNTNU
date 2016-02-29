@@ -7,10 +7,10 @@
     </form>
 </div>
 
-<div id="pageElements" data-ng-show="hideNavigation">
-    Sidestørrelse: <input type="radio" data-ng-model="search.pageSize" value="10" data-ng-change="searchDelay()" id="10">10
-    <input type="radio" data-ng-model="search.pageSize" data-ng-change="searchDelay()" value="50" id="50">50
-    <input type="radio" data-ng-model="search.pageSize" data-ng-change="searchDelay()" value="100" id="100">100
+<div id="pageElements" data-ng-show="showTable">
+    Sidestørrelse: <input type="radio" data-ng-model="search.pageSize" value="10" data-ng-change="pageSizeChange()" id="10">10
+    <input type="radio" data-ng-model="search.pageSize" data-ng-change="pageSizeChange()" value="50" id="50">50
+    <input type="radio" data-ng-model="search.pageSize" data-ng-change="pageSizeChange()" value="100" id="100">100
     <br>
     <span>Trykk på feltene for å endre rekkefølge:</span>
 </div>
@@ -37,7 +37,7 @@
                 <span data-ng-show="orderBy == 'Navn' && reverse" class="fa fa-caret-down"></span>
             </th>
         </tr>
-        <tr data-ng-repeat="x in names | filter:searchName" data-ng-click="showTransactionsPerson(x.id, x.Navn)">
+        <tr data-ng-repeat="x in names | filter:searchName" data-ng-click="showTransactionsPerson(x.id, x.Navn, x.Type)">
             <!--<a data-ng-href="detailed/{{ x.Personid }}">-->
                 <td data-ng-bind="x.id"></td>
                 <td data-ng-bind="x.Type | deltagerTypeFilter"></td>
