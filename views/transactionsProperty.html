@@ -47,18 +47,20 @@
                 <span data-ng-show="orderBy == 'Dokumentnr' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Dokumentnr' && reverse" class="fa fa-caret-down"></span>
             </th>
-            <th data-ng-click="orderByMe('seller'); reverseOrder()">
+            <!--<th data-ng-click="orderByMe('seller'); reverseOrder()">-->
+            <th>
                 Selger
-                <span data-ng-show="orderBy == 'seller' && !reverse" class="fa fa-caret-up"></span>
-                <span data-ng-show="orderBy == 'seller' && reverse" class="fa fa-caret-down"></span>
+                <!--<span data-ng-show="orderBy == 'seller' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'seller' && reverse" class="fa fa-caret-down"></span>-->
             </th>
-            <th data-ng-click="orderByMe('buyer'); reverseOrder()">
+            <!--<th data-ng-click="orderByMe('buyer'); reverseOrder()">-->
+            <th>
                 Kjøper
-                <span data-ng-show="orderBy == 'buyer' && !reverse" class="fa fa-caret-up"></span>
-                <span data-ng-show="orderBy == 'buyer' && reverse" class="fa fa-caret-down"></span>
+                <!--<span data-ng-show="orderBy == 'buyer' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'buyer' && reverse" class="fa fa-caret-down"></span>-->
             </th>
         </tr>
-        <tr transaction-property-table transaction="transaction" data-ng-repeat="transaction in transactions | orderBy:orderBy:reverse" data-ng-click="setSelected(transaction.Dokumentnr)"
+        <tr transaction-property-table transaction="transaction" data-ng-repeat="transaction in transactions" data-ng-click="setSelected(transaction.Dokumentnr)"
             data-ng-class="{ 'selected-row': transaction.Dokumentnr == selectedDokumentnr }" data-ng-mouseover="setSelected(transaction.Dokumentnr)" data-ng-mouseout="setSelected(null)">
         </tr>
     </table>
