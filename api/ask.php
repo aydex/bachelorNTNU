@@ -15,26 +15,35 @@ $query  = new Query($config->db);
 $name = "";
 $page = 0;
 $pageSize = 0;
+$order="";
+$orderBy="";
 
 if (isset($_REQUEST['page']) && isset($_REQUEST['pageSize'])) {
     $page = (int)$_REQUEST['page'];
     $pageSize = (int)$_REQUEST['pageSize'];
 }
 
-if (isset($_REQUEST['name'])) {
+if (isset($_REQUEST['order']) && isset($_REQUEST['orderBy'])) {
+
+    $order = htmlspecialchars($_REQUEST['order']);
+    $orderBy = htmlspecialchars($_REQUEST['orderBy']);
+
+}
+
+if (isset($_REQUEST['name']) && isset($_REQUEST['orderBy'])) {
 
     $name = htmlspecialchars($_REQUEST['name']);
-    echo $query->selectPersonPaged($name, $page, $pageSize);
+    echo $query->selectPersonPaged($name, $page, $pageSize, $order, $orderBy);
 
 }else if(isset($_REQUEST['transactionFromPerson'])){
 
 	$pId = htmlspecialchars($_REQUEST['transactionFromPerson']);
-	echo $query->selectTransaction($pId, $page, $pageSize);
+	echo $query->selectTransaction($pId, $page, $pageSize, $order, $orderBy);
 
 }else if(isset($_REQUEST['transactionFromProperty'])){
 
 	$eId = htmlspecialchars($_REQUEST['transactionFromProperty']);
-	echo $query->selectTransactionProperty($eId, $page, $pageSize);
+	echo $query->selectTransactionProperty($eId, $page, $pageSize, $order, $orderBy);
 
 }
 

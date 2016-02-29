@@ -1,8 +1,74 @@
+/****Header*****/
+
+html{
+	text-align: center;
+	font-family: "AmplitudeWide Book",Arial,serif;
+}
+
 header{
 	height: 70px;
 	background-color: #003762;
-	margin: 0 40px 0 40px;
+	max-width: 1180px;
+	
+	width: 100%;
+
+	
+
+	padding: 17px;
+	
+
+	display: inline-block;
+	
+	
 }
+
+#headerWrapper{
+	margin-right: auto;
+	min-width: 960px;
+	max-width: 960px;
+}
+
+#menu_circle{
+	width: 36px;
+	height: 36px;
+	float:left;
+	margin-right: 20px;
+}
+
+#tempLogo {
+	color: white;
+	font-size: 25px;
+	float:left;
+	text-decoration: none;
+	
+}
+
+#search_circle{
+	width: 36px;
+	height: 36px;
+	float: right;
+	margin-left: 40px;
+}
+
+#navigationHeader{
+	float:right;
+}
+
+.login{
+	color:white;
+	font-size: 15px;
+}
+
+#separator{
+	color: #336699;
+	font-size: 20px;
+	padding: 10px;
+}
+
+
+
+
+/**headerEnd***/
 
 #container{
 	position: relative;
@@ -125,6 +191,10 @@ tr:nth-child(odd){
 	background-color:#EAEAEA;
 }
 
+tr:hover{
+
+}
+
 td, th{
 	height:35px;
 	padding:0 5px;
@@ -149,6 +219,24 @@ td:nth-child(even){
 	text-align: right;
 }
 
+.kommunevaapen{
+	height: 20px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.transactionurl{
+	color: #2d2d2d;
+}
+
+.transactionurl:hover{
+	color: #2d2d2d;
+	text-decoration: none;
+}
+
+.selected-row, tr:hover{
+	background: rgba(105, 105, 105, 0.4) !important;
+}
 
 /****************************************/
 /**************  NAV CSS  ***************/
@@ -192,10 +280,6 @@ td:nth-child(even){
 	text-align: center;
 }
 
-.selected-row{
-	background: rgba(105, 105, 105, 0.4) !important;
-}
-
 
 /****************************************/
 /************  CHART CSS  ***************/
@@ -205,3 +289,5 @@ td:nth-child(even){
 	width:60%;
 	margin:auto;
 }
+
+
