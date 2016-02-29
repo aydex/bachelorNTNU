@@ -1,8 +1,74 @@
+/****Header*****/
+
+html{
+	text-align: center;
+	font-family: "AmplitudeWide Book",Arial,serif;
+}
+
 header{
 	height: 70px;
 	background-color: #003762;
-	margin: 0 40px 0 40px;
+	max-width: 1180px;
+	
+	width: 100%;
+
+	
+
+	padding: 17px;
+	
+
+	display: inline-block;
+	
+	
 }
+
+#headerWrapper{
+	margin-right: auto;
+	min-width: 960px;
+	max-width: 960px;
+}
+
+#menu_circle{
+	width: 36px;
+	height: 36px;
+	float:left;
+	margin-right: 20px;
+}
+
+#tempLogo {
+	color: white;
+	font-size: 25px;
+	float:left;
+	text-decoration: none;
+	
+}
+
+#search_circle{
+	width: 36px;
+	height: 36px;
+	float: right;
+	margin-left: 40px;
+}
+
+#navigationHeader{
+	float:right;
+}
+
+.login{
+	color:white;
+	font-size: 15px;
+}
+
+#separator{
+	color: #336699;
+	font-size: 20px;
+	padding: 10px;
+}
+
+
+
+
+/**headerEnd***/
 
 #container{
 	position: relative;
