@@ -1,16 +1,31 @@
 /****Header*****/
 
+html{
+	text-align: center;
+	font-family: "AmplitudeWide Book",Arial,serif;
+}
 
 header{
-	height: 76px;
+	height: 70px;
 	background-color: #003762;
 	max-width: 1180px;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 20px;
-	/*display: inline-block;*/
-	padding-right: 16%;
+	
+	width: 100%;
 
+	
+
+	padding: 17px;
+	
+
+	display: inline-block;
+	
+	
+}
+
+#headerWrapper{
+	margin-right: auto;
+	min-width: 960px;
+	max-width: 960px;
 }
 
 #menu_circle{
@@ -23,6 +38,8 @@ header{
 #tempLogo {
 	color: white;
 	font-size: 25px;
+	float:left;
+	text-decoration: none;
 	
 }
 
@@ -34,14 +51,12 @@ header{
 }
 
 #navigationHeader{
-	right: 70px;
 	float:right;
-	
 }
 
-#login{
+.login{
 	color:white;
-	font-size: 17px;
+	font-size: 15px;
 }
 
 #separator{
@@ -50,10 +65,7 @@ header{
 	padding: 10px;
 }
 
-#abonner{
-	color:white;
-	font-size: 17px;
-}
+
 
 
 /**headerEnd***/
