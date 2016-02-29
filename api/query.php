@@ -72,9 +72,7 @@ class Query
                     NATURAL JOIN Deltagere 
                     NATURAL JOIN Omsetningstyper 
                     WHERE Eiendomsid=:query_target 
-                    GROUP BY InterntDokumentnr
-                    #ORDER BY Dokumentdato DESC
-                    LIMIT :offset, :pageSize";
+                    GROUP BY InterntDokumentnr";
 
         $query_2 = "SELECT Sammendrag 
                     FROM Eiendomshistorie 
@@ -85,8 +83,8 @@ class Query
 
         $stmt = $this->db->prepare($query_1);
         $stmt->bindValue(':query_target', $id, PDO::PARAM_INT);
-        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-        $stmt->bindValue(':pageSize', $pageSize, PDO::PARAM_INT);
+        //$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        //$stmt->bindValue(':pageSize', $pageSize, PDO::PARAM_INT);
         $stmt->execute();
 
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);

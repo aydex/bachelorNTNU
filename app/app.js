@@ -21,10 +21,10 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             //reloadOnSearch: false
         })
 
-        /*.when('/search/:searchName/:page/:pageSize', {
+        .when('/search/:searchName/:page/:pageSize', {
             templateUrl : '/views/search.html',
             controller  : 'searchController'
-        })*/
+        })
         
         .when('/transactions/deltager/:name/:targetId/:type', {
             templateUrl : '/views/transactions.html',
@@ -69,7 +69,7 @@ kommunalApp.controller('mainController', function($scope) {
 
 });
 
-kommunalApp.controller('searchController', function($scope, $rootScope, $timeout, $location) {
+kommunalApp.controller('searchController', function($scope, $rootScope, $timeout, $location, $routeParams) {
 
     var _timeout;
     var queryPromis;
@@ -129,9 +129,9 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
 
                 
 
-                $scope.queryPerson();
+                //$scope.queryPerson();
                 //$location.search(name, 123);
-                //$location.path("/search/" + $scope.search.nameSearch + "/" + $scope.page + "/" + $scope.search.pageSize);
+                $location.path("/search/" + $scope.search.nameSearch + "/" + $scope.page + "/" + $scope.search.pageSize);
 
 
 
@@ -152,12 +152,13 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         $scope.queryPerson();
     }
 
-    /*if($routeParams.searchName) {
+    if($routeParams.searchName) {
+        document.getElementById("search").focus();
         $scope.search.nameSearch = $routeParams.searchName;
         $scope.page              = parseInt($routeParams.page);
         $scope.search.pageSize   = parseInt($routeParams.pageSize);
         $scope.queryPerson();
-    }*/
+    }
 
     $scope.navigate = function(way) {
         if((way == -1 && $scope.page > 1 && $scope.showNavigation) || (way == 1 && $scope.more_results && $scope.showNavigation)){
@@ -303,16 +304,16 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             });
 
             $scope.showTable      = true;
-            $scope.more_results   = $scope.count > ($scope.page * $scope.pageSize);
+            //$scope.more_results   = $scope.count > ($scope.page * $scope.pageSize);
             results               = $scope.getParticipantsCorrectly(result.records);
 
             $scope.transactions   = result.records;
             $scope.showNavigation = true;
-            $scope.hideNavigation = !(!$scope.more_results && $scope.page == 1);
+            $scope.hideNavigation = false;
             $scope.labels         = [];
             $scope.data           = [[], []];
             $scope.totalPages     = Math.ceil($scope.count / $scope.pageSize);
-            $scope.pageDisplay    = "Side: " + $scope.page + " av " + $scope.totalPages;
+            $scope.pageDisplay    = "Side: " + $scope.page;
 
             $scope.unalteredTransactions = result.records;
 
@@ -320,7 +321,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             var priceDatePairs = storedString.split(",");
             dokumentnr         = [];
 
-            priceDatePairs = priceDatePairs.slice(($scope.page - 1) * $scope.pageSize, $scope.pageSize * $scope.page);
+            //priceDatePairs = priceDatePairs.slice(($scope.page - 1) * $scope.pageSize, $scope.pageSize * $scope.page);
 
             angular.forEach(priceDatePairs, function(pair, key){
                 var splitValues = pair.split(":");
