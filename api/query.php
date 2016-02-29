@@ -44,7 +44,7 @@ class Query
 
     public function selectTransaction($id, $page=1, $pageSize=10, $order, $orderBy) {
         if ($order == "DESC") {
-            $query = "SELECT SQL_CALC_FOUND_ROWS Kommunenavn, Kommunenr, Eiendomsid, ForstRegistrert,
+            $query = "SELECT SQL_CALC_FOUND_ROWS Kommunenavn, Eiendomsid, ForstRegistrert,
                                  SistRegistrert, AntallTransaksjoner,
                                  GROUP_CONCAT(CONCAT_WS(':', Dokumentdato, PartType) SEPARATOR ', ') AS Involvering
                                  FROM Omsetninger
@@ -58,7 +58,7 @@ class Query
                                  LIMIT :offset, :pageSize";
 
         } else {
-            $query = "SELECT SQL_CALC_FOUND_ROWS Kommunenavn, Kommunenr, Eiendomsid, ForstRegistrert,
+            $query = "SELECT SQL_CALC_FOUND_ROWS Kommunenavn, Eiendomsid, ForstRegistrert,
                      SistRegistrert, AntallTransaksjoner,
                      GROUP_CONCAT(CONCAT_WS(':', Dokumentdato, PartType) SEPARATOR ', ') AS Involvering
                      FROM Omsetninger
@@ -70,7 +70,6 @@ class Query
                      GROUP BY Eiendomsid
                      ORDER BY ". $orderBy ." ASC
                      LIMIT :offset, :pageSize";
-
 
         }
 
@@ -89,11 +88,10 @@ class Query
         return json_encode(array("records" => $results, "count" => $count));
     }
 
-
     public function selectTransactionProperty($id, $page=1, $pageSize=10, $order, $orderBy) {
         if ($order == "ASC") {
             $query_1 = "SELECT SQL_CALC_FOUND_ROWS Dokumentdato, OmsetningsTypenavn, Salgssum, Dokumentnr,
-                        GROUP_CONCAT(CONCAT_WS(':', PartType, Navn, Kommune, Deltagerid, Deltagertype, AndelTeller, AndelNevner)SEPARATOR ',') AS Deltagere
+                        GROUP_CONCAT(CONCAT_WS(':', PartType, Navn, Deltagerid, Deltagertype, AndelTeller, AndelNevner)SEPARATOR ',') AS Deltagere
                         FROM Omsetninger
                         NATURAL JOIN Dokumenter
                         NATURAL JOIN Deltagere

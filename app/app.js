@@ -472,13 +472,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
 
             for(var y in current_deltagere) {
                 current_deltager = current_deltagere[y].split(":");
-                var deltager = {
-                    navn:current_deltager[1], 
-                    kommunenr:current_deltager[2], 
-                    deltagerid:current_deltager[3], 
-                    deltagertype:current_deltager[4], 
-                    andelTeller:current_deltager[5], 
-                    andelNevner:current_deltager[6]}
+                var deltager = {navn:current_deltager[1], deltagerid:current_deltager[2], deltagertype:current_deltager[3], andelTeller:current_deltager[4], andelNevner:current_deltager[5]}
                 if(current_deltager[0].toLowerCase() == "k") {
                     buyer.push(deltager);
 
@@ -537,6 +531,72 @@ kommunalApp.filter('priceFilter', function(){
     }
 });
 
+kommunalApp.filter('participantNameFilter', function($filter, $sce){
+    return function(input){      
+        var out = [];
+        var navn;
+        var deltagerType;
+        var deltagerid;
+        var andelTeller;
+        var andelNevner;
+
+    
+        if (input.length == 0){
+            return $sce.trustAsHtml("Ukjent");
+        }
+        
+        angular.forEach(input, function(value){
+            deltagerType = value.deltagertype;
+            navn = value.navn;
+            if (deltagerType == "F"){
+                navn = setLastnameAfterFirstname(navn);
+                navn = abbreviateMiddleNames(navn);
+            } 
+            navn = capitalFirstLetters(navn);
+
+            andelTeller = value.andelTeller;
+            andelNevner = value.andelNevner;
+            deltagerid = value.deltagerid;
+
+            out.push("<span class='deltagerType"+ deltagerType + " deltager" + deltagerid + "'>" + navn + " <sup>" + andelTeller +"</sup>&frasl;<sub>" + andelNevner + "</sub></span>");
+        });
+
+        return $sce.trustAsHtml(out.join(" <br> "));
+    }
+});
+
+
+kommunalApp.filter('participationHistoryFilter', function(){
+        return function(input){
+            var format = function(string){
+                var year = string.split(":")[0].split("-")[0];
+                var type = string.split(":")[1];
+
+
+                if (year == "0001"){
+                    year = "ukjent år";
+                }
+
+                switch(type){
+                    case "K": type = "Kjøpt"; break;
+                    case "S": type = "Solgt"; break;
+                }
+
+                return type + " " + year;
+            };
+            if (input.indexOf(",") == -1){
+                return format(input);
+            }
+
+            var out = [];
+            var involvement = input.split(",");
+            angular.forEach(involvement, function(entry){
+                out.push(format(entry));
+            });
+
+            return out.join(", ");
+    }
+});
 
 kommunalApp.filter('deltagerTypeFilter', function(){
         return function(typeKode){
@@ -689,40 +749,22 @@ kommunalApp.directive('transactionTable', function(){
         link: function(scope, element, attr) {
             var involvements = scope.transaction.Involvering.split(", ");
             var out = [];
+            angular.forEach(involvements, function(entry){
+                var year = entry.split(":")[0].split("-")[0];
+                var type = entry.split(":")[1];
 
-            if (involvements.length > 5){
-                var antKjopt = 0;
-                var antSolgt = 0;
-                angular.forEach(involvements, function(entry){
-                    var type = entry.split(":")[1];
-                    switch(type){
-                        case "K": 
-                            antKjopt = antKjopt +1;
-                            break;
-                        case "S": 
-                            antSolgt = antSolgt +1; 
-                            break;
-                    }
-                })
-                
-                scope.transaction.involvements =  "Kjøper " + antKjopt +" ganger, selger " + antSolgt +" ganger";
-            } else {
-                angular.forEach(involvements, function(entry){
-                    var year = entry.split(":")[0].split("-")[0];
-                    var type = entry.split(":")[1];
-                    if (year == "0001"){
-                        year = "ukjent år";
-                    }
+                if (year == "0001"){
+                    year = "ukjent år";
+                }
 
-                    if (type == "K"){
-                        type = "Kjøpt";
-                    } else if (type == "S"){
-                        type = "Solgt";
-                    }
-                    out.push(type + " "+year);
-                });
-                scope.transaction.involvements = out.join(", "); 
-            }
+                if (type == "K"){
+                    type = "Kjøpt";
+                } else if (type == "S"){
+                    type = "Solgt";
+                }
+                out.push(type + " "+year);
+            });
+            scope.transaction.involvements = out.join(", ");
         }
     }
 });
@@ -733,10 +775,11 @@ kommunalApp.directive('kommunevaapen', function(){
         restrict: 'EA',
         replace: true,
         scope: {
-            id: '='
+            name: '='
         },
-        template: '<img class="kommunevaapen" src="images/kommunevaapen/{{id}}.svg.png"></img>',
+        template: '<img class="kommunevaapen" src="images/kommunevapen/{{name}}.svg.png"></img>',
         link: function(scope, element, attr) {
+            scope.name = capitalFirstLetters(scope.name);
         }
     }
 });
