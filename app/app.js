@@ -78,6 +78,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     $scope.reverse        = false;
     $scope.showNavigation = true;
     $scope.searched       = false;
+    $scope.showTable      = false;
     $scope.lastSearched   = "";
     $scope.search         = {
         nameSearch: "",
@@ -154,6 +155,8 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     };
 
     if($routeParams.searchName) {
+        $scope.searched          = true;
+
         document.getElementById("search").focus();
         $scope.search.nameSearch = $routeParams.searchName;
         $scope.page              = parseInt($routeParams.page);
