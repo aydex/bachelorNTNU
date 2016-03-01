@@ -7,6 +7,7 @@ use PDO;
 class Query
 {
     private $db;
+    private $selectFromOrder = array('DESC', 'ASC');
 
     public function __construct(PDO $db)
     {
@@ -14,17 +15,15 @@ class Query
     }
 
     public function selectPersonPaged($name, $page=1, $pageSize=10, $order="ASC", $orderBy) {
-        if ($order == "DESC") {
-            $query = "SELECT SQL_CALC_FOUND_ROWS Deltagerid AS id, Deltagertype AS Type, Navn AS Navn FROM kommunalrapport.Deltagere
-                        WHERE Navn LIKE :name
-                        ORDER BY ". $orderBy ." DESC
-                        LIMIT :offset, :pageSize";
-        } else {
-            $query = "SELECT SQL_CALC_FOUND_ROWS Deltagerid AS id, Deltagertype AS Type, Navn AS Navn FROM kommunalrapport.Deltagere
-                        WHERE Navn LIKE :name
-                        ORDER BY ". $orderBy ." ASC
-                        LIMIT :offset, :pageSize";
-        }
+
+        $selectFromArray = array('Kommunenavn', 'Eiendomsid', 'ForstRegistrert', 'SistRegistrert', 'AntallTransaksjoner', 'Involvering', 'null');
+        $keyOrderBy      = array_search($orderBy, $selectFromArray);
+        $keyOrder        = array_search($order, $this->selectFromOrder);
+
+        $query = "SELECT SQL_CALC_FOUND_ROWS Deltagerid AS id, Deltagertype AS Type, Navn AS Navn FROM kommunalrapport.Deltagere
+                    WHERE Navn LIKE :name
+                    ORDER BY " . $selectFromArray[$keyOrderBy] . " " . $this->selectFromOrder[$keyOrder] . "
+                    LIMIT :offset, :pageSize";
 
         $offset = ($page - 1)*$pageSize;
         $name = "%$name%";
@@ -43,35 +42,23 @@ class Query
     }
 
     public function selectTransaction($id, $page=1, $pageSize=10, $order, $orderBy) {
-        if ($order == "DESC") {
-            $query = "SELECT SQL_CALC_FOUND_ROWS Kommunenavn, Eiendomsid, ForstRegistrert,
-                                 SistRegistrert, AntallTransaksjoner,
-                                 GROUP_CONCAT(CONCAT_WS(':', Dokumentdato, PartType) SEPARATOR ', ') AS Involvering
-                                 FROM Omsetninger
-                                 NATURAL JOIN Dokumenter
-                                 NATURAL JOIN Eiendomshistorie
-                                 NATURAL JOIN Eiendommer
-                                 NATURAL JOIN Kommuner
-                                 WHERE Deltagerid= :query_target
-                                 GROUP BY Eiendomsid
-                                 ORDER BY ". $orderBy ." DESC
-                                 LIMIT :offset, :pageSize";
+        $selectFromArray = array('Kommunenavn', 'Eiendomsid', 'ForstRegistrert', 'SistRegistrert', 'AntallTransaksjoner', 'Involvering', 'null');
+        $keyOrderBy      = array_search($orderBy, $selectFromArray);
+        $keyOrder        = array_search($order, $this->selectFromOrder);
 
-        } else {
-            $query = "SELECT SQL_CALC_FOUND_ROWS Kommunenavn, Eiendomsid, ForstRegistrert,
-                     SistRegistrert, AntallTransaksjoner,
-                     GROUP_CONCAT(CONCAT_WS(':', Dokumentdato, PartType) SEPARATOR ', ') AS Involvering
-                     FROM Omsetninger
-                     NATURAL JOIN Dokumenter
-                     NATURAL JOIN Eiendomshistorie
-                     NATURAL JOIN Eiendommer
-                     NATURAL JOIN Kommuner
-                     WHERE Deltagerid= :query_target
-                     GROUP BY Eiendomsid
-                     ORDER BY ". $orderBy ." ASC
-                     LIMIT :offset, :pageSize";
+        $query = "SELECT SQL_CALC_FOUND_ROWS Kommunenavn, Eiendomsid, ForstRegistrert,
+                  SistRegistrert, AntallTransaksjoner,
+                  GROUP_CONCAT(CONCAT_WS(':', Dokumentdato, PartType) SEPARATOR ', ') AS Involvering
+                  FROM Omsetninger
+                  NATURAL JOIN Dokumenter
+                  NATURAL JOIN Eiendomshistorie
+                  NATURAL JOIN Eiendommer
+                  NATURAL JOIN Kommuner
+                  WHERE Deltagerid= :query_target
+                  GROUP BY Eiendomsid
+                  ORDER BY " . $selectFromArray[$keyOrderBy] . " " . $this->selectFromOrder[$keyOrder] . "
+                  LIMIT :offset, :pageSize";
 
-        }
 
         $offset = ($page - 1)*$pageSize;
 
@@ -89,28 +76,21 @@ class Query
     }
 
     public function selectTransactionProperty($id, $page=1, $pageSize=10, $order, $orderBy) {
-        if ($order == "ASC") {
-            $query_1 = "SELECT SQL_CALC_FOUND_ROWS Dokumentdato, OmsetningsTypenavn, Salgssum, Dokumentnr,
-                        GROUP_CONCAT(CONCAT_WS(':', PartType, Navn, Deltagerid, Deltagertype, AndelTeller, AndelNevner)SEPARATOR ',') AS Deltagere
-                        FROM Omsetninger
-                        NATURAL JOIN Dokumenter
-                        NATURAL JOIN Deltagere
-                        NATURAL JOIN Omsetningstyper
-                        WHERE Eiendomsid=:query_target
-                        GROUP BY InterntDokumentnr
-                        ORDER BY ". $orderBy ." ASC";
-        } else {
-            $query_1 = "SELECT SQL_CALC_FOUND_ROWS Dokumentdato, OmsetningsTypenavn, Salgssum, Dokumentnr,
-                        GROUP_CONCAT(CONCAT_WS(':', PartType, Navn, Deltagerid, Deltagertype, AndelTeller, AndelNevner)SEPARATOR ',') AS Deltagere
-                        FROM Omsetninger
-                        NATURAL JOIN Dokumenter
-                        NATURAL JOIN Deltagere
-                        NATURAL JOIN Omsetningstyper
-                        WHERE Eiendomsid=:query_target
-                        GROUP BY InterntDokumentnr
-                        ORDER BY ". $orderBy ." DESC";
 
-        }
+        $selectFromArray = array('Dokumentdato', 'OmsetningsTypenavn', 'Salgssum', 'Dokumentnr', 'Deltagere', 'null');
+        $keyOrderBy      = array_search($orderBy, $selectFromArray);
+        $keyOrder        = array_search($order, $this->selectFromOrder);
+
+
+        $query_1 = "SELECT SQL_CALC_FOUND_ROWS Dokumentdato, OmsetningsTypenavn, Salgssum, Dokumentnr,
+                        GROUP_CONCAT(CONCAT_WS(':', PartType, Navn, Deltagerid, Deltagertype, AndelTeller, AndelNevner)SEPARATOR ',') AS Deltagere
+                        FROM Omsetninger
+                        NATURAL JOIN Dokumenter
+                        NATURAL JOIN Deltagere
+                        NATURAL JOIN Omsetningstyper
+                        WHERE Eiendomsid=:query_target
+                        GROUP BY InterntDokumentnr
+                        ORDER BY " . $selectFromArray[$keyOrderBy] . " " . $this->selectFromOrder[$keyOrder];
 
         $query_2 = "SELECT Sammendrag 
                     FROM Eiendomshistorie 
