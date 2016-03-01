@@ -146,7 +146,7 @@ header #two{
     -webkit-transition: margin 0.5s;
     -moz-transition: margin 0.5s;
     -o-transition: margin 0.5s;
-    transition: margin 0.5s;
+    transition: margin 0.5s ease-out;
     margin-top: 20px;
     height: 42px;
     width: 100vw;
