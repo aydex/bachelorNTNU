@@ -15,6 +15,9 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             controller  : 'mainController'
         })*/
 
+        
+
+
         .when('/search', {
             templateUrl : '/views/search.html',
             controller  : 'searchController',
@@ -25,7 +28,7 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             templateUrl : '/views/search.html',
             controller  : 'searchController'
         })*/
-        
+
         .when('/transactions/deltager/:name/:targetId/:type', {
             templateUrl : '/views/transactions.html',
             controller  : 'transactionPersonController'
@@ -47,6 +50,12 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
 
 kommunalApp.run(function($rootScope, $http, $window) {
 
+    $rootScope.open = true;
+
+    $rootScope.clickMenu = function(){
+        $rootScope.open = !$rootScope.open;
+    }
+
     $rootScope.doQuery = function(type, id, page, pageSize) {
         return $http.get("./api/test.php?" + type + "=" + id + "&page=" +
             page + "&pageSize=" + pageSize)
@@ -61,6 +70,7 @@ kommunalApp.run(function($rootScope, $http, $window) {
         //$location.path("/search/" + $scope.name + "/" + $scope.page + "/" + $scope.pageSize);
     }
 
+   
 });
 
 kommunalApp.controller('mainController', function($scope) {

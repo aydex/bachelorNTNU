@@ -1,51 +1,61 @@
-/****Header*****/
+/******************************
+*******************************
+*************Header************
+*******************************
+*******************************/
 
-@font-face{
-	font-family: "AmplitudeWide Book";
-	src: url(../images/AmplitudeWide-Book.otf) format("truetype");
+@font-face {
+	font-family: "AmplitudeWide-Book";
+	src: url("AmplitudeWide-Book.otf") format("opentype");
 }
 
 html{
 	text-align: center;
-	font-family: "AmplitudeWide Book", Arial, serif;
+	font-family: "AmplitudeWide-Book", Arial, serif;
 }
 
 header{
 	height: 70px;
 	background-color: #003762;
 	max-width: 1180px;
-	
 	width: 100%;
-
-	
-
 	padding: 17px;
-	
-
 	display: inline-block;
-	
-	
 }
 
 #headerWrapper{
 	margin-right: auto;
-	min-width: 960px;
 	max-width: 960px;
 }
 
-#menu_circle{
+.menu_open, .menu_close{
 	width: 36px;
 	height: 36px;
 	float:left;
 	margin-right: 20px;
 }
 
-#tempLogo {
-	color: white;
-	font-size: 25px;
+.menu_open{
+	background-image: url("../images/menu_circle.svg");
+}
+
+.menu_close{
+	background-image: url("../images/menu_close.svg")
+}
+
+.backgroundTransform{
+-webkit-transition:background 0.5s, opacity 0.5s;
+  -moz-transition:background 0.5s, opacity 0.5s;
+  -o-transition:background 0.5s, opacity 0.5s;
+  transition:background 0.5s, opacity 0.5s;
+}
+
+
+
+#logo {
+	height: 37px;
 	float:left;
-	text-decoration: none;
-	
+	padding-top: 2px;
 }
 
 #search_circle{
@@ -53,15 +63,22 @@ header{
 	height: 36px;
 	float: right;
 	margin-left: 40px;
+	float:right;
+
 }
 
 #navigationHeader{
 	float:right;
+	margin-top: 5px;
+	margin-left: 10px;
+
+	
 }
 
 .login{
 	color:white;
 	font-size: 15px;
+
 }
 
 .login:hover{
@@ -72,12 +89,12 @@ header{
 	color: #336699;
 	font-size: 20px;
 	padding: 10px;
+
 }
 
+/**********headerEnd**********/
 
 
-
-/**headerEnd***/
 
 #container{
 	position: relative;
