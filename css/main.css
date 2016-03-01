@@ -31,13 +31,17 @@ html{
 }*/
 
 header{
-	font-weight: 400;
-	height: 70px;
-	background-color: #003762;
-	/*max-width: 1180px;*/
-	width: 100%;
-	padding: 17px;
-	display: inline-block;
+    font-weight: 400;
+    height: 70px;
+    background-color: #003762;
+    /* max-width: 1180px; */
+    width: 100%;
+    padding: 17px;
+    display: inline-block;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
 
 }
 
@@ -163,6 +167,7 @@ header #two{
 #main{
 	width:94%;
 	margin:auto;
+	margin-top:70px;
 }
 
 .text-center{
