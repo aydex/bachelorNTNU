@@ -72,7 +72,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
 
     $scope.page           = 1;
     $scope.orderBy        = null;
-    $scope.order          = "ASC";
+    $scope.order          = "DESC";
     $scope.reverse        = false;
     $scope.showNavigation = true;
     $scope.searched       = false;
@@ -181,7 +181,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
                 $scope.order = "ASC";
             }
         } else {
-            $scope.order = "ASC";
+            $scope.order = "DESC";
             $scope.reverse = false;
         }
         $scope.orderBy = x;
@@ -200,7 +200,7 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
     $scope.page           = 1;
     $scope.pageSize       = 10;
     $scope.orderBy        = null;
-    $scope.order          = "ASC";
+    $scope.order          = "DESC";
     $scope.reverse        = false;
     $scope.type           = "Transaksjoner for " + $filter('nameFilter')($scope.name, $routeParams.type, true);
     $scope.showNavigation = true;
@@ -269,7 +269,7 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
                 $scope.order = "ASC";
             }
         } else {
-            $scope.order = "ASC";
+            $scope.order = "DESC";
             $scope.reverse = false;
         }
         $scope.orderBy = x;
@@ -296,7 +296,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
     $scope.page           = 1;
     $scope.pageSize       = 10;
     $scope.orderBy        = null;
-    $scope.order          = "ASC";
+    $scope.order          = "DESC";
     $scope.reverse        = false;
     $scope.type           = "Alle transaksjoner med eiendommen";
     $scope.showNavigation = true;
@@ -497,7 +497,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
                 $scope.order = "ASC";
             }
         } else {
-            $scope.order = "ASC";
+            $scope.order = "DESC";
             $scope.reverse = false;
         }
         $scope.orderBy = x;
