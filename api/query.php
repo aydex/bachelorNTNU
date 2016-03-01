@@ -16,12 +16,16 @@ class Query
 
     public function selectPersonPaged($name, $page=1, $pageSize=10, $order="ASC", $orderBy) {
 
-        $selectFromArray = array('id', 'Type', 'Navn', 'null');
+        $selectFromArray = array('id', 'Type', 'Navn', 'Kommuner', 'null');
         $keyOrderBy      = array_search($orderBy, $selectFromArray);
         $keyOrder        = array_search($order, $this->selectFromOrder);
 
-        $query = "SELECT SQL_CALC_FOUND_ROWS Deltagerid AS id, Deltagertype AS Type, Navn AS Navn FROM kommunalrapport.Deltagere
+        $query = "SELECT SQL_CALC_FOUND_ROWS Deltagerid AS id, Deltagertype AS Type, Navn AS Navn, GROUP_CONCAT(CONCAT_WS(':', Kommunenr, Kommunenavn) SEPARATOR ',') AS Kommuner 
+                    FROM  kommunalrapport.Deltagere
+                    NATURAL JOIN Deltagerhistorie 
+                    NATURAL JOIN  Kommuner 
                     WHERE Navn LIKE :name
+                    GROUP BY Deltagerid
                     ORDER BY " . $selectFromArray[$keyOrderBy] . " " . $this->selectFromOrder[$keyOrder] . "
                     LIMIT :offset, :pageSize";
 
@@ -46,7 +50,7 @@ class Query
         $keyOrderBy      = array_search($orderBy, $selectFromArray);
         $keyOrder        = array_search($order, $this->selectFromOrder);
 
-        $query = "SELECT SQL_CALC_FOUND_ROWS Kommunenavn, Eiendomsid, ForstRegistrert,
+        $query = "SELECT SQL_CALC_FOUND_ROWS Kommunenavn, Kommunenr, Eiendomsid, ForstRegistrert,
                   SistRegistrert, AntallTransaksjoner,
                   GROUP_CONCAT(CONCAT_WS(':', Dokumentdato, PartType) SEPARATOR ', ') AS Involvering
                   FROM Omsetninger
@@ -83,7 +87,7 @@ class Query
 
 
         $query_1 = "SELECT SQL_CALC_FOUND_ROWS Dokumentdato, OmsetningsTypenavn, Salgssum, Dokumentnr,
-                        GROUP_CONCAT(CONCAT_WS(':', PartType, Navn, Deltagerid, Deltagertype, AndelTeller, AndelNevner)SEPARATOR ',') AS Deltagere
+                        GROUP_CONCAT(CONCAT_WS(':', PartType, Navn,Kommune,  Deltagerid, Deltagertype, AndelTeller, AndelNevner)SEPARATOR ',') AS Deltagere
                         FROM Omsetninger
                         NATURAL JOIN Dokumenter
                         NATURAL JOIN Deltagere

@@ -331,6 +331,10 @@ td:nth-child(even){
 	text-align: center;
 }
 
+.leftalign{
+	text-align: left;
+}
+
 
 /****************************************/
 /************  CHART CSS  ***************/
