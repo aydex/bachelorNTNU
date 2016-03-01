@@ -37,17 +37,19 @@ header{
 
 .menu_open{
 	background-image: url("../images/menu_circle.svg");
+	cursor: pointer;
 }
 
 .menu_close{
-	background-image: url("../images/menu_close.svg")
+	background-image: url("../images/menu_close.svg");
+	cursor: pointer;
 }
 
 .backgroundTransform{
--webkit-transition:background 0.5s, opacity 0.5s;
-  -moz-transition:background 0.5s, opacity 0.5s;
-  -o-transition:background 0.5s, opacity 0.5s;
-  transition:background 0.5s, opacity 0.5s;
+	-webkit-transition:background 0.5s, opacity 0.5s;
+	-moz-transition:background 0.5s, opacity 0.5s;
+	-o-transition:background 0.5s, opacity 0.5s;
+	transition:background 0.5s, opacity 0.5s;
 }
 
 
