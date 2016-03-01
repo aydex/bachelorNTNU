@@ -44,6 +44,8 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
 kommunalApp.run(function($rootScope, $http, $window) {
 
     $rootScope.doQuery = function(type, id, page, pageSize, order, orderBy) {
+        console.log("/api/ask.php?" + type + "=" + id + "&page=" +
+            page + "&pageSize=" + pageSize + "&order=" + order + "&orderBy=" + orderBy);
         return $http.get("./api/ask.php?" + type + "=" + id + "&page=" +
             page + "&pageSize=" + pageSize + "&order=" + order + "&orderBy=" + orderBy)
             .then(function (response) {
@@ -72,7 +74,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
 
     $scope.page           = 1;
     $scope.orderBy        = null;
-    $scope.order          = "DESC";
+    $scope.order          = "ASC";
     $scope.reverse        = false;
     $scope.showNavigation = true;
     $scope.searched       = false;
@@ -181,7 +183,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
                 $scope.order = "ASC";
             }
         } else {
-            $scope.order = "DESC";
+            $scope.order = "ASC";
             $scope.reverse = false;
         }
         $scope.orderBy = x;
@@ -196,11 +198,10 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
 kommunalApp.controller('transactionPersonController', function($scope, $rootScope, $routeParams, $location, $filter) {
     $scope.message        = $routeParams.targetId;
     $scope.name           = $routeParams.name;
-    $scope.showTable      = true;
     $scope.page           = 1;
     $scope.pageSize       = 10;
     $scope.orderBy        = null;
-    $scope.order          = "DESC";
+    $scope.order          = "ASC";
     $scope.reverse        = false;
     $scope.type           = "Transaksjoner for " + $filter('nameFilter')($scope.name, $routeParams.type, true);
     $scope.showNavigation = true;
@@ -215,6 +216,7 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
                 //$scope.count = Math.ceil($scope.page * $scope.search.pageSize);
             });
 
+            $scope.showTable      = true;
             $scope.more_results   = $scope.count > ($scope.page * $scope.pageSize);
             $scope.transactions   = result.records;
             $scope.showNavigation = true;
@@ -269,7 +271,7 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
                 $scope.order = "ASC";
             }
         } else {
-            $scope.order = "DESC";
+            $scope.order = "ASC";
             $scope.reverse = false;
         }
         $scope.orderBy = x;
@@ -296,7 +298,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
     $scope.page           = 1;
     $scope.pageSize       = 10;
     $scope.orderBy        = null;
-    $scope.order          = "DESC";
+    $scope.order          = "ASC";
     $scope.reverse        = false;
     $scope.type           = "Alle transaksjoner med eiendommen";
     $scope.showNavigation = true;
@@ -497,7 +499,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
                 $scope.order = "ASC";
             }
         } else {
-            $scope.order = "DESC";
+            $scope.order = "ASC";
             $scope.reverse = false;
         }
         $scope.orderBy = x;
