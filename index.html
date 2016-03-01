@@ -17,15 +17,20 @@
 
     <header>
         <div id="headerWrapper">
-            <img src="images/menu_circle.svg" id="menu_circle">
-        
-            <a href="/" id="tempLogo"> <span id="one">Kommunal</span><span id="two">Rapport</span></a>
+            <!--<a href="/" id="tempLogo"> <span id="one">Kommunal</span><span id="two">Rapport</span></a>-->
+            <!--<img src="images/menu_circle.svg" id="menu_circle">-->
+
+            <div data-ng-class="{'menu_open' : open, 'menu_close' : !open }" data-ng-click="clickMenu()" class="backgroundTransform"></div>
+
+            <a href="/"><img src="images/logo.svg" id="logo"></a>
+            <img src="images/search_circle.svg" id="search_circle">
+
             <div id="navigationHeader">
-                <a href="" class="login">Logg Inn </a>
+                <a href="" class="login">Logg Inn</a>
                 <a href="" id="separator">|</a>
                 <a href="" class="login">Abonner</a>
-                <img src="images/search_circle.svg" id="search_circle">
             </div>
+
         </div>
 
         

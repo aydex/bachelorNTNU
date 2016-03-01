@@ -11,6 +11,9 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             controller  : 'mainController'
         })*/
 
+        
+
+
         .when('/search', {
             templateUrl : '/views/search.html',
             controller  : 'searchController',
@@ -22,6 +25,7 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             controller  : 'searchController'
         })
         
+
         .when('/transactions/deltager/:name/:targetId/:type', {
             templateUrl : '/views/transactions.html',
             controller  : 'transactionPersonController'
@@ -44,21 +48,27 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
 kommunalApp.run(function($rootScope, $http, $window) {
 
     $rootScope.doQuery = function(type, id, page, pageSize, order, orderBy) {
-        console.log("/api/ask.php?" + type + "=" + id + "&page=" +
-            page + "&pageSize=" + pageSize + "&order=" + order + "&orderBy=" + orderBy);
         return $http.get("./api/ask.php?" + type + "=" + id + "&page=" +
             page + "&pageSize=" + pageSize + "&order=" + order + "&orderBy=" + orderBy)
-            .then(function (response) {
+        .then(function (response) {
                 return {records: response.data.records, count: response.data.count, 
                     combined: response.data.combined};
             });
-    };
+    }
+
+    $rootScope.open = true;
+
+    $rootScope.clickMenu = function(){
+        $rootScope.open = !$rootScope.open;
+    }
+
 
     $rootScope.back = function(){
         $window.history.back();
         //$location.path("/search/" + $scope.name + "/" + $scope.page + "/" + $scope.pageSize);
     }
 
+   
 });
 
 kommunalApp.controller('mainController', function($scope) {
@@ -95,8 +105,6 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
                 $scope.count = value;
                 //$scope.count = Math.ceil($scope.page * $scope.search.pageSize);
             });
-
-            console.log($scope.orderBy);
 
             $scope.lastSearched   = $scope.search.nameSearch;
             $scope.names          = result.records;
@@ -210,7 +218,6 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
     $scope.reverse        = false;
     $scope.type           = "Transaksjoner for " + $filter('nameFilter')($scope.name, $routeParams.type, true);
     $scope.showNavigation = true;
-    console.log($routeParams)
 
     $scope.queryTransaction = function() {
         var queryPromis = $rootScope.doQuery("transactionFromPerson", $routeParams.targetId, 
@@ -721,7 +728,6 @@ kommunalApp.directive('transactionPropertyTable', function(){
                     entry.kommune = false;
                     entry.ukjent = false;
                     entry.searchurl = "transactions/deltager/" + encodeURI(entry.navn) +"/" + entry.deltagerid +"/" + entry.deltagertype
-                    console.log(entry.searchurl)
                     if (entry.deltagertype == "F") {
                         entry.navn = setLastnameAfterFirstname(entry.navn);
                         entry.navn = abbreviateMiddleNames(entry.navn);

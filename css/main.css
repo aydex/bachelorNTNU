@@ -1,4 +1,5 @@
 /****Header*****/
+
 @import url(http://fonts.googleapis.com/css?family=Exo+2:400,200,700) ;
 
 html{
@@ -11,6 +12,24 @@ body{
 	font-weight:400;
 }
 
+/******************************
+*******************************
+*************Header************
+*******************************
+*******************************/
+
+@font-face {
+	font-family: "AmplitudeWide-Book";
+	src: url("AmplitudeWide-Book.otf") format("opentype");
+}
+
+/*
+html{
+	text-align: center;
+	font-family: "AmplitudeWide-Book", Arial, serif;
+
+}*/
+
 header{
 	font-weight: 400;
 	height: 70px;
@@ -19,6 +38,7 @@ header{
 	width: 100%;
 	padding: 17px;
 	display: inline-block;
+
 }
 
 header #one{
@@ -27,27 +47,44 @@ header #one{
 
 header #two{
 	font-weight:200;
+
 }
 
 #headerWrapper{
 	margin-right: auto;
-	min-width: 960px;
 	max-width: 960px;
 }
 
-#menu_circle{
+.menu_open, .menu_close{
 	width: 36px;
 	height: 36px;
 	float:left;
 	margin-right: 20px;
 }
 
-#tempLogo {
-	color: white;
-	font-size: 25px;
+.menu_open{
+	background-image: url("../images/menu_circle.svg");
+	cursor: pointer;
+}
+
+.menu_close{
+	background-image: url("../images/menu_close.svg");
+	cursor: pointer;
+}
+
+.backgroundTransform{
+	-webkit-transition:background 0.5s, opacity 0.5s;
+	-moz-transition:background 0.5s, opacity 0.5s;
+	-o-transition:background 0.5s, opacity 0.5s;
+	transition:background 0.5s, opacity 0.5s;
+}
+
+
+
+#logo {
+	height: 37px;
 	float:left;
-	text-decoration: none;
-	
+	padding-top: 2px;
 }
 
 #search_circle{
@@ -55,27 +92,34 @@ header #two{
 	height: 36px;
 	float: right;
 	margin-left: 40px;
+	float:right;
+
 }
 
 #navigationHeader{
 	float:right;
+	margin-top: 5px;
+	margin-left: 10px;
+
+	
 }
 
 .login{
 	color:white;
 	font-size: 15px;
+
 }
 
 #separator{
 	color: #336699;
 	font-size: 20px;
 	padding: 10px;
+
 }
 
+/**********headerEnd**********/
 
 
-
-/**headerEnd***/
 
 #container{
 	position: relative;
