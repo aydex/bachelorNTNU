@@ -1,11 +1,18 @@
 /****Header*****/
+@import url(https://fonts.googleapis.com/css?family=Exo+2:300,400);
 
 html{
 	text-align: center;
-	font-family: "AmplitudeWide Book",Arial,serif;
+	
+}
+
+body{
+	font-family: 'Exo 2', sans-serif;
+	font-weight:200;
 }
 
 header{
+	font-weight: 400;
 	height: 70px;
 	background-color: #003762;
 	max-width: 1180px;

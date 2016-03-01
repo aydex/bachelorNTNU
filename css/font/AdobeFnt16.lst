@@ -1,0 +1,266 @@
+%!Adobe-FontList 1.16
+%Locale:0x409
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:AmplitudeWide-Bold
+FamilyName:AmplitudeWide
+StyleName:Bold
+MenuName:AmplitudeWide Bold
+StyleBits:0
+WeightClass:700
+WidthClass:7
+AngleClass:0
+FullName:AmplitudeWide Bold
+WritingScript:Roman
+OutlineFileName:\AmplitudeWide-Bold.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:48392
+FileModTime:1284486902
+NameArray:0,Mac,4,AmplitudeWide Bold
+NameArray:0,Win,1,AmplitudeWide Bold
+NameArray:0,Win,16,AmplitudeWide
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:AmplitudeWide-Book
+FamilyName:AmplitudeWide
+StyleName:Book
+MenuName:AmplitudeWide Book
+StyleBits:0
+WeightClass:400
+WidthClass:7
+AngleClass:0
+FullName:AmplitudeWide Book
+WritingScript:Roman
+OutlineFileName:\AmplitudeWide-Book.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:47876
+FileModTime:1284486902
+NameArray:0,Mac,4,AmplitudeWide Book
+NameArray:0,Win,1,AmplitudeWide Book
+NameArray:0,Win,16,AmplitudeWide
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:AmplitudeWide-Light
+FamilyName:AmplitudeWide
+StyleName:Light
+MenuName:AmplitudeWide Light
+StyleBits:0
+WeightClass:300
+WidthClass:7
+AngleClass:0
+FullName:AmplitudeWide Light
+WritingScript:Roman
+OutlineFileName:\AmplitudeWide-Light.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:44764
+FileModTime:1284486902
+NameArray:0,Mac,4,AmplitudeWide Light
+NameArray:0,Win,1,AmplitudeWide Light
+NameArray:0,Win,16,AmplitudeWide
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:AmplitudeWide-Medium
+FamilyName:AmplitudeWide
+StyleName:Medium
+MenuName:AmplitudeWide Medium
+StyleBits:0
+WeightClass:500
+WidthClass:7
+AngleClass:0
+FullName:AmplitudeWide Medium
+WritingScript:Roman
+OutlineFileName:\AmplitudeWide-Medium.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:54168
+FileModTime:1284486903
+NameArray:0,Mac,4,AmplitudeWide Medium
+NameArray:0,Win,1,AmplitudeWide Medium
+NameArray:0,Win,16,AmplitudeWide
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:AmplitudeWide-Regular
+FamilyName:AmplitudeWide
+StyleName:Regular
+MenuName:AmplitudeWide Regular
+StyleBits:0
+WeightClass:400
+WidthClass:7
+AngleClass:0
+FullName:AmplitudeWide Regular
+WritingScript:Roman
+OutlineFileName:\AmplitudeWide-Regular.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:53208
+FileModTime:1284486903
+NameArray:0,Mac,4,AmplitudeWide Regular
+NameArray:0,Win,1,AmplitudeWide Regular
+NameArray:0,Win,16,AmplitudeWide
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Georgia
+FamilyName:Georgia
+StyleName:Regular
+MenuName:Georgia
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Georgia
+WritingScript:Roman
+OutlineFileName:\Georgia.ttf
+DataFormat:sfntData
+FileLength:379588
+FileModTime:1410310412
+NameArray:0,Mac,4,Georgia
+NameArray:0,Win,1,Georgia
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:HelveticaNeueLTPro-Bd
+FamilyName:Helvetica Neue LT Pro
+StyleName:75 Bold
+MenuName:HelveticaNeueLT Pro 55 Roman
+StyleBits:2
+WeightClass:700
+WidthClass:5
+AngleClass:0
+FullName:Helvetica Neue LT Pro 75 Bold
+WritingScript:Roman
+OutlineFileName:\HelveticaNeueLTPro-Bd.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:35688
+FileModTime:1108469822
+NameArray:0,Mac,18,HelveticaNeueLT Pro 75 Bd
+NameArray:0,Mac,4,Helvetica Neue LT Pro 75 Bold
+NameArray:0,Win,1,HelveticaNeueLT Pro 55 Roman
+NameArray:0,Win,16,Helvetica Neue LT Pro
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:HelveticaNeueLTPro-Roman
+FamilyName:Helvetica Neue LT Pro
+StyleName:55 Roman
+MenuName:HelveticaNeueLT Pro 55 Roman
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Helvetica Neue LT Pro 55 Roman
+WritingScript:Roman
+OutlineFileName:\HelveticaNeueLTPro-Roman.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:34860
+FileModTime:1108470084
+NameArray:0,Mac,18,HelveticaNeueLT Pro 55 Roman
+NameArray:0,Mac,4,Helvetica Neue LT Pro 55 Roman
+NameArray:0,Win,1,HelveticaNeueLT Pro 55 Roman
+NameArray:0,Win,16,Helvetica Neue LT Pro
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:MinionPro-Regular
+FamilyName:Minion Pro
+StyleName:Regular
+MenuName:Minion Pro
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Minion Pro
+WritingScript:Roman
+OutlineFileName:\MinionPro-Regular.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:218640
+FileModTime:1397671660
+DesignSize:110
+NameArray:0,Mac,4,Minion Pro
+NameArray:0,Win,1,Minion Pro
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:PublicoBanner-Roman
+FamilyName:Publico Banner
+StyleName:Roman
+MenuName:Publico Banner Roman
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Publico Banner Roman
+WritingScript:Roman
+OutlineFileName:\Publico Banner-Roman.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:68896
+FileModTime:1282845503
+NameArray:0,Mac,4,Publico Banner Roman
+NameArray:0,Win,1,Publico Banner Roman
+NameArray:0,Win,16,Publico Banner
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:PublicoBanner-Black
+FamilyName:Publico Banner
+StyleName:Black
+MenuName:Publico Banner Black
+StyleBits:0
+WeightClass:900
+WidthClass:5
+AngleClass:0
+FullName:Publico Banner Black
+WritingScript:Roman
+OutlineFileName:\PublicoBanner-Black.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:42020
+FileModTime:1168726786
+NameArray:0,Mac,4,Publico Banner Black
+NameArray:0,Win,1,Publico Banner Black
+NameArray:0,Win,16,Publico Banner
+%EndFont
+
