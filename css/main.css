@@ -54,9 +54,24 @@ header #two{
 
 }
 
-#headerWrapper{
+#headerContainer{
 	margin-right: auto;
-	/*max-width: 960px;*/
+    /* max-width: 960px; */
+    position: absolute;
+    left: 0px;
+    background-color: #003762;
+    width: 100%;
+    height:53px;
+}
+
+#headerWrapper{
+	margin:0 17px 0 17px;
+	/*margin-right: auto;
+    /* max-width: 960px; 
+    position: absolute;
+    background-color: #003762;
+    width: calc(100% - 35px) !important;
+    height:53px;*/
 }
 
 .menu_open, .menu_close{
@@ -121,24 +136,27 @@ header #two{
 
 }
 
-.margin-left{
-	margin-left:0px !important;
+.margin-top{
+	margin-top:53px !important;
 }
 
 #sideNav{
-    -webkit-transition:margin 0.5s;
-	-moz-transition:margin 0.5s;
-	-o-transition:margin 0.5s;
-	transition:margin 0.5s;
-    position: absolute;
-    top: 70px;
-    width: 260px;
-    height: calc(100vh - 70px);
-    color:#2d2d2d;
-    font-size:15px;
-    left: 0px;
-    border-right:1px solid #2d2d2d;
-    margin-left:-260px;
+	padding-top: 10px;
+    background: white;
+    -webkit-transition: margin 0.5s;
+    -moz-transition: margin 0.5s;
+    -o-transition: margin 0.5s;
+    transition: margin 0.5s;
+    margin-top: 20px;
+    height: 42px;
+    width: 100vw;
+    margin-left: -17px;
+}
+
+#sideNav button{
+	background-color: white;
+    border: none;
+    border-bottom: 1px solid #2d2d2d;
 }
 
 /**********headerEnd**********/
