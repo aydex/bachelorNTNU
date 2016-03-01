@@ -20,7 +20,7 @@
             <!--<a href="/" id="tempLogo"> <span id="one">Kommunal</span><span id="two">Rapport</span></a>-->
             <!--<img src="images/menu_circle.svg" id="menu_circle">-->
 
-            <div data-ng-class="{'menu_open' : open, 'menu_close' : !open }" data-ng-click="clickMenu()" class="backgroundTransform"></div>
+            <div data-ng-class="{'menu_open' : !open, 'menu_close' : open }" data-ng-click="clickMenu()" class="backgroundTransform"></div>
 
             <a href="/"><img src="images/logo.svg" id="logo"></a>
             <img src="images/search_circle.svg" id="search_circle">
@@ -30,7 +30,10 @@
                 <a href="" id="separator">|</a>
                 <a href="" class="login">Abonner</a>
             </div>
+        </div>
 
+        <div id="sideNav" data-ng-class="{'margin-left' : open }">
+            This is a sidenav
         </div>
 
         

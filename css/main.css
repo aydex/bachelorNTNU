@@ -117,6 +117,26 @@ header #two{
 
 }
 
+.margin-left{
+	margin-left:0px !important;
+}
+
+#sideNav{
+    -webkit-transition:margin 0.5s;
+	-moz-transition:margin 0.5s;
+	-o-transition:margin 0.5s;
+	transition:margin 0.5s;
+    position: absolute;
+    top: 70px;
+    width: 260px;
+    height: calc(100vh - 70px);
+    color:#2d2d2d;
+    font-size:15px;
+    left: 0px;
+    border-right:1px solid #2d2d2d;
+    margin-left:-260px;
+}
+
 /**********headerEnd**********/
 
 
@@ -224,7 +244,10 @@ table, th , td {
 
 th{
 	cursor:pointer;
-	background-color:darkGrey;
+	color:white;
+	background-color:#003762;
+	border-left:none;
+	border-right:none;
 }
 
 #idColumn{
@@ -252,6 +275,7 @@ td, th{
 	text-align: center;
 }
 
+
 td{
 	cursor:pointer;
 }
@@ -262,8 +286,8 @@ td:nth-child(odd){
 
 td:nth-child(even){
 	border:none;
-	border-left:1px solid gray;
-	border-right:1px solid gray;
+	/*border-left:1px solid gray;
+	border-right:1px solid gray;*/
 }
 
 .name{

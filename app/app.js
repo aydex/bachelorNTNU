@@ -56,7 +56,7 @@ kommunalApp.run(function($rootScope, $http, $window) {
             });
     }
 
-    $rootScope.open = true;
+    $rootScope.open = false;
 
     $rootScope.clickMenu = function(){
         $rootScope.open = !$rootScope.open;
