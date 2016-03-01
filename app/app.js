@@ -45,7 +45,7 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 });
 
-kommunalApp.run(function($rootScope, $http, $window) {
+kommunalApp.run(function($rootScope, $http, $window, $location) {
 
     $rootScope.doQuery = function(type, id, page, pageSize, order, orderBy) {
         return $http.get("./api/ask.php?" + type + "=" + id + "&page=" +
@@ -56,7 +56,9 @@ kommunalApp.run(function($rootScope, $http, $window) {
             });
     }
 
-    $rootScope.open = false;
+    $rootScope.open             = false;
+    $rootScope.headerSearchOpen = false;
+    $rootScope.headerInput      = "";
 
     $rootScope.clickMenu = function(){
         $rootScope.open = !$rootScope.open;
@@ -68,6 +70,16 @@ kommunalApp.run(function($rootScope, $http, $window) {
         //$location.path("/search/" + $scope.name + "/" + $scope.page + "/" + $scope.pageSize);
     }
 
+    $rootScope.openSearch = function(){
+        $rootScope.headerSearchOpen = !$rootScope.headerSearchOpen;
+        document.getElementById("headerInput").focus();
+    }
+
+    $rootScope.searchPerson = function(form) {
+        $location.path("/search/" + $rootScope.headerInput + "/1/10");
+        $rootScope.headerInput = "";
+        $rootScope.headerSearchOpen = false;
+    }
    
 });
 

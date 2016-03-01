@@ -110,16 +110,16 @@ header #two{
 	width: 36px;
 	height: 36px;
 	float: right;
-	margin-left: 40px;
+	/*margin-left: 40px;*/
 	float:right;
-
+	cursor:pointer;
 }
 
 #navigationHeader{
 	float:right;
 	margin-top: 5px;
 	margin-left: 10px;
-
+	margin-right: 10px;
 	
 }
 
@@ -136,27 +136,22 @@ header #two{
 
 }
 
-.margin-top{
-	margin-top:53px !important;
+.headerSearchWidth{
+	width:160px !important; 
 }
 
-#sideNav{
-	padding-top: 10px;
-    background: white;
-    -webkit-transition: margin 0.5s;
-    -moz-transition: margin 0.5s;
-    -o-transition: margin 0.5s;
-    transition: margin 0.5s ease-out;
-    margin-top: 20px;
-    height: 42px;
-    width: 100vw;
-    margin-left: -17px;
-}
-
-#sideNav button{
-	background-color: white;
+#headerInput{
+	/* position: absolute; */
+    /* top: 27px; */
+    transition: width .5s;
+    background-color: white;
     border: none;
-    border-bottom: 1px solid #2d2d2d;
+    margin-top: 10px;
+    /* padding-left: 10px; */
+    width: 160px;
+    float: right;
+    width: 0px;
+    margin-right: 17px;
 }
 
 /**********headerEnd**********/
