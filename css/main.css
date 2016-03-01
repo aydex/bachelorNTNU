@@ -8,7 +8,7 @@ html{
 
 body{
 	font-family: 'Exo 2', sans-serif;
-	font-weight:200;
+	font-weight:400;
 }
 
 header{
@@ -23,6 +23,10 @@ header{
 
 header #one{
 	font-weight:700;
+}
+
+header #two{
+	font-weight:200;
 }
 
 #headerWrapper{

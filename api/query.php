@@ -16,7 +16,7 @@ class Query
 
     public function selectPersonPaged($name, $page=1, $pageSize=10, $order="ASC", $orderBy) {
 
-        $selectFromArray = array('Kommunenavn', 'Eiendomsid', 'ForstRegistrert', 'SistRegistrert', 'AntallTransaksjoner', 'Involvering', 'null');
+        $selectFromArray = array('id', 'Type', 'Navn', 'null');
         $keyOrderBy      = array_search($orderBy, $selectFromArray);
         $keyOrder        = array_search($order, $this->selectFromOrder);
 

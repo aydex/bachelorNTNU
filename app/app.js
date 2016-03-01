@@ -96,6 +96,8 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
                 //$scope.count = Math.ceil($scope.page * $scope.search.pageSize);
             });
 
+            console.log($scope.orderBy);
+
             $scope.lastSearched   = $scope.search.nameSearch;
             $scope.names          = result.records;
             $scope.showTable      = $scope.names.length > 0;
