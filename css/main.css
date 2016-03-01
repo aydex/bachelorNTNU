@@ -16,17 +16,13 @@ header{
 	height: 70px;
 	background-color: #003762;
 	max-width: 1180px;
-	
 	width: 100%;
-
-	
-
 	padding: 17px;
-	
-
 	display: inline-block;
-	
-	
+}
+
+header #one{
+	font-weight:700;
 }
 
 #headerWrapper{
