@@ -22,23 +22,23 @@
     <img src="/images/loader.gif" data-ng-show="!showTable && searched && !noResultShow" alt="Loading.." />
        <table data-ng-show="showTable">
         <tr>
-            <th id="idColumn" data-ng-click="orderByMe('id'); reverseOrder()">
+            <th id="idColumn" data-ng-click="orderByMe('id')" data-ng-class="{'disableSort' : !sortReady}">
                 id
                 <span data-ng-show="orderBy == 'id' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'id' && reverse" class="fa fa-caret-down"></span>
             </th>
-            <th id ="typeColumn" data-ng-click="orderByMe('Type'); reverseOrder()">
+            <th id ="typeColumn" data-ng-click="orderByMe('Type')" data-ng-class="{'disableSort' : !sortReady}">
                 Type
                 <span data-ng-show="orderBy == 'Type' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Type' && reverse" class="fa fa-caret-down"></span>
             </th>
             
-            <th id ="municipalityColumn" data-ng-click="orderByMe('Kommuner'); reverseOrder()">
+            <th id ="municipalityColumn" data-ng-click="orderByMe('Kommuner')" data-ng-class="{'disableSort' : !sortReady}">
                 Kommuner
                 <span data-ng-show="orderBy == 'Kommuner' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Kommuner' && reverse" class="fa fa-caret-down"></span>
             </th>
-            <th id ="nameColumn" data-ng-click="orderByMe('Navn'); reverseOrder()">
+            <th id ="nameColumn" data-ng-click="orderByMe('Navn')" data-ng-class="{'disableSort' : !sortReady}">
                 Navn
                 <span data-ng-show="orderBy == 'Navn' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Navn' && reverse" class="fa fa-caret-down"></span>

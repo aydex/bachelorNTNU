@@ -101,6 +101,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     $scope.showNavigation = true;
     $scope.searched       = false;
     $scope.showTable      = false;
+    $scope.sortReady      = false;
     $scope.lastSearched   = "";
     $scope.search         = {
         nameSearch: "",
@@ -128,6 +129,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             $scope.hideNavigation = !(!$scope.more_results && $scope.page == 1);
             $scope.totalPages     = Math.ceil($scope.count / $scope.search.pageSize);
             $scope.pageDisplay    = "Side: " + $scope.page + " av " + $scope.totalPages;
+            $scope.sortReady      = true;
 
         });
     };
@@ -201,22 +203,28 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     };
 
     $scope.orderByMe = function(x) {
-        if($scope.orderBy == x){
-            if ($scope.order == "ASC") {
-                $scope.order = "DESC"
+        if($scope.sortReady) {
+            if($scope.orderBy == x){
+                if ($scope.order == "ASC") {
+                    $scope.order = "DESC"
+                } else {
+                    $scope.order = "ASC";
+                }
             } else {
                 $scope.order = "ASC";
+                $scope.reverse = false;
             }
-        } else {
-            $scope.order = "ASC";
-            $scope.reverse = false;
+            $scope.orderBy = x;
+            $scope.reverseOrder();
+            $scope.sortReady = false;
+            $scope.queryPerson();
         }
-        $scope.orderBy = x;
-        $scope.queryPerson();
     };
 
     $scope.reverseOrder = function(){
-        $scope.reverse = !$scope.reverse;
+        if($scope.sortReady) {
+            $scope.reverse = !$scope.reverse;
+        }
     }
 });
 
@@ -227,6 +235,7 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
     $scope.pageSize       = 10;
     $scope.orderBy        = null;
     $scope.order          = "ASC";
+    $scope.sortReady      = false;
     $scope.reverse        = false;
     $scope.type           = "Transaksjoner for " + $filter('nameFilter')($scope.name, $routeParams.type, true);
     $scope.showNavigation = true;
@@ -247,6 +256,7 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
             $scope.hideNavigation = !(!$scope.more_results && $scope.page == 1);
             $scope.totalPages     = Math.ceil($scope.count / $scope.pageSize);
             $scope.pageDisplay    = "Side: " + $scope.page + " av " + $scope.totalPages;
+            $scope.sortReady      = true;
         });
     };
 
@@ -288,23 +298,29 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
     };
 
     $scope.orderByMe = function(x) {
-        if($scope.orderBy == x){
-            if ($scope.order == "ASC") {
-                $scope.order = "DESC"
+        if($scope.sortReady) {
+            if($scope.orderBy == x){
+                if ($scope.order == "ASC") {
+                    $scope.order = "DESC"
+                } else {
+                    $scope.order = "ASC";
+                }
             } else {
                 $scope.order = "ASC";
+                $scope.reverse = false;
             }
-        } else {
-            $scope.order = "ASC";
-            $scope.reverse = false;
+            $scope.orderBy = x;
+            $scope.reverseOrder();
+            $scope.sortReady = false;
+            $scope.queryTransaction();
         }
-        $scope.orderBy = x;
-        $scope.queryTransaction();
     };
 
     $scope.reverseOrder = function(){
-        $scope.reverse = !$scope.reverse;
-    };
+        if($scope.sortReady) {
+            $scope.reverse = !$scope.reverse;
+        }
+    }
 
     $scope.showTransactionsProperty = function(id){
         $location.path("/transactions/property/" + id);
@@ -329,6 +345,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
     $scope.labels         = [];
     $scope.data           = [[],[]];
     $scope.isSelected     = [];
+    $scope.sortReady      = false;
     $scope.selectedIndex  = 0;
     lastDokumentnr        = "";
     var dokumentnr        = [];
@@ -358,6 +375,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             $scope.data           = [[], []];
             $scope.totalPages     = Math.ceil($scope.count / $scope.pageSize);
             $scope.pageDisplay    = "Side: " + $scope.page;
+            $scope.sortReady      = true;
 
             $scope.unalteredTransactions = result.records;
 
@@ -521,18 +539,22 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
     };
 
     $scope.orderByMe = function(x) {
-        if($scope.orderBy == x){
-            if ($scope.order == "ASC") {
-                $scope.order = "DESC"
+        if($scope.sortReady) {
+            if($scope.orderBy == x){
+                if ($scope.order == "ASC") {
+                    $scope.order = "DESC"
+                } else {
+                    $scope.order = "ASC";
+                }
             } else {
                 $scope.order = "ASC";
+                $scope.reverse = false;
             }
-        } else {
-            $scope.order = "ASC";
-            $scope.reverse = false;
+            $scope.orderBy = x;
+            $scope.reverseOrder();
+            $scope.sortReady = false;
+            $scope.queryTransaction();
         }
-        $scope.orderBy = x;
-        $scope.queryTransaction();
     };
 
     /*$scope.orderByMe = function(x) {
@@ -543,8 +565,10 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
     }*/
 
     $scope.reverseOrder = function(){
-        $scope.reverse = !$scope.reverse;
-    };
+        if($scope.sortReady) {
+            $scope.reverse = !$scope.reverse;
+        }
+    }
 
     $scope.queryTransaction();
 

@@ -243,6 +243,11 @@ table{
 	font-size: 30px;
 }
 
+.disableSort{
+	background-color:gray;
+	cursor:default;
+}
+
 table{
 	margin-left: 17%;
  	border: 1; 
