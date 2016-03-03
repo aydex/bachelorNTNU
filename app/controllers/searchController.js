@@ -14,7 +14,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     $scope.lastSearched   = "";
     $scope.search         = {
         nameSearch: "",
-        pageSize  : 10
+        pageSize  : 25
     };
 
     $scope.queryPerson  = function() {

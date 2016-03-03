@@ -2,7 +2,7 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
     $scope.message        = $routeParams.targetId;
     $scope.name           = $routeParams.name;
     $scope.page           = 1;
-    $scope.pageSize       = 10;
+    $scope.pageSize       = 25;
     $scope.orderBy        = null;
     $scope.order          = "ASC";
     $scope.sortReady      = false;
