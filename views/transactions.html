@@ -23,32 +23,32 @@
     <img src="/images/loader.gif" data-ng-show="!showTable" alt="Loading.." />
     <table data-ng-show="showTable">
         <tr>
-            <th data-ng-click="orderByMe('Eiendomsid'); reverseOrder()">
+            <th data-ng-click="orderByMe('Eiendomsid')" data-ng-class="{'disableSort' : !sortReady}">
                 Eiendomsid
                 <span data-ng-show="orderBy == 'Eiendomsid' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Eiendomsid' && reverse" class="fa fa-caret-down"></span>
             </th>
-            <th data-ng-click="orderByMe('Kommunenavn'); reverseOrder()">
+            <th data-ng-click="orderByMe('Kommunenavn')" data-ng-class="{'disableSort' : !sortReady}">
                 Kommune
                 <span data-ng-show="orderBy == 'Kommunenavn' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Kommunenavn' && reverse" class="fa fa-caret-down"></span>
             </th>
-            <th data-ng-click="orderByMe('ForstRegistrert'); reverseOrder()">
+            <th data-ng-click="orderByMe('ForstRegistrert')" data-ng-class="{'disableSort' : !sortReady}">
                 Først Registrert
                 <span data-ng-show="orderBy == 'ForstRegistrert' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'ForstRegistrert' && reverse" class="fa fa-caret-down"></span>
             </th>
-            <th data-ng-click="orderByMe('SistRegistrert'); reverseOrder()">
+            <th data-ng-click="orderByMe('SistRegistrert')" data-ng-class="{'disableSort' : !sortReady}">
                 Sist Registrert
                 <span data-ng-show="orderBy == 'SistRegistrert' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'SistRegistrert' && reverse" class="fa fa-caret-down"></span>
             </th>
-            <th data-ng-click="orderByMe('AntallTransaksjoner'); reverseOrder()">
+            <th data-ng-click="orderByMe('AntallTransaksjoner')" data-ng-class="{'disableSort' : !sortReady}">
                 Antall Transaksjoner
                 <span data-ng-show="orderBy == 'AntallTransaksjoner' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'AntallTransaksjoner' && reverse" class="fa fa-caret-down"></span>
             </th>
-            <th data-ng-click="orderByMe('Involvering'); reverseOrder()">
+            <th data-ng-click="orderByMe('Involvering')" data-ng-class="{'disableSort' : !sortReady}">
                 Involvering
                 <span data-ng-show="orderBy == 'Involvering' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Involvering' && reverse" class="fa fa-caret-down"></span>

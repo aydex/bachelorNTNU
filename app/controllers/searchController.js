@@ -1,4 +1,5 @@
 kommunalApp.controller('searchController', function($scope, $rootScope, $timeout, $location, $routeParams) {
+
     var _timeout;
     var queryPromis;
 
@@ -9,6 +10,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     $scope.showNavigation = true;
     $scope.searched       = false;
     $scope.showTable      = false;
+    $scope.sortReady      = false;
     $scope.lastSearched   = "";
     $scope.search         = {
         nameSearch: "",
@@ -36,6 +38,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             $scope.hideNavigation = !(!$scope.more_results && $scope.page == 1);
             $scope.totalPages     = Math.ceil($scope.count / $scope.search.pageSize);
             $scope.pageDisplay    = "Side: " + $scope.page + " av " + $scope.totalPages;
+            $scope.sortReady      = true;
 
         });
     };
@@ -73,7 +76,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         }
         if ($scope.search.nameSearch.length == 0 && ($scope.showTable || $scope.noResultShow || $scope.hideNavigation)){
             $scope.showTable = false;
-            $scope.noResultShow = false;
+            $scope.noResultShow = true;
             $scope.hideNavigation = false;
 
         }
@@ -109,21 +112,27 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     };
 
     $scope.orderByMe = function(x) {
-        if($scope.orderBy == x){
-            if ($scope.order == "ASC") {
-                $scope.order = "DESC"
+        if($scope.sortReady) {
+            if($scope.orderBy == x){
+                if ($scope.order == "ASC") {
+                    $scope.order = "DESC"
+                } else {
+                    $scope.order = "ASC";
+                }
             } else {
                 $scope.order = "ASC";
+                $scope.reverse = false;
             }
-        } else {
-            $scope.order = "ASC";
-            $scope.reverse = false;
+            $scope.orderBy = x;
+            $scope.reverseOrder();
+            $scope.sortReady = false;
+            $scope.queryPerson();
         }
-        $scope.orderBy = x;
-        $scope.queryPerson();
     };
 
     $scope.reverseOrder = function(){
-        $scope.reverse = !$scope.reverse;
+        if($scope.sortReady) {
+            $scope.reverse = !$scope.reverse;
+        }
     }
 });

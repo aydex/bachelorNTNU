@@ -5,6 +5,7 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
     $scope.pageSize       = 10;
     $scope.orderBy        = null;
     $scope.order          = "ASC";
+    $scope.sortReady      = false;
     $scope.reverse        = false;
     $scope.type           = "Transaksjoner for " + $filter('nameFilter')($scope.name, $routeParams.type, true);
     $scope.showNavigation = true;
@@ -25,6 +26,7 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
             $scope.hideNavigation = !(!$scope.more_results && $scope.page == 1);
             $scope.totalPages     = Math.ceil($scope.count / $scope.pageSize);
             $scope.pageDisplay    = "Side: " + $scope.page + " av " + $scope.totalPages;
+            $scope.sortReady      = true;
         });
     };
 
@@ -66,23 +68,29 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
     };
 
     $scope.orderByMe = function(x) {
-        if($scope.orderBy == x){
-            if ($scope.order == "ASC") {
-                $scope.order = "DESC"
+        if($scope.sortReady) {
+            if($scope.orderBy == x){
+                if ($scope.order == "ASC") {
+                    $scope.order = "DESC"
+                } else {
+                    $scope.order = "ASC";
+                }
             } else {
                 $scope.order = "ASC";
+                $scope.reverse = false;
             }
-        } else {
-            $scope.order = "ASC";
-            $scope.reverse = false;
+            $scope.orderBy = x;
+            $scope.reverseOrder();
+            $scope.sortReady = false;
+            $scope.queryTransaction();
         }
-        $scope.orderBy = x;
-        $scope.queryTransaction();
     };
 
     $scope.reverseOrder = function(){
-        $scope.reverse = !$scope.reverse;
-    };
+        if($scope.sortReady) {
+            $scope.reverse = !$scope.reverse;
+        }
+    }
 
     $scope.showTransactionsProperty = function(id){
         $location.path("/transactions/property/" + id);

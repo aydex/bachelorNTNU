@@ -1,4 +1,5 @@
 kommunalApp.controller('transactionPropertyController', function($scope, $rootScope, $routeParams, $http, $window, $filter, transaction) {
+
     $scope.selectedDokumentnr = null;
 
     $scope.message        = $routeParams.targetId;
@@ -12,6 +13,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
     $scope.labels         = [];
     $scope.data           = [[],[]];
     $scope.isSelected     = [];
+    $scope.sortReady      = false;
     $scope.selectedIndex  = 0;
     lastDokumentnr        = "";
     var dokumentnr        = [];
@@ -41,6 +43,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             $scope.data           = [[], []];
             $scope.totalPages     = Math.ceil($scope.count / $scope.pageSize);
             $scope.pageDisplay    = "Side: " + $scope.page;
+            $scope.sortReady      = true;
 
             $scope.unalteredTransactions = result.records;
 
@@ -60,12 +63,12 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             $scope.populateChart($scope.labels, $scope.data[0], dokumentnr);
 
         });
-    };
+    }
 
     $scope.pageSizeChange = function(){
         $scope.page = 1;
         $scope.queryTransaction();
-    };
+    }
 
     $scope.populateChart = function(labels, dataSet, dokumentnr) {
         var data = new google.visualization.DataTable();
@@ -103,7 +106,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             title: 'Eiendomshistorikk',
             tooltip: {trigger: 'both'},
             pointSize: 5,
-        };
+        }
 
 
         if(chart == undefined){
@@ -204,18 +207,22 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
     };
 
     $scope.orderByMe = function(x) {
-        if($scope.orderBy == x){
-            if ($scope.order == "ASC") {
-                $scope.order = "DESC"
+        if($scope.sortReady) {
+            if($scope.orderBy == x){
+                if ($scope.order == "ASC") {
+                    $scope.order = "DESC"
+                } else {
+                    $scope.order = "ASC";
+                }
             } else {
                 $scope.order = "ASC";
+                $scope.reverse = false;
             }
-        } else {
-            $scope.order = "ASC";
-            $scope.reverse = false;
+            $scope.orderBy = x;
+            $scope.reverseOrder();
+            $scope.sortReady = false;
+            $scope.queryTransaction();
         }
-        $scope.orderBy = x;
-        $scope.queryTransaction();
     };
 
     /*$scope.orderByMe = function(x) {
@@ -226,8 +233,10 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
      }*/
 
     $scope.reverseOrder = function(){
-        $scope.reverse = !$scope.reverse;
-    };
+        if($scope.sortReady) {
+            $scope.reverse = !$scope.reverse;
+        }
+    }
 
     $scope.queryTransaction();
 
