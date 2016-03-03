@@ -31,13 +31,17 @@ html{
 }*/
 
 header{
-	font-weight: 400;
-	height: 70px;
-	background-color: #003762;
-	/*max-width: 1180px;*/
-	width: 100%;
-	padding: 17px;
-	display: inline-block;
+    font-weight: 400;
+    height: 70px;
+    background-color: #003762;
+    /* max-width: 1180px; */
+    width: 100%;
+    padding: 17px;
+    display: inline-block;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
 
 }
 
@@ -50,9 +54,24 @@ header #two{
 
 }
 
-#headerWrapper{
+#headerContainer{
 	margin-right: auto;
-	/*max-width: 960px;*/
+    /* max-width: 960px; */
+    position: absolute;
+    left: 0px;
+    background-color: #003762;
+    width: 100%;
+    height:53px;
+}
+
+#headerWrapper{
+	margin:0 17px 0 17px;
+	/*margin-right: auto;
+    /* max-width: 960px; 
+    position: absolute;
+    background-color: #003762;
+    width: calc(100% - 35px) !important;
+    height:53px;*/
 }
 
 .menu_open, .menu_close{
@@ -91,16 +110,16 @@ header #two{
 	width: 36px;
 	height: 36px;
 	float: right;
-	margin-left: 40px;
+	/*margin-left: 40px;*/
 	float:right;
-
+	cursor:pointer;
 }
 
 #navigationHeader{
 	float:right;
 	margin-top: 5px;
 	margin-left: 10px;
-
+	margin-right: 10px;
 	
 }
 
@@ -115,6 +134,24 @@ header #two{
 	font-size: 20px;
 	padding: 10px;
 
+}
+
+.headerSearchWidth{
+	width:160px !important; 
+}
+
+#headerInput{
+	/* position: absolute; */
+    /* top: 27px; */
+    transition: width .5s;
+    background-color: white;
+    border: none;
+    margin-top: 10px;
+    /* padding-left: 10px; */
+    width: 160px;
+    float: right;
+    width: 0px;
+    margin-right: 17px;
 }
 
 /**********headerEnd**********/
@@ -143,6 +180,7 @@ header #two{
 #main{
 	width:94%;
 	margin:auto;
+	margin-top:70px;
 }
 
 .text-center{
@@ -165,7 +203,7 @@ div p{
 	margin: auto;
     margin-bottom: 20px;
     width: 60%;
-    margin-top: 50px;
+    margin-top: 150px;
 }
 
 #search{
@@ -224,7 +262,10 @@ table, th , td {
 
 th{
 	cursor:pointer;
-	background-color:darkGrey;
+	color:white;
+	background-color:#003762;
+	border-left:none;
+	border-right:none;
 }
 
 #idColumn{
@@ -252,6 +293,7 @@ td, th{
 	text-align: center;
 }
 
+
 td{
 	cursor:pointer;
 }
@@ -262,8 +304,8 @@ td:nth-child(odd){
 
 td:nth-child(even){
 	border:none;
-	border-left:1px solid gray;
-	border-right:1px solid gray;
+	/*border-left:1px solid gray;
+	border-right:1px solid gray;*/
 }
 
 .name{
