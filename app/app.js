@@ -73,7 +73,7 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
     };
 
     $rootScope.searchPerson = function(form) {
-        $location.path("/search/" + $rootScope.headerInput + "/1/10");
+        $location.path("/search/" + $rootScope.headerInput + "/1/25");
         $rootScope.headerInput = "";
         $rootScope.headerSearchOpen = false;
     }
