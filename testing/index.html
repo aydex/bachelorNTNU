@@ -6,10 +6,51 @@
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="/css/main.css">
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+        <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.14.2/mapbox-gl.js'></script>
+        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.14.2/mapbox-gl.css' rel='stylesheet' />
+
+        <style>
+            body { margin:0; padding:0; }
+            #map { position:absolute; top:10%; bottom:0; width:100%; }
+        </style>
+
     </head>
 <body>
 
 <p>Click the table headers to change the sorting order:</p>
+
+<div id='map'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoidG9yYWhvIiwiYSI6ImNpa3ppZGRndzAwNXl4MW0wOWJ6YXk4MnkifQ.446Mkrk-ish_HQctcES5Dg';
+
+var bounds = [
+    [-12.833854, 50.781999], // Southwest coordinates
+    [48.651411, 74.065390]  // Northeast coordinates
+];
+
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/toraho/cikzmx6qg0041c9m3wohprqui', //stylesheet location
+    center: [18.006701, 65.518472], // starting position
+    zoom: 4, // starting zoom
+    maxBounds: bounds // Sets bounds as max
+});
+
+//disable rotation
+map.dragRotate.disable();
+map.touchZoomRotate.disableRotation();
+
+/*
+#[zoom>=4][zoom<=8] {
+    map.scrollZoom.disable();
+  }
+*/
+// disable map zoom when using scroll
+//map.scrollZoom.disable(zoom<=4&&zoom>=);
+
+</script>
+
 
 <div data-ng-app="myApp" data-ng-controller="namesCtrl">
 

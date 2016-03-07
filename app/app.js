@@ -11,6 +11,7 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             controllers  : 'mainController'
         })*/
 
+
         .when('/search', {
             templateUrl : '/views/search.html',
             controller  : 'searchController',
@@ -21,7 +22,7 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             templateUrl : '/views/search.html',
             controller  : 'searchController'
         })
-        
+
 
         .when('/transactions/deltager/:name/:targetId/:type', {
             templateUrl : '/views/transactions.html',
@@ -37,25 +38,31 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             redirectTo: '/search'
         });
 
-        
+
     // use the HTML5 History API
     $locationProvider.html5Mode(true);
 });
 
 kommunalApp.run(function($rootScope, $http, $window, $location) {
 
+    $rootScope.doQuery = function(type, id, page, pageSize) {
+        return $http.get("./api/test.php?" + type + "=" + id + "&page=" +
+            page + "&pageSize=" + pageSize)
+            .then(function (response) {
+                return {records: response.data.records, count: response.data.count};
+            });
+    }
+
     $rootScope.doQuery = function(type, id, page, pageSize, order, orderBy) {
         return $http.get("./api/ask.php?" + type + "=" + id + "&page=" +
-                page + "&pageSize=" + pageSize + "&order=" + order + "&orderBy=" + orderBy)
-            .then(function (response) {
+            page + "&pageSize=" + pageSize + "&order=" + order + "&orderBy=" + orderBy)
+        .then(function (response) {
                 return {records: response.data.records, count: response.data.count,
                     combined: response.data.combined};
             });
     };
 
-    $rootScope.open             = false;
-    $rootScope.headerSearchOpen = false;
-    $rootScope.headerInput      = "";
+    $rootScope.open = true;
 
     $rootScope.clickMenu = function(){
         $rootScope.open = !$rootScope.open;
@@ -68,14 +75,14 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
     };
 
     $rootScope.openSearch = function(){
-        $rootScope.headerSearchOpen = !$rootScope.headerSearchOpen;
-        document.getElementById("headerInput").focus();
-    };
+                $rootScope.headerSearchOpen = !$rootScope.headerSearchOpen;
+                document.getElementById("headerInput").focus();
+            };
 
-    $rootScope.searchPerson = function(form) {
-        $location.path("/search/" + $rootScope.headerInput + "/1/25");
-        $rootScope.headerInput = "";
-        $rootScope.headerSearchOpen = false;
-    }
-   
+        $rootScope.searchPerson = function(form) {
+            $location.path("/search/" + $rootScope.headerInput + "/1/25");
+            $rootScope.headerInput = "";
+            $rootScope.headerSearchOpen = false;
+        }
+
 });

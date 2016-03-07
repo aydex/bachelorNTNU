@@ -3,6 +3,8 @@
     <head>
         <title>Kommunal Rapport</title>
         <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css" />
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"/>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -18,11 +20,15 @@
         <script src="/app/controllers/searchController.js"></script>
         <script src="/app/controllers/transactionsPersonController.js"></script>
         <script src="/app/controllers/transactionsPropertyController.js"></script>
+        <script src="/app/controllers/mapController.js"></script>
+
         <!-- Directives -->
         <script src="/app/directives/kommunevaapen.js"></script>
         <script src="/app/directives/searchTable.js"></script>
         <script src="/app/directives/transactionPropertyTable.js"></script>
         <script src="/app/directives/transactionTable.js"></script>
+        <script src="/app/directives/svgMap.js"></script>
+
         <!-- Services -->
         <script src="/app/services/transaction.js"></script>
         <!-- Filters -->
@@ -30,6 +36,8 @@
         <script src="/app/filters/deltagerTypeFilter.js"></script>
         <script src="/app/filters/nameFilter.js"></script>
         <script src="/app/filters/priceFilter.js"></script>
+
+
 
         <base href="/">
     </head>
@@ -47,12 +55,14 @@
             <form id="headerForm" data-ng-submit="searchPerson(headerForm)">
                 <input id="headerInput" type="text" data-ng-class="{'headerSearchWidth' : headerSearchOpen}" data-ng-model="headerInput" autocomplete="off">
             </form>
+
             <div id="navigationHeader">
                 <a href="" class="login">Logg Inn</a>
                 <a href="" id="separator">|</a>
                 <a href="" class="login">Abonner</a>
             </div>
-        </div>      
+
+        </div>
     </header>
 
     <div id="main">
@@ -60,7 +70,5 @@
 
         </div>
 
-    </div>
-    
 </body>
 </html>

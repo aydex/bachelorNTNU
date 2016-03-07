@@ -4,7 +4,6 @@
 
 html{
 	text-align: center;
-	
 }
 
 body{
@@ -67,7 +66,7 @@ header #two{
 #headerWrapper{
 	margin:0 17px 0 17px;
 	/*margin-right: auto;
-    /* max-width: 960px; 
+    /* max-width: 960px;
     position: absolute;
     background-color: #003762;
     width: calc(100% - 35px) !important;
@@ -110,6 +109,7 @@ header #two{
 	width: 36px;
 	height: 36px;
 	float: right;
+
 	/*margin-left: 40px;*/
 	float:right;
 	cursor:pointer;
@@ -120,7 +120,6 @@ header #two{
 	margin-top: 5px;
 	margin-left: 10px;
 	margin-right: 10px;
-	
 }
 
 .login{
@@ -137,7 +136,7 @@ header #two{
 }
 
 .headerSearchWidth{
-	width:160px !important; 
+	width:160px !important;
 }
 
 #headerInput{
@@ -164,6 +163,7 @@ header #two{
 
 #backButton {
 	position: absolute;
+
 }
 
 #pageElements {
@@ -250,7 +250,7 @@ table{
 
 table{
 	margin-left: 17%;
- 	border: 1; 
+ 	border: 1;
  	width: 60%;
  	margin:auto;
 }
@@ -378,6 +378,7 @@ td:nth-child(even){
 	text-align: center;
 }
 
+
 .leftalign{
 	text-align: left;
 }
@@ -396,4 +397,40 @@ td:nth-child(even){
 	margin:auto;
 }
 
+div .container{
+	  width: 42%;
+	  height: auto;
+}
 
+
+svg .land {
+    stroke-width: 0;
+    stroke: #fff;
+    position: absolute;
+    -webkit-transition: stroke 0.5s, stroke-width 0.5s;
+    -o-transition: stroke 0.5s, stroke-width 0.5s;
+    transition: stroke 0.5s, stroke-width 0.5s;
+}
+
+
+
+svg .land:hover, .land.active {
+
+    -webkit-transition: stroke 0.5s, stroke-width 0.5s;
+    -o-transition: stroke 0.5s, stroke-width 0.5s;
+    transition: stroke 0.5s, stroke-width 0.5s;
+    cursor: pointer;
+    stroke-width: 1;
+    stroke: #000;
+    opacity: 1;
+    position:relative;
+
+    /*
+    transform: scale(1.2);
+    transform-origin: 30% 70%;
+    z-index: -30;/*
+    top:0px;
+    left:0px;
+    /*transform: translate(-250 -270);*/
+
+}
