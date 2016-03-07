@@ -1,6 +1,6 @@
 kommunalApp.controller('transactionPersonController', function($scope, $rootScope, $routeParams, $location, $filter) {
     $scope.message        = $routeParams.targetId;
-    $scope.name           = $routeParams.name;
+    $scope.name           = decodeURIComponent($routeParams.name);
     $scope.page           = 1;
     $scope.pageSize       = 25;
     $scope.orderBy        = null;

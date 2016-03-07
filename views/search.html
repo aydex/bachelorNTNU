@@ -32,7 +32,7 @@
                 <span data-ng-show="orderBy == 'Type' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Type' && reverse" class="fa fa-caret-down"></span>
             </th>
-            
+
             <th id ="municipalityColumn" data-ng-click="orderByMe('Kommuner')" data-ng-class="{'disableSort' : !sortReady}">
                 Kommuner
                 <span data-ng-show="orderBy == 'Kommuner' && !reverse" class="fa fa-caret-up"></span>
@@ -45,10 +45,15 @@
             </th>
         </tr>
         <tr search-table participant="participant" data-ng-repeat="participant in names | filter:searchName" data-ng-click="showTransactionsPerson(participant.id, participant.Navn, participant.Type)">
-     
+
         </tr>
     </table>
 </div>
+</div>
+  <div ng-controller="mapController">
+    <div class="container">
+      <div svg-map></div>
+    </div>
+  </div>
 
 <p id="pageNumber" data-ng-bind="pageDisplay" data-ng-show="showTable"></p>
-
