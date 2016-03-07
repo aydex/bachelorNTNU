@@ -129,6 +129,10 @@ header #two{
 
 }
 
+a:hover{
+	color: white;
+}
+
 #separator{
 	color: #336699;
 	font-size: 20px;
@@ -152,6 +156,7 @@ header #two{
     float: right;
     width: 0px;
     margin-right: 17px;
+    padding: 0; 
 }
 
 /**********headerEnd**********/
