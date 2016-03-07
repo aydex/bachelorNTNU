@@ -62,11 +62,11 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
             });
     };
 
-    $rootScope.open = true;
+    /*$rootScope.open = true;
 
     $rootScope.clickMenu = function(){
         $rootScope.open = !$rootScope.open;
-    };
+    };*/
 
 
     $rootScope.back = function(){
@@ -74,7 +74,7 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
         //$location.path("/search/" + $scope.name + "/" + $scope.page + "/" + $scope.pageSize);
     };
 
-    $rootScope.openSearch = function(){
+    /*$rootScope.openSearch = function(){
                 $rootScope.headerSearchOpen = !$rootScope.headerSearchOpen;
                 document.getElementById("headerInput").focus();
             };
@@ -84,5 +84,5 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
             $rootScope.headerInput = "";
             $rootScope.headerSearchOpen = false;
         }
-
+*/
 });

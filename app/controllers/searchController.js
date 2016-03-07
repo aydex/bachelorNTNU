@@ -66,7 +66,9 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
 
                 //$scope.queryPerson();
                 //$location.search(name, 123);
-                $location.path("/search/" + $scope.search.nameSearch + "/" + $scope.page + "/" + $scope.search.pageSize);
+                var name_encoded = encodeURIComponent($scope.search.nameSearch);
+
+                $location.path("/search/" + name_encoded + "/" + $scope.page + "/" + $scope.search.pageSize);
 
 
 
@@ -91,7 +93,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         $scope.searched          = true;
 
         document.getElementById("search").focus();
-        $scope.search.nameSearch = $routeParams.searchName;
+        $scope.search.nameSearch = decodeURIComponent($routeParams.searchName);
         $scope.page              = parseInt($routeParams.page);
         $scope.search.pageSize   = parseInt($routeParams.pageSize);
         $scope.queryPerson();
@@ -107,6 +109,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     };
 
     $scope.showTransactionsPerson = function(id, name, type){
+        name = encodeURIComponent(name);
         $location.path("/transactions/deltager/" + name + "/" + id + "/" +type);
         //$routeParams ==> {chapterId:1, sectionId:2, search:'moby'}
     };
