@@ -45,21 +45,13 @@
 
     <header>
         <div id="headerWrapper">
-            <!--<a href="/" id="tempLogo"> <span id="one">Kommunal</span><span id="two">Rapport</span></a>-->
-            <!--<img src="images/menu_circle.svg" id="menu_circle">-->
-
-            <!--<div data-ng-class="{'menu_open' : !open, 'menu_close' : open }" data-ng-click="clickMenu()" class="backgroundTransform"></div>-->
 
             <a href="/"><img src="images/logo.svg" id="logo"></a>
-            <!--<img src="images/search_circle.svg" id="search_circle" data-ng-click="openSearch()">-->
-            <form id="headerForm" data-ng-submit="searchPerson(headerForm)">
-                <input id="headerInput" type="text" data-ng-class="{'headerSearchWidth' : headerSearchOpen}" data-ng-model="headerInput" autocomplete="off">
-            </form>
 
             <div id="navigationHeader">
-                <a href="" class="login">Logg Inn</a>
-                <span id="separator">|</span>
-                <a href="" class="login">Abonner</a>
+                <a href="http://kommunal-rapport.no/user/ramid_login" class="login">Logg Inn</a>
+                <a href="" id="separator">|</a>
+                <a href="http://logginn.kommunal-rapport.no/?origin_uri=/" class="login">Abonner</a>
             </div>
 
         </div>
