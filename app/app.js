@@ -60,19 +60,29 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
                 return {records: response.data.records, count: response.data.count,
                     combined: response.data.combined};
             });
-    }
+    };
 
     $rootScope.open = true;
 
     $rootScope.clickMenu = function(){
         $rootScope.open = !$rootScope.open;
-    }
+    };
 
 
     $rootScope.back = function(){
         $window.history.back();
         //$location.path("/search/" + $scope.name + "/" + $scope.page + "/" + $scope.pageSize);
-    }
+    };
 
+    $rootScope.openSearch = function(){
+                $rootScope.headerSearchOpen = !$rootScope.headerSearchOpen;
+                document.getElementById("headerInput").focus();
+            };
+
+        $rootScope.searchPerson = function(form) {
+            $location.path("/search/" + $rootScope.headerInput + "/1/25");
+            $rootScope.headerInput = "";
+            $rootScope.headerSearchOpen = false;
+        }
 
 });
