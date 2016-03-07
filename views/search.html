@@ -1,52 +1,54 @@
 <!--søkeicon i søkefeltet-->
-<a href="/">Forside</a>
+<a id ="backButton" href="/" data-ng-show="showTable">Forside</a>
 <div id="searchElements">
     <form id="searchForm" data-ng-submit="searchForm(searchForm)">
-        <p>Trykk på feltene for å endre rekkefølge:</p>
         <i class="material-icons" id="searchIcon">search</i>
         <input type="text" data-ng-model="search.nameSearch" data-ng-change="searchDelay()" placeholder="Navn, kommune, bedrift å søke på.." id="search" autocomplete="off">
     </form>
 </div>
 
-<div id="pageElements">
-    Sidestørrelse: <input type="radio" data-ng-model="search.pageSize" value="10" data-ng-change="searchDelay()" id="10" data-ng-init="search.pageSize = 10">10
-    <input type="radio" data-ng-model="search.pageSize" data-ng-change="searchDelay()" value="50" id="50">50
-    <input type="radio" data-ng-model="search.pageSize" data-ng-change="searchDelay()" value="100" id="100">100
+<div id="pageElements" data-ng-show="showTable">
+    Sidestørrelse: <input type="radio" checked data-ng-model="search.pageSize" value="25" data-ng-change="pageSizeChange()" id="25">25
+    <input type="radio" data-ng-model="search.pageSize" data-ng-change="pageSizeChange()" value="75" id="75">75
+    <input type="radio" data-ng-model="search.pageSize" data-ng-change="pageSizeChange()" value="100" id="100">100
+    <br>
+    <span>Trykk på feltene for å endre rekkefølge:</span>
 </div>
 
-
 <div id="tableContainer">
-    {{ page }}
     <span data-ng-class="{'navButtonInactive' : page == 1 || !showNavigation, 'navButtonActive' : page > 1 && showNavigation}" class="fa fa-chevron-left" data-ng-show="hideNavigation" data-ng-click="navigate(-1)" id="prevPage"></span>
     <span data-ng-class="{'navButtonInactive' : !more_results || !showNavigation, 'navButtonActive' : more_results && showNavigation }" class="fa fa-chevron-right" data-ng-show="hideNavigation" data-ng-click="navigate(1)" id="nextPage"></span>
-    <table data-ng-show="showTable">
+    <p id="noResultDescription" data-ng-show="noResultShow">Ingen resultater...</p>
+    <img src="/images/loader.gif" data-ng-show="!showTable && searched && !noResultShow" alt="Loading.." />
+       <table data-ng-show="showTable">
         <tr>
-            <th data-ng-click="orderByMe('id'); reverseOrder()">
+            <th id="idColumn" data-ng-click="orderByMe('id')" data-ng-class="{'disableSort' : !sortReady}">
                 id
                 <span data-ng-show="orderBy == 'id' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'id' && reverse" class="fa fa-caret-down"></span>
             </th>
-            <th data-ng-click="orderByMe('Type'); reverseOrder()">
+            <th id ="typeColumn" data-ng-click="orderByMe('Type')" data-ng-class="{'disableSort' : !sortReady}">
                 Type
                 <span data-ng-show="orderBy == 'Type' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Type' && reverse" class="fa fa-caret-down"></span>
             </th>
-            <th data-ng-click="orderByMe('Navn'); reverseOrder()">
+            
+            <th id ="municipalityColumn" data-ng-click="orderByMe('Kommuner')" data-ng-class="{'disableSort' : !sortReady}">
+                Kommuner
+                <span data-ng-show="orderBy == 'Kommuner' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'Kommuner' && reverse" class="fa fa-caret-down"></span>
+            </th>
+            <th id ="nameColumn" data-ng-click="orderByMe('Navn')" data-ng-class="{'disableSort' : !sortReady}">
                 Navn
                 <span data-ng-show="orderBy == 'Navn' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Navn' && reverse" class="fa fa-caret-down"></span>
             </th>
         </tr>
-        <tr data-ng-repeat="x in names | orderBy:orderBy:reverse | filter:searchName" data-ng-click="showTransactionsPerson(x.id, x.Navn)">
-            <!--<a data-ng-href="detailed/{{ x.Personid }}">-->
-                <td>{{x.id}}</td>
-                <td>{{x.Type}}</td>
-                <td class="name">{{x.Navn}}</td>
-            <!--</a>-->
+        <tr search-table participant="participant" data-ng-repeat="participant in names | filter:searchName" data-ng-click="showTransactionsPerson(participant.id, participant.Navn, participant.Type)">
+     
         </tr>
     </table>
 </div>
 
-<p id="pageNumber">
-    Side: {{ page }} 
-</p>
+<p id="pageNumber" data-ng-bind="pageDisplay" data-ng-show="showTable"></p>
+

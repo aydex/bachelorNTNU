@@ -6,26 +6,28 @@ use PDO;
 
 class Query
 {
-	private $db;
+    private $db;
+    private $selectFromOrder = array('DESC', 'ASC');
 
-	public function __construct(PDO $db)
+    public function __construct(PDO $db)
     {
         $this->db = $db;
     }
 
-    public function selectPersonPaged($name, $page=1, $pageSize=10) {
-        //$query = "SELECT * FROM kommunalrapport.Deltagere WHERE Navn LIKE :name LIMIT :offset, :pageSize";
-        $query = "SELECT SQL_CALC_FOUND_ROWS Deltagerid AS id,
-                    CASE
-                        WHEN Deltagertype = 'F'
-                            THEN 'Privatperson'
-                        WHEN Deltagertype = 'S'
-                            THEN 'Selskap'
-                        WHEN Deltagertype = 'L'
-                            THEN 'Løpe'
-                        END AS Type, Navn AS Navn FROM kommunalrapport.Deltagere
+    public function selectPersonPaged($name, $page=1, $pageSize=10, $order="ASC", $orderBy) {
+
+        $selectFromArray = array('id', 'Type', 'Navn', 'Kommuner', 'null');
+        $keyOrderBy      = array_search($orderBy, $selectFromArray);
+        $keyOrder        = array_search($order, $this->selectFromOrder);
+
+        $query = "SELECT SQL_CALC_FOUND_ROWS Deltagerid AS id, Deltagertype AS Type, Navn AS Navn, GROUP_CONCAT(CONCAT_WS(':', Kommunenr, Kommunenavn) SEPARATOR ',') AS Kommuner 
+                    FROM  kommunalrapport.Deltagere
+                    NATURAL JOIN Deltagerhistorie 
+                    NATURAL JOIN  Kommuner 
                     WHERE Navn LIKE :name
-                    LIMIT :offset, :pageSize;";
+                    GROUP BY Deltagerid
+                    ORDER BY " . $selectFromArray[$keyOrderBy] . " " . $this->selectFromOrder[$keyOrder] . "
+                    LIMIT :offset, :pageSize";
 
         $offset = ($page - 1)*$pageSize;
         $name = "%$name%";
@@ -43,36 +45,24 @@ class Query
         return json_encode(array("records" => $result, "count" => $count));
     }
 
-    public function selectTransaction($id, $page=1, $pageSize=10, $deltager) {
+    public function selectTransaction($id, $page=1, $pageSize=10, $order, $orderBy) {
+        $selectFromArray = array('Kommunenavn', 'Eiendomsid', 'ForstRegistrert', 'SistRegistrert', 'AntallTransaksjoner', 'Involvering', 'null');
+        $keyOrderBy      = array_search($orderBy, $selectFromArray);
+        $keyOrder        = array_search($order, $this->selectFromOrder);
 
-        if($deltager) {
-            $query_inner     = "SELECT SQL_CALC_FOUND_ROWS Kommunenavn, Eiendomsid, ForstRegistrert, 
-                                SistRegistrert, AntallTransaksjoner, 
-                                GROUP_CONCAT(CONCAT_WS(':', Dokumentdato, PartType) SEPARATOR ', ') AS Involvering 
-                                FROM Omsetninger 
-                                NATURAL JOIN Dokumenter 
-                                NATURAL JOIN Eiendomshistorie 
-                                NATURAL JOIN Eiendommer 
-                                NATURAL JOIN Kommuner 
-                                WHERE Deltagerid= :query_target
-                                GROUP BY Eiendomsid";
+        $query = "SELECT SQL_CALC_FOUND_ROWS Kommunenavn, Kommunenr, Eiendomsid, ForstRegistrert,
+                  SistRegistrert, AntallTransaksjoner,
+                  GROUP_CONCAT(CONCAT_WS(':', Dokumentdato, PartType) SEPARATOR ', ') AS Involvering
+                  FROM Omsetninger
+                  NATURAL JOIN Dokumenter
+                  NATURAL JOIN Eiendomshistorie
+                  NATURAL JOIN Eiendommer
+                  NATURAL JOIN Kommuner
+                  WHERE Deltagerid= :query_target
+                  GROUP BY Eiendomsid
+                  ORDER BY " . $selectFromArray[$keyOrderBy] . " " . $this->selectFromOrder[$keyOrder] . "
+                  LIMIT :offset, :pageSize";
 
-            $query_extention = "O.Deltagerid";
-        } else if(!$deltager) {
-            $query_inner     = "SELECT SQL_CALC_FOUND_ROWS Dokumentdato, OmsetningsTypenavn, Salgssum, Dokumentnr, 
-                                GROUP_CONCAT(CONCAT_WS(':', PartType, Navn, Deltagerid, AndelTeller, AndelNevner)SEPARATOR ',') AS Deltagere 
-                                FROM Omsetninger 
-                                NATURAL JOIN Dokumenter 
-                                NATURAL JOIN Deltagere 
-                                NATURAL JOIN Omsetningstyper 
-                                WHERE Eiendomsid=:query_target 
-                                GROUP BY InterntDokumentnr";
-
-            $query_extention = "O.Eiendomsid";
-        }
-
-        $query = "  $query_inner
-                    LIMIT :offset, :pageSize";
 
         $offset = ($page - 1)*$pageSize;
 
@@ -89,15 +79,58 @@ class Query
         return json_encode(array("records" => $results, "count" => $count));
     }
 
+    public function selectTransactionProperty($id, $page=1, $pageSize=10, $order, $orderBy) {
+
+        $selectFromArray = array('Dokumentdato', 'OmsetningsTypenavn', 'Salgssum', 'Dokumentnr', 'Deltagere', 'null');
+        $keyOrderBy      = array_search($orderBy, $selectFromArray);
+        $keyOrder        = array_search($order, $this->selectFromOrder);
+
+
+        $query_1 = "SELECT SQL_CALC_FOUND_ROWS Dokumentdato, OmsetningsTypenavn, Salgssum, Dokumentnr,
+                        GROUP_CONCAT(CONCAT_WS(':', PartType, Navn,Kommune,  Deltagerid, Deltagertype, AndelTeller, AndelNevner)SEPARATOR ',') AS Deltagere
+                        FROM Omsetninger
+                        NATURAL JOIN Dokumenter
+                        NATURAL JOIN Deltagere
+                        NATURAL JOIN Omsetningstyper
+                        WHERE Eiendomsid=:query_target
+                        GROUP BY InterntDokumentnr
+                        ORDER BY " . $selectFromArray[$keyOrderBy] . " " . $this->selectFromOrder[$keyOrder];
+
+        $query_2 = "SELECT Sammendrag 
+                    FROM Eiendomshistorie 
+                    WHERE Eiendomsid= :query_target"; 
+
+
+        $offset = ($page - 1)*$pageSize;
+
+        $stmt = $this->db->prepare($query_1);
+        $stmt->bindValue(':query_target', $id, PDO::PARAM_INT);
+        //$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        //$stmt->bindValue(':pageSize', $pageSize, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $count = $this->countRows();
+
+        $stmt = $this->db->prepare($query_2);
+        $stmt->bindValue(':query_target', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $results_combined = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return json_encode(array("records" => $results, "count" => $count, "combined" => $results_combined));
+    }
+
     public function selectPerson($name)
     {
         $toAdd = "";
-		$params = array("%$name%");
+        $params = array("%$name%");
         if($name != "") {
             $toAdd = " WHERE Navn LIKE ?";
         }
 
-    	$query = "SELECT * FROM kommunalrapport.Personer";
+        $query = "SELECT * FROM kommunalrapport.Personer";
 
         $result = $this->runAndPrepare($query, $toAdd, $params);
 
@@ -105,17 +138,17 @@ class Query
     }
 
     private function runAndPrepare($query, $toAdd, $params){
-    	$sql = $this->db->prepare($query . $toAdd . " LIMIT 5555");
-    	if($toAdd != ""){
-    		$sql->execute($params);
-    	}else{
-    		$sql->execute();
-    	}
-    	return $sql;
+        $sql = $this->db->prepare($query . $toAdd . " LIMIT 5555");
+        if($toAdd != ""){
+            $sql->execute($params);
+        }else{
+            $sql->execute();
+        }
+        return $sql;
     }
 
     private function returnRows($sql){
-    	return $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function countRows() {

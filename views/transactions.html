@@ -1,64 +1,62 @@
-<a href="/">Forside</a>
-Transactions for id: {{ message }}, 
-<h3 id="transaksjonsType">{{ type }}</h3>
+<div id="navbar">
+    <a href="/">Forside</a><br>
+    <a href="#" data-ng-click="back()">Tilbake</a>
+    Transactions for id: {{ message}}, 
+    <h3 id="transaksjonsType" data-ng-bind="type"></h3>
+
+
+</div>
 
 <div id="pageElements">
-    Sidestørrelse: <input type="radio" data-ng-model="pageSize" value="10" data-ng-change="queryTransaction()()" id="10" data-ng-init="pageSize = 10">10
-    <input type="radio" data-ng-model="pageSize" data-ng-change="queryTransaction()()" value="50" id="50">50
-    <input type="radio" data-ng-model="pageSize" data-ng-change="queryTransaction()()" value="100" id="100">100
+    <div id="pageSizeButtons"data-ng-show="showTable">
+    Sidestørrelse: <input type="radio" data-ng-model="pageSize" value="25" data-ng-change="pageSizeChange()" id="25" data-ng-init="pageSize = 25">25
+    <input type="radio" data-ng-model="pageSize" data-ng-change="pageSizeChange()" value="75" id="75">75
+    <input type="radio" data-ng-model="pageSize" data-ng-change="pageSizeChange()" value="100" id="100">100
+    </div>
+    <br>
+    <span>Trykk på feltene for å endre rekkefølge:</span>
 </div>
 
 <div id="tableContainer">
-    {{ page }}
     <span data-ng-class="{'navButtonInactive' : page == 1 || !showNavigation, 'navButtonActive' : page > 1 && showNavigation}" class="fa fa-chevron-left" data-ng-show="hideNavigation" data-ng-click="navigate(-1)" id="prevPage"></span>
     <span data-ng-class="{'navButtonInactive' : !more_results || !showNavigation, 'navButtonActive' : more_results && showNavigation }" class="fa fa-chevron-right" data-ng-show="hideNavigation" data-ng-click="navigate(1)" id="nextPage"></span>
+    <img src="/images/loader.gif" data-ng-show="!showTable" alt="Loading.." />
     <table data-ng-show="showTable">
         <tr>
-            <th data-ng-click="orderByMe('Eiendomsid'); reverseOrder()">
+            <th data-ng-click="orderByMe('Eiendomsid')" data-ng-class="{'disableSort' : !sortReady}">
                 Eiendomsid
                 <span data-ng-show="orderBy == 'Eiendomsid' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Eiendomsid' && reverse" class="fa fa-caret-down"></span>
             </th>
-            <th data-ng-click="orderByMe('Kommunenavn'); reverseOrder()">
-                Kommunenavn
+            <th data-ng-click="orderByMe('Kommunenavn')" data-ng-class="{'disableSort' : !sortReady}">
+                Kommune
                 <span data-ng-show="orderBy == 'Kommunenavn' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Kommunenavn' && reverse" class="fa fa-caret-down"></span>
             </th>
-            <th data-ng-click="orderByMe('ForstRegistrert'); reverseOrder()">
+            <th data-ng-click="orderByMe('ForstRegistrert')" data-ng-class="{'disableSort' : !sortReady}">
                 Først Registrert
                 <span data-ng-show="orderBy == 'ForstRegistrert' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'ForstRegistrert' && reverse" class="fa fa-caret-down"></span>
             </th>
-            <th data-ng-click="orderByMe('SistRegistrert'); reverseOrder()">
+            <th data-ng-click="orderByMe('SistRegistrert')" data-ng-class="{'disableSort' : !sortReady}">
                 Sist Registrert
                 <span data-ng-show="orderBy == 'SistRegistrert' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'SistRegistrert' && reverse" class="fa fa-caret-down"></span>
             </th>
-            <th data-ng-click="orderByMe('AntallTransaksjoner'); reverseOrder()">
+            <th data-ng-click="orderByMe('AntallTransaksjoner')" data-ng-class="{'disableSort' : !sortReady}">
                 Antall Transaksjoner
                 <span data-ng-show="orderBy == 'AntallTransaksjoner' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'AntallTransaksjoner' && reverse" class="fa fa-caret-down"></span>
             </th>
-            <th data-ng-click="orderByMe('Involvering'); reverseOrder()">
+            <th data-ng-click="orderByMe('Involvering')" data-ng-class="{'disableSort' : !sortReady}">
                 Involvering
                 <span data-ng-show="orderBy == 'Involvering' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Involvering' && reverse" class="fa fa-caret-down"></span>
             </th>
         </tr>
-        <tr data-ng-repeat="x in transactions | orderBy:orderBy:reverse" data-ng-click="showTransactionsProperty(x.Eiendomsid)">
-            <!--<a data-ng-href="detailed/{{ x.Personid }}">-->
-                <td>{{x.Eiendomsid}}</td>
-                <td>{{x.Kommunenavn}}</td>
-                <td>{{x.ForstRegistrert}}</td>
-                <td>{{x.SistRegistrert}}</td>
-                <td>{{x.AntallTransaksjoner}}</td>
-                <td>{{x.Involvering}}</td>
-
-            <!--</a>-->
+        <tr transaction-table transaction="transaction" data-ng-repeat="transaction in transactions" data-ng-click="showTransactionsProperty(transaction.Eiendomsid)">
         </tr>
     </table>
 </div>
 
-<p id="pageNumber">
-    Side: {{ page }} 
-</p>
+<p id="pageNumber" data-ng-bind="pageDisplay"></p>
