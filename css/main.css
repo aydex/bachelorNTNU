@@ -84,10 +84,6 @@ header{
 
 }
 
-a:hover{
-	color: white;
-}
-
 #separator{
 	color: #336699;
 	font-size: 20px;
@@ -134,9 +130,10 @@ div p{
 	margin-left: 3%;
 }
 
-a:hover, a:active, a:visited{
+#navigationHeader a:hover, #navigationHeader a:active, #navigationHeader a:visited{
 	color:white;
 }
+
 
 /**************************************************
 ***************************************************
@@ -285,7 +282,7 @@ td:nth-child(even){
 
 .transactionurl:hover{
 	color: #2d2d2d;
-	text-decoration: none;
+	/*text-decoration: none;*/
 }
 
 .selected-row, tr:hover{
