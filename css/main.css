@@ -190,6 +190,11 @@ table{
 	margin-top: 30px;
 }
 
+#tableContainer{
+	max-height: 400px;
+	overflow: auto;
+}
+
 #noResultDescription {
 	margin-left: 17%;
 	margin-top: 30px;
