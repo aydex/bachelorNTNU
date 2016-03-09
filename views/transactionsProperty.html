@@ -1,10 +1,6 @@
+<button type="button" class="btn btn-default backbutton" data-ng-click="back()">&lt; Tilbake</button>
 <div id="navbar">
-    <a href="/">Forside</a><br>
-    <a href="#" data-ng-click="back()">Tilbake</a>
-    Transactions for id: {{ message}}, 
     <h3 id="transaksjonsType" data-ng-bind="type"></h3>
-
-
 </div>
 
 <div id="chartContainer">
@@ -13,11 +9,6 @@
 </div>
 
 <div id="pageElements">
-    <!--<div id="pageSizeButtons" data-ng-show="showTable">
-    Sidestørrelse: <input type="radio" data-ng-model="pageSize" value="10" data-ng-change="pageSizeChange()" id="10" data-ng-init="pageSize = 10">10
-    <input type="radio" data-ng-model="pageSize" data-ng-change="pageSizeChange()" value="50" id="50">50
-    <input type="radio" data-ng-model="pageSize" data-ng-change="pageSizeChange()" value="100" id="100">100
-    </div>-->
     <br>
     <span>Trykk på feltene for å endre rekkefølge:</span>
 </div>
@@ -25,36 +16,37 @@
 <div id="tableContainer">
     <span data-ng-class="{'navButtonInactive' : page == 1 || !showNavigation, 'navButtonActive' : page > 1 && showNavigation}" class="fa fa-chevron-left" data-ng-show="hideNavigation" data-ng-click="navigate(-1)" id="prevPage"></span>
     <span data-ng-class="{'navButtonInactive' : !more_results || !showNavigation, 'navButtonActive' : more_results && showNavigation }" class="fa fa-chevron-right" data-ng-show="hideNavigation" data-ng-click="navigate(1)" id="nextPage"></span>
+    <img src="/images/loader.gif" data-ng-show="!showTable" alt="Loading.." />
     <table data-ng-show="showTable" class="propertyTable">
         <tr>
-            <th data-ng-click="orderByMe('Dokumentdato'); reverseOrder()">
+            <th data-ng-click="orderByMe('Dokumentdato')" data-ng-class="{'disableSort' : !sortReady}">
                 Dokumentdato
                 <span data-ng-show="orderBy == 'Dokumentdato' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Dokumentdato' && reverse" class="fa fa-caret-down"></span>
             </th>
-            <th data-ng-click="orderByMe('OmsetningsTypenavn'); reverseOrder()">
+            <th data-ng-click="orderByMe('OmsetningsTypenavn')" data-ng-class="{'disableSort' : !sortReady}">
                 Omsetningstype
                 <span data-ng-show="orderBy == 'OmsetningsTypenavn' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'OmsetningsTypenavn' && reverse" class="fa fa-caret-down"></span>
             </th>
-            <th data-ng-click="orderByMe('Salgssum'); reverseOrder()">
+            <th data-ng-click="orderByMe('Salgssum')" data-ng-class="{'disableSort' : !sortReady}">
                 Salgssum
                 <span data-ng-show="orderBy == 'Salgssum' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Salgssum' && reverse" class="fa fa-caret-down"></span>
             </th>
-            <th data-ng-click="orderByMe('Dokumentnr'); reverseOrder()">
+            <th data-ng-click="orderByMe('Dokumentnr')" data-ng-class="{'disableSort' : !sortReady}">
                 Dokumentnummer
                 <span data-ng-show="orderBy == 'Dokumentnr' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Dokumentnr' && reverse" class="fa fa-caret-down"></span>
             </th>
             <!--<th data-ng-click="orderByMe('seller'); reverseOrder()">-->
-            <th>
+            <th data-ng-class="{'disableSort' : !sortReady}">
                 Selger
                 <!--<span data-ng-show="orderBy == 'seller' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'seller' && reverse" class="fa fa-caret-down"></span>-->
             </th>
             <!--<th data-ng-click="orderByMe('buyer'); reverseOrder()">-->
-            <th>
+            <th data-ng-class="{'disableSort' : !sortReady}">
                 Kjøper
                 <!--<span data-ng-show="orderBy == 'buyer' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'buyer' && reverse" class="fa fa-caret-down"></span>-->

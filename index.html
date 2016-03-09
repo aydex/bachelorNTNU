@@ -3,34 +3,58 @@
     <head>
         <title>Kommunal Rapport</title>
         <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css" />
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"/>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--<link type="text/css" rel="stylesheet" href="/css/reset.css">-->
-        <link rel="stylesheet" href="/css/table.css" />
         <link rel="stylesheet" href="/css/main.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+        <!-- Modules -->
         <script src="/app/app.js"></script>
+        <!-- Controllers -->
+        <script src="/app/controllers/mainController.js"></script>
+        <script src="/app/controllers/searchController.js"></script>
+        <script src="/app/controllers/transactionsPersonController.js"></script>
+        <script src="/app/controllers/transactionsPropertyController.js"></script>
+        <script src="/app/controllers/mapController.js"></script>
+
+        <!-- Directives -->
+        <script src="/app/directives/kommunevaapen.js"></script>
+        <script src="/app/directives/searchTable.js"></script>
+        <script src="/app/directives/transactionPropertyTable.js"></script>
+        <script src="/app/directives/transactionTable.js"></script>
+        <script src="/app/directives/svgMap.js"></script>
+
+        <!-- Services -->
+        <script src="/app/services/transaction.js"></script>
+        <!-- Filters -->
+        <script src="/app/filters/capitalFirstLettersFilter.js"></script>
+        <script src="/app/filters/deltagerTypeFilter.js"></script>
+        <script src="/app/filters/nameFilter.js"></script>
+        <script src="/app/filters/priceFilter.js"></script>
+
+
+
         <base href="/">
     </head>
 <body>
 
     <header>
         <div id="headerWrapper">
-            <img src="images/menu_circle.svg" id="menu_circle">
-        
-            <a href="" id="tempLogo"> Kommunal Rapport </a>
-            <div id="navigationHeader">
-                <a href="" class="login">Logg Inn </a>
-                <a href="" id="separator">|</a>
-                <a href="" class="login">Abonner</a>
-                <img src="images/search_circle.svg" id="search_circle">
-            </div>
-        </div>
 
-        
+            <a href="/"><img src="images/logo.svg" id="logo"></a>
+
+            <div id="navigationHeader">
+                <a href="http://kommunal-rapport.no/user/ramid_login" class="login">Logg Inn</a>
+                <a href="" id="separator">|</a>
+                <a href="http://logginn.kommunal-rapport.no/?origin_uri=/" class="login">Abonner</a>
+            </div>
+
+        </div>
     </header>
 
     <div id="main">
@@ -38,7 +62,5 @@
 
         </div>
 
-    </div>
-    
 </body>
 </html>
