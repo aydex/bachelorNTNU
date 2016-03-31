@@ -122,35 +122,6 @@ class Query
         return json_encode(array("records" => $results, "count" => $count, "combined" => $results_combined));
     }
 
-    public function selectPerson($name)
-    {
-        $toAdd = "";
-        $params = array("%$name%");
-        if($name != "") {
-            $toAdd = " WHERE Navn LIKE ?";
-        }
-
-        $query = "SELECT * FROM kommunalrapport.Personer";
-
-        $result = $this->runAndPrepare($query, $toAdd, $params);
-
-        return json_encode(array("records" => $this->returnRows($result)));
-    }
-
-    private function runAndPrepare($query, $toAdd, $params){
-        $sql = $this->db->prepare($query . $toAdd . " LIMIT 5555");
-        if($toAdd != ""){
-            $sql->execute($params);
-        }else{
-            $sql->execute();
-        }
-        return $sql;
-    }
-
-    private function returnRows($sql){
-        return $sql->fetchAll(PDO::FETCH_ASSOC);
-    }
-
     public function countRows() {
         $query = "SELECT FOUND_ROWS()";
 

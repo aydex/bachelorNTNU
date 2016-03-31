@@ -11,11 +11,22 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     $scope.searched       = false;
     $scope.showTable      = false;
     $scope.sortReady      = false;
+    $scope.advancedShow   = false;
     $scope.lastSearched   = "";
     $scope.search         = {
         nameSearch: "",
         pageSize  : 25
     };
+    $scope.searchTypes    = [{type:"Alle"},{type:"Kommune"}, {type:"Person"}, {type:"Firma"}];
+    $scope.currentType = $scope.searchTypes[0];
+
+    $scope.advanced     = function() {
+        $scope.advancedShow = !$scope.advancedShow;
+        if($scope.advancedShow)
+            document.getElementById("advanced-div").style.height = "42px";
+        else
+            document.getElementById("advanced-div").style.height = "0px";
+    }
 
     $scope.queryPerson  = function() {
 

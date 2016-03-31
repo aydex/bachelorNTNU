@@ -45,6 +45,10 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
 
 kommunalApp.run(function($rootScope, $http, $window, $location) {
 
+    angular.element(document).on("click", function(e) {
+        $rootScope.$broadcast("documentClicked", angular.element(e.target));
+    });
+
     $rootScope.doQuery = function(type, id, page, pageSize) {
         return $http.get("./api/test.php?" + type + "=" + id + "&page=" +
             page + "&pageSize=" + pageSize)

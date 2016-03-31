@@ -4,10 +4,17 @@
 
 <button type="button" class="btn btn-default backbutton" data-ng-show="showTable" data-ng-click="back()">&lt; Tilbake</button>
 <div id="searchElements">
+    <div>
     <form id="searchForm" data-ng-submit="searchForm(searchForm)">
         <i class="material-icons" id="searchIcon">search</i>
         <input type="text" data-ng-model="search.nameSearch" data-ng-change="searchDelay()" placeholder="Navn, kommune, bedrift å søke på.." id="search" autocomplete="off">
     </form>
+    <a href="#" data-ng-click="advanced()">Advanced Options</a>
+    </div>
+    <div id="advanced-div">
+    Søk etter type: <select data-ng-model="currentType" data-ng-options="a.type for a in searchTypes">                
+    </select>
+    </div>
 </div>
 
 <div id="pageElements" data-ng-show="showTable">

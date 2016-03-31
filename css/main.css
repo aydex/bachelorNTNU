@@ -153,6 +153,7 @@ div p{
 }
 
 #searchElements{
+    height: 95px;
 	margin: auto;
     margin-bottom: 20px;
     width: 60%;
@@ -388,4 +389,28 @@ svg .land:hover, svg .land:active {
     left:0px;
     /*transform: translate(-250 -270);*/
 
+}
+
+/********************************
+*********************************
+********DROPDOWN*****************
+*********************************
+********************************/
+
+#advanced-div{
+	margin-top: 10px;
+	height:0px;
+	overflow: hidden;
+	transition:height .5s;
+}
+
+select {
+    border: 1px solid #111;
+    background: white;
+    width: 150px;
+    padding: 5px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid #2D2D2D;
+    height: 34px;
 }
