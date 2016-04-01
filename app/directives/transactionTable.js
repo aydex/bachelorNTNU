@@ -43,6 +43,17 @@ kommunalApp.directive('transactionTable', function(){
                 });
                 scope.transaction.involvements = out.join(", ");
             }
+
+            var involverteKommuner = scope.transaction.InvolverteKommuner.split(", ");
+            var out = [];
+            angular.forEach(involverteKommuner, function(entry){
+                var kommunenr = entry.split(":")[0];
+                var kommunenavn = entry.split(":")[1];
+                out.push({kommunenr: kommunenr, kommunenavn: kommunenavn});
+            })
+
+            scope.transaction.InvolverteKommuner = out;
+            console.log(scope.transaction.InvolverteKommuner)
         }
     }
 });

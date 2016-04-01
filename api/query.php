@@ -20,9 +20,11 @@ class Query
         $keyOrderBy      = array_search($orderBy, $selectFromArray);
         $keyOrder        = array_search($order, $this->selectFromOrder);
 
-        $query = "SELECT Deltagerid AS id, Deltagertype AS Type, Navn, GROUP_CONCAT(DISTINCT CONCAT_WS(':', I.Kommunenr, Kommunenavn)SEPARATOR ',') AS Kommuner 
+
+
+        $query = "SELECT SQL_CALC_FOUND_ROWS Deltagerid AS id, Deltagertype AS Type, Navn, GROUP_CONCAT(DISTINCT CONCAT_WS(':', I.Kommunenr, Kommunenavn)SEPARATOR ',') AS Kommuner 
                     FROM Deltagere 
-                    LEFT JOIN InvolvertKommune AS I USING (Deltagerid) 
+                    LEFT JOIN DeltagerInvolvertKommune AS I USING (Deltagerid) 
                     LEFT JOIN Kommuner USING (Kommunenr)
                     WHERE Navn LIKE :name
                     GROUP BY Deltagerid
@@ -46,18 +48,21 @@ class Query
     }
 
     public function selectTransaction($id, $page=1, $pageSize=10, $order, $orderBy) {
-        $selectFromArray = array('Kommunenavn', 'Eiendomsid', 'ForstRegistrert', 'SistRegistrert', 'AntallTransaksjoner', 'Involvering', 'null');
+        $selectFromArray = array('Kommunenavn', 'Eiendomsid', 'ForstRegistrert', 'SistRegistrert', 'AntallTransaksjoner', 'Involvering', 'InvolverteKommuner', 'null');
         $keyOrderBy      = array_search($orderBy, $selectFromArray);
         $keyOrder        = array_search($order, $this->selectFromOrder);
 
-        $query = "SELECT SQL_CALC_FOUND_ROWS Kommunenavn, Kommunenr, Eiendomsid, ForstRegistrert,
+        $query = "SELECT SQL_CALC_FOUND_ROWS Kommuner.Kommunenavn, E.Kommunenr, Eiendomsid, ForstRegistrert,
                   SistRegistrert, AntallTransaksjoner,
-                  GROUP_CONCAT(CONCAT_WS(':', Dokumentdato, PartType) SEPARATOR ', ') AS Involvering
+                  GROUP_CONCAT(CONCAT_WS(':', Dokumentdato, PartType) SEPARATOR ', ') AS Involvering,
+                  GROUP_CONCAT(DISTINCT CONCAT_WS(':', EI.Kommunenr, K.Kommunenavn) SEPARATOR ', ') AS InvolverteKommuner
                   FROM Omsetninger
                   NATURAL JOIN Dokumenter
                   NATURAL JOIN Eiendomshistorie
-                  NATURAL JOIN Eiendommer
+                  NATURAL JOIN Eiendommer AS E
                   NATURAL JOIN Kommuner
+                  LEFT JOIN EiendomInvolvertKommune AS EI USING(Eiendomsid)
+                  JOIN Kommuner AS K ON EI.Kommunenr = K.Kommunenr
                   WHERE Deltagerid= :query_target
                   GROUP BY Eiendomsid
                   ORDER BY " . $selectFromArray[$keyOrderBy] . " " . $this->selectFromOrder[$keyOrder] . "

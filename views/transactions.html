@@ -49,6 +49,11 @@
                 <span data-ng-show="orderBy == 'Involvering' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Involvering' && reverse" class="fa fa-caret-down"></span>
             </th>
+              <th data-ng-click="orderByMe('InvolvertKommune')" data-ng-class="{'disableSort' : !sortReady}">
+                Involverte Kommuner
+                <span data-ng-show="orderBy == 'InvolvertKommune' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'InvolvertKommune' && reverse" class="fa fa-caret-down"></span>
+            </th>
         </tr>
         <tr transaction-table transaction="transaction" data-ng-repeat="transaction in transactions" data-ng-click="showTransactionsProperty(transaction.Eiendomsid)">
         </tr>

@@ -27,7 +27,11 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
             $scope.totalPages     = Math.ceil($scope.count / $scope.pageSize);
             $scope.pageDisplay    = "Side: " + $scope.page + " av " + $scope.totalPages;
             $scope.sortReady      = true;
+
+            console.log($scope.transactions)
         });
+
+
     };
 
     $scope.filterResults = function(results) {
