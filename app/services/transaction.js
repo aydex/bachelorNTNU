@@ -28,8 +28,7 @@ kommunalApp.factory('transaction', function() {
     };
 
     transactionService.isMunicipality = function(type, name){
-        if(type == "S" && name.toLowerCase().indexOf("kommune") != -1) return true;
-        return false;
+        return (type == "K");
     };
 
     transactionService.getRole = function(transaction, role) {

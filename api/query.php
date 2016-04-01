@@ -20,10 +20,10 @@ class Query
         $keyOrderBy      = array_search($orderBy, $selectFromArray);
         $keyOrder        = array_search($order, $this->selectFromOrder);
 
-        $query = "SELECT SQL_CALC_FOUND_ROWS Deltagerid AS id, Deltagertype AS Type, Navn AS Navn, GROUP_CONCAT(CONCAT_WS(':', Kommunenr, Kommunenavn) SEPARATOR ',') AS Kommuner 
-                    FROM  kommunalrapport.Deltagere
-                    NATURAL JOIN Deltagerhistorie 
-                    NATURAL JOIN  Kommuner 
+        $query = "SELECT Deltagerid AS id, Deltagertype AS Type, Navn, GROUP_CONCAT(DISTINCT CONCAT_WS(':', I.Kommunenr, Kommunenavn)SEPARATOR ',') AS Kommuner 
+                    FROM Deltagere 
+                    LEFT JOIN InvolvertKommune AS I USING (Deltagerid) 
+                    LEFT JOIN Kommuner USING (Kommunenr)
                     WHERE Navn LIKE :name
                     GROUP BY Deltagerid
                     ORDER BY " . $selectFromArray[$keyOrderBy] . " " . $this->selectFromOrder[$keyOrder] . "
