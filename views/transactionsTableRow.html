@@ -4,8 +4,8 @@
 		<kommunevaapen id="transaction.Kommunenr"></kommunevaapen>
 		<span data-ng-bind="transaction.Kommunenavn | capitalFirstLettersFilter" ></span>
 	</td>
-	<td data-ng-bind="transaction.ForstRegistrert"></td>
-	<td data-ng-bind="transaction.SistRegistrert"></td>
+	<td data-ng-bind="transaction.ForstRegistrert | yearFilter"></td>
+	<td data-ng-bind="transaction.SistRegistrert | yearFilter"></td>
 	<td data-ng-bind="transaction.AntallTransaksjoner"></td>
 	<td data-ng-bind="transaction.involvements"></td>
 	<td class="leftalign">
