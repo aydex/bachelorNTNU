@@ -48,14 +48,14 @@ class Query
     }
 
     public function selectTransaction($id, $page=1, $pageSize=10, $order, $orderBy) {
-        $selectFromArray = array('Kommunenavn', 'Eiendomsid', 'ForstRegistrert', 'SistRegistrert', 'AntallTransaksjoner', 'Involvering', 'InvolverteKommuner', 'null');
+        $selectFromArray = array('Kommunenavn', 'Eiendomsid', 'ForstRegistrert', 'SistRegistrert', 'AntallTransaksjoner', 'Involvering', 'InvolverteKommuner', 'Sammendrag', 'null');
         $keyOrderBy      = array_search($orderBy, $selectFromArray);
         $keyOrder        = array_search($order, $this->selectFromOrder);
 
         $query = "SELECT SQL_CALC_FOUND_ROWS Kommuner.Kommunenavn, E.Kommunenr, Eiendomsid, ForstRegistrert,
                   SistRegistrert, AntallTransaksjoner,
                   GROUP_CONCAT(CONCAT_WS(':', Dokumentdato, PartType) SEPARATOR ', ') AS Involvering,
-                  GROUP_CONCAT(DISTINCT CONCAT_WS(':', EI.Kommunenr, K.Kommunenavn) SEPARATOR ', ') AS InvolverteKommuner
+                  GROUP_CONCAT(DISTINCT CONCAT_WS(':', EI.Kommunenr, K.Kommunenavn) SEPARATOR ', ') AS InvolverteKommuner, Sammendrag
                   FROM Omsetninger
                   NATURAL JOIN Dokumenter
                   NATURAL JOIN Eiendomshistorie
