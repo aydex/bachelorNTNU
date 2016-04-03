@@ -4,6 +4,7 @@ kommunalApp.filter('deltagerTypeFilter', function(){
             case "F": return "Privatperson"; break;
             case "L": return "Løpe"; break;
             case "S": return "Selskap"; break;
+            case "K": return "Kommune"; break;
         }
     }
 });
