@@ -53,7 +53,7 @@
             </th>
         </tr>
         <tr transaction-property-table transaction="transaction" data-ng-repeat="transaction in transactions" data-ng-click="setSelected(transaction.Dokumentnr)"
-            data-ng-class="{ 'selected-row': transaction.Dokumentnr == selectedDokumentnr }" data-ng-mouseover="setSelected(transaction.Dokumentnr)" data-ng-mouseout="setSelected(null)">
+            data-ng-class="{ 'selected-row': transaction.Dokumentnr == selectedDokumentnr }" data-ng-mouseover="setSelected(transaction.Dokumentnr,transaction.Salgssum)" data-ng-mouseout="setSelected(null)">
         </tr>
     </table>
 </div>
