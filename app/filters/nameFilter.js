@@ -7,7 +7,7 @@ kommunalApp.filter('nameFilter', function(transaction){
             if (!keepMiddleNames){
                 out = transaction.abbreviateMiddleNames(out);
             }
-        }*/
+        }*/ 
         return out;
     }
 });
