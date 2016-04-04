@@ -397,40 +397,52 @@ td:nth-child(even){
 	margin:auto;
 }
 
+
+/****************************************/
+/***************  MAP CSS  **************/
+/****************************************/
+
+
 div .container{
 	  width: 42%;
 	  height: auto;
 }
 
 
-svg .land {
-    stroke-width: 0;
+svg .land{
+    stroke-width: 0.5;
     stroke: #fff;
     position: absolute;
+
+		fill:#c0c0c0;
+		fill-opacity:1;
+
+
     -webkit-transition: stroke 0.5s, stroke-width 0.5s;
     -o-transition: stroke 0.5s, stroke-width 0.5s;
     transition: stroke 0.5s, stroke-width 0.5s;
 }
+/*
+svg .title {
+	display:none;
+}*/
 
+svg text {
 
+	font-style:normal;
+	font-variant:normal;
+	font-weight:400;
+	font-size:2.82222223px;
+	font-family:Calibri;
+	fill:#000000;
+
+}
 
 svg .land:hover, .land.active {
-
-    -webkit-transition: stroke 0.5s, stroke-width 0.5s;
-    -o-transition: stroke 0.5s, stroke-width 0.5s;
-    transition: stroke 0.5s, stroke-width 0.5s;
     cursor: pointer;
-    stroke-width: 1;
+    stroke-width: 1.5;
     stroke: #000;
     opacity: 1;
     position:relative;
-
-    /*
-    transform: scale(1.2);
-    transform-origin: 30% 70%;
-    z-index: -30;/*
-    top:0px;
-    left:0px;
-    /*transform: translate(-250 -270);*/
-
+		fill: #eee;
 }
