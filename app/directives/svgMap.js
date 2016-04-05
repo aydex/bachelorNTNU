@@ -1,24 +1,30 @@
 
-kommunalApp.directive('svgMap', ['$compile', function ($compile) {
+kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$parse', function ($compile, $http, $templateCache, $parse) {
     return {
         restrict: 'EA',
-        scope: {
-
+        scope: 'false',
+        controller: function($scope) {
+            this.updateMap = function (url) {
+                $http.get("images/kommunekart/" + url + ".svg", {cache: $templateCache})
+                    .success(function(templateContent) {
+                        $scope.mapElement.replaceWith($compile(templateContent)($scope))
+                    });
+            };
         },
-        link: function (scope, element, attrs) {
-
+        link: function ($scope, element, attrs) {
+            console.log("link function runnning");
             var regions = element[0].querySelectorAll('.land');
             angular.forEach(regions, function (path, key) {
                 var regionElement = angular.element(path);
                 regionElement.attr("region", "");
-                $compile(regionElement)(scope);
+                $compile(regionElement)($scope);
+            });
+            $scope.mapElement = element;
 
-            })
-
-          },
-          templateUrl: function(elem,attrs) {
-           return "images/kommunekart/"+ attrs.kart +".svg"
-         }
+        },
+        templateUrl: function($scope, elem, attrs) {
+           return "images/kommunekart/"+ $scope.kart +".svg"
+        }
       }
 }]);
 
@@ -26,14 +32,14 @@ kommunalApp.directive('region', ['$compile', function ($compile) {
     return {
         restrict: 'EA',
         scope: true,
-		link: function (scope, element, attrs) {
+        require: '^^svgMap',
+		link: function (scope, element, attrs, svgMapCtrl) {
+            console.log("another link function running");
             scope.elementId = element.attr("id");
             scope.regionHover = function () {
             };
             scope.regionClick = function() {
-
-               attrs.kart = scope.elementId;
-               console.log(attrs.kart);
+                svgMapCtrl.updateMap(scope.elementId);
             };
 
             element.attr("ng-mousemove", "regionHover()");
@@ -42,6 +48,5 @@ kommunalApp.directive('region', ['$compile', function ($compile) {
             element.removeAttr("region");
             $compile(element)(scope);
         }
-        /*templateUrl: 'images/kommunekart/' + kart + '.svg'*/
     }
 }]);
