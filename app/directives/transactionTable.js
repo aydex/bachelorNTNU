@@ -10,6 +10,8 @@ kommunalApp.directive('transactionTable', function(){
             var involvements = scope.transaction.Involvering.split(", ");
             var out = [];
 
+            console.log(involvements);
+
             if (involvements.length > 5){
                 var antKjopt = 0;
                 var antSolgt = 0;
@@ -78,9 +80,9 @@ kommunalApp.directive('transactionTable', function(){
                 var nextDateString = prispunkt[i+1].split(":")[1];
                 var oneday = 24*60*60*1000;  // hours*minutes*seconds*milliseconds
                 var currDateSplit = datestring.split("-");
-                var date = new Date(currDateSplit[0],currDateSplit[1],currDateSplit[2]);
+                var date = new Date(currDateSplit[0],currDateSplit[1]-1,currDateSplit[2]);
                 var nextDateSplit = nextDateString.split("-");
-                var nextDate = new Date(nextDateSplit[0],nextDateSplit[1],nextDateSplit[2]);
+                var nextDate = new Date(nextDateSplit[0],nextDateSplit[1]-1,nextDateSplit[2]);
 
                 var diffDays = Math.round(Math.abs((date.getTime() - nextDate.getTime())/(oneday)));
 
@@ -117,12 +119,21 @@ kommunalApp.directive('transactionTable', function(){
 
 
             if (validIncrease){
-                increase = "+"+ increase +"% ";
+                if (increase > 100){
+                    increase = "Mer enn +100%";
+                } else {
+                    increase = "+" + increase + "%";
+                }
             }else{
                 increase = ""
             }
             if (validDecrease){
-                decrease = "-" + decrease + "%";
+                if (decrease > 100){
+                    decrease = "Mer enn -100%";
+                } else {
+                    decrease = "-" + decrease + "%";
+                }
+                
             }else {
                 decrease = ""
             }
@@ -133,8 +144,10 @@ kommunalApp.directive('transactionTable', function(){
             if (incColor > 255){incColor = 255};
             if (decColor > 255){decColor = 255};
 
-            scope.transaction.IncStyle = "rgba("+ incColor + ",0,0,1)";
+            scope.transaction.IncStyle = "rgba(0," + incColor +" ,0,1)";
             scope.transaction.DecStyle = "rgba("+ decColor + ",0,0,1)";
+
+
             scope.transaction.MaxIncrease = increase;
             scope.transaction.MaxDecrease = decrease;
 
