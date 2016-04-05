@@ -20,7 +20,7 @@
     <table data-ng-show="showTable" class="propertyTable">
         <tr>
             <th data-ng-click="orderByMe('Dokumentdato')" data-ng-class="{'disableSort' : !sortReady}">
-                Dokumentdato
+                Dato
                 <span data-ng-show="orderBy == 'Dokumentdato' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Dokumentdato' && reverse" class="fa fa-caret-down"></span>
             </th>
@@ -53,7 +53,7 @@
             </th>
         </tr>
         <tr transaction-property-table transaction="transaction" data-ng-repeat="transaction in transactions" data-ng-click="setSelected(transaction.Dokumentnr)"
-            data-ng-class="{ 'selected-row': transaction.Dokumentnr == selectedDokumentnr }" data-ng-mouseover="setSelected(transaction.Dokumentnr)" data-ng-mouseout="setSelected(null)">
+            data-ng-class="{ 'selected-row': transaction.Dokumentnr == selectedDokumentnr }" data-ng-mouseover="setSelected(transaction.Dokumentnr,transaction.Salgssum)" data-ng-mouseout="setSelected(null)">
         </tr>
     </table>
 </div>
