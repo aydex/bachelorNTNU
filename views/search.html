@@ -17,6 +17,17 @@
     </div>
 </div>
 
+
+<select ng-model="fylke" ng-options="fylkeId as fylkeInfo.label for (fylkeId, fylkeInfo) in fylker" >
+<option value="">Velg fylke</option>
+</select>
+
+
+<select name="kommune" ng-model="kommune" ng-options="kommuneId as kommuneInfo.label for (kommuneId, kommuneInfo) in fylker[fylke]['kommuner']">
+    <option value="">Velg kommune</option>
+</select>
+
+
 <div id="pageElements" data-ng-show="showTable">
     Sidestørrelse: <input type="radio" checked data-ng-model="search.pageSize" value="25" data-ng-change="pageSizeChange()" id="25">25
     <input type="radio" data-ng-model="search.pageSize" data-ng-change="pageSizeChange()" value="75" id="75">75
