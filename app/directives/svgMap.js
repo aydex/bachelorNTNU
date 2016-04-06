@@ -1,15 +1,14 @@
 
-kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$parse', function ($compile, $http, $templateCache, $parse) {
+kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$parse', function ($compile, $http, $templateCache) {
     return {
         restrict: 'EA',
-        scope: 'false',
         controller: function($scope) {
             this.updateMap = function (url) {
                 $http.get("images/kommunekart/" + url + ".svg", {cache: $templateCache})
                     .success(function(templateContent) {
                         $scope.mapElement.replaceWith($compile(templateContent)($scope));
                         var cities = angular.element(document.querySelectorAll('.land'));
-                        angular.forEach(cities, function(path, key) {
+                        angular.forEach(cities, function(path) {
                             var cityElement = angular.element(path);
                             cityElement.attr("city", "");
                             $compile(cityElement)($scope)
@@ -17,9 +16,9 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$parse'
                     });
             };
         },
-        link: function ($scope, element, attrs) {
+        link: function ($scope, element) {
             var regions = element[0].querySelectorAll('.land');
-            angular.forEach(regions, function (path, key) {
+            angular.forEach(regions, function (path) {
                 var regionElement = angular.element(path);
                 regionElement.attr("region", "");
                 $compile(regionElement)($scope);
@@ -27,9 +26,7 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$parse'
             $scope.mapElement = element;
 
         },
-        templateUrl: function($scope, elem, attrs) {
-           return "images/kommunekart/"+ $scope.kart +".svg"
-        }
+        templateUrl: "images/kommunekart/norge.svg"
       }
 }]);
 
@@ -59,7 +56,7 @@ kommunalApp.directive('city', ['$compile', function ($compile) {
     return {
         restrict: 'EA',
         scope: true,
-        link: function(scope, element, attrs) {
+        link: function(scope, element) {
             scope.elementId = element.attr("id");
             scope.cityClick = function() {
                 console.log(scope.elementId);
