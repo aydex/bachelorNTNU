@@ -7,12 +7,17 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$parse'
             this.updateMap = function (url) {
                 $http.get("images/kommunekart/" + url + ".svg", {cache: $templateCache})
                     .success(function(templateContent) {
-                        $scope.mapElement.replaceWith($compile(templateContent)($scope))
+                        $scope.mapElement.replaceWith($compile(templateContent)($scope));
+                        var cities = angular.element(document.querySelectorAll('.land'));
+                        angular.forEach(cities, function(path, key) {
+                            var cityElement = angular.element(path);
+                            cityElement.attr("city", "");
+                            $compile(cityElement)($scope)
+                        });
                     });
             };
         },
         link: function ($scope, element, attrs) {
-            console.log("link function runnning");
             var regions = element[0].querySelectorAll('.land');
             angular.forEach(regions, function (path, key) {
                 var regionElement = angular.element(path);
@@ -34,7 +39,6 @@ kommunalApp.directive('region', ['$compile', function ($compile) {
         scope: true,
         require: '^^svgMap',
 		link: function (scope, element, attrs, svgMapCtrl) {
-            console.log("another link function running");
             scope.elementId = element.attr("id");
             scope.regionHover = function () {
             };
@@ -46,6 +50,26 @@ kommunalApp.directive('region', ['$compile', function ($compile) {
             element.attr("ng-click", "regionClick()");
 
             element.removeAttr("region");
+            $compile(element)(scope);
+        }
+    }
+}]);
+
+kommunalApp.directive('city', ['$compile', function ($compile) {
+    return {
+        restrict: 'EA',
+        scope: true,
+        link: function(scope, element, attrs) {
+            scope.elementId = element.attr("id");
+            scope.cityClick = function() {
+                console.log(scope.elementId);
+                alert(scope.elementId);
+                return scope.elementId;
+            };
+
+            element.attr("ng-click", "cityClick()");
+
+            element.removeAttr("city");
             $compile(element)(scope);
         }
     }
