@@ -402,6 +402,8 @@ svg .land:hover, svg .land:active {
 }
 
 select {
+	-webkit-appearance:none;
+	-webkit-border-radius:0px;
     border: 1px solid #111;
     background: white;
     width: 150px;
@@ -410,8 +412,23 @@ select {
     border: none;
     border-bottom: 1px solid #2D2D2D;
     height: 34px;
+    margin-left:25px;
+}
+
+select:focus{
+	outline:none;
 }
 
 select:disabled{
 	color:gray;
+}
+
+.select-arrow{
+	-webkit-transform:rotate(90deg);
+	margin-left:-25px;
+	font-size:10px;
+}
+
+#advanced-div select:first-child{
+	margin-left:0px;
 }
