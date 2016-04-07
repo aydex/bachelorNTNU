@@ -9,24 +9,20 @@
         <i class="material-icons" id="searchIcon">search</i>
         <input type="text" data-ng-model="search.nameSearch" data-ng-change="searchDelay()" placeholder="Navn, kommune, bedrift å søke på.." id="search" autocomplete="off">
     </form>
-    <a href="#" data-ng-click="advanced()">Advanced Options</a>
     </div>
     <div id="advanced-div">
-    Søk etter type: <select data-ng-model="currentType" data-ng-options="a.type for a in searchTypes">                
+    Søk etter type: <select data-ng-model="currentType" data-ng-options="a.type for a in searchTypes" data-ng-change="advanceChange()"> 
     </select>
+    <select data-ng-model="fylke" data-ng-options="fylkeId as fylkeInfo.label for (fylkeId, fylkeInfo) in fylker" >
+        <option value="">Velg fylke</option>
+    </select>
+
+
+    <select name="kommune" data-ng-model="kommune" data-ng-options="kommuneId as kommuneInfo.label for (kommuneId, kommuneInfo) in fylker[fylke]['kommuner']" data-ng-disabled="fylke == undefined">
+        <option value="">Velg kommune</option>
+    </select>               
     </div>
 </div>
-
-
-<select ng-model="fylke" ng-options="fylkeId as fylkeInfo.label for (fylkeId, fylkeInfo) in fylker" >
-<option value="">Velg fylke</option>
-</select>
-
-
-<select name="kommune" ng-model="kommune" ng-options="kommuneId as kommuneInfo.label for (kommuneId, kommuneInfo) in fylker[fylke]['kommuner']">
-    <option value="">Velg kommune</option>
-</select>
-
 
 <div id="pageElements" data-ng-show="showTable">
     Sidestørrelse: <input type="radio" checked data-ng-model="search.pageSize" value="25" data-ng-change="pageSizeChange()" id="25">25

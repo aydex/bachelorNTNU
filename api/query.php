@@ -8,13 +8,22 @@ class Query
 {
     private $db;
     private $selectFromOrder = array('DESC', 'ASC');
+    private $filterByArray   = array('F', 'K', 'L', 'S');
 
     public function __construct(PDO $db)
     {
         $this->db = $db;
     }
 
-    public function selectPersonPaged($name, $page=1, $pageSize=10, $order="ASC", $orderBy) {
+     public function selectPersonPaged($name, $page=1, $pageSize=10, $order="ASC", $orderBy, $filterBy) {
+
+        $filterBy = $filterBy - 1;
+        if($filterBy > -1){
+            $type = (string)$this->filterByArray[$filterBy];
+            $filterByText = "AND Deltagertype = '$type'";
+        }else{
+            $filterByText = "";
+        }
 
         $selectFromArray = array('id', 'Type', 'Navn', 'Kommuner', 'null');
         $keyOrderBy      = array_search($orderBy, $selectFromArray);
@@ -27,6 +36,7 @@ class Query
                     LEFT JOIN DeltagerInvolvertKommune AS I USING (Deltagerid) 
                     LEFT JOIN Kommuner USING (Kommunenr)
                     WHERE Navn LIKE :name
+                    $filterByText
                     GROUP BY Deltagerid
                     ORDER BY " . $selectFromArray[$keyOrderBy] . " " . $this->selectFromOrder[$keyOrder] . "
                     LIMIT :offset, :pageSize";

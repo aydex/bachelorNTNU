@@ -18,7 +18,7 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             //reloadOnSearch: false
         })
 
-        .when('/search/:searchName/:page/:pageSize', {
+        .when('/search/:searchName/:type/:page/:pageSize', {
             templateUrl : '/views/search.html',
             controller  : 'searchController'
         })
@@ -49,7 +49,7 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
         $rootScope.$broadcast("documentClicked", angular.element(e.target));
     });
 
-    $rootScope.doQuery = function(type, id, page, pageSize) {
+    $rootScope.doQuery = function(type, id, page, pageSize) {
         return $http.get("./api/test.php?" + type + "=" + id + "&page=" +
             page + "&pageSize=" + pageSize)
             .then(function (response) {
@@ -57,9 +57,10 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
             });
     }
 
-    $rootScope.doQuery = function(type, id, page, pageSize, order, orderBy) {
+    $rootScope.doQuery = function(type, id, page, pageSize, order, orderBy, filterBy) {
+        console.log(filterBy);
         return $http.get("./api/ask.php?" + type + "=" + id + "&page=" +
-            page + "&pageSize=" + pageSize + "&order=" + order + "&orderBy=" + orderBy)
+            page + "&pageSize=" + pageSize + "&order=" + order + "&orderBy=" + orderBy + "&filterBy=" + filterBy)
         .then(function (response) {
                 return {records: response.data.records, count: response.data.count,
                     combined: response.data.combined};

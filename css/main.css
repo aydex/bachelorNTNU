@@ -399,9 +399,6 @@ svg .land:hover, svg .land:active {
 
 #advanced-div{
 	margin-top: 10px;
-	height:0px;
-	overflow: hidden;
-	transition:height .5s;
 }
 
 select {
@@ -413,4 +410,8 @@ select {
     border: none;
     border-bottom: 1px solid #2D2D2D;
     height: 34px;
+}
+
+select:disabled{
+	color:gray;
 }

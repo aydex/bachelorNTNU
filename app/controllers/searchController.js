@@ -230,21 +230,18 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
 
 };
 
-    $scope.searchTypes    = [{type:"Alle"},{type:"Kommune"}, {type:"Person"}, {type:"Firma"}];
+    $scope.searchTypes    = [{type:"Alle", value: 0},{type:"Person", value: 1}, {type:"Kommune", value: 2}, {type:"Løpe", value: 3}, {type:"Selskap", value:4}];
     $scope.currentType = $scope.searchTypes[0];
 
-    $scope.advanced     = function() {
-        $scope.advancedShow = !$scope.advancedShow;
-        if($scope.advancedShow)
-            document.getElementById("advanced-div").style.height = "42px";
-        else
-            document.getElementById("advanced-div").style.height = "0px";
-    }
+    $scope.advanceChange = function(){
+        if($scope.search.nameSearch != "")
+            $scope.doSearch();
+      }
 
     $scope.queryPerson  = function() {
 
         queryPromis = $rootScope.doQuery("name", $scope.search.nameSearch,
-            $scope.page, $scope.search.pageSize, $scope.order, $scope.orderBy);
+            $scope.page, $scope.search.pageSize, $scope.order, $scope.orderBy, $scope.currentType.value);
         queryPromis.then(function(result){
 
             angular.forEach(result.count[0], function(value) {
@@ -267,6 +264,29 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         });
     };
 
+    $scope.doSearch    = function(){
+        if($scope.lastSearch != $scope.search.nameSearch){
+            $scope.page = 1;
+        }
+
+        console.log("Searching for " + $scope.search.nameSearch + " with page size " +
+            $scope.search.pageSize + " at page " + $scope.page + " ordered by " + $scope.orderBy +
+            " " + $scope.order);
+
+
+
+        //$scope.queryPerson();
+        //$location.search(name, 123);
+        var name_encoded = encodeURIComponent($scope.search.nameSearch);
+        var type;
+
+        if($scope.currentType == undefined){
+            type = 0;
+        }else type = $scope.currentType.value;
+
+        $location.path("/search/" + name_encoded + "/" + type + "/" + $scope.page + "/" + $scope.search.pageSize);
+    }
+
     $scope.searchDelay = function(){
 
         if(_timeout){ //if there is already a timeout in process cancel it
@@ -278,23 +298,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
 
                 /*$scope.search.loading = true;*/
 
-                if($scope.lastSearch != $scope.search.nameSearch){
-                    $scope.page = 1;
-                }
-
-                console.log("Searching for " + $scope.search.nameSearch + " with page size " +
-                    $scope.search.pageSize + " at page " + $scope.page + " ordered by " + $scope.orderBy +
-                    " " + $scope.order);
-
-
-
-                //$scope.queryPerson();
-                //$location.search(name, 123);
-                var name_encoded = encodeURIComponent($scope.search.nameSearch);
-
-                $location.path("/search/" + name_encoded + "/" + $scope.page + "/" + $scope.search.pageSize);
-
-
+                $scope.doSearch();
 
                 _timeout = null;
 
@@ -304,7 +308,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             $scope.showTable = false;
             $scope.noResultShow = true;
             $scope.hideNavigation = false;
-
+            $scope.currentType = undefined;
         }
     };
 
@@ -320,6 +324,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         $scope.search.nameSearch = decodeURIComponent($routeParams.searchName);
         $scope.page              = parseInt($routeParams.page);
         $scope.search.pageSize   = parseInt($routeParams.pageSize);
+        $scope.currentType       = $scope.searchTypes[$routeParams.type];
         $scope.queryPerson();
     }
 
@@ -339,7 +344,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     };
 
     $scope.orderByMe = function(x) {
-        if($scope.sortReady) {
+        if($scope.sortReady) {
             if($scope.orderBy == x){
                 if ($scope.order == "ASC") {
                     $scope.order = "DESC"
@@ -358,7 +363,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     };
 
     $scope.reverseOrder = function(){
-        if($scope.sortReady) {
+        if($scope.sortReady) {
             $scope.reverse = !$scope.reverse;
         }
     }
