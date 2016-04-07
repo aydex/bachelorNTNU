@@ -18,13 +18,14 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         pageSize  : 25
     };
 
-    $scope.kommuner = [{type:"Asker", value:220},{type:"Aurskog-Høland", value:221},{type:"Bærum", value:219},{type:"Eidsvoll", value:237},{type:"Fet", value:227},{type:"Frogn", value:215},{type:"Gjerdrum", value:239},{type:"Hurdal", value:230},
+  $scope.kommuner = [{type:"Asker", value:220},{type:"Aurskog-Høland", value:221},{type:"Bærum", value:219},{type:"Eidsvoll", value:237},{type:"Fet", value:227},{type:"Frogn", value:215},{type:"Gjerdrum", value:239},{type:"Hurdal", value:230},
     {type:"Lørenskog", value:238},{type:"Nannestad", value:236},{type:"Nes", value:216},{type:"Nesodden", value:223},{type:"Nittedal", value:217},{type:"Oppegård", value:228},{type:"Rælingen", value:231},{type:"Skedsmo", value:213},{type:"Ski", value:226},
-    {type:"Sørum", value:235},{type:"Ullensaker", value:211},{type:"Vestby", value:214},{type:"Ås", value:214},{type:"Arendal", value:906},{type:"Birkenes", value:928},{type:"Bygland", value:238},{type:"Bykle", value:941},{type:"Evje og Hornnes", value:937},{type:"Froland", value:919},{type:"Gjerstad", value:911},{type:"Grimstad", value:904},
-    {type:"Lørenskog", value:238},{type:"Nannestad", value:236},{type:"Nes", value:216},{type:"Nesodden", value:223},{type:"Nittedal", value:217},{type:"Oppegård", value:228},{type:"Rælingen", value:231},{type:"Skedsmo", value:213},{type:"Ski", value:226},
-    {type:"Iveland", value:935},{type:"Lillesand", value:926},{type:"Risør", value:901},{type:"Tvedestrand", value:914},{type:"Valle", value:940},{type:"Vegårdshei", value:912},{type:"Åmli", value:929},{type:"Flesberg", value:631},{type:"Flå", value:615},{type:"Gol", value:617},{type:"Hemsedal", value:618},{type:"Hol", value:620}, {type: "Hole", value: 612},
-    {type:"Hurum", value:628},{type:"Kongsberg", value:604},{type:"Krødsherad", value:622},{type:"Modum", value:623},{type:"Nore og Ulvdal", value:633}, {type:"Nes", value:616},{type:"Nedre Eiker", value:625},{type:"Ringerike", value:605},{type:"Rollag", value:632},{type:"Røyken", value:627},{type:"Sigdal", value:621}, {type: "Alta", value: 2012}, {type: "Berlevåg" , value: 2024}, {type: "Båtsfjord" , value: 2028},
-    {type: "Gamvik" , value: 2023}, {type: "Hammerfest" , value: 2004}, {type: "Hasvik" , value:2015}, {type: "Karasjokk" , value:2021}, {type: "Kautokeino" , value:2011}, {type: "Kvalsund" , value: 2017}, {type: "Lebesby" , value:2022}, {type: "Loppa" , value:2014}, {type: "Måsøy" , value:2018}, {type: "Nesseby" , value:2027}, {type: "Nordkapp" , value:2019}, {type: "Porsanger" , value:2020}, {type: "Sør-Varanger" , value:2030},
+    {type:"Sørum", value:235},{type:"Ullensaker", value:211},{type:"Vestby", value:214},{type:"Ås", value:214},{type:"Arendal", value:906},{type:"Birkenes", value:928},{type:"Bygland", value:238},{type:"Bykle", value:941},{type:"Evje og Hornnes", value:937},
+    {type:"Froland", value:919},{type:"Gjerstad", value:911},{type:"Grimstad", value:904},{type:"Lørenskog", value:238},{type:"Nannestad", value:236},{type:"Nes", value:216},{type:"Nesodden", value:223},{type:"Nittedal", value:217},{type:"Oppegård", value:228},
+    {type:"Rælingen", value:231},{type:"Skedsmo", value:213},{type:"Ski", value:226}, {type:"Iveland", value:935},{type:"Lillesand", value:926},{type:"Risør", value:901},{type:"Tvedestrand", value:914},{type:"Valle", value:940},{type:"Vegårdshei", value:912},
+    {type:"Åmli", value:929},{type:"Flesberg", value:631},{type:"Flå", value:615},{type:"Gol", value:617},{type:"Hemsedal", value:618},{type:"Hol", value:620}, {type: "Hole", value: 612},
+    {type:"Hurum", value:628},{type:"Kongsberg", value:604},{type:"Krødsherad", value:622},{type:"Modum", value:623},{type:"Nore og Ulvdal", value:633}, {type:"Nes", value:616},{type:"Nedre Eiker", value:625},{type:"Ringerike", value:605},{type:"Rollag", value:632},
+    {type:"Røyken", value:627},{type:"Sigdal", value:621}, {type: "Alta", value: 2012}, {type: "Berlevåg" , value: 2024}, {type: "Båtsfjord" , value: 2028}, {type: "Gamvik" , value: 2023}, {type: "Hammerfest" , value: 2004}, {type: "Hasvik" , value:2015}, {type: "Karasjokk" , value:2021}, {type: "Kautokeino" , value:2011}, {type: "Kvalsund" , value: 2017}, {type: "Lebesby" , value:2022}, {type: "Loppa" , value:2014}, {type: "Måsøy" , value:2018}, {type: "Nesseby" , value:2027}, {type: "Nordkapp" , value:2019}, {type: "Porsanger" , value:2020}, {type: "Sør-Varanger" , value:2030},
     {type:"Tana" , value:2025}, {type: "Vadsø" , value:2003}, {type: "Vardø" , value:2002}, {type:"Alvdal", value:438}, {type:"Eidskog", value:420}, {type:"Eleverum", value:427}, {type:"Engerdal", value:434}, {type:"Folldal", value:439}, {type:"Grue", value:423}, {type:"Hamar", value:403}, {type:"Kongsvinger", value:402}, {type:"Løten", value:415}, {type:"Nord-Odal", value:418}, {type:"Os", value:441}, {type:"Rendalen", value:432}, {type:"Ringsaker", value:412}, 
     {type:"Stange", value:417}, {type:"Stor-Elvdal", value:430}, {type:"Sør-Odal", value:419}, {type:"Tolga", value:436}, {type:"Trysil", value:428}, {type:"Tynset", value:437}, {type:"Våler", value:426}, {type:"Åmot", value:429},
     {type:"Åsnes", value:425},{type: "Askøy", value: 1247},{type:"Austervoll", value:1244},{type:"Austrheim", value:1264},{type:"Bergen", value:1201},{type:"Bømlo", value:1219},{type:"Eidsfjord", value:1232},{type:"Etne", value:1211},{type:"Fedje", value:1265},{type:"Fitjar", value: 1222},{type:"Fjell", value:1246},{type:"Fusa", value:1241},{type:"Granvin", value:1234},{type:"Jondal", value:1227},{type:"Kvam", value:1238},{type:"Kvinnherad", value:1224},{type:"Lindås", value:1261},
@@ -41,7 +42,13 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     {type:"Sokndal", value:1111},{type:"Sola", value:1124},{type:"Stavanger", value:1103},{type:"Strand", value:1130},{type:"Suldal", value:1134},{type:"Time", value:1121},{type:"Tysvær", value:1146},{type:"Utsira", value:1151},{type:"Vindafjord", value:1160},{type:"Askvoll", value:1428},{type:"Aurland", value:1421},{type:"Balestrand", value:1418},{type:"Bremanger", value:1438},
     {type:"Eid", value:1443},{type:"Fjaler", value:1429},{type:"Flora", value:1401},{type:"Førde", value:1432},{type:"Gaular", value:1430},{type:"Gloppen", value:1445},{type:"Gulen", value:1411},{type:"Hornindal", value:1444},{type:"Hyllestad", value:1413},{type:"Høyanger", value:1416},{type:"Jølster", value:1431},{type:"Leikanger", value:1419},{type:"Luster", value:1426},{type:"Lærdal", value:1422},
     {type:"Naustdal", value:1433},{type:"Selje", value:1441},{type:"Sogndal", value:1420},{type:"Solund", value:1412},{type:"Stryn", value:1449},{type:"Vik", value:1417},{type:"Vågsøy", value:1439},{type:"Årdal", value:1424},{type:"Årdal", value:1424},{type:"Agdenes", value:1622},{type:"Bjugn", value:1627},{type:"Frøya", value:1620},{type:"Hemne", value:1612},{type:"Hitra", value:1617},{type:"Holtålen", value:1644},{type:"Klæbu", value:1662},{type:"Malvik", value:1663},
-    {type:"Meldal", value:1636},{type:"Melhus", value:1653},{type:"Midtre Gauldal", value:1648},{type:"Oppdal", value:1634},{type:"Orkdal", value:1638},{type:"Osen", value:1633},{type:"Rennebu", value:1635},{type:"Rissa", value:1624},{type:"Roan", value:1632},{type:"Røros", value:1640},{type:"Selbu", value:1664},{type:"Skaun", value:1657},{type:"Snillfjord", value:1613},{type:"Trondheim", value:1601},{type:"Tydal", value:1665},{type:"Åfjord", value:1630},{type:"Ørland", value:1621}
+    {type:"Meldal", value:1636},{type:"Melhus", value:1653},{type:"Midtre Gauldal", value:1648},{type:"Oppdal", value:1634},{type:"Orkdal", value:1638},{type:"Osen", value:1633},{type:"Rennebu", value:1635},{type:"Rissa", value:1624},{type:"Roan", value:1632},{type:"Røros", value:1640},{type:"Selbu", value:1664},{type:"Skaun", value:1657},{type:"Snillfjord", value:1613},{type:"Trondheim", value:1601},{type:"Tydal", value:1665},{type:"Åfjord", value:1630},{type:"Ørland", value:1621},
+    {type:"Bamble", value:0814},{type:"Bø", value:0821},{type:"Drangedal", value:0871},{type:"Fyresdal", value:0831},{type:"Hjartdal", value:0827},{type:"Kragerø", value:0815},{type:"Kviteseid", value:0829},{type:"Nissedal", value:0830},{type:"Nome", value:0819},{type:"Notodden", value:0807},{type:"Porsgrunn", value:0805},{type:"Sauherad", value:0822},{type:"Seljord", value:0828},{type:"Siljan", value:0811},{type:"Skien", value:0806},
+    {type:"Tinn", value:0826},{type:"Tokke", value:0833},{type:"Vinje", value:0834},{type:"Balsfjord", value:1933},{type:"Bardu", value:1922},{type:"Berg", value:1929},{type:"Dyrøy", value:1926},{type:"Gratangen", value:1919},{type:"Harstad", value:1903},{type:"Ibestad", value:1917},{type:"Karsløy", value:1936},{type:"Kvænangen", value:1943},{type:"Kåfjord", value:1940},{type:"Lavangen", value:1920},{type:"Lenvik", value:1931},{type:"Lyngen", value:1938},{type:"Målselv", value:1924},{type:"Nordreisa", value:1942},
+    {type:"Salangen", value:1923},{type:"Skjervøy", value:1941},{type:"Skånland", value:1913},{type:"Storfjord", value:1939},{type:"Sørreisa", value:1925},{type:"Torsken", value:1928},{type:"Tranøy", value:1927},{type:"Tromsø", value:1902},
+    {type:"Audnedal", value:1027},{type:"Farsund", value:1003},{type:"Flekkefjord", value:1004},{type:"Hægebostad", value:1034},{type:"Kristiansand", value:1001},{type:"Kvinesdal", value:1037},{type:"Lindesnes", value:1029},{type:"Lyngdal", value:1032},{type:"Mandal", value:1002},{type:"Marnardal", value:1021},{type:"Sirdal", value:1046},{type:"Sogndalen", value:1017},{type:"Søgne", value:1018},{type:"Vennesla", value:1014},{type:"Åseral", value:1026},
+    {type:"Andebu", value:0719},{type:"Hof", value:0714},{type:"Holmestrand", value:0702},{type:"Horten", value:0701},{type:"Lardal", value:0728},{type:"Larvik", value:0709},{type:"Nøtterøy", value:0722},{type:"Re", value:0716},{type:"Sande", value:0713},{type:"Sandefjord", value:0706},{type:"Stokke", value:0720},{type:"Svelvik", value:0711},{type:"Tjøme", value:0723},{type:"Tønsberg", value:0704},{type:"Aremark", value:0118},{type:"Askim", value:0124},{type:"Eidsberg", value:0125},
+    {type:"Fredrikstad", value:0106},{type:"Halden", value:0101},{type:"Hobøl", value:0138},{type:"Hvaler", value:0111},{type:"Marker", value:0119},{type:"Moss", value:0104},{type:"Rakkestad", value:0128},{type:"Rygge", value:0136},{type:"Råde", value:0135},{type:"Rømskog", value:0121},{type:"Sarpsborg", value:0105},{type:"Skiptvet", value:0127},{type:"Spydeberg", value:0123},{type:"Trøgstad", value:0122},{type:"Våler", value:0137}
     
 
     ];
@@ -188,47 +195,69 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     "14" : {
         label:"Sør-Trøndelag",      
         kommuner:{
-            "1" : {label:$scope.kommuner[316].type},"2" : {label:$scope.kommuner[317].type},"3" : {label:$scope.kommuner[318].type},
+            "2" : {label:$scope.kommuner[317].type},"3" : {label:$scope.kommuner[318].type},
             "4" : {label:$scope.kommuner[319].type},"5" : {label:$scope.kommuner[320].type},"6" : {label:$scope.kommuner[321].type},"7" : {label:$scope.kommuner[322].type},"8" : {label:$scope.kommuner[323].type},"9" : {label:$scope.kommuner[324].type},
             "10" : {label:$scope.kommuner[325].type},"11" : {label:$scope.kommuner[326].type},"12" : {label:$scope.kommuner[327].type},"13" : {label:$scope.kommuner[328].type},"14" : {label:$scope.kommuner[329].type},"15" : {label:$scope.kommuner[330].type},
             "16" : {label:$scope.kommuner[331].type},"17" : {label:$scope.kommuner[332].type},"18" : {label:$scope.kommuner[333].type},"19" : {label:$scope.kommuner[334].type},"20" : {label:$scope.kommuner[335].type},"21" : {label:$scope.kommuner[336].type},"22" : {label:$scope.kommuner[337].type},
-            "23" : {label:$scope.kommuner[338].type},"24" : {label:$scope.kommuner[339].type},"25" : {label:$scope.kommuner[340].type}
+            "23" : {label:$scope.kommuner[338].type},"24" : {label:$scope.kommuner[339].type},"25" : {label:$scope.kommuner[340].type},"26" : {label:$scope.kommuner[341].type}
            
         }
     },
     "15" : {
         label:"Telemark",      
         kommuner:{
+            "2" : {label:$scope.kommuner[342].type},"3" : {label:$scope.kommuner[343].type},
+            "4" : {label:$scope.kommuner[344].type},"5" : {label:$scope.kommuner[345].type},"6" : {label:$scope.kommuner[346].type},"7" : {label:$scope.kommuner[347].type},"8" : {label:$scope.kommuner[348].type},"9" : {label:$scope.kommuner[349].type},
+            "10" : {label:$scope.kommuner[350].type},"11" : {label:$scope.kommuner[351].type},"12" : {label:$scope.kommuner[352].type},"13" : {label:$scope.kommuner[353].type},"14" : {label:$scope.kommuner[354].type},"15" : {label:$scope.kommuner[355].type},
+            "16" : {label:$scope.kommuner[356].type},"17" : {label:$scope.kommuner[357].type},"18" : {label:$scope.kommuner[358].type},"19" : {label:$scope.kommuner[359].type}
      
         }
     },
     "16" : {
         label:"Troms",      
         kommuner:{
+            "2" : {label:$scope.kommuner[360].type},"3" : {label:$scope.kommuner[361].type},
+            "4" : {label:$scope.kommuner[362].type},"5" : {label:$scope.kommuner[363].type},"6" : {label:$scope.kommuner[364].type},"7" : {label:$scope.kommuner[365].type},"8" : {label:$scope.kommuner[366].type},"9" : {label:$scope.kommuner[367].type},
+            "10" : {label:$scope.kommuner[368].type},"11" : {label:$scope.kommuner[369].type},"12" : {label:$scope.kommuner[370].type},"13" : {label:$scope.kommuner[371].type},"14" : {label:$scope.kommuner[372].type},"15" : {label:$scope.kommuner[373].type},
+            "16" : {label:$scope.kommuner[374].type},"17" : {label:$scope.kommuner[375].type},"18" : {label:$scope.kommuner[376].type},"19" : {label:$scope.kommuner[377].type},"20" : {label:$scope.kommuner[378].type},
+            "21" : {label:$scope.kommuner[379].type},"22" : {label:$scope.kommuner[380].type},"23" : {label:$scope.kommuner[381].type},"24" : {label:$scope.kommuner[382].type}
             
         }
     },
     "17" : {
         label:"Vest-Agder",      
         kommuner:{
+            "2" : {label:$scope.kommuner[383].type},"3" : {label:$scope.kommuner[384].type},
+            "4" : {label:$scope.kommuner[385].type},"5" : {label:$scope.kommuner[386].type},"6" : {label:$scope.kommuner[387].type},"7" : {label:$scope.kommuner[388].type},"8" : {label:$scope.kommuner[389].type},"9" : {label:$scope.kommuner[390].type},
+            "10": {label:$scope.kommuner[391].type},"11": {label:$scope.kommuner[392].type},"12" : {label:$scope.kommuner[393].type},"13" : {label:$scope.kommuner[394].type},"14" : {label:$scope.kommuner[395].type},"15" : {label:$scope.kommuner[396].type},"16" : {label:$scope.kommuner[397].type}
             
         }
     },
     "18" : {
         label:"Vestfold",      
         kommuner:{
-           
+            "2" : {label:$scope.kommuner[398].type},"3" : {label:$scope.kommuner[399].type},
+            "4" : {label:$scope.kommuner[400].type},"5" : {label:$scope.kommuner[401].type},"6" : {label:$scope.kommuner[402].type},"7" : {label:$scope.kommuner[403].type},"8" : {label:$scope.kommuner[404].type},"9" : {label:$scope.kommuner[405].type},
+            "10": {label:$scope.kommuner[406].type},"11": {label:$scope.kommuner[407].type},"12" : {label:$scope.kommuner[408].type},"13" : {label:$scope.kommuner[409].type},"14" : {label:$scope.kommuner[410].type},"15" : {label:$scope.kommuner[411].type}
+            
         }
+           
+        
     },
     "19" : {
         label:"Østfold",      
         kommuner:{
+            "2" : {label:$scope.kommuner[412].type},"3" : {label:$scope.kommuner[413].type},
+            "4" : {label:$scope.kommuner[414].type},"5" : {label:$scope.kommuner[415].type},"6" : {label:$scope.kommuner[416].type},"7" : {label:$scope.kommuner[417].type},"8" : {label:$scope.kommuner[418].type},"9" : {label:$scope.kommuner[419].type},
+            "10": {label:$scope.kommuner[420].type},"11": {label:$scope.kommuner[421].type},"12" : {label:$scope.kommuner[422].type},"13" : {label:$scope.kommuner[423].type},"14" : {label:$scope.kommuner[424].type},"15" : {label:$scope.kommuner[425].type},
+            "16" : {label:$scope.kommuner[426].type},"17" : {label:$scope.kommuner[427].type},"18" : {label:$scope.kommuner[428].type},"19" : {label:$scope.kommuner[429].type}
             
         }
     },
 
 
 };
+
 
     $scope.searchTypes    = [{type:"Alle"},{type:"Kommune"}, {type:"Person"}, {type:"Firma"}];
     $scope.currentType = $scope.searchTypes[0];
