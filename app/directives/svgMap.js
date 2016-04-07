@@ -58,7 +58,7 @@ kommunalApp.directive('city', ['$compile', function ($compile) {
         scope: true,
         link: function(scope, element) {
             scope.elementName = element.attr("id");
-            scope.elementId = element.attr("label").substring(2);
+            scope.elementId = element.attr("inkscape:label").substring(2);
             scope.cityClick = function() {
                 console.log(scope.elementId);
                 alert(scope.elementId + "-" + scope.elementName);
