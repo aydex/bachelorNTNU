@@ -18,7 +18,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         pageSize  : 25
     };
 
-     $scope.kommuner = [{type:"Asker", value:220},{type:"Aurskog-Høland", value:221},{type:"Bærum", value:219},{type:"Eidsvoll", value:237},{type:"Fet", value:227},{type:"Frogn", value:215},{type:"Gjerdrum", value:239},{type:"Hurdal", value:230},
+   $scope.kommuner = [{type:"Asker", value:220},{type:"Aurskog-Høland", value:221},{type:"Bærum", value:219},{type:"Eidsvoll", value:237},{type:"Fet", value:227},{type:"Frogn", value:215},{type:"Gjerdrum", value:239},{type:"Hurdal", value:230},
     {type:"Lørenskog", value:238},{type:"Nannestad", value:236},{type:"Nes", value:216},{type:"Nesodden", value:223},{type:"Nittedal", value:217},{type:"Oppegård", value:228},{type:"Rælingen", value:231},{type:"Skedsmo", value:213},{type:"Ski", value:226},
     {type:"Sørum", value:235},{type:"Ullensaker", value:211},{type:"Vestby", value:214},{type:"Ås", value:214},{type:"Arendal", value:906},{type:"Birkenes", value:928},{type:"Bygland", value:238},{type:"Bykle", value:941},{type:"Evje og Hornnes", value:937},
     {type:"Froland", value:919},{type:"Gjerstad", value:911},{type:"Grimstad", value:904},{type:"Lørenskog", value:238},{type:"Nannestad", value:236},{type:"Nes", value:216},{type:"Nesodden", value:223},{type:"Nittedal", value:217},{type:"Oppegård", value:228},

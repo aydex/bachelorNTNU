@@ -17,7 +17,6 @@
         <option value="">Velg fylke</option>
     </select>
 
-
     <select name="kommune" data-ng-model="kommune" data-ng-options="kommuneId as kommuneInfo.label for (kommuneId, kommuneInfo) in fylker[fylke]['kommuner']" data-ng-disabled="fylke == undefined">
         <option value="">Velg kommune</option>
     </select>               
