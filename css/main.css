@@ -425,8 +425,9 @@ select:disabled{
 
 .select-arrow{
 	-webkit-transform:rotate(90deg);
-	margin-left:-25px;
+	margin-left:-18px;
 	font-size:10px;
+	pointer-events:none;
 }
 
 #advanced-div select:first-child{
