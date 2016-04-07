@@ -57,10 +57,11 @@ kommunalApp.directive('city', ['$compile', function ($compile) {
         restrict: 'EA',
         scope: true,
         link: function(scope, element) {
-            scope.elementId = element.attr("id");
+            scope.elementName = element.attr("id");
+            scope.elementId = element.attr("label").substring(2);
             scope.cityClick = function() {
                 console.log(scope.elementId);
-                alert(scope.elementId);
+                alert(scope.elementId + "-" + scope.elementName);
                 return scope.elementId;
             };
 

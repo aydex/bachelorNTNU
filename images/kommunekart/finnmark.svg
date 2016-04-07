@@ -78,7 +78,7 @@
   </defs>
   <g
      id="gfinnmark"
-     inkscape:label="f20">
+     label="f20">
     <path
        class="land"
        id="path10"
@@ -86,7 +86,7 @@
        clip-path="url(#clipEmfPath1)"
        style="fill:none;;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" />
     <path
-       inkscape:label="kn2004"
+       label="kn2004"
        transform="matrix(0.28222222,0,0,0.28222222,0,-6.1820329e-6)"
        class="land"
        id="hammerfest"
@@ -94,7 +94,7 @@
        clip-path="url(#clipEmfPath1)"
        style="fill:#e3ecae;fill-opacity:1;fill-rule:nonzero;;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" />
     <path
-       inkscape:label="kn2003"
+       label="kn2003"
        transform="matrix(0.28222222,0,0,0.28222222,0,-6.1820329e-6)"
        class="land"
        id="vadso"
@@ -102,7 +102,7 @@
        clip-path="url(#clipEmfPath1)"
        style="fill:#ffe0a8;fill-opacity:1;fill-rule:nonzero;;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" />
     <path
-       inkscape:label="kn2028"
+       label="kn2028"
        transform="matrix(0.28222222,0,0,0.28222222,0,-6.1820329e-6)"
        class="land"
        id="batsfjord"
@@ -110,7 +110,7 @@
        clip-path="url(#clipEmfPath1)"
        style="fill:#dbd4e9;fill-opacity:1;fill-rule:nonzero;;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" />
     <path
-       inkscape:label="kn2012"
+       label="kn2012"
        transform="matrix(0.28222222,0,0,0.28222222,0,-7.25e-6)"
        class="land"
        id="alta"
@@ -118,7 +118,7 @@
        clip-path="url(#clipEmfPath1)"
        style="fill:#fffac2;fill-opacity:1;fill-rule:nonzero;;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" />
     <path
-       inkscape:label="kn2018"
+       label="kn2018"
        transform="matrix(0.28222222,0,0,0.28222222,0,-6.1820329e-6)"
        class="land"
        id="masoy"
@@ -126,7 +126,7 @@
        clip-path="url(#clipEmfPath1)"
        style="fill:#fffac2;fill-opacity:1;fill-rule:nonzero;;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" />
     <path
-       inkscape:label="kn2027"
+       label="kn2027"
        transform="matrix(0.28222222,0,0,0.28222222,0,-6.1820329e-6)"
        class="land"
        id="nesseby"
@@ -134,7 +134,7 @@
        clip-path="url(#clipEmfPath1)"
        style="fill:#e3ecae;fill-opacity:1;fill-rule:nonzero;;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" />
     <path
-       inkscape:label="kn2023"
+       label="kn2023"
        transform="matrix(0.28222222,0,0,0.28222222,0,-6.1820329e-6)"
        class="land"
        id="gamvik"
@@ -142,7 +142,7 @@
        clip-path="url(#clipEmfPath1)"
        style="fill:#fcd8d7;fill-opacity:1;fill-rule:nonzero;;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" />
     <path
-       inkscape:label="kn2024"
+       label="kn2024"
        transform="matrix(0.28222222,0,0,0.28222222,0,-6.1820329e-6)"
        class="land"
        id="berlevag"
@@ -150,7 +150,7 @@
        clip-path="url(#clipEmfPath1)"
        style="fill:#fffac2;fill-opacity:1;fill-rule:nonzero;;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" />
     <path
-       inkscape:label="kn2011"
+       label="kn2011"
        transform="matrix(0.28222222,0,0,0.28222222,0,-6.1820329e-6)"
        class="land"
        id="kautokeino"
@@ -158,7 +158,7 @@
        clip-path="url(#clipEmfPath1)"
        style="fill:#dbd4e9;fill-opacity:1;fill-rule:nonzero;;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" />
     <path
-       inkscape:label="kn2030"
+       label="kn2030"
        transform="matrix(0.28222222,0,0,0.28222222,0,-6.1820329e-6)"
        class="land"
        id="sor-varanger"
@@ -166,7 +166,7 @@
        clip-path="url(#clipEmfPath1)"
        style="fill:#fcd8d7;fill-opacity:1;fill-rule:nonzero;;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" />
     <path
-       inkscape:label="kn2021"
+       label="kn2021"
        transform="matrix(0.28222222,0,0,0.28222222,0,-6.1820329e-6)"
        class="land"
        id="karasjok"
@@ -174,7 +174,7 @@
        clip-path="url(#clipEmfPath1)"
        style="fill:#e3ecd6;fill-opacity:1;fill-rule:nonzero;;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" />
     <path
-       inkscape:label="kn2014"
+       label="kn2014"
        transform="matrix(0.28222222,0,0,0.28222222,0,-6.1820329e-6)"
        class="land"
        id="loppa"
@@ -182,7 +182,7 @@
        clip-path="url(#clipEmfPath1)"
        style="fill:#d4e5f6;fill-opacity:1;fill-rule:nonzero;;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" />
     <path
-       inkscape:label="kn2019"
+       label="kn2019"
        transform="matrix(0.28222222,0,0,0.28222222,0,-6.1820329e-6)"
        class="land"
        id="nordkapp"
@@ -190,7 +190,7 @@
        clip-path="url(#clipEmfPath1)"
        style="fill:#d4e5f6;fill-opacity:1;fill-rule:nonzero;;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" />
     <path
-       inkscape:label="kn2002"
+       label="kn2002"
        transform="matrix(0.28222222,0,0,0.28222222,0,-6.1820329e-6)"
        class="land"
        id="vardo"
@@ -198,7 +198,7 @@
        clip-path="url(#clipEmfPath1)"
        style="fill:#d4e5f6;fill-opacity:1;fill-rule:nonzero;;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" />
     <path
-       inkscape:label="kn2015"
+       label="kn2015"
        transform="matrix(0.28222222,0,0,0.28222222,0,-6.1820329e-6)"
        class="land"
        id="hasvik"
@@ -206,7 +206,7 @@
        clip-path="url(#clipEmfPath1)"
        style="fill:#ffe0a8;fill-opacity:1;fill-rule:nonzero;;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" />
     <path
-       inkscape:label="kn2017"
+       label="kn2017"
        transform="matrix(0.28222222,0,0,0.28222222,0,-6.1820329e-6)"
        class="land"
        id="kvalsund"
@@ -214,7 +214,7 @@
        clip-path="url(#clipEmfPath1)"
        style="fill:#dbd4e9;fill-opacity:1;fill-rule:nonzero;;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" />
     <path
-       inkscape:label="kn2022"
+       label="kn2022"
        transform="matrix(0.28222222,0,0,0.28222222,0,-6.1820329e-6)"
        class="land"
        id="lebesby"
@@ -222,7 +222,7 @@
        clip-path="url(#clipEmfPath1)"
        style="fill:#ffe0a8;fill-opacity:1;fill-rule:nonzero;;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" />
     <path
-       inkscape:label="kn2025"
+       label="kn2025"
        transform="matrix(0.28222222,0,0,0.28222222,0,-6.1820329e-6)"
        class="land"
        id="tana"
@@ -230,7 +230,7 @@
        clip-path="url(#clipEmfPath1)"
        style="opacity:0.678;fill:#367177;fill-opacity:0.41666667;fill-rule:nonzero;stroke:#6c0088;stroke-width:0;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.55128204" />
     <path
-       inkscape:label="kn2020"
+       label="kn2020"
        transform="matrix(0.28222222,0,0,0.28222222,0,-6.1820329e-6)"
        class="land"
        id="porsanger"
