@@ -66,98 +66,98 @@
        class="land"
        id="svelvik"
        d="m 123.26056,56.356385 -2.82222,-3.439725 -1.85194,-2.20472 -3.61612,-19.314724 1.5875,-9.877778 L 111.26612,7.2319383 113.29473,2.028466 114.08834,-6.1820329e-6 114.6175,0.44096604 l 4.85056,0.88194446 4.67444,3.5277778 3.175,8.5548607 2.73389,12.347223 -5.20333,19.314724 0.17639,8.907498 -1.76389,2.381391 z"
-       style="fill:#fffac2;fill-opacity:1;fill-rule:nonzero;" />
+        />
     <path
        inkscape:label="kn0706"
        class="land"
        id="sandefjord"
        d="m 102.44667,190.3236 -2.38111,10.05417 -3.439726,5.90917 1.675553,11.37694 -0.881662,14.99306 -2.469445,-5.82084 -3.880555,-11.02416 0.352778,3.61583 0.969997,13.67028 -3.439442,2.20472 -0.793891,-4.7625 -3.527778,-20.10833 -0.08833,-3.175 -1.058334,-2.29306 -6.173328,12.7 0,0.97028 -2.469445,-3.35139 -3.086947,-2.38139 -6.614724,-5.02694 0,-1.23472 0.264724,-5.29167 0.881945,-19.13833 2.910558,-8.37834 6.790831,2.38111 7.408333,-2.55749 1.411111,-0.52917 2.028614,0.88194 0.705555,0.79361 0.529167,0.52917 6.879166,7.23194 7.496385,7.76111 z"
-       style="fill:#fffac2;fill-opacity:1;fill-rule:nonzero;" />
+        />
     <path
        inkscape:label="kn0723"
        class="land"
        id="tjome"
        d="m 120.35028,201.70083 -1.235,9.61305 2.8225,6.79112 4.145,4.05694 0.0883,4.85055 -2.02862,4.85084 -2.82222,0.17639 -3.79222,-5.38 -0.17667,-6.08528 -1.49916,2.82222 0,6.43806 -0.52917,4.67444 -4.58611,-2.64583 -2.02833,-10.05417 -0.17667,-1.23472 -1.58722,-8.11389 1.58722,-4.05694 1.76417,-4.49806 0.17639,0 0,-0.26444 0.88194,-2.38139 0.26444,-0.79361 8.73139,1.23472 z"
-       style="fill:#d4e5f6;fill-opacity:1;fill-rule:nonzero;" />
+        />
     <path
        inkscape:label="kn0701"
        class="land"
        id="horten"
        d="m 135.34306,127.35277 -3.52778,1.94028 -3.5275,-3.52778 -2.8225,-2.64583 -2.20472,0.70555 -0.26444,0.17639 -3.52806,1.14667 1.67583,-9.34861 -3.61583,-1.5875 0,-0.0883 1.76389,-8.20194 -3.52778,0.35278 -1.41111,0.26444 -4.14528,-4.40972 2.73417,-7.055555 0.0881,-0.352778 1.67584,-4.233333 0,-0.264442 2.46944,-1.323058 0.97,1.675835 6.70278,2.292774 6.26166,1.852224 7.23223,2.205002 1.5875,4.233331 -0.17639,2.5575 -0.0883,0.26472 -2.64584,7.05556 -2.02861,5.20333 -0.44083,3.7925 0.6175,4.67417 0.17611,2.64583 z"
-       style="fill:#dbd4e9;fill-opacity:1;fill-rule:nonzero;" />
+        />
     <path
        inkscape:label="kn0719"
        class="land"
        id="andebu"
        d="m 85.336945,129.82222 -0.264442,8.02583 -0.176389,6.35 -1.675836,2.20472 -8.731109,10.58333 -2.910557,-1.85194 0,6.35 4.409722,14.72833 -6.790831,-2.38111 -2.910558,8.37834 -10.14222,-8.37834 -13.581945,-23.54805 4.938607,-11.28889 0.793891,-9.78944 6.791114,-20.28473 16.933333,1.14639 4.233333,-2.02833 9.083887,21.78389 z"
-       style="fill:#ffe0a8;fill-opacity:1;fill-rule:nonzero;" />
+        />
     <path
        inkscape:label="kn0702"
        class="land"
        id="holmestrand"
        d="m 98.918889,54.856938 3.615831,3.880556 3.79251,6.261946 2.99861,5.908887 2.99861,7.9375 -1.67584,4.409722 -0.70555,1.852225 -0.35278,0.881944 -0.26444,0.705556 -0.17639,0.61722 -2.38139,-1.322776 -2.73389,-1.675835 -3.79222,-2.116667 -4.67445,3.792502 -0.08805,0 -3.880555,0.793609 -0.176389,-0.793609 -2.734169,-11.641666 -4.497776,2.20472 -4.7625,2.205002 -3.439724,1.675553 -2.998611,-8.025553 4.498057,-4.056945 2.910276,-2.645833 -0.176389,-0.793891 -3.704167,-14.551942 -1.234722,-5.11556 3.616114,-5.908887 5.115277,5.027224 1.763889,1.5875 8.643056,8.201943 1.234722,1.411111 3.263053,-0.705556 z"
-       style="fill:#e3ecae;fill-opacity:1;fill-rule:nonzero;" />
+        />
     <path
        inkscape:label="kn0722"
        class="land"
        id="notteroy"
        d="m 110.47251,203.64111 0,0.26444 -0.17639,0 0.17639,-0.26444 z m 19.05,-16.31612 -2.20501,5.38001 -4.85055,1.5875 -5.90917,-3.70417 -3.08666,1.76361 -2.82251,-0.70528 -1.05833,-11.99472 5.02722,-3.88028 0.17639,-3.08694 0.79389,-9.34862 0.52917,-6.61444 0.35278,-0.44111 4.40972,3.70417 3.79222,3.43944 2.91028,7.32028 1.235,12.78833 0.70556,3.79222 z"
-       style="fill:#dbd4e9;fill-opacity:1;fill-rule:nonzero;" />
+        />
     <path
        inkscape:label="kn0709"
        class="land"
        id="larvik"
        d="m 48.295278,129.205 -0.793891,9.78944 -4.938607,11.28889 13.581945,23.54805 10.14222,8.37834 -0.881945,19.13833 -0.264724,5.29167 0,1.23472 6.614724,5.02694 3.086947,2.38139 2.469445,3.35139 0,6.96722 0.793608,3.43973 0.881945,3.175 1.499447,5.82083 -5.291667,5.82083 -9.436947,2.82223 -3.704166,-3.52778 2.381108,-1.76389 1.675836,-1.23472 -2.028613,-3.61612 -6.261665,0.26473 -6.261664,5.82083 -1.675836,-8.64305 -1.499164,-0.26473 -7.408334,-1.23472 4.7625,14.905 0.08805,3.175 -3.616114,4.7625 -33.2491605,5.90889 -6.9673611,-5.55611 6.9673611,-10.58333 -0.088194,-0.26473 -5.0270834,-12.43527 2.5576389,-0.0883 3.8805564,-15.08111 1.852083,-7.32028 -5.7326394,-11.64167 1.5875,-10.23055 5.4680564,-2.38111 8.466666,-3.70417 -3.351389,-8.90778 -1.058333,-20.54916 9.172222,-9.26056 1.234864,-1.23472 0.61722,-0.70556 -4.056945,-6.26166 -0.529166,-0.70556 1.322916,-3.08694 2.116667,-4.40973 20.902083,2.3814 z"
-       style="fill:#dbd4e9;fill-opacity:1;fill-rule:nonzero;" />
+        />
     <path
        inkscape:label="kn0728"
        class="land"
        id="lardal"
        d="m 60.906943,75.582774 0,6.96722 -0.881663,3.439724 -4.938888,22.930552 -6.791114,20.28473 -20.902083,-2.3814 -2.116667,4.40973 -1.322916,3.08694 0.529166,0.70556 4.056945,6.26166 -0.61722,0.70556 -1.234864,1.23472 -9.172222,9.26056 -9.9659726,-14.905 -7.9375,-11.90639 5.9090278,-8.99556 L 6.4911111,94.015272 5.3445833,85.989718 4.1098611,76.72916 14.957778,73.995274 l 19.402778,6.085275 4.850836,-4.321386 9.965831,3.704166 2.293055,0.793609 1.146669,-0.529166 8.289996,-4.144998 z"
-       style="fill:#fffac2;fill-opacity:1;fill-rule:nonzero;" />
+        />
     <path
        inkscape:label="kn0716"
        class="land"
        id="re"
        d="m 112.32445,78.845827 1.5875,4.497776 0.35278,0.529449 1.23472,2.116666 1.67583,2.910276 -2.46944,1.323058 0,0.264442 -1.67584,4.233333 -0.0881,0.352778 -2.73417,7.055555 4.14528,4.40972 1.41111,-0.26444 3.52778,-0.35278 -1.76389,8.20194 0,0.0883 3.61583,1.5875 -1.67583,9.34861 -2.82194,3.70389 -0.0883,0 -3.96861,-3.26306 -1.23472,6.61473 -0.6175,3.61583 -2.02833,0.52916 -6.70278,1.85223 -0.97028,0.52917 -3.968613,1.94027 -3.263335,-5.73278 -5.291667,1.05834 -3.175,-6.17361 -9.083887,-21.78389 -4.233333,2.02833 -16.933333,-1.14639 4.938888,-22.930552 0.881663,-3.439724 13.758333,3.439724 1.94056,0.440831 -0.08834,-0.440831 -0.529166,-5.556391 3.439724,-1.675553 4.7625,-2.205002 4.497776,-2.20472 2.734169,11.641666 0.176389,0.793609 3.880555,-0.793609 0.08805,0 4.674447,-3.792502 3.79222,2.116667 2.73389,1.675835 2.38139,1.322776 0.17639,-0.61722 0.26444,-0.705556 0.35278,-0.881944 0.70555,-1.852225 1.67584,-4.409722 z"
-       style="fill:#d4e5f6;fill-opacity:1;fill-rule:nonzero;" />
+        />
     <path
        inkscape:label="kn0704"
        class="land"
        id="tonsberg"
        d="m 128.28778,125.76527 3.5275,3.52778 3.52778,-1.94028 0.35306,4.14528 1.23472,2.38111 0.44083,0.97028 2.55778,4.85055 1.76361,3.43973 -4.67417,9.34861 -0.97028,2.20472 -3.96861,9.87778 -9.96583,-7.23195 -5.64444,-6.43805 -0.52945,-0.52917 -0.26444,0.61722 -1.94028,6.17361 -1.5875,-1.85222 -6.43834,3.52806 -1.23444,-2.02861 -2.55778,-4.40973 -0.26444,-0.26472 -1.49944,-2.20472 -3.175008,-4.7625 1.411111,-0.97 -0.264443,-0.70555 -1.058333,-2.82223 3.968613,-1.94027 0.97028,-0.52917 6.70278,-1.85223 2.02833,-0.52916 0.6175,-3.61583 1.23472,-6.61473 3.96861,3.26306 0.0883,0 2.82194,-3.70389 3.52806,-1.14667 0.26444,-0.17639 2.20472,-0.70555 2.8225,2.64583 z"
-       style="fill:#fcd8d7;fill-opacity:1;fill-rule:nonzero;" />
+        />
     <path
        inkscape:label="kn0714"
        class="land"
        id="hof"
        d="m 61.25972,13.934716 17.639172,25.4 -3.616114,5.908887 1.234722,5.11556 3.704167,14.551942 0.176389,0.793891 -2.910276,2.645833 -4.498057,4.056945 2.998611,8.025553 0.529166,5.556391 0.08834,0.440831 -1.94056,-0.440831 -13.758333,-3.439724 0,-6.96722 -3.79222,-6.526389 -20.108334,-35.630556 12.611665,-11.906391 2.646115,-9.172222 2.381109,-7.5847222 1.322776,0 5.291666,9.1722222 z"
-       style="fill:#fcd8d7;fill-opacity:1;fill-rule:nonzero;" />
+        />
     <path
        inkscape:label="kn0720"
        class="land"
        id="stokke"
        d="m 97.066947,140.67027 1.058333,2.82223 0.264443,0.70555 -1.411111,0.97 3.175008,4.7625 1.49944,2.20472 0.26444,0.26472 2.55778,4.40973 1.23444,2.02861 6.43834,-3.52806 1.5875,1.85222 -2.20472,6.43834 -2.11667,8.64277 -3.7925,4.5864 -3.175,13.4936 -7.49639,-7.76111 -6.879166,-7.23194 -0.529167,-0.52917 -0.705555,-0.79361 -2.028614,-0.88194 -1.411111,0.52917 -7.408333,2.55749 -4.409722,-14.72833 0,-6.35 2.910557,1.85194 8.731109,-10.58333 1.675836,-2.20472 0.176389,-6.35 0.264442,-8.02583 3.175,6.17361 5.291667,-1.05834 3.263335,5.73278 z"
-       style="fill:#e3ecae;fill-opacity:1;fill-rule:nonzero;" />
+        />
     <path
        inkscape:label="kn0713"
        class="land"
        id="sande"
        d="m 111.26612,7.2319383 5.29166,14.2874997 -1.5875,9.877778 3.61612,19.314724 1.85194,2.20472 2.82222,3.439725 -2.29306,2.910275 -6.35,-1.058333 -13.05277,-9.965831 -5.115285,-7.055556 -3.615831,2.910276 4.056944,8.466667 2.028331,2.293055 -3.263053,0.705556 -1.234722,-1.411111 -8.643056,-8.201943 -1.763889,-1.5875 -5.115277,-5.027224 -17.639172,-25.4 9.348894,0.440972 5.908886,-10.4951386 7.849447,1.4993055 8.290278,1.2347223 3.79222,0.5291666 0.441113,-0.1763889 6.261672,-2.2048611 0.52916,0.1763889 2.99861,0.9701389 4.58612,1.3229167 z"
-       style="fill:#ffe0a8;fill-opacity:1;fill-rule:nonzero;" />
+        />
     <text
        sodipodi:linespacing="125%"
        id="text61"
        y="218.42973"
        x="110.49786"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan63"
          y="218.42973"
          x="110.49786"
          sodipodi:role="line"><tspan
            id="tspan65"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">0723</tspan></tspan></text>
     <text
@@ -165,14 +165,14 @@
        id="text67"
        y="197.50491"
        x="77.473167"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan69"
          y="197.50491"
          x="77.473167"
          sodipodi:role="line"><tspan
            id="tspan71"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">0706</tspan></tspan></text>
     <text
@@ -180,14 +180,14 @@
        id="text73"
        y="203.09251"
        x="32.864521"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan75"
          y="203.09251"
          x="32.864521"
          sodipodi:role="line"><tspan
            id="tspan77"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">0709</tspan></tspan></text>
     <text
@@ -195,14 +195,14 @@
        id="text79"
        y="167.21838"
        x="85.530212"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan81"
          y="167.21838"
          x="85.530212"
          sodipodi:role="line"><tspan
            id="tspan83"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">0720</tspan></tspan></text>
     <text
@@ -210,14 +210,14 @@
        id="text85"
        y="146.14577"
        x="58.803509"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan87"
          y="146.14577"
          x="58.803509"
          sodipodi:role="line"><tspan
            id="tspan89"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">0719</tspan></tspan></text>
     <text
@@ -225,14 +225,14 @@
        id="text91"
        y="145.08467"
        x="117.6733"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan93"
          y="145.08467"
          x="117.6733"
          sodipodi:role="line"><tspan
            id="tspan95"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">0704</tspan></tspan></text>
     <text
@@ -240,14 +240,14 @@
        id="text97"
        y="107.22825"
        x="123.67535"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan99"
          y="107.22825"
          x="123.67535"
          sodipodi:role="line"><tspan
            id="tspan101"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">0701</tspan></tspan></text>
     <text
@@ -255,14 +255,14 @@
        id="text103"
        y="108.40613"
        x="89.248505"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan105"
          y="108.40613"
          x="89.248505"
          sodipodi:role="line"><tspan
            id="tspan107"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">0716</tspan></tspan></text>
     <text
@@ -270,14 +270,14 @@
        id="text109"
        y="108.40647"
        x="25.529915"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan111"
          y="108.40647"
          x="25.529915"
          sodipodi:role="line"><tspan
            id="tspan113"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">0728</tspan></tspan></text>
     <text
@@ -285,14 +285,14 @@
        id="text115"
        y="72.247437"
        x="91.381363"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan117"
          y="72.247437"
          x="91.381363"
          sodipodi:role="line"><tspan
            id="tspan119"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">0702</tspan></tspan></text>
     <text
@@ -300,14 +300,14 @@
        id="text121"
        y="52.796082"
        x="58.040764"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan123"
          y="52.796082"
          x="58.040764"
          sodipodi:role="line"><tspan
            id="tspan125"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">0714</tspan></tspan></text>
     <text
@@ -315,14 +315,14 @@
        id="text127"
        y="30.794325"
        x="88.905373"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan129"
          y="30.794325"
          x="88.905373"
          sodipodi:role="line"><tspan
            id="tspan131"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">0713</tspan></tspan></text>
     <text
@@ -330,14 +330,14 @@
        id="text133"
        y="30.794325"
        x="119.89056"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan135"
          y="30.794325"
          x="119.89056"
          sodipodi:role="line"><tspan
            id="tspan137"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">0711</tspan></tspan></text>
     <text
@@ -345,14 +345,14 @@
        id="text139"
        y="186.94121"
        x="116.63632"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan141"
          y="186.94121"
          x="116.63632"
          sodipodi:role="line"><tspan
            id="tspan143"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">0722</tspan></tspan></text>
     <text
@@ -360,14 +360,14 @@
        id="text145"
        y="27.40814"
        x="87.379883"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan147"
          y="27.40814"
          x="87.379883"
          sodipodi:role="line"><tspan
            id="tspan149"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">Sande</tspan></tspan></text>
     <text
@@ -375,14 +375,14 @@
        id="text151"
        y="49.409897"
        x="58.314991"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan153"
          y="49.409897"
          x="58.314991"
          sodipodi:role="line"><tspan
            id="tspan155"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">Hof</tspan></tspan></text>
     <text
@@ -390,14 +390,14 @@
        id="text157"
        y="64.972084"
        x="88.981514"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan159"
          y="64.972084"
          x="88.981514"
          sodipodi:role="line"><tspan
            id="tspan161"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">Holme-</tspan></tspan></text>
     <text
@@ -405,14 +405,14 @@
        id="text163"
        y="68.86142"
        x="88.981514"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan165"
          y="68.86142"
          x="88.981514"
          sodipodi:role="line"><tspan
            id="tspan167"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">s</tspan></tspan></text>
     <text
@@ -420,14 +420,14 @@
        id="text169"
        y="68.86142"
        x="90.321648"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan171"
          y="68.86142"
          x="90.321648"
          sodipodi:role="line"><tspan
            id="tspan173"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">t</tspan></tspan></text>
     <text
@@ -435,14 +435,14 @@
        id="text175"
        y="68.86142"
        x="91.503319"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan177"
          y="68.86142"
          x="91.503319"
          sodipodi:role="line"><tspan
            id="tspan179"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">r</tspan></tspan></text>
     <text
@@ -450,14 +450,14 @@
        id="text181"
        y="68.86142"
        x="92.660873"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan183"
          y="68.86142"
          x="92.660873"
          sodipodi:role="line"><tspan
            id="tspan185"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">and</tspan></tspan></text>
     <text
@@ -465,14 +465,14 @@
        id="text187"
        y="27.40814"
        x="117.89551"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan189"
          y="27.40814"
          x="117.89551"
          sodipodi:role="line"><tspan
            id="tspan191"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">S</tspan></tspan></text>
     <text
@@ -480,14 +480,14 @@
        id="text193"
        y="27.40814"
        x="119.47681"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan195"
          y="27.40814"
          x="119.47681"
          sodipodi:role="line"><tspan
            id="tspan197"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">v</tspan></tspan></text>
     <text
@@ -495,14 +495,14 @@
        id="text199"
        y="27.40814"
        x="121.03571"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan201"
          y="27.40814"
          x="121.03571"
          sodipodi:role="line"><tspan
            id="tspan203"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">elvik</tspan></tspan></text>
     <text
@@ -510,14 +510,14 @@
        id="text205"
        y="105.02029"
        x="24.036983"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan207"
          y="105.02029"
          x="24.036983"
          sodipodi:role="line"><tspan
            id="tspan209"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">La</tspan></tspan></text>
     <text
@@ -525,14 +525,14 @@
        id="text211"
        y="105.02029"
        x="27.209917"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan213"
          y="105.02029"
          x="27.209917"
          sodipodi:role="line"><tspan
            id="tspan215"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">r</tspan></tspan></text>
     <text
@@ -540,14 +540,14 @@
        id="text217"
        y="105.02029"
        x="28.391584"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan219"
          y="105.02029"
          x="28.391584"
          sodipodi:role="line"><tspan
            id="tspan221"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">dal</tspan></tspan></text>
     <text
@@ -555,14 +555,14 @@
        id="text223"
        y="105.01994"
        x="90.304771"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan225"
          y="105.01994"
          x="90.304771"
          sodipodi:role="line"><tspan
            id="tspan227"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">R</tspan></tspan></text>
     <text
@@ -570,14 +570,14 @@
        id="text229"
        y="105.01994"
        x="92.158234"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan231"
          y="105.01994"
          x="92.158234"
          sodipodi:role="line"><tspan
            id="tspan233"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">e</tspan></tspan></text>
     <text
@@ -585,14 +585,14 @@
        id="text235"
        y="142.75958"
        x="56.059147"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan237"
          y="142.75958"
          x="56.059147"
          sodipodi:role="line"><tspan
            id="tspan239"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">Andebu</tspan></tspan></text>
     <text
@@ -600,14 +600,14 @@
        id="text241"
        y="103.84206"
        x="121.51596"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan243"
          y="103.84206"
          x="121.51596"
          sodipodi:role="line"><tspan
            id="tspan245"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">Hor</tspan></tspan></text>
     <text
@@ -615,14 +615,14 @@
        id="text247"
        y="103.84206"
        x="126.80418"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan249"
          y="103.84206"
          x="126.80418"
          sodipodi:role="line"><tspan
            id="tspan251"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">t</tspan></tspan></text>
     <text
@@ -630,14 +630,14 @@
        id="text253"
        y="103.84206"
        x="127.94796"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan255"
          y="103.84206"
          x="127.94796"
          sodipodi:role="line"><tspan
            id="tspan257"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">en</tspan></tspan></text>
     <text
@@ -645,14 +645,14 @@
        id="text259"
        y="141.6985"
        x="114.0556"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan261"
          y="141.6985"
          x="114.0556"
          sodipodi:role="line"><tspan
            id="tspan263"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">T</tspan></tspan></text>
     <text
@@ -660,14 +660,14 @@
        id="text265"
        y="141.6985"
        x="115.4612"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan267"
          y="141.6985"
          x="115.4612"
          sodipodi:role="line"><tspan
            id="tspan269"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">ønsbe</tspan></tspan></text>
     <text
@@ -675,14 +675,14 @@
        id="text271"
        y="141.6985"
        x="124.1704"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan273"
          y="141.6985"
          x="124.1704"
          sodipodi:role="line"><tspan
            id="tspan275"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">r</tspan></tspan></text>
     <text
@@ -690,14 +690,14 @@
        id="text277"
        y="141.6985"
        x="125.35207"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan279"
          y="141.6985"
          x="125.35207"
          sodipodi:role="line"><tspan
            id="tspan281"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">g</tspan></tspan></text>
     <text
@@ -705,14 +705,14 @@
        id="text283"
        y="199.70633"
        x="31.504229"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan285"
          y="199.70633"
          x="31.504229"
          sodipodi:role="line"><tspan
            id="tspan287"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">La</tspan></tspan></text>
     <text
@@ -720,14 +720,14 @@
        id="text289"
        y="199.70633"
        x="34.677158"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan291"
          y="199.70633"
          x="34.677158"
          sodipodi:role="line"><tspan
            id="tspan293"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">r</tspan></tspan></text>
     <text
@@ -735,14 +735,14 @@
        id="text295"
        y="199.70633"
        x="35.939785"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan297"
          y="199.70633"
          x="35.939785"
          sodipodi:role="line"><tspan
            id="tspan299"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">vik</tspan></tspan></text>
     <text
@@ -750,14 +750,14 @@
        id="text301"
        y="163.8322"
        x="83.65229"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan303"
          y="163.8322"
          x="83.65229"
          sodipodi:role="line"><tspan
            id="tspan305"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">S</tspan></tspan></text>
     <text
@@ -765,14 +765,14 @@
        id="text307"
        y="163.8322"
        x="85.273209"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan309"
          y="163.8322"
          x="85.273209"
          sodipodi:role="line"><tspan
            id="tspan311"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">t</tspan></tspan></text>
     <text
@@ -780,14 +780,14 @@
        id="text313"
        y="163.8322"
        x="86.420425"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan315"
          y="163.8322"
          x="86.420425"
          sodipodi:role="line"><tspan
            id="tspan317"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">ok</tspan></tspan></text>
     <text
@@ -795,14 +795,14 @@
        id="text319"
        y="163.8322"
        x="89.884468"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan321"
          y="163.8322"
          x="89.884468"
          sodipodi:role="line"><tspan
            id="tspan323"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">k</tspan></tspan></text>
     <text
@@ -810,14 +810,14 @@
        id="text325"
        y="163.8322"
        x="91.374474"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan327"
          y="163.8322"
          x="91.374474"
          sodipodi:role="line"><tspan
            id="tspan329"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">e</tspan></tspan></text>
     <text
@@ -825,14 +825,14 @@
        id="text331"
        y="194.11873"
        x="72.581825"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan333"
          y="194.11873"
          x="72.581825"
          sodipodi:role="line"><tspan
            id="tspan335"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">Sand</tspan></tspan></text>
     <text
@@ -840,14 +840,14 @@
        id="text337"
        y="194.11873"
        x="79.59948"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan339"
          y="194.11873"
          x="79.59948"
          sodipodi:role="line"><tspan
            id="tspan341"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">e</tspan></tspan></text>
     <text
@@ -855,14 +855,14 @@
        id="text343"
        y="194.11873"
        x="81.323753"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan345"
          y="194.11873"
          x="81.323753"
          sodipodi:role="line"><tspan
            id="tspan347"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">fjo</tspan></tspan></text>
     <text
@@ -870,14 +870,14 @@
        id="text349"
        y="194.11873"
        x="85.051346"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan351"
          y="194.11873"
          x="85.051346"
          sodipodi:role="line"><tspan
            id="tspan353"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">r</tspan></tspan></text>
     <text
@@ -885,14 +885,14 @@
        id="text355"
        y="194.11873"
        x="86.233009"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan357"
          y="194.11873"
          x="86.233009"
          sodipodi:role="line"><tspan
            id="tspan359"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">d</tspan></tspan></text>
     <text
@@ -900,14 +900,14 @@
        id="text361"
        y="183.55502"
        x="113.13851"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan363"
          y="183.55502"
          x="113.13851"
          sodipodi:role="line"><tspan
            id="tspan365"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">Nø</tspan></tspan></text>
     <text
@@ -915,14 +915,14 @@
        id="text367"
        y="183.55502"
        x="117.28297"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan369"
          y="183.55502"
          x="117.28297"
          sodipodi:role="line"><tspan
            id="tspan371"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">tt</tspan></tspan></text>
     <text
@@ -930,14 +930,14 @@
        id="text373"
        y="183.55502"
        x="119.48267"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan375"
          y="183.55502"
          x="119.48267"
          sodipodi:role="line"><tspan
            id="tspan377"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">e</tspan></tspan></text>
     <text
@@ -945,14 +945,14 @@
        id="text379"
        y="183.55502"
        x="121.23794"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan381"
          y="183.55502"
          x="121.23794"
          sodipodi:role="line"><tspan
            id="tspan383"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">r</tspan></tspan></text>
     <text
@@ -960,14 +960,14 @@
        id="text385"
        y="183.55502"
        x="122.411"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan387"
          y="183.55502"
          x="122.411"
          sodipodi:role="line"><tspan
            id="tspan389"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">ø</tspan></tspan></text>
     <text
@@ -975,14 +975,14 @@
        id="text391"
        y="183.55502"
        x="124.25928"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan393"
          y="183.55502"
          x="124.25928"
          sodipodi:role="line"><tspan
            id="tspan395"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">y</tspan></tspan></text>
     <text
@@ -990,14 +990,14 @@
        id="text397"
        y="215.04355"
        x="108.85661"
-       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+       
        xml:space="preserve"><tspan
          id="tspan399"
          y="215.04355"
          x="108.85661"
          sodipodi:role="line"><tspan
            id="tspan401"
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+           
            dy="0"
            dx="0">Tjøme</tspan></tspan></text>
   </g>

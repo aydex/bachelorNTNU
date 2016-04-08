@@ -59,132 +59,132 @@
        y="0" />
   </defs>
   <path
-     style="fill:#ffe0a8;fill-opacity:1;fill-rule:nonzero;"
+     
      d="m 179.29916,138.64167 -0.44083,-3.08695 -3.61583,-0.17611 -3.96889,-2.46944 0.79389,-2.46945 -0.26472,-0.35277 -1.67556,-2.64612 -0.6175,-0.88166 L 168.275,127 l -1.85194,0.6175 -2.46945,0.79361 -1.67583,0.52917 -1.76389,0.61722 -3.08667,6.61472 -1.67583,0.97028 -2.205,-0.88194 -0.3525,-0.17639 -1.32306,-0.52945 -0.70555,-0.44083 -2.82222,-4.49806 1.14666,-9.525 -5.02722,-0.88166 0,-0.0883 -0.26444,-1.94027 -0.26473,-0.26473 -0.70555,-0.52888 -0.97028,-0.70556 -0.52889,-0.52917 -0.17639,-0.26472 -0.6175,-0.70556 -0.97,0.0883 -0.26472,0 -0.44083,-0.26472 -0.79389,-1.14639 -1.32278,-4.85084 1.49917,-2.46944 0.088,0 -1.67555,-1.5875 -1.41111,-1.32278 0,-2.29305 0.44111,0 5.02694,-1.05834 1.85194,-4.586389 -3.26305,2.028613 -1.49916,-1.411111 5.29166,-3.439442 -0.88194,-3.52806 2.02833,-2.82194 -0.17639,-0.176389 0,-0.529166 0,-0.617503 0,-0.352777 0.0883,-1.411112 -0.0883,-0.881944 -0.17639,-2.734169 -0.44083,-1.851942 0.26444,-0.705556 0,-2.116666 2.38111,-5.556109 0.35306,1.940278 2.99861,-2.469445 3.175,-2.205002 0.0881,-0.08834 -2.20472,-2.116666 0.17638,0 7.14361,-0.08805 4.40973,12.082498 1.67583,1.763889 1.23444,14.816949 6.26195,17.021391 -0.70556,1.41111 2.11667,3.52777 0.17639,0.26445 0.26444,0.44111 1.14667,-0.70556 4.7625,4.49778 3.08695,2.46944 2.73388,0.7939 1.85223,3.26333 0.35277,0.97 -1.85222,1.67583 1.14667,4.85056 -6.9675,6.79111 -0.61751,-1.85222 z"
      id="path7"
      class="land" />
   <path
-     style="fill:#dbd4e9;fill-opacity:1;fill-rule:nonzero;"
+     
      d="m 120.73834,68.87972 -3.35139,0.529449 -0.35278,0.08805 -3.175,5.997222 -2.55778,4.850836 -0.17639,0.528884 -0.70556,1.235005 -1.49916,2.822222 -4.58611,1.940278 -4.23333,1.763889 -4.321673,-4.850836 -5.556109,-3.439442 -13.317502,-8.202224 2.381391,-3.263336 1.23444,-1.851942 -1.587218,-1.675554 4.056662,-1.675835 1.323058,-0.529167 3.527778,-4.409722 1.499164,-2.381109 5.291667,-1.5875 4.233333,0.529167 0.529449,0.08805 0.528884,1.763889 0.353056,0.97028 0.0881,0.264442 0.52916,1.234722 0.44112,0 0.79361,-0.176388 3.26333,-2.733887 1.32278,0.793609 9.87778,-4.321387 1.85222,7.319998 3.96861,5.115278 -1.67555,3.263053 z"
      id="path9"
      class="land" />
   <path
-     style="fill:#e3ecae;fill-opacity:1;fill-rule:nonzero;"
+     
      d="m 162.10139,171.89083 -2.02833,0.88223 0.52916,0.52916 0.3525,0.44084 1.32306,1.23472 4.40972,4.23333 -0.35278,0.70556 -0.61722,1.76389 -1.49944,-0.44084 -0.97,-0.35277 -0.17667,-0.0883 -2.11667,0.79389 -0.0881,0 -1.23473,-0.17667 -2.73388,-0.44083 -2.55778,-0.44083 -1.94028,3.43944 -2.99861,-0.17639 -1.85223,-2.99861 1.67584,-1.23472 2.99861,-2.91028 0.44111,-3.43972 0.52917,-0.35278 0.88195,-0.52917 1.58721,-1.05833 0.26473,0 -1.41111,-0.97 0,-1.85222 0.088,-5.29167 5.64444,6.61444 1.85223,2.11667 z"
      id="drammen"
      class="land"
      inkscape:label="kn0602" />
   <path
-     style="fill:#d4e5f6;fill-opacity:1;fill-rule:nonzero;"
+     
      d="m 171.00917,147.02028 0.35278,6.35 -0.0883,0.26444 0,1.14667 -0.52917,0.70556 -0.17638,0.1761 -0.0883,1.05834 -1.32278,0.79389 0,1.05833 -0.088,0.79389 0.26444,0.79361 0.26473,0.70556 0.35278,0.35277 0.0881,0.88195 0.0883,1.23472 0,0.0881 -0.88194,3.26334 -1.05833,1.76389 -0.17639,0.79389 -0.97028,3.96861 0.0883,1.05833 0,0.44083 -0.44111,-0.79361 -0.35278,-0.52916 -0.52916,-0.97 -2.29306,-0.6175 -0.70556,-0.17639 -0.61722,0.26444 -0.0883,0 -1.85223,-2.11667 -5.64444,-6.61444 -1.41083,-5.46805 -0.26472,-0.35278 4.05694,-4.32139 -1.05833,-5.02722 5.29166,-1.05834 4.40973,-1.49944 2.11666,-0.70528 1.23473,0.79361 2.02861,1.49945 z"
      id="lier"
      class="land"
      inkscape:label="kn0626" />
   <path
-     style="fill:#fcd8d7;fill-opacity:1;fill-rule:nonzero;"
+     
      d="m 94.897222,31.308887 -5.291666,-1.499165 -5.997223,9.701389 -1.234722,2.028613 -0.352778,0.528885 L 77.7875,41.275 l -5.468056,-4.938889 -4.7625,1.940278 0.176389,-3.704167 -2.822222,-2.734169 -1.058333,0 -3.175,-0.440831 0.08805,-3.880555 -16.844998,-4.938889 7.496669,-9.701389 0.264442,-0.264583 3.792503,2.116666 0.264442,-4.321528 2.205002,-0.352777 1.763607,-2.8222226 -3.615831,-2.8222222 2.381391,-2.2048611 3.527778,-1.76388888 2.822222,5.55624998 13.229166,9.3486108 0.08805,0.881945 0.441113,2.734028 1.939996,1.763888 3.351671,2.204862 5.37972,3.351388 1.234722,0.264584 2.998611,0.617361 1.411111,4.144998 z"
      id="hemsedal"
      class="land"
      inkscape:label="kn0618" />
   <path
-     style="fill:#fcd8d7;fill-opacity:1;fill-rule:nonzero;"
+     
      d="m 120.73834,102.2175 2.02833,7.40834 -0.17639,1.14638 -1.23472,7.40834 1.85194,1.5875 1.85222,1.23472 2.205,1.85194 9.17223,7.93778 5.02694,12.61167 -1.67584,1.85222 -0.1761,0.17611 -3.52778,-1.41111 -0.17667,0.17667 -0.79361,0.44083 -0.0881,0.35278 -0.0883,0.44083 -2.46944,1.49944 0.70555,3.43945 0.44111,1.05833 -2.205,-1.05833 -2.38111,-2.38111 -1.76389,-2.82222 -1.76388,-2.99862 -2.3814,-0.0881 -6.08527,-3.7925 -2.73417,-6.08528 -1.14639,-1.76389 -1.85222,-3.26333 -3.52778,-1.05833 -2.91027,-7.84917 -2.02862,-7.32028 0.52917,-8.64305 -1.5875,-2.91028 0.0883,-0.617502 1.14639,-6.261947 1.41111,0.529449 2.91028,1.146387 7.93778,2.998611 5.46806,5.027222 z"
      id="sigdal"
      class="land"
      inkscape:label="kn0621" />
   <path
-     style="fill:#ffe0a8;fill-opacity:1;fill-rule:nonzero;"
+     
      d="m 94.897222,31.308887 4.233334,2.998893 6.261944,4.497776 2.46945,1.675835 5.90888,4.144998 1.94028,2.469444 2.02861,2.381391 -0.70555,2.20472 -0.44111,1.499447 -9.87778,4.321387 -1.32278,-0.793609 -3.26333,2.733887 -0.79361,0.176388 -0.44112,0 -0.52916,-1.234722 -0.0881,-0.264442 -0.353056,-0.97028 -0.528884,-1.763889 -0.529449,-0.08805 -4.233333,-0.529167 -5.291667,1.5875 -1.499164,2.381109 -1.499165,-4.321669 -0.352778,-0.793609 -0.176671,-0.793609 -1.322775,-3.616113 -2.469445,-7.143891 0.352778,-0.528885 1.234722,-2.028613 5.997223,-9.701389 5.291666,1.499165 z"
      id="gol"
      class="land"
      inkscape:label="kn0617" />
   <path
-     style="fill:#ffe0a8;fill-opacity:1;fill-rule:nonzero;"
+     
      d="m 126.3825,171.00917 0.88222,4.76222 0,0 2.91028,2.91055 1.49916,1.5875 0.26473,0.0881 1.76389,0.79389 2.82222,1.41111 4.85084,7.58472 6.61444,11.73 1.23472,2.11667 -2.73417,1.41083 -0.35278,0.0883 -0.70555,-0.26445 -3.35111,-1.23472 -1.49945,1.49917 -6.43805,-2.02834 -3.52806,0.97 0.44111,2.99861 0.35278,2.55778 -4.145,0 -3.08694,0 -2.02862,-2.29305 -0.1761,-0.26473 -3.70417,-7.58472 -3.26333,0.17639 -1.67556,0 0.0881,-0.0881 3.175,-6.35 -2.5575,-2.82223 -0.97028,-5.55639 -0.26444,-1.76389 -1.49945,-8.02555 -4.23333,-1.32306 1.23472,-4.32167 0.44111,-1.49916 1.32278,-4.67416 3.08694,2.82222 0.97,0.70555 0.35278,0.97 0.17639,0.26444 0.6175,1.32306 0.44083,0.088 6.61473,0.52945 0.35277,0.79361 0.35278,0.35278 0.17611,0.17639 0.17667,0.17639 0.70555,0.6175 2.29278,-1.41111 z"
      id="kongsberg"
      class="land"
      inkscape:label="kn0604" />
   <path
-     style="fill:#dbd4e9;fill-opacity:1;fill-rule:nonzero;"
+     
      d="m 131.40972,150.37139 -0.17639,0.97028 -1.76389,-0.52917 1.94028,5.55639 -0.0883,2.02833 -0.17611,1.32306 0.35278,3.79222 -0.35278,6.52639 -3.88056,0.70555 -0.88222,0.26473 -2.29278,1.41111 -0.70555,-0.6175 -0.17667,-0.17639 -0.17611,-0.17639 -0.35278,-0.35278 -0.35277,-0.79361 -6.61473,-0.52945 -0.44083,-0.088 -0.6175,-1.32306 -0.17639,-0.26444 -0.35278,-0.97 -0.97,-0.70555 -3.08694,-2.82222 -10.583337,-6.43834 0.529167,-6.26166 4.32167,-1.41112 5.37972,-1.5875 0.26472,-0.0883 1.05834,-0.35278 1.23472,-0.35278 5.82083,-7.67277 -1.05833,-1.14667 6.08527,3.7925 2.3814,0.0881 1.76388,2.99862 1.76389,2.82222 2.38111,2.38111 z"
      id="flesberg"
      class="land"
      inkscape:label="kn0631" />
   <path
-     style="fill:#d4e5f6;fill-opacity:1;fill-rule:nonzero;"
+     
      d="m 144.4625,120.20917 0,4.40972 -4.40972,3.08667 -0.70556,0.52916 -0.26472,0.26444 -2.38111,2.02862 -0.26444,0.26472 -9.17223,-7.93778 -2.205,-1.85194 -1.85222,-1.23472 -1.85194,-1.5875 1.23472,-7.40834 0.17639,-1.14638 -2.02833,-7.40834 4.93888,-0.35278 1.5875,-0.0883 4.32139,-0.17639 1.76389,-0.088 0.79389,-0.0883 1.49917,-0.088 0,2.29305 1.41111,1.32278 1.67555,1.5875 -0.088,0 -1.49917,2.46944 1.32278,4.85084 0.79389,1.14639 0.44083,0.26472 0.26472,0 0.97,-0.0883 0.6175,0.70556 0.17639,0.26472 0.52889,0.52917 0.97028,0.70556 0.70555,0.52888 0.26473,0.26473 0.26444,1.94027 0,0.0883 z"
      id="krodsherad"
      class="land"
      inkscape:label="kn0622" />
   <path
-     style="fill:#fffac2;fill-opacity:1;fill-rule:nonzero;"
+     
      d="m 133.61472,151.42972 4.32139,2.73417 3.26305,2.29305 0.70556,0.52917 0.35278,0.35278 0.52945,0.44083 -0.17639,-2.38111 0,0 1.67555,-0.70555 0.088,0 0.35306,0.0883 8.20195,2.5575 0.26472,0.35278 -4.23333,3.52777 -3.35139,6.08528 -0.44111,0.88223 -0.17639,0.35277 -0.26445,0.52917 0.79361,1.23472 0.17639,0.44083 0.35278,1.41112 1.23472,6.08527 -0.17639,2.11667 0,0.44111 -0.70555,2.46945 -0.88195,2.99861 -4.14499,3.88055 -4.85084,-7.58472 -2.82222,-1.41111 -1.76389,-0.79389 -0.26473,-0.0881 -1.49916,-1.5875 -2.91028,-2.91055 0,0 -0.88222,-4.76222 0.88222,-0.26473 3.88056,-0.70555 0.35278,-6.52639 -0.35278,-3.79222 0.17611,-1.32306 0.0883,-2.02833 -1.94028,-5.55639 1.76389,0.52917 0.17639,-0.97028 2.205,1.05833 z"
      id="ovre_eiker"
      class="land"
      inkscape:label="kn0624" />
   <path
-     style="fill:#dbd4e9;fill-opacity:1;fill-rule:nonzero;"
+     
      d="m 154.60472,163.15972 -0.088,5.29167 0,1.85222 1.41111,0.97 -0.26473,0 -1.58721,1.05833 -0.88195,0.52917 -0.52917,0.35278 -0.44111,3.43972 -2.99861,2.91028 -1.67584,1.23472 -0.44083,0 0,-0.44111 0.17639,-2.11667 -1.23472,-6.08527 -0.35278,-1.41112 -0.17639,-0.44083 -0.79361,-1.23472 0.26445,-0.52917 0.17639,-0.35277 0.44111,-0.88223 3.35139,-6.08528 4.23333,-3.52777 1.41083,5.46805 z"
      id="nedre_eiker"
      class="land"
      inkscape:label="kn0625" />
   <path
-     style="fill:#e3ecae;fill-opacity:1;fill-rule:nonzero;"
+     
      d="m 100.10084,88.635558 2.91027,3.880273 -1.14639,6.261947 -0.0883,0.617502 1.5875,2.91028 -0.52917,8.64305 2.02862,7.32028 -5.909173,3.79222 -1.851943,3.35139 -0.176388,0.35278 -0.705556,1.32277 -4.14528,-0.79361 -2.822222,-0.52916 -0.529167,-2.38111 -13.141113,-11.55361 -14.287218,0.35277 -18.873893,-3.96861 0.97028,1.5875 -4.7625,-1.67583 -2.028331,0.79389 -13.846669,5.7325 -2.557639,1.32306 -9.613195,-4.05695 -9.87777744,2.29306 6.70277774,-8.55501 2.5576389,-8.025549 4.4979168,-5.556391 0.352778,-2.20472 2.293055,-11.994444 0,2.469444 5.203472,3.175 3.792362,-0.617502 5.909168,-1.146387 5.997223,2.645833 -0.176389,3.968609 2.733886,-1.499164 0.793609,-0.441113 0.793891,1.940277 0.441114,1.058334 3.527778,-0.176389 2.028331,-0.440831 10.671669,-2.205003 4.850553,-0.969997 5.556109,-1.146669 0.882226,-2.822222 1.411112,-0.793892 1.146386,-0.705273 -3.968609,-4.14528 -0.441113,-0.529167 -4.144998,-1.411111 12.788054,-1.940277 13.317502,8.202224 5.556109,3.439442 4.321673,4.850836 z"
      id="nore_og_ulvdal"
      class="land"
      inkscape:label="kn0633" />
   <path
-     style="fill:#d4e5f6;fill-opacity:1;fill-rule:nonzero;"
+     
      d="m 64.117502,74.083333 4.144998,1.411111 0.441113,0.529167 3.968609,4.14528 -1.146386,0.705273 -1.411112,0.793892 -0.882226,2.822222 -5.556109,1.146669 -4.850553,0.969997 -10.671669,2.205003 -2.028331,0.440831 -3.527778,0.176389 -0.441114,-1.058334 -0.793891,-1.940277 -0.793609,0.441113 -2.733886,1.499164 0.176389,-3.968609 -5.997223,-2.645833 -5.909168,1.146387 -3.792362,0.617502 -5.203472,-3.175 0,-2.469444 0.264584,-0.793892 3.527777,-11.818055 -3.527777,-3.704167 -1.411112,-1.499164 0,-0.08834 0.705556,-8.819444 -4.586111,-3.351389 -0.264583,-0.08834 L 7.8493056,47.007498 5.55625,46.65472 l 2.0284722,-1.675553 6.2618058,-4.850554 0.881944,-0.705555 2.293056,-1.675836 5.115278,1.146387 1.5875,-2.469445 -0.79375,-3.968608 3.351388,-5.55625 1.763889,-2.822223 6.438336,5.291808 1.146387,-1.323058 1.146668,4.233334 4.144998,2.822222 -0.969998,2.381109 3.704167,1.499446 2.557498,5.380003 2.910558,0.08805 -0.264725,1.852224 3.439725,0.881945 1.675553,0.440831 0.08805,3.615831 2.822505,1.587782 0.264442,0.08805 1.234722,0.705555 2.469445,2.645834 1.499446,1.675835 0.352778,2.910276 -0.705555,0.969997 -0.264725,0.35306 -0.881944,1.234723 -0.793609,1.146386 0.61722,2.116667 -0.08805,0 -2.469444,0.529167 -1.234722,4.674446 2.028331,3.615831 5.203613,-1.411111 z"
      id="hol"
      class="land"
      inkscape:label="kn0620" />
   <path
-     style="fill:#fffac2;fill-opacity:1;fill-rule:nonzero;"
+     
      d="m 43.920833,22.577778 16.844998,4.938889 -0.08805,3.880555 3.175,0.440831 1.058333,0 2.822222,2.734169 -0.176389,3.704167 4.7625,-1.940278 5.468056,4.938889 4.233333,0.793609 2.469445,7.143891 1.322775,3.616113 0.176671,0.793609 0.352778,0.793609 1.499165,4.321669 -3.527778,4.409722 -1.323058,0.529167 -4.056662,1.675835 1.587218,1.675554 -1.23444,1.851942 -2.381391,3.263336 -12.788054,1.940277 -5.203613,1.411111 -2.028331,-3.615831 1.234722,-4.674446 2.469444,-0.529167 0.08805,0 -0.61722,-2.116667 0.793609,-1.146386 0.881944,-1.234723 0.264725,-0.35306 L 62.70639,60.854167 62.353613,57.943891 60.854167,56.268056 58.384722,53.622222 57.15,52.916667 56.885558,52.828613 54.063053,51.240831 53.975,47.625 52.299447,47.184169 48.859722,46.302224 49.124447,44.45 l -2.910558,-0.08805 -2.557498,-5.380003 -3.704167,-1.499446 0.969998,-2.381109 -4.144998,-2.822222 -1.146668,-4.233334 -1.146387,1.323058 -6.438336,-5.291808 1.940278,-3.439583 4.938889,-2.734028 2.910558,3.527778 6.085275,1.146528 z"
      id="al"
      class="land"
      inkscape:label="kn0619" />
   <path
-     style="fill:#fffac2;fill-opacity:1;fill-rule:nonzero;"
+     
      d="m 144.4625,84.843056 0,0.352777 0,0.617503 0,0.529166 0.17639,0.176389 -2.02833,2.82194 0.88194,3.52806 -5.29166,3.439442 1.49916,1.411111 3.26305,-2.028613 -1.85194,4.586389 -5.02694,1.05834 -0.44111,0 -1.49917,0.088 -0.79389,0.0883 -1.76389,0.088 -4.32139,0.17639 -1.5875,0.0883 -4.93888,0.35278 -5.46806,-5.027222 -7.93778,-2.998611 -2.91028,-1.146387 -1.41111,-0.529449 -2.91027,-3.880273 4.23333,-1.763889 4.58611,-1.940278 1.49916,-2.822222 0.70556,-1.235005 0.17639,-0.528884 2.55778,-4.850836 3.175,-5.997222 0.35278,-0.08805 3.35139,-0.529449 0.0881,2.998893 3.7925,2.557498 2.64583,0.08805 4.85056,0.176672 -0.0881,1.587217 -0.17638,2.205003 10.67138,5.380002 1.94028,0.969998 z"
      id="fla"
      class="land"
      inkscape:label="kn0615" />
   <path
-     style="fill:#dbd4e9;fill-opacity:1;fill-rule:nonzero;"
+     
      d="m 179.29916,138.64167 -2.55749,0 -1.05834,4.40972 -2.46944,1.49945 -1.94028,2.20472 -0.26444,0.26472 -2.02861,-1.49945 -1.23473,-0.79361 -5.99722,-6.70306 -4.32139,-1.85194 3.08667,-6.61472 1.76389,-0.61722 1.67583,-0.52917 2.46945,-0.79361 1.85194,-0.6175 1.23472,-0.44083 0.6175,0.88166 1.67556,2.64612 0.26472,0.35277 -0.79389,2.46945 3.96889,2.46944 3.61583,0.17611 0.44083,3.08695 z"
      id="hole"
      class="land"
      inkscape:label="kn0612" />
   <path
-     style="fill:#fffac2;fill-opacity:1;fill-rule:nonzero;"
+     
      d="m 117.03417,138.28889 1.05833,1.14667 -5.82083,7.67277 -1.23472,0.35278 -1.05834,0.35278 -0.26472,0.0883 -5.37972,1.5875 -4.32167,1.41112 0,-1.49945 0.17639,-2.5575 0,-1.94028 -1.587501,-1.32305 -7.496669,-6.08528 -1.587218,0.17611 0.61722,-2.5575 -0.529166,-5.02694 -0.352778,-4.32167 2.822222,0.52916 4.14528,0.79361 0.705556,-1.32277 0.176388,-0.35278 1.851943,-3.35139 5.909173,-3.79222 2.91027,7.84917 3.52778,1.05833 1.85222,3.26333 1.14639,1.76389 2.73417,6.08528 z"
      id="rollag"
      class="land"
      inkscape:label="kn0632" />
   <path
-     style="fill:#e3ecae;fill-opacity:1;fill-rule:nonzero;"
+     
      d="m 157.42722,136.17222 4.32139,1.85194 5.99722,6.70306 -2.11666,0.70528 -4.40973,1.49944 -5.29166,1.05834 1.05833,5.02722 -4.05694,4.32139 -8.20195,-2.5575 -0.35306,-0.0883 -0.088,0 -1.67555,0.70555 0,0 0.17639,2.38111 -0.52945,-0.44083 -0.35278,-0.35278 -0.70556,-0.52917 -3.26305,-2.29305 -4.32139,-2.73417 -0.44111,-1.05833 -0.70555,-3.43945 2.46944,-1.49944 0.0883,-0.44083 0.0881,-0.35278 0.79361,-0.44083 0.17667,-0.17667 3.52778,1.41111 0.1761,-0.17611 1.67584,-1.85222 -5.02694,-12.61167 0.26444,-0.26472 2.38111,-2.02862 0.26472,-0.26444 0.70556,-0.52916 4.40972,-3.08667 0,-4.40972 5.02722,0.88166 -1.14666,9.525 2.82222,4.49806 0.70555,0.44083 1.32306,0.52945 0.3525,0.17639 2.205,0.88194 1.67583,-0.97028 z"
      id="modum"
      class="land"
      inkscape:label="kn0623" />
   <path
-     style="fill:#fcd8d7;fill-opacity:1;fill-rule:nonzero;"
+     
      d="m 179.3875,180.71056 0.0883,0.17639 2.02833,1.41111 1.67555,1.41111 0.0883,0.88166 0.88194,5.02723 0,4.67444 -2.64583,3.79222 -5.29167,2.46945 -1.85194,0.0883 -2.82251,-1.23472 -0.26444,-0.0883 0.0883,-0.17638 0.61722,-3.96861 0.79389,-2.38139 0.44083,-1.41112 0.0883,-2.29305 0,-0.52917 0,-2.64583 0.3525,-2.82222 -0.70556,-1.5875 5.02723,-0.79361 1.41111,0 z"
      id="hurum"
      class="land"
      inkscape:label="kn0628" />
   <path
-     style="fill:#fffac2;fill-opacity:1;fill-rule:nonzero;"
+     
      d="m 179.3875,180.71056 -1.41111,0 -5.02723,0.79361 -1.14638,-3.08667 -3.35139,-1.94028 -0.35278,-0.26472 -0.97,-1.49945 0,-0.44083 -0.0883,-1.05833 0.97028,-3.96861 0.17639,-0.79389 1.05833,-1.76389 1.49916,0.61722 2.82223,1.235 0.26472,0.79361 0.17611,0.44083 0.26472,0 4.05695,-0.96999 0.61722,1.32305 0.88222,0.52917 -0.44111,3.61583 -0.0883,2.38139 -0.1761,2.02833 0.26444,2.02862 z"
      id="royken"
      class="land"
      inkscape:label="kn0627" />
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="176.11172"
      y="192.56499"
      id="text89"
@@ -195,11 +195,11 @@
        id="tspan91"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+         
          id="tspan93">0628</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="170.6864"
      y="177.58502"
      id="text95"
@@ -210,11 +210,11 @@
        id="tspan97"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+         
          id="tspan99">0627</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="158.02222"
      y="188.50563"
      id="text101"
@@ -225,11 +225,11 @@
        id="tspan103"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+         
          id="tspan105">0602</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="159.23834"
      y="161.30247"
      id="text107"
@@ -240,11 +240,11 @@
        id="tspan109"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+         
          id="tspan111">0626</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="146.99585"
      y="175.89175"
      id="text113"
@@ -255,11 +255,11 @@
        id="tspan115"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+         
          id="tspan117">0625</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="134.16287"
      y="175.42426"
      id="text119"
@@ -270,11 +270,11 @@
        id="tspan121"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+         
          id="tspan123">0624</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="124.60928"
      y="194.2579"
      id="text125"
@@ -285,11 +285,11 @@
        id="tspan127"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+         
          id="tspan129">0604</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="112.49598"
      y="159.87862"
      id="text131"
@@ -300,11 +300,11 @@
        id="tspan133"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+         
          id="tspan135">0631</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="100.74683"
      y="139.30727"
      id="text137"
@@ -315,11 +315,11 @@
        id="tspan139"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+         
          id="tspan141">0632</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="118.93865"
      y="132.82532"
      id="text143"
@@ -330,11 +330,11 @@
        id="tspan145"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+         
          id="tspan147">0621</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="128.27554"
      y="119.54034"
      id="text149"
@@ -345,11 +345,11 @@
        id="tspan151"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+         
          id="tspan153">0622</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="152.1907"
      y="112.70837"
      id="text155"
@@ -360,11 +360,11 @@
        id="tspan157"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+         
          id="tspan159">0605</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="146.826"
      y="146.07619"
      id="text161"
@@ -375,11 +375,11 @@
        id="tspan163"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+         
          id="tspan165">0623</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="166.29218"
      y="141.00052"
      id="text167"
@@ -390,11 +390,11 @@
        id="tspan169"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+         
          id="tspan171">0612</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="122.29659"
      y="91.454369"
      id="text173"
@@ -405,11 +405,11 @@
        id="tspan175"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+         
          id="tspan177">0615</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="96.170189"
      y="72.741295"
      id="text179"
@@ -420,11 +420,11 @@
        id="tspan181"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+         
          id="tspan183">0616</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="64.634987"
      y="101.39743"
      id="text185"
@@ -435,11 +435,11 @@
        id="tspan187"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+         
          id="tspan189">0633</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="93.3769"
      y="48.928452"
      id="text191"
@@ -450,11 +450,11 @@
        id="tspan193"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+         
          id="tspan195">0617</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="66.409554"
      y="54.170509"
      id="text197"
@@ -465,11 +465,11 @@
        id="tspan199"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+         
          id="tspan201">0619</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="33.801384"
      y="63.309486"
      id="text203"
@@ -480,11 +480,11 @@
        id="tspan205"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+         
          id="tspan207">0620</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="69.811073"
      y="30.638268"
      id="text209"
@@ -495,11 +495,11 @@
        id="tspan211"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:2.82222223px;font-family:Calibri;fill:#000000"
+         
          id="tspan213">0618</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="65.542252"
      y="27.252083"
      id="text215"
@@ -510,11 +510,11 @@
        id="tspan217"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan219">Hemsedal</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="67.844955"
      y="50.784325"
      id="text221"
@@ -525,11 +525,11 @@
        id="tspan223"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan225">Ål</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="93.78997"
      y="45.542267"
      id="text227"
@@ -540,11 +540,11 @@
        id="tspan229"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan231">Gol</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="34.22823"
      y="59.923302"
      id="text233"
@@ -555,11 +555,11 @@
        id="tspan235"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan237">Hol</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="96.324867"
      y="69.35511"
      id="text239"
@@ -570,11 +570,11 @@
        id="tspan241"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan243">Nes</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="57.312092"
      y="98.011246"
      id="text245"
@@ -585,11 +585,11 @@
        id="tspan247"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan249">No</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="61.44965"
      y="98.011246"
      id="text251"
@@ -600,11 +600,11 @@
        id="tspan253"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan255">r</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="62.633041"
      y="98.011246"
      id="text257"
@@ -615,11 +615,11 @@
        id="tspan259"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan261">e og U</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="71.767708"
      y="98.011246"
      id="text263"
@@ -630,11 +630,11 @@
        id="tspan265"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan267">v</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="73.326622"
      y="98.011246"
      id="text269"
@@ -645,11 +645,11 @@
        id="tspan271"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan273">dal</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="123.09722"
      y="88.068184"
      id="text275"
@@ -660,11 +660,11 @@
        id="tspan277"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan279">Flå</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="148.42661"
      y="109.32218"
      id="text281"
@@ -675,11 +675,11 @@
        id="tspan283"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan285">Rin</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="153.00513"
      y="109.32218"
      id="text287"
@@ -690,11 +690,11 @@
        id="tspan289"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan291">g</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="154.63638"
      y="109.32218"
      id="text293"
@@ -705,11 +705,11 @@
        id="tspan295"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan297">eri</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="158.43115"
      y="109.32218"
      id="text299"
@@ -720,11 +720,11 @@
        id="tspan301"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan303">k</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="159.92116"
      y="109.32218"
      id="text305"
@@ -735,11 +735,11 @@
        id="tspan307"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan309">e</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="117.59402"
      y="129.43913"
      id="text311"
@@ -750,11 +750,11 @@
        id="tspan313"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan315">Si</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="120.02454"
      y="129.43913"
      id="text317"
@@ -765,11 +765,11 @@
        id="tspan319"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan321">g</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="121.65235"
      y="129.43913"
      id="text323"
@@ -780,11 +780,11 @@
        id="tspan325"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan327">dal</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="99.271286"
      y="135.92108"
      id="text329"
@@ -795,11 +795,11 @@
        id="tspan331"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan333">R</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="101.11441"
      y="135.92108"
      id="text335"
@@ -810,11 +810,11 @@
        id="tspan337"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan339">ollag</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="126.57092"
      y="112.62637"
      id="text341"
@@ -825,11 +825,11 @@
        id="tspan343"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan345">Kr</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="129.52164"
      y="112.62637"
      id="text347"
@@ -840,11 +840,11 @@
        id="tspan349"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan351">øds-</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="126.57092"
      y="116.15415"
      id="text353"
@@ -855,11 +855,11 @@
        id="tspan355"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan357">he</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="130.17966"
      y="116.15415"
      id="text359"
@@ -870,11 +870,11 @@
        id="tspan361"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan363">r</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="131.3372"
      y="116.15415"
      id="text365"
@@ -885,11 +885,11 @@
        id="tspan367"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan369">ad</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="143.98587"
      y="142.69"
      id="text371"
@@ -900,11 +900,11 @@
        id="tspan373"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan375">Modum</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="165.84122"
      y="137.61433"
      id="text377"
@@ -915,11 +915,11 @@
        id="tspan379"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan381">Hole</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="109.34853"
      y="156.49243"
      id="text383"
@@ -930,11 +930,11 @@
        id="tspan385"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan387">Flesbe</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="118.52283"
      y="156.49243"
      id="text389"
@@ -945,11 +945,11 @@
        id="tspan391"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan393">r</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="119.70449"
      y="156.49243"
      id="text395"
@@ -960,11 +960,11 @@
        id="tspan397"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan399">g</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="159.46021"
      y="157.91629"
      id="text401"
@@ -975,11 +975,11 @@
        id="tspan403"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan405">Lier</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="133.52002"
      y="168.5103"
      id="text407"
@@ -990,11 +990,11 @@
        id="tspan409"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan411">Øv</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="137.45432"
      y="168.5103"
      id="text413"
@@ -1005,11 +1005,11 @@
        id="tspan415"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan417">r</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="138.63771"
      y="168.5103"
      id="text419"
@@ -1020,11 +1020,11 @@
        id="tspan421"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan423">e</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="133.52002"
      y="172.03807"
      id="text425"
@@ -1035,11 +1035,11 @@
        id="tspan427"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan429">Ei</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="136.05215"
      y="172.03807"
      id="text431"
@@ -1050,11 +1050,11 @@
        id="tspan433"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan435">k</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="137.54216"
      y="172.03807"
      id="text437"
@@ -1065,11 +1065,11 @@
        id="tspan439"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan441">er</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="145.44522"
      y="168.9778"
      id="text443"
@@ -1080,11 +1080,11 @@
        id="tspan445"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan447">Ned</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="151.33116"
      y="168.9778"
      id="text449"
@@ -1095,11 +1095,11 @@
        id="tspan451"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan453">r</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="152.51454"
      y="168.9778"
      id="text455"
@@ -1110,11 +1110,11 @@
        id="tspan457"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan459">e</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="146.35368"
      y="172.50557"
      id="text461"
@@ -1125,11 +1125,11 @@
        id="tspan463"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan465">Ei</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="148.88583"
      y="172.50557"
      id="text467"
@@ -1140,11 +1140,11 @@
        id="tspan469"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan471">k</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="150.37584"
      y="172.50557"
      id="text473"
@@ -1155,11 +1155,11 @@
        id="tspan475"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan477">er</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="153.75168"
      y="185.11945"
      id="text479"
@@ -1170,11 +1170,11 @@
        id="tspan481"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan483">D</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="155.92209"
      y="185.11945"
      id="text485"
@@ -1185,11 +1185,11 @@
        id="tspan487"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan489">r</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="157.07965"
      y="185.11945"
      id="text491"
@@ -1200,11 +1200,11 @@
        id="tspan493"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan495">ammen</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="119.9832"
      y="190.87172"
      id="text497"
@@ -1215,11 +1215,11 @@
        id="tspan499"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan501">K</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="121.75226"
      y="190.87172"
      id="text503"
@@ -1230,11 +1230,11 @@
        id="tspan505"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan507">ongsbe</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="132.11511"
      y="190.87172"
      id="text509"
@@ -1245,11 +1245,11 @@
        id="tspan511"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan513">r</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="133.29677"
      y="190.87172"
      id="text515"
@@ -1260,11 +1260,11 @@
        id="tspan517"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan519">g</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="168.35371"
      y="174.19884"
      id="text521"
@@ -1275,11 +1275,11 @@
        id="tspan523"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan525">R</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="170.19684"
      y="174.19884"
      id="text527"
@@ -1290,11 +1290,11 @@
        id="tspan529"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan531">ø</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="172.04514"
      y="174.19884"
      id="text533"
@@ -1305,11 +1305,11 @@
        id="tspan535"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan537">y</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="173.64194"
      y="174.19884"
      id="text539"
@@ -1320,11 +1320,11 @@
        id="tspan541"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan543">k</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="175.13194"
      y="174.19884"
      id="text545"
@@ -1335,11 +1335,11 @@
        id="tspan547"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan549">en</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;"
+     
      x="173.99609"
      y="189.1788"
      id="text551"
@@ -1350,11 +1350,11 @@
        id="tspan553"><tspan
          dx="0"
          dy="0"
-         style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.52777767px;font-family:Calibri;fill:#000000"
+         
          id="tspan555">Hurum</tspan></tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-weight:normal;font-size:11.28888798px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     
      x="-14.862202"
      y="63.713936"
      id="text4757"
