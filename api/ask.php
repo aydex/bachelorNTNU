@@ -45,6 +45,9 @@ if (isset($_REQUEST['name']) && isset($_REQUEST['orderBy'])) {
 	$eId = htmlspecialchars($_REQUEST['transactionFromProperty']);
 	echo $query->selectTransactionProperty($eId, $page, $pageSize, $order, $orderBy);
 
+}else if(isset($_REQUEST['municipalityId'])) {
+    $mId = htmlspecialchars($_REQUEST['municipalityId']);
+    echo $query->selectMunicipalityFromId($mId);
 }
 
 
