@@ -1,5 +1,5 @@
 /****Header*****/
-
+ 
 @import url(http://fonts.googleapis.com/css?family=Exo+2:400,200,700) ;
 
 html{
@@ -40,7 +40,7 @@ header{
     position: fixed;
     left: 0px;
     top: 0px;
-    z-index: 1;
+    z-index: 1000000;
 
 }
 
@@ -187,13 +187,62 @@ input:focus{
 	font-size:17px;
 }
 
+
+
 table{
 	margin-top: 30px;
 }
 
+#fixedSite{
+	position: fixed;
+	display: block;
+	width: 100%;
+	top: 0;
+	left: 50%;
+	margin-left: -50%;
+	z-index: 1000;
+	height: 260px;
+	background-color: white;
+}
+
+
+#bumpDown{
+	margin-top: 295px;
+}
+
+#tableHeader{
+	position: fixed;
+	z-index: 100000000;
+	top: 260px;
+	width: 94%;
+	left: 51.52%;
+	margin-left: -48.48%;
+	min-width: 50%;
+}
+
 #tableContainer{
-	max-height: 400px;
-	overflow: auto;
+	position: relative;
+	display: block;
+	margin-bottom: 5%;
+
+}
+
+#footer{
+	position: fixed;
+	bottom: 0;
+	text-align: center;
+}
+
+div #pageNumber{
+	text-align: center;
+	bottom:0;
+	position: fixed;
+	left: 0;
+	right: 0;
+	background-color: white;
+	height: 30px;
+	padding-bottom: 0;
+	margin-bottom: 0;
 }
 
 #noResultDescription {
@@ -232,15 +281,11 @@ th{
 	border-right:none;
 }
 
-#idColumn{
-	width: 13%;
-}
-
-#typeColumn{
-	width: 20%;
-}
-
-#nameColumn{
+#nameColumn, #typeColumn, #municipalityColumn, #idColumn{
+	min-width: 25%;
+	max-width: 25%;
+	width: 200px;
+	table-layout: fixed;
 }
 
 tr:nth-child(odd){
@@ -305,6 +350,7 @@ td:nth-child(even){
     margin-top: 10%;
     font-size: 100px;
     position: fixed;
+    z-index: 10000;
 }
 
 #nextPage {
@@ -313,6 +359,7 @@ td:nth-child(even){
     margin-top: 10%;
     font-size: 100px;
     position: fixed;
+    z-index: 10000;
 }
 
 .navButtonActive {
@@ -359,6 +406,7 @@ td:nth-child(even){
 div .container{
 	  width: 42%;
 	  height: auto;
+	  margin-top: 240px;
 }
 
 
