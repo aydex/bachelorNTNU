@@ -8,23 +8,35 @@ class Query
 {
     private $db;
     private $selectFromOrder = array('DESC', 'ASC');
+    private $filterByArray   = array('F', 'K', 'L', 'S');
 
     public function __construct(PDO $db)
     {
         $this->db = $db;
     }
 
-    public function selectPersonPaged($name, $page=1, $pageSize=10, $order="ASC", $orderBy) {
+     public function selectPersonPaged($name, $page=1, $pageSize=10, $order="ASC", $orderBy, $filterBy) {
+
+        $filterBy = $filterBy - 1;
+        if($filterBy > -1){
+            $type = (string)$this->filterByArray[$filterBy];
+            $filterByText = "AND Deltagertype = '$type'";
+        }else{
+            $filterByText = "";
+        }
 
         $selectFromArray = array('id', 'Type', 'Navn', 'Kommuner', 'null');
         $keyOrderBy      = array_search($orderBy, $selectFromArray);
         $keyOrder        = array_search($order, $this->selectFromOrder);
 
-        $query = "SELECT SQL_CALC_FOUND_ROWS Deltagerid AS id, Deltagertype AS Type, Navn AS Navn, GROUP_CONCAT(CONCAT_WS(':', Kommunenr, Kommunenavn) SEPARATOR ',') AS Kommuner 
-                    FROM  kommunalrapport.Deltagere
-                    NATURAL JOIN Deltagerhistorie 
-                    NATURAL JOIN  Kommuner 
+
+
+        $query = "SELECT SQL_CALC_FOUND_ROWS Deltagerid AS id, Deltagertype AS Type, Navn, GROUP_CONCAT(DISTINCT CONCAT_WS(':', I.Kommunenr, Kommunenavn)SEPARATOR ',') AS Kommuner 
+                    FROM Deltagere 
+                    LEFT JOIN DeltagerInvolvertKommune AS I USING (Deltagerid) 
+                    LEFT JOIN Kommuner USING (Kommunenr)
                     WHERE Navn LIKE :name
+                    $filterByText
                     GROUP BY Deltagerid
                     ORDER BY " . $selectFromArray[$keyOrderBy] . " " . $this->selectFromOrder[$keyOrder] . "
                     LIMIT :offset, :pageSize";
@@ -46,18 +58,21 @@ class Query
     }
 
     public function selectTransaction($id, $page=1, $pageSize=10, $order, $orderBy) {
-        $selectFromArray = array('Kommunenavn', 'Eiendomsid', 'ForstRegistrert', 'SistRegistrert', 'AntallTransaksjoner', 'Involvering', 'null');
+        $selectFromArray = array('Kommunenavn', 'Eiendomsid', 'ForstRegistrert', 'SistRegistrert', 'AntallTransaksjoner', 'Involvering', 'InvolverteKommuner', 'Sammendrag', 'null');
         $keyOrderBy      = array_search($orderBy, $selectFromArray);
         $keyOrder        = array_search($order, $this->selectFromOrder);
 
-        $query = "SELECT SQL_CALC_FOUND_ROWS Kommunenavn, Kommunenr, Eiendomsid, ForstRegistrert,
+        $query = "SELECT SQL_CALC_FOUND_ROWS Kommuner.Kommunenavn, E.Kommunenr, Eiendomsid, ForstRegistrert,
                   SistRegistrert, AntallTransaksjoner,
-                  GROUP_CONCAT(CONCAT_WS(':', Dokumentdato, PartType) SEPARATOR ', ') AS Involvering
+                  GROUP_CONCAT(DISTINCT CONCAT_WS(':', Dokumentdato, PartType) SEPARATOR ', ') AS Involvering,
+                  GROUP_CONCAT(DISTINCT CONCAT_WS(':', EI.Kommunenr, K.Kommunenavn) SEPARATOR ', ') AS InvolverteKommuner, Sammendrag
                   FROM Omsetninger
                   NATURAL JOIN Dokumenter
                   NATURAL JOIN Eiendomshistorie
-                  NATURAL JOIN Eiendommer
+                  NATURAL JOIN Eiendommer AS E
                   NATURAL JOIN Kommuner
+                  LEFT JOIN EiendomInvolvertKommune AS EI USING(Eiendomsid)
+                  JOIN Kommuner AS K ON EI.Kommunenr = K.Kommunenr
                   WHERE Deltagerid= :query_target
                   GROUP BY Eiendomsid
                   ORDER BY " . $selectFromArray[$keyOrderBy] . " " . $this->selectFromOrder[$keyOrder] . "
@@ -120,35 +135,6 @@ class Query
         $results_combined = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         return json_encode(array("records" => $results, "count" => $count, "combined" => $results_combined));
-    }
-
-    public function selectPerson($name)
-    {
-        $toAdd = "";
-        $params = array("%$name%");
-        if($name != "") {
-            $toAdd = " WHERE Navn LIKE ?";
-        }
-
-        $query = "SELECT * FROM kommunalrapport.Personer";
-
-        $result = $this->runAndPrepare($query, $toAdd, $params);
-
-        return json_encode(array("records" => $this->returnRows($result)));
-    }
-
-    private function runAndPrepare($query, $toAdd, $params){
-        $sql = $this->db->prepare($query . $toAdd . " LIMIT 5555");
-        if($toAdd != ""){
-            $sql->execute($params);
-        }else{
-            $sql->execute();
-        }
-        return $sql;
-    }
-
-    private function returnRows($sql){
-        return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function countRows() {

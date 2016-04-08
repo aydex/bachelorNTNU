@@ -9,7 +9,13 @@ kommunalApp.factory('transaction', function() {
 
     transactionService.capitalFirstLetters = function(word){
         return word.replace(/[\S]+/g, function(innerWord){
-            return innerWord.substring(0,1).toUpperCase() + innerWord.substring(1, innerWord.length).toLowerCase();
+           var out = innerWord.substring(0,1).toUpperCase() + innerWord.substring(1, innerWord.length).toLowerCase();
+            if (out.indexOf("-")!= -1){
+                console.log(out)
+                var split = out.split("-");
+                out = split[0] + "-" + split[1].substring(0,1).toUpperCase() + split[1].substring(1, split[1].length)
+            }
+             return out;
         });
     };
 
@@ -28,8 +34,7 @@ kommunalApp.factory('transaction', function() {
     };
 
     transactionService.isMunicipality = function(type, name){
-        if(type == "S" && name.toLowerCase().indexOf("kommune") != -1) return true;
-        return false;
+        return (type == "K");
     };
 
     transactionService.getRole = function(transaction, role) {
