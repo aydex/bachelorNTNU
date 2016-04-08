@@ -55,20 +55,22 @@ kommunalApp.directive('region', ['$compile', function ($compile) {
 kommunalApp.directive('city', ['$compile', function ($compile) {
     return {
         restrict: 'EA',
-        scope: true,
-        link: function(scope, element) {
-            scope.elementName = element.attr("id");
-            scope.elementId = element.attr("inkscape:label").substring(2);
-            scope.cityClick = function() {
-                console.log(scope.elementId);
-                alert(scope.elementId + "-" + scope.elementName);
-                return scope.elementId;
+        scope: {
+            cityId: '@'
+        },
+        link: function($scope, element) {
+            $scope.cityName = element.attr("id");
+            $scope.cityId = element.attr("inkscape:label").substring(2);
+            $scope.cityClick = function() {
+                console.log($scope.cityId);
+                alert($scope.cityId + "-" + $scope.cityName);
+                return $scope.cityId;
             };
 
             element.attr("ng-click", "cityClick()");
 
             element.removeAttr("city");
-            $compile(element)(scope);
+            $compile(element)($scope);
         }
     }
 }]);
