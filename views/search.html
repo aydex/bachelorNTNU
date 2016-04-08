@@ -4,10 +4,27 @@
 <div id="fixedSite">
 <button type="button" class="btn btn-default backbutton" data-ng-show="showTable" data-ng-click="back()">&lt; Tilbake</button>
 <div id="searchElements">
+    <div>
     <form id="searchForm" data-ng-submit="searchForm(searchForm)">
         <i class="material-icons" id="searchIcon">search</i>
         <input type="text" data-ng-model="search.nameSearch" data-ng-change="searchDelay()" placeholder="Navn, kommune, bedrift å søke på.." id="search" autocomplete="off">
     </form>
+    </div>
+    <div id="advanced-div">
+    Søk etter type: 
+    <select data-ng-model="currentType" data-ng-options="a.type for a in searchTypes" data-ng-change="advanceChange()"> 
+    </select>
+    <i class="material-icons select-arrow">play_arrow</i>
+    <select data-ng-model="fylke" data-ng-options="fylkeId as fylkeInfo.label for (fylkeId, fylkeInfo) in fylker" >
+        <option value="">Velg fylke</option>
+    </select>
+    <i class="material-icons select-arrow">play_arrow</i>
+
+    <select name="kommune" data-ng-model="kommune" data-ng-options="kommuneId as kommuneInfo.label for (kommuneId, kommuneInfo) in fylker[fylke]['kommuner']" data-ng-disabled="fylke == undefined">
+        <option value="">Velg kommune</option>
+    </select>           
+    <i class="material-icons select-arrow">play_arrow</i>    
+    </div>
 </div>
 
 <div id="pageElements" data-ng-show="showTable">
