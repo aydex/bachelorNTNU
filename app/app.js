@@ -55,16 +55,25 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
             .then(function (response) {
                 return {records: response.data.records, count: response.data.count};
             });
-    }
+    };
 
-    $rootScope.doQuery = function(type, id, page, pageSize, order, orderBy, filterBy) {
+    $rootScope.doQuery = function(type, id, page, pageSize, order, orderBy, filterBy, kommunenr) {
         console.log(filterBy);
         return $http.get("./api/ask.php?" + type + "=" + id + "&page=" +
             page + "&pageSize=" + pageSize + "&order=" + order + "&orderBy=" + orderBy + "&filterBy=" + filterBy)
         .then(function (response) {
                 return {records: response.data.records, count: response.data.count,
                     combined: response.data.combined};
-            });
+        });
+    };
+    
+    $rootScope.doQuery = function(name, kommunenr) {
+        return $http.get("./api/ask.php?name=" + name + "&kommunenr=" + kommunenr)
+            .then(function (response) {
+                return {
+                    records: response.data.records, count: response.data.count
+                };
+            })
     };
 
     /*$rootScope.open = true;
