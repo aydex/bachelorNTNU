@@ -170,8 +170,8 @@ class Query
         $stmt->bindValue(':mId', $mId, PDO::PARAM_INT);
         $stmt->execute();
         
-        $results = $stmt ->fetchAll(PDO::FETCH_ASSOC);
-        
-        return json_encode(array("records" => $results));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return json_encode(array("records" => $result));
     }
 }

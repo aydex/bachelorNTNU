@@ -52,11 +52,22 @@ kommunalApp.directive('region', ['$compile', function ($compile) {
     }
 }]);
 
-kommunalApp.directive('city', ['$compile', '$location', '$http', function ($compile, $location, $http) {
+kommunalApp.directive('city', ['$compile', '$location', '$http', '$q', function ($compile, $location, $http, $q) {
     return {
         restrict: 'EA',
         scope: {
             cityId: '@'
+        },
+        controller: function($scope) {
+
+            $scope.cityQuery = function(cityId) {
+                return $http.get("./api/ask.php?municipalityId=" + cityId)
+                    .then(function (response) {
+                        console.log("This should run first");
+                        console.log("Response" + response);
+                        return {records: response.data.records};
+                    });
+            }
         },
         link: function($scope, element) {
             $scope.cityName = element.attr("id");
@@ -64,17 +75,23 @@ kommunalApp.directive('city', ['$compile', '$location', '$http', function ($comp
             $scope.cityClick = function() {
                 console.log($scope.cityId);
                 alert($scope.cityId + "-" + $scope.cityName);
-                $scope.cityQuery = $http.get("./api/ask.php?municipalityId=" + $scope.cityId)
-                    .success(function (response) {
-                        return {records: response.data.records};
-                    }).error(function (response) {
-                        console.log(response);
-                    });
-                console.log($scope.cityQuery);
-                console.log(JSON.stringify($scope.cityQuery));
-                angular.forEach($scope.cityQuery, function(value, key) {
+                var city = $scope.cityQuery($scope.cityId);
+                /*var cityQuery = function(cityId) {
+                    return $http.get("./api/ask.php?municipalityId=" + cityId)
+                        .then(function (response) {
+                            city.resolve({records: response.data.records});
+                        });
+                };*/
+                //console.log(city.promise);
+                //console.log(cityQuery($scope.cityId));
+                console.log(city);
+                console.log(city.records);
+                angular.forEach(city, function(value, key) {
                     console.log(value);
                 });
+                //angular.forEach(cityQuery($scope.cityId), function(value, key) {
+                //    console.log(value);
+                //});
                 //$location.path("/search/" + $scope.cityId + "/1/10");
             };
 
