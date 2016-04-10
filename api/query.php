@@ -145,4 +145,27 @@ class Query
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function selectParticipantsInMunicipality($name, $kommunenr) {
+        $query = "SELECT SQL_CALC_FOUND_ROWS Deltagerid AS id, Deltagertype AS TYPE, Navn, GROUP_CONCAT(DISTINCT CONCAT_WS(':', I.Kommunenr, Kommunenavn)SEPARATOR ',') AS Kommuner 
+                   FROM Deltagere 
+                   LEFT JOIN DeltagerInvolvertKommune AS I USING (Deltagerid) 
+                   LEFT JOIN Kommuner USING (Kommunenr)
+                   WHERE Navn LIKE :name
+                   AND Kommunenr = :kommunenr
+                   GROUP BY Deltagerid";
+        
+        $name = "%$name%";
+        
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->bindValue(':kommunenr', $kommunenr, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        $count = $this->countRows();
+        
+        return json_encode(array("records" => $result, "count" => $count));
+    }
 }
