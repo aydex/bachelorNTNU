@@ -324,9 +324,31 @@ th{
 /*Width on transaction site*/
 
 #propertyID{
-	max-width: 20%;
-	min-width: 20%;
+	width: 13%;
 }
+
+#firstDateID{
+	width: 13%;
+}
+
+#lastDateID{
+	width: 13%;
+}
+
+#numberTransactionID{
+	width: 15%;
+}
+
+#involvementID{
+	width: 15%;
+	text-align: center;
+}
+
+#involvedMunicipID{
+	width: 16%;
+}
+
+
 /*
 #flaggingID{
 	width: 20%;
