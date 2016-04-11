@@ -527,7 +527,11 @@ td:nth-child(even){
 div .container{
 	  width: 42%;
 	  height: auto;
-	  margin-top: 240px;
+	  z-index: 90000000000000;
+	  margin-top: -100px;
+	  z-index: 10000000; 
+	  position:relative
+
 }
 
 
