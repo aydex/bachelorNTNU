@@ -1,3 +1,4 @@
+<div id="fixedPropertyTable">
 <button type="button" class="btn btn-default backbutton" data-ng-click="back()">&lt; Tilbake</button>
 <div id="navbar">
     <h3 id="transaksjonsType" data-ng-bind="type"></h3>
@@ -12,11 +13,9 @@
     <br>
     <span>Trykk på feltene for å endre rekkefølge:</span>
 </div>
+</div>
 
-<div id="tableContainer">
-    <span data-ng-class="{'navButtonInactive' : page == 1 || !showNavigation, 'navButtonActive' : page > 1 && showNavigation}" class="fa fa-chevron-left" data-ng-show="hideNavigation" data-ng-click="navigate(-1)" id="prevPage"></span>
-    <span data-ng-class="{'navButtonInactive' : !more_results || !showNavigation, 'navButtonActive' : more_results && showNavigation }" class="fa fa-chevron-right" data-ng-show="hideNavigation" data-ng-click="navigate(1)" id="nextPage"></span>
-    <img src="/images/loader.gif" data-ng-show="!showTable" alt="Loading.." />
+<div id="tablePropertyHeader">
     <table data-ng-show="showTable" class="propertyTable">
         <tr>
             <th data-ng-click="orderByMe('Dokumentdato')" data-ng-class="{'disableSort' : !sortReady}">
@@ -52,10 +51,21 @@
                 <span data-ng-show="orderBy == 'buyer' && reverse" class="fa fa-caret-down"></span>-->
             </th>
         </tr>
+    </table>
+
+</div>
+
+<div id="propertyBumpDown">
+<div id="tableContainer">
+    <span data-ng-class="{'navButtonInactive' : page == 1 || !showNavigation, 'navButtonActive' : page > 1 && showNavigation}" class="fa fa-chevron-left" data-ng-show="hideNavigation" data-ng-click="navigate(-1)" id="prevPage"></span>
+    <span data-ng-class="{'navButtonInactive' : !more_results || !showNavigation, 'navButtonActive' : more_results && showNavigation }" class="fa fa-chevron-right" data-ng-show="hideNavigation" data-ng-click="navigate(1)" id="nextPage"></span>
+    <img src="/images/loader.gif" data-ng-show="!showTable" alt="Loading.." />
+    <table data-ng-show="showTable" class="propertyTable">
         <tr transaction-property-table transaction="transaction" data-ng-repeat="transaction in transactions" data-ng-click="setSelected(transaction.Dokumentnr)"
             data-ng-class="{ 'selected-row': transaction.Dokumentnr == selectedDokumentnr }" data-ng-mouseover="setSelected(transaction.Dokumentnr,transaction.Salgssum)" data-ng-mouseout="setSelected(null)">
         </tr>
     </table>
+</div>
 </div>
 
 <p id="pageNumber" data-ng-bind="pageDisplay" data-ng-show="showTable"></p>

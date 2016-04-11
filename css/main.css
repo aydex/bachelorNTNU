@@ -221,6 +221,19 @@ table{
 	background-color: white;
 }
 
+#fixedPropertyTable{
+	position: fixed;
+	display: block;
+	width: 100%;
+	top: 0;
+	left: 50%;
+	margin-left: -50%;
+	margin-top:70px;
+	z-index: 100000;
+	height: 320px;
+	background-color: white;
+}
+
 
 #bumpDown{
 	margin-top: 350px;
@@ -230,6 +243,10 @@ table{
 #transactionBumpDown{
 	display: block;
 	margin-top: 270px;
+}
+
+#propertyBumpDown{
+	margin-top: 425px;
 }
 
 
@@ -245,13 +262,21 @@ table{
 
 #tableTransactionHeader{
 	position: fixed;
-	z-index: 100000000;
+	z-index: 1000000;
 	top: 230px;
 	width: 94%;
 	left: 51.52%;
 	margin-left: -48.48%;
 	min-width: 50%;
 }
+
+#tablePropertyHeader{
+	position: fixed;
+	z-index: 1000000;
+	top: 390px;
+	width: 94%;
+}
+
 
 #tableContainer{
 	position: relative;
