@@ -434,7 +434,7 @@ svg .title {
 	display:none;
 }*/
 
-svg text {
+.container svg text {
 
 	font-style:normal;
 	font-variant:normal;
