@@ -340,6 +340,10 @@ th{
 	border-right:none;
 }
 
+/********************
+******tablewidth*****
+*********************/
+
 /*Width on Searchtable*/
 #nameColumn, #typeColumn, #municipalityColumn, #idColumn{
 	min-width: 25%;
@@ -375,16 +379,35 @@ th{
 	width: 16%;
 }
 
+/*Width on property site*/
+#dateID{
+	width: 10%;
+}
 
-/*
-#flaggingID{
+#typeID{
+	width: 15%;
+	text-align: center;
+}
+
+#priceID{
+	width: 15%;
+	text-align: center;
+}
+
+#docnrID{
 	width: 20%;
 }
 
-#involvedMunicipID{
-	width: 22%;
+#saleID{
+	width: 20%;
 }
-*/
+
+#buyID{
+	width: 20%;
+}
+
+
+/*******************/
 
 tr:nth-child(odd){
 	background-color:#EAEAEA;
