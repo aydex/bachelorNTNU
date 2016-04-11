@@ -224,9 +224,11 @@ table{
 
 #bumpDown{
 	margin-top: 350px;
+	display: block;
 }
 
 #transactionBumpDown{
+	display: block;
 	margin-top: 270px;
 }
 
@@ -336,7 +338,7 @@ th{
 }
 
 #numberTransactionID{
-	width: 15%;
+	width: 17%;
 }
 
 #involvementID{
