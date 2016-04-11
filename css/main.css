@@ -226,6 +226,11 @@ table{
 	margin-top: 350px;
 }
 
+#transactionBumpDown{
+	margin-top: 270px;
+}
+
+
 #tableHeader{
 	position: fixed;
 	z-index: 100000000;
