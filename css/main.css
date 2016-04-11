@@ -157,6 +157,7 @@ div p{
     margin-bottom: 20px;
     width: 60%;
     margin-top: 150px;
+    min-width: 600px;
 }
 
 #search{
@@ -192,6 +193,8 @@ table{
 	margin-top: 30px;
 }
 
+
+
 #fixedSite{
 	position: fixed;
 	display: block;
@@ -204,15 +207,38 @@ table{
 	background-color: white;
 }
 
+#fixedTransactionSite{
+	position: fixed;
+	display: block;
+	width: 100%;
+	top: 0;
+	left: 50%;
+	margin-left: -50%;
+	margin-top:70px;
+	z-index: 100000;
+	height: 160px;
+	background-color: white;
+}
+
 
 #bumpDown{
-	margin-top: 295px;
+	margin-top: 270px;
 }
 
 #tableHeader{
 	position: fixed;
 	z-index: 100000000;
 	top: 260px;
+	width: 94%;
+	left: 51.52%;
+	margin-left: -48.48%;
+	min-width: 50%;
+}
+
+#tableTransactionHeader{
+	position: fixed;
+	z-index: 100000000;
+	top: 230px;
 	width: 94%;
 	left: 51.52%;
 	margin-left: -48.48%;
@@ -260,6 +286,7 @@ table{
  	border: 1;
  	width: 60%;
  	margin:auto;
+ 	min-width: 600px;
 }
 
 table, tr {
@@ -280,12 +307,29 @@ th{
 	border-right:none;
 }
 
+/*Width on Searchtable*/
 #nameColumn, #typeColumn, #municipalityColumn, #idColumn{
 	min-width: 25%;
 	max-width: 25%;
 	width: 200px;
 	table-layout: fixed;
 }
+
+/*Width on transaction site*/
+
+#propertyID{
+	max-width: 20%;
+	min-width: 20%;
+}
+/*
+#flaggingID{
+	width: 20%;
+}
+
+#involvedMunicipID{
+	width: 22%;
+}
+*/
 
 tr:nth-child(odd){
 	background-color:#EAEAEA;
