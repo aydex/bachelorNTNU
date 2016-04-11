@@ -261,7 +261,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     $scope.advanceChange = function(){
         if($scope.search.nameSearch != "")
             $scope.doSearch();
-      }
+      };
 
     $scope.queryPerson  = function() {
 
@@ -310,7 +310,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         }else type = $scope.currentType.value;
 
         $location.path("/search/" + name_encoded + "/" + type + "/" + $scope.page + "/" + $scope.search.pageSize);
-    }
+    };
 
     $scope.searchDelay = function(){
 

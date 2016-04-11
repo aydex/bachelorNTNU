@@ -73,8 +73,6 @@ kommunalApp.directive('city', ['$compile', '$location', '$http', function ($comp
                 $scope.cityName = element.attr("id");
                 $scope.cityId = element.attr("inkscape:label").substring(2);
                 $scope.cityClick = function() {
-                    console.log($scope.cityId);
-                    alert($scope.cityId + "-" + $scope.cityName);
                     var city = $scope.cityQuery($scope.cityId);
 
                     city.then(function(result) {
