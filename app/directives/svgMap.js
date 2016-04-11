@@ -52,7 +52,7 @@ kommunalApp.directive('region', ['$compile', function ($compile) {
     }
 }]);
 
-kommunalApp.directive('city', ['$compile', '$location', '$http', '$q', function ($compile, $location, $http, $q) {
+kommunalApp.directive('city', ['$compile', '$location', '$http', function ($compile, $location, $http) {
     return {
         restrict: 'EA',
         scope: {
@@ -63,42 +63,35 @@ kommunalApp.directive('city', ['$compile', '$location', '$http', '$q', function 
             $scope.cityQuery = function(cityId) {
                 return $http.get("./api/ask.php?municipalityId=" + cityId)
                     .then(function (response) {
-                        console.log("This should run first");
-                        console.log("Response" + response);
                         return {records: response.data.records};
                     });
             }
         },
         link: function($scope, element) {
-            $scope.cityName = element.attr("id");
-            $scope.cityId = element.attr("inkscape:label").substring(2);
-            $scope.cityClick = function() {
-                console.log($scope.cityId);
-                alert($scope.cityId + "-" + $scope.cityName);
-                var city = $scope.cityQuery($scope.cityId);
-                /*var cityQuery = function(cityId) {
-                    return $http.get("./api/ask.php?municipalityId=" + cityId)
-                        .then(function (response) {
-                            city.resolve({records: response.data.records});
+
+            if(element.attr("inkscape:label") != undefined) {
+                $scope.cityName = element.attr("id");
+                $scope.cityId = element.attr("inkscape:label").substring(2);
+                $scope.cityClick = function() {
+                    console.log($scope.cityId);
+                    alert($scope.cityId + "-" + $scope.cityName);
+                    var city = $scope.cityQuery($scope.cityId);
+
+                    city.then(function(result) {
+                        console.log(result.records[0]);
+                        console.log(result.records[0].Kommunenavn);
+                        $location.path("/search/" + result.records[0].Kommunenavn + "/1/25");
+                        angular.forEach(result.records[0], function(value, key) {
+                            console.log(value);
                         });
-                };*/
-                //console.log(city.promise);
-                //console.log(cityQuery($scope.cityId));
-                console.log(city);
-                console.log(city.records);
-                angular.forEach(city, function(value, key) {
-                    console.log(value);
-                });
-                //angular.forEach(cityQuery($scope.cityId), function(value, key) {
-                //    console.log(value);
-                //});
-                //$location.path("/search/" + $scope.cityId + "/1/10");
-            };
+                    });
+                };
 
-            element.attr("ng-click", "cityClick()");
+                element.attr("ng-click", "cityClick()");
 
-            element.removeAttr("city");
-            $compile(element)($scope);
+                element.removeAttr("city");
+                $compile(element)($scope);
+            }
         }
     }
 }]);
