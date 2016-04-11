@@ -1,6 +1,6 @@
 kommunalApp.controller('transactionPersonController', function($scope, $rootScope, $routeParams, $location, $filter) {
     $scope.message        = $routeParams.targetId;
-    $scope.name           = $routeParams.name;
+    $scope.name           = decodeURIComponent($routeParams.name);
     $scope.page           = 1;
     $scope.pageSize       = 25;
     $scope.orderBy        = null;
@@ -27,7 +27,11 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
             $scope.totalPages     = Math.ceil($scope.count / $scope.pageSize);
             $scope.pageDisplay    = "Side: " + $scope.page + " av " + $scope.totalPages;
             $scope.sortReady      = true;
+
+            console.log($scope.transactions)
         });
+
+
     };
 
     $scope.filterResults = function(results) {

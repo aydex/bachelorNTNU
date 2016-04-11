@@ -1,5 +1,5 @@
 /****Header*****/
-
+ 
 @import url(http://fonts.googleapis.com/css?family=Exo+2:400,200,700) ;
 
 html{
@@ -40,16 +40,7 @@ header{
     position: fixed;
     left: 0px;
     top: 0px;
-    z-index: 1;
-
-}
-
-header #one{
-	font-weight:700;
-}
-
-header #two{
-	font-weight:200;
+    z-index: 1000000;
 
 }
 
@@ -73,46 +64,11 @@ header #two{
     height:53px;*/
 }
 
-.menu_open, .menu_close{
-	width: 36px;
-	height: 36px;
-	float:left;
-	margin-right: 20px;
-}
-
-.menu_open{
-	background-image: url("../images/menu_circle.svg");
-	cursor: pointer;
-}
-
-.menu_close{
-	background-image: url("../images/menu_close.svg");
-	cursor: pointer;
-}
-
-.backgroundTransform{
-	-webkit-transition:background 0.5s, opacity 0.5s;
-	-moz-transition:background 0.5s, opacity 0.5s;
-	-o-transition:background 0.5s, opacity 0.5s;
-	transition:background 0.5s, opacity 0.5s;
-}
-
-
 
 #logo {
 	height: 37px;
 	float:left;
 	padding-top: 2px;
-}
-
-#search_circle{
-	width: 36px;
-	height: 36px;
-	float: right;
-
-	/*margin-left: 40px;*/
-	float:right;
-	cursor:pointer;
 }
 
 #navigationHeader{
@@ -133,24 +89,6 @@ header #two{
 	font-size: 20px;
 	padding: 10px;
 
-}
-
-.headerSearchWidth{
-	width:160px !important;
-}
-
-#headerInput{
-	/* position: absolute; */
-    /* top: 27px; */
-    transition: width .5s;
-    background-color: white;
-    border: none;
-    margin-top: 10px;
-    /* padding-left: 10px; */
-    width: 160px;
-    float: right;
-    width: 0px;
-    margin-right: 17px;
 }
 
 /**********headerEnd**********/
@@ -192,6 +130,11 @@ div p{
 	margin-left: 3%;
 }
 
+#navigationHeader a:hover, #navigationHeader a:active, #navigationHeader a:visited{
+	color:white;
+}
+
+
 /**************************************************
 ***************************************************
 ***************************************************
@@ -199,7 +142,18 @@ div p{
 ***************************************************
 ***************************************************/
 
+#navbar{
+	padding-top: 20px;
+}
+
+.backbutton {
+	position: fixed;
+	left: 5px;
+	top:75px;
+}
+
 #searchElements{
+    height: 95px;
 	margin: auto;
     margin-bottom: 20px;
     width: 60%;
@@ -233,8 +187,62 @@ input:focus{
 	font-size:17px;
 }
 
+
+
 table{
 	margin-top: 30px;
+}
+
+#fixedSite{
+	position: fixed;
+	display: block;
+	width: 100%;
+	top: 0;
+	left: 50%;
+	margin-left: -50%;
+	z-index: 1000;
+	height: 260px;
+	background-color: white;
+}
+
+
+#bumpDown{
+	margin-top: 295px;
+}
+
+#tableHeader{
+	position: fixed;
+	z-index: 100000000;
+	top: 260px;
+	width: 94%;
+	left: 51.52%;
+	margin-left: -48.48%;
+	min-width: 50%;
+}
+
+#tableContainer{
+	position: relative;
+	display: block;
+	margin-bottom: 5%;
+
+}
+
+#footer{
+	position: fixed;
+	bottom: 0;
+	text-align: center;
+}
+
+div #pageNumber{
+	text-align: center;
+	bottom:0;
+	position: fixed;
+	left: 0;
+	right: 0;
+	background-color: white;
+	height: 30px;
+	padding-bottom: 0;
+	margin-bottom: 0;
 }
 
 #noResultDescription {
@@ -273,15 +281,11 @@ th{
 	border-right:none;
 }
 
-#idColumn{
-	width: 13%;
-}
-
-#typeColumn{
-	width: 20%;
-}
-
-#nameColumn{
+#nameColumn, #typeColumn, #municipalityColumn, #idColumn{
+	min-width: 25%;
+	max-width: 25%;
+	width: 200px;
+	table-layout: fixed;
 }
 
 tr:nth-child(odd){
@@ -329,7 +333,7 @@ td:nth-child(even){
 
 .transactionurl:hover{
 	color: #2d2d2d;
-	text-decoration: none;
+	/*text-decoration: none;*/
 }
 
 .selected-row, tr:hover{
@@ -346,6 +350,7 @@ td:nth-child(even){
     margin-top: 10%;
     font-size: 100px;
     position: fixed;
+    z-index: 10000;
 }
 
 #nextPage {
@@ -354,6 +359,7 @@ td:nth-child(even){
     margin-top: 10%;
     font-size: 100px;
     position: fixed;
+    z-index: 10000;
 }
 
 .navButtonActive {
@@ -406,6 +412,7 @@ td:nth-child(even){
 div .container{
 	  width: 42%;
 	  height: auto;
+	  margin-top: 240px;
 }
 
 
@@ -445,5 +452,48 @@ svg .land:hover, .land.active {
     stroke: #000;
     opacity: 1;
     position:relative;
-		fill: #eee;
+	fill: #eee;
+}
+
+/********************************
+*********************************
+********DROPDOWN*****************
+*********************************
+********************************/
+
+#advanced-div{
+	margin-top: 10px;
+}
+
+select {
+	-webkit-appearance:none;
+	-webkit-border-radius:0px;
+    border: 1px solid #111;
+    background: white;
+    width: 150px;
+    padding: 5px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid #2D2D2D;
+    height: 34px;
+    margin-left:25px;
+}
+
+select:focus{
+	outline:none;
+}
+
+select:disabled{
+	color:gray;
+}
+
+.select-arrow{
+	-webkit-transform:rotate(90deg);
+	margin-left:-18px;
+	font-size:10px;
+	pointer-events:none;
+}
+
+#advanced-div select:first-child{
+	margin-left:0px;
 }

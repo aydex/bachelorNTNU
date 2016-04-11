@@ -78,9 +78,9 @@ kommunalApp.directive('city', ['$compile', '$location', '$http', function ($comp
                     var city = $scope.cityQuery($scope.cityId);
 
                     city.then(function(result) {
-                        console.log(result.records[0]);
-                        console.log(result.records[0].Kommunenavn);
-                        $location.path("/search/" + result.records[0].Kommunenavn + "/1/25");
+                        var kommune = result.records[0].Kommunenavn;
+                        var name_encoded = encodeURIComponent(kommune);
+                        $location.path("/search/" + name_encoded + "/0/1/25");
                         angular.forEach(result.records[0], function(value, key) {
                             console.log(value);
                         });

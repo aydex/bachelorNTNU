@@ -75,7 +75,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
         var currTransaction = "";
         var isMunicipal;
 
-        data.addColumn('string', 'År');
+        data.addColumn('date', 'År');
         data.addColumn('number', 'Sum');
         data.addColumn({type: 'string', name: 'Dokumentnr', role: 'tooltip'});
         data.addColumn({type: 'string', role: 'annotation'});
@@ -98,14 +98,29 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
 
             dokumentnrList[key] = dokumentnr[key];
             dokumentnrList[dokumentnr[key]] = key;
-            data.addRow([labels[key], parseInt(dataSet[key]), 'Dokumentdato: ' + labels[key] + '\n Salgssum: ' + $filter('priceFilter')(dataSet[key]) + ' \n Dokumentnr: ' + dokumentnr[key],
-                annotation, annotationText]);
+            var date = labels[key].split("-");
+
+            var dateParsed = new Date(date[0], date[1], date[2]);
+            var price = parseInt(dataSet[key]);
+
+            if (price == 0){
+                price = null;
+            }
+
+               data.addRow(
+                [dateParsed, 
+                price, 
+                'Dokumentdato: ' + labels[key] + '\n Salgssum: ' + $filter('priceFilter')(dataSet[key]) + ' \n Dokumentnr: ' + dokumentnr[key],
+                annotation, annotationText]); 
+            
+            
         });
 
         var options = {
             title: 'Eiendomshistorikk',
             tooltip: {trigger: 'both'},
             pointSize: 5,
+            interpolateNulls: true,
         }
 
 
@@ -150,13 +165,16 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
         $scope.populateChart($scope.labels, $scope.data[0], dokumentnr);
     });
 
-    $scope.setSelected = function (selectedDokumentnr) {
-        chart.setSelection({row:null, column:null});
+    $scope.setSelected = function (selectedDokumentnr, Salgssum) {
+        if (Salgssum != 0){
+           chart.setSelection({row:null, column:null});
         row    = selectedDokumentnr ? dokumentnrList[selectedDokumentnr] : null;
         column = selectedDokumentnr ? 1 : null;
         chart.setSelection([{row:row,column:column}])
 
-        $scope.selectedDokumentnr = selectedDokumentnr;
+        $scope.selectedDokumentnr = selectedDokumentnr; 
+        }
+        
     };
 
     $scope.markTableRow = function(selectedDokumentnr) {
@@ -224,13 +242,6 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             $scope.queryTransaction();
         }
     };
-
-    /*$scope.orderByMe = function(x) {
-     if($scope.orderBy != x){
-     $scope.reverse = !$scope.reverse;
-     }
-     $scope.orderBy = x;
-     }*/
 
     $scope.reverseOrder = function(){
         if($scope.sortReady) {

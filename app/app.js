@@ -18,7 +18,7 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             //reloadOnSearch: false
         })
 
-        .when('/search/:searchName/:page/:pageSize', {
+        .when('/search/:searchName/:type/:page/:pageSize', {
             templateUrl : '/views/search.html',
             controller  : 'searchController'
         })
@@ -45,7 +45,11 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
 
 kommunalApp.run(function($rootScope, $http, $window, $location) {
 
-    $rootScope.doQuery = function(type, id, page, pageSize) {
+    angular.element(document).on("click", function(e) {
+        $rootScope.$broadcast("documentClicked", angular.element(e.target));
+    });
+
+    $rootScope.doQuery = function(type, id, page, pageSize) {
         return $http.get("./api/test.php?" + type + "=" + id + "&page=" +
             page + "&pageSize=" + pageSize)
             .then(function (response) {
@@ -53,20 +57,21 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
             });
     };
 
-    $rootScope.doQuery = function(type, id, page, pageSize, order, orderBy) {
+    $rootScope.doQuery = function(type, id, page, pageSize, order, orderBy, filterBy) {
+        console.log(filterBy);
         return $http.get("./api/ask.php?" + type + "=" + id + "&page=" +
-            page + "&pageSize=" + pageSize + "&order=" + order + "&orderBy=" + orderBy)
+            page + "&pageSize=" + pageSize + "&order=" + order + "&orderBy=" + orderBy + "&filterBy=" + filterBy)
         .then(function (response) {
                 return {records: response.data.records, count: response.data.count,
                     combined: response.data.combined};
             });
     };
 
-    $rootScope.open = true;
+    /*$rootScope.open = true;
 
     $rootScope.clickMenu = function(){
         $rootScope.open = !$rootScope.open;
-    };
+    };*/
 
 
     $rootScope.back = function(){
@@ -74,7 +79,7 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
         //$location.path("/search/" + $scope.name + "/" + $scope.page + "/" + $scope.pageSize);
     };
 
-    $rootScope.openSearch = function(){
+    /*$rootScope.openSearch = function(){
                 $rootScope.headerSearchOpen = !$rootScope.headerSearchOpen;
                 document.getElementById("headerInput").focus();
             };
@@ -84,5 +89,5 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
             $rootScope.headerInput = "";
             $rootScope.headerSearchOpen = false;
         }
-
+*/
 });

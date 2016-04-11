@@ -1,10 +1,30 @@
 <!--søkeicon i søkefeltet-->
-<a id ="backButton" href="/" data-ng-show="showTable">Forside</a>
+
+
+<div id="fixedSite">
+<button type="button" class="btn btn-default backbutton" data-ng-show="showTable" data-ng-click="back()">&lt; Tilbake</button>
 <div id="searchElements">
+    <div>
     <form id="searchForm" data-ng-submit="searchForm(searchForm)">
         <i class="material-icons" id="searchIcon">search</i>
         <input type="text" data-ng-model="search.nameSearch" data-ng-change="searchDelay()" placeholder="Navn, kommune, bedrift å søke på.." id="search" autocomplete="off">
     </form>
+    </div>
+    <div id="advanced-div">
+    Søk etter type: 
+    <select data-ng-model="currentType" data-ng-options="a.type for a in searchTypes" data-ng-change="advanceChange()"> 
+    </select>
+    <i class="material-icons select-arrow">play_arrow</i>
+    <select data-ng-model="fylke" data-ng-options="fylkeId as fylkeInfo.label for (fylkeId, fylkeInfo) in fylker" >
+        <option value="">Velg fylke</option>
+    </select>
+    <i class="material-icons select-arrow">play_arrow</i>
+
+    <select name="kommune" data-ng-model="kommune" data-ng-options="kommuneId as kommuneInfo.label for (kommuneId, kommuneInfo) in fylker[fylke]['kommuner']" data-ng-disabled="fylke == undefined">
+        <option value="">Velg kommune</option>
+    </select>           
+    <i class="material-icons select-arrow">play_arrow</i>    
+    </div>
 </div>
 
 <div id="pageElements" data-ng-show="showTable">
@@ -14,43 +34,50 @@
     <br>
     <span>Trykk på feltene for å endre rekkefølge:</span>
 </div>
+</div>
 
-<div id="tableContainer">
-    <span data-ng-class="{'navButtonInactive' : page == 1 || !showNavigation, 'navButtonActive' : page > 1 && showNavigation}" class="fa fa-chevron-left" data-ng-show="hideNavigation" data-ng-click="navigate(-1)" id="prevPage"></span>
-    <span data-ng-class="{'navButtonInactive' : !more_results || !showNavigation, 'navButtonActive' : more_results && showNavigation }" class="fa fa-chevron-right" data-ng-show="hideNavigation" data-ng-click="navigate(1)" id="nextPage"></span>
-    <p id="noResultDescription" data-ng-show="noResultShow">Ingen resultater...</p>
-    <img src="/images/loader.gif" data-ng-show="!showTable && searched && !noResultShow" alt="Loading.." />
-       <table data-ng-show="showTable">
+<div id="tableHeader" class="tableWidth">
+    <table data-ng-show="showTable">
         <tr>
-            <th id="idColumn" data-ng-click="orderByMe('id')" data-ng-class="{'disableSort' : !sortReady}">
-                id
-                <span data-ng-show="orderBy == 'id' && !reverse" class="fa fa-caret-up"></span>
-                <span data-ng-show="orderBy == 'id' && reverse" class="fa fa-caret-down"></span>
+            <th id ="nameColumn" data-ng-click="orderByMe('Navn')" data-ng-class="{'disableSort' : !sortReady}">
+                Navn
+                <span data-ng-show="orderBy == 'Navn' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'Navn' && reverse" class="fa fa-caret-down"></span>
             </th>
             <th id ="typeColumn" data-ng-click="orderByMe('Type')" data-ng-class="{'disableSort' : !sortReady}">
                 Type
                 <span data-ng-show="orderBy == 'Type' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Type' && reverse" class="fa fa-caret-down"></span>
             </th>
-
             <th id ="municipalityColumn" data-ng-click="orderByMe('Kommuner')" data-ng-class="{'disableSort' : !sortReady}">
-                Kommuner
+                Kommuner handlet med
                 <span data-ng-show="orderBy == 'Kommuner' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Kommuner' && reverse" class="fa fa-caret-down"></span>
             </th>
-            <th id ="nameColumn" data-ng-click="orderByMe('Navn')" data-ng-class="{'disableSort' : !sortReady}">
-                Navn
-                <span data-ng-show="orderBy == 'Navn' && !reverse" class="fa fa-caret-up"></span>
-                <span data-ng-show="orderBy == 'Navn' && reverse" class="fa fa-caret-down"></span>
+            <th id="idColumn" data-ng-click="orderByMe('id')" data-ng-class="{'disableSort' : !sortReady}">
+                id
+                <span data-ng-show="orderBy == 'id' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'id' && reverse" class="fa fa-caret-down"></span>
             </th>
         </tr>
+    </table>
+</div>
+
+<div id="bumpDown">
+<div id="tableContainer" class="tableWidth">
+    <span data-ng-class="{'navButtonInactive' : page == 1 || !showNavigation, 'navButtonActive' : page > 1 && showNavigation}" class="fa fa-chevron-left" data-ng-show="hideNavigation" data-ng-click="navigate(-1)" id="prevPage"></span>
+    <span data-ng-class="{'navButtonInactive' : !more_results || !showNavigation, 'navButtonActive' : more_results && showNavigation }" class="fa fa-chevron-right" data-ng-show="hideNavigation" data-ng-click="navigate(1)" id="nextPage"></span>
+    <p id="noResultDescription" data-ng-show="noResultShow">Ingen resultater...</p>
+    <img src="/images/loader.gif" data-ng-show="!showTable && searched && !noResultShow" alt="Loading.." />
+       <table data-ng-show="showTable">
+    
         <tr search-table participant="participant" data-ng-repeat="participant in names | filter:searchName" data-ng-click="showTransactionsPerson(participant.id, participant.Navn, participant.Type)">
 
         </tr>
     </table>
 </div>
 </div>
-  <div ng-controller="mapController">
+  <div data-ng-controller="mapController" data-ng-show="!showTable">
     <div class="container">
       <svg-map></svg-map>
     </div>

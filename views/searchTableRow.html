@@ -1,11 +1,13 @@
 <tr>
-	<td data-ng-bind="participant.id"></td>
-    <td data-ng-bind="participant.Type | deltagerTypeFilter"></td>
-    <td class="leftalign">
-    	<span data-ng-repeat="kommune in participant.Kommuner">
-    		<kommunevaapen id="kommune.kommunenr"></kommunevaapen>
+	<td id="nameColumn" class="leftalign" data-ng-bind="participant.Navn | nameFilter: participant.Type: true" class="name"></td>
+	
+    <td id="typeColumn" data-ng-bind="participant.Type | deltagerTypeFilter"></td>
+    <td class="leftalign" id="municipalityColumn">
+    	<span data-ng-if="participant.HandletMedKommune" data-ng-repeat="kommune in participant.Kommuner">
+    		<kommunevaapen  id="kommune.kommunenr"></kommunevaapen>
     		<span  data-ng-bind="kommune.navn | capitalFirstLettersFilter"></span>
     	</span>
     </td>
-    <td class="leftalign" data-ng-bind="participant.Navn | nameFilter: participant.Type: true" class="name"></td>
+    <td id="idColumn" data-ng-bind="participant.id"></td>
+    
 </tr>
