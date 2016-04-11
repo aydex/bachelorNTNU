@@ -145,4 +145,19 @@ class Query
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function selectMunicipalityFromId($mId)
+    {
+        $query = "SELECT * 
+                  FROM Kommuner 
+                  WHERE Kommunenr=:mId";
+        
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':mId', $mId, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return json_encode(array("records" => $result));
+    }
 }
