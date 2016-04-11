@@ -55,7 +55,7 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
             .then(function (response) {
                 return {records: response.data.records, count: response.data.count};
             });
-    }
+    };
 
     $rootScope.doQuery = function(type, id, page, pageSize, order, orderBy, filterBy) {
         console.log(filterBy);
