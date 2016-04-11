@@ -146,6 +146,12 @@ div p{
 	padding-top: 20px;
 }
 
+#searchTitle{
+	text-align: center;
+	display: inline-block;
+	margin-bottom: 30px;
+}
+
 .backbutton {
 	position: fixed;
 	left: 5px;
@@ -157,7 +163,7 @@ div p{
 	margin: auto;
     margin-bottom: 20px;
     width: 60%;
-    margin-top: 150px;
+    margin-top: 100px;
     min-width: 600px;
 }
 
@@ -534,7 +540,7 @@ div .container{
 	  width: 42%;
 	  height: auto;
 	  z-index: 90000000000000;
-	  margin-top: -100px;
+	  margin-top: -80px;
 	  z-index: 10000000; 
 	  position:relative
 
