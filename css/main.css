@@ -204,7 +204,7 @@ table{
 	left: 50%;
 	margin-left: -50%;
 	z-index: 1000;
-	height: 260px;
+	height: 320px;
 	background-color: white;
 }
 
@@ -223,13 +223,13 @@ table{
 
 
 #bumpDown{
-	margin-top: 270px;
+	margin-top: 350px;
 }
 
 #tableHeader{
 	position: fixed;
 	z-index: 100000000;
-	top: 260px;
+	top: 315px;
 	width: 94%;
 	left: 51.52%;
 	margin-left: -48.48%;
