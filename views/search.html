@@ -80,7 +80,8 @@
 </div>
 </div>
   <div data-ng-controller="mapController" data-ng-show="!showTable">
-    <div class="container">
+      <div class="container">
+      <button type="button" class="btn btn-default" data-ng-show="countySelected" data-ng-click="back()">&lt; Tilbake</button>
       <svg-map></svg-map>
     </div>
 <!---  nye eventuelle fix under

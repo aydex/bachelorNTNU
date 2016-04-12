@@ -2,19 +2,32 @@
 kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$parse', function ($compile, $http, $templateCache) {
     return {
         restrict: 'EA',
-        controller: function($scope) {
+        controller: function($scope, $route, $location) {
             this.updateMap = function (url) {
-                $http.get("images/kommunekart/" + url + ".svg", {cache: $templateCache})
-                    .success(function(templateContent) {
-                        $scope.mapElement.replaceWith($compile(templateContent)($scope));
-                        var cities = angular.element(document.querySelectorAll('.land'));
-                        angular.forEach(cities, function(path) {
-                            var cityElement = angular.element(path);
-                            cityElement.attr("city", "");
-                            $compile(cityElement)($scope)
+                if(url == "oslo") {
+                    var name_encoded = encodeURIComponent("oslo");
+                    $location.path("/search/" + name_encoded + "/0/1/25/0/0");
+                } else {
+                    $scope.countySelected = true;
+
+                    $http.get("images/kommunekart/" + url + ".svg", {cache: $templateCache})
+                        .success(function(templateContent) {
+                            var newMap = $compile(templateContent)($scope);
+                            $scope.mapElement.replaceWith(newMap);
+                            $scope.mapElement = newMap;
+                            var cities = angular.element(document.querySelectorAll('.land'));
+                            angular.forEach(cities, function(path) {
+                                var cityElement = angular.element(path);
+                                cityElement.attr("city", "");
+                                $compile(cityElement)($scope)
+                            });
                         });
-                    });
+                }
             };
+
+            $scope.back = function() {
+                $route.reload();
+            }
         },
         link: function ($scope, element) {
             var regions = element[0].querySelectorAll('.land');
@@ -23,14 +36,14 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$parse'
                 regionElement.attr("region", "");
                 $compile(regionElement)($scope);
             });
-            $scope.mapElement = element;
+            $scope.mapElement = angular.element(element[0]);
 
         },
         templateUrl: "images/kommunekart/norge.svg"
       }
 }]);
 
-kommunalApp.directive('region', ['$compile', function ($compile) {
+kommunalApp.directive('region', ['$compile', function ($compile, $scope) {
     return {
         restrict: 'EA',
         scope: true,
@@ -78,13 +91,12 @@ kommunalApp.directive('city', ['$compile', '$location', '$http', function ($comp
                     city.then(function(result) {
                         var kommune = result.records[0].Kommunenavn;
                         var name_encoded = encodeURIComponent(kommune);
-                        $location.path("/search/" + name_encoded + "/0/1/25");
+                        $location.path("/search/" + name_encoded + "/0/1/25/0/0");
                         angular.forEach(result.records[0], function(value, key) {
                             console.log(value);
                         });
                     });
                 };
-
                 element.attr("ng-click", "cityClick()");
 
                 element.removeAttr("city");

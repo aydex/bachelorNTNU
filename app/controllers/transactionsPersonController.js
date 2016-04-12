@@ -94,7 +94,7 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
         if($scope.sortReady) {
             $scope.reverse = !$scope.reverse;
         }
-    }
+    };
 
     $scope.showTransactionsProperty = function(id){
         $location.path("/transactions/property/" + id);
