@@ -6,7 +6,7 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$parse'
             this.updateMap = function (url) {
                 if(url == "oslo") {
                     var name_encoded = encodeURIComponent("oslo");
-                    $location.path("/search/" + name_encoded + "/0/1/25");
+                    $location.path("/search/" + name_encoded + "/0/1/25/0/0");
                 } else {
                     $scope.countySelected = true;
 
@@ -91,7 +91,7 @@ kommunalApp.directive('city', ['$compile', '$location', '$http', function ($comp
                     city.then(function(result) {
                         var kommune = result.records[0].Kommunenavn;
                         var name_encoded = encodeURIComponent(kommune);
-                        $location.path("/search/" + name_encoded + "/0/1/25");
+                        $location.path("/search/" + name_encoded + "/0/1/25/0/0");
                         angular.forEach(result.records[0], function(value, key) {
                             console.log(value);
                         });
