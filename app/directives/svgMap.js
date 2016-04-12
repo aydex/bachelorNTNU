@@ -2,7 +2,7 @@
 kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$parse', function ($compile, $http, $templateCache) {
     return {
         restrict: 'EA',
-        controller: function($scope) {
+        controller: function($scope, $route) {
             this.updateMap = function (url) {
                 $scope.countySelected = true;
 
@@ -21,19 +21,7 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$parse'
             };
 
             $scope.back = function() {
-                //updateMap("norge");
-                $http.get("images/kommunekart/norge.svg", {cache: $templateCache})
-                    .success(function(templateContent) {
-                        var newMap = $compile(templateContent)($scope);
-                        $scope.mapElement.replaceWith(newMap);
-                        $scope.mapElement = newMap;
-                        var regions = $scope.mapElement(querySelectorAll('.land'));
-                        angular.forEach(regions, function(path) {
-                            var regionElement = angular.element(path);
-                            regionElement.attr("region", "");
-                            $compile(regionElement)($scope)
-                        });
-                    })
+                $route.reload();
             }
         },
         link: function ($scope, element) {
@@ -43,7 +31,7 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$parse'
                 regionElement.attr("region", "");
                 $compile(regionElement)($scope);
             });
-            $scope.mapElement = element;
+            $scope.mapElement = angular.element(element[0]);
 
         },
         templateUrl: "images/kommunekart/norge.svg"
@@ -62,8 +50,6 @@ kommunalApp.directive('region', ['$compile', function ($compile, $scope) {
             scope.regionClick = function() {
                 svgMapCtrl.updateMap(scope.elementId);
             };
-
-            console.log("testy testy test");
 
             element.attr("ng-mousemove", "regionHover()");
             element.attr("ng-click", "regionClick()");
