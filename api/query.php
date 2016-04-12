@@ -25,7 +25,6 @@ class Query
             $filterByText = "";
         }
 
-   
         if ($fylkenr > 0){
             $fylkeFilterText = "AND Fylkenr = '$fylkenr'";
             $kommFilterText = "";
