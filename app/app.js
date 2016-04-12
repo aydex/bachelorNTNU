@@ -57,7 +57,7 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
             });
     };
 
-    $rootScope.doQuery = function(type, id, page, pageSize, order, orderBy, filterBy, kommunenr) {
+    $rootScope.doQuery = function(type, id, page, pageSize, order, orderBy, filterBy) {
         console.log(filterBy);
         return $http.get("./api/ask.php?" + type + "=" + id + "&page=" +
             page + "&pageSize=" + pageSize + "&order=" + order + "&orderBy=" + orderBy + "&filterBy=" + filterBy)

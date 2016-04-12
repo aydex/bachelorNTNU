@@ -17,6 +17,8 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         nameSearch: "",
         pageSize  : 25
     };
+    $scope.selectedMunicipality = 0;
+    $scope.selectedFylke = 0;
 
    $scope.kommuner = [{type:"Asker", value:220},{type:"Aurskog-Høland", value:221},{type:"Bærum", value:219},{type:"Eidsvoll", value:237},{type:"Fet", value:227},{type:"Frogn", value:215},{type:"Gjerdrum", value:239},{type:"Hurdal", value:230},
     {type:"Lørenskog", value:238},{type:"Nannestad", value:236},{type:"Nes", value:216},{type:"Nesodden", value:223},{type:"Nittedal", value:217},{type:"Oppegård", value:228},{type:"Rælingen", value:231},{type:"Skedsmo", value:213},{type:"Ski", value:226},
@@ -55,61 +57,61 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         "1" : {
             label : "Akershus",        
             kommuner:{
-                "1":{label: $scope.kommuner[0].type}, "2" : {label:$scope.kommuner[1].type}, "3" : {label:$scope.kommuner[2].type},"4" : {label:$scope.kommuner[3].type},"5" : {label:$scope.kommuner[4].type},"6" : {label:$scope.kommuner[5].type},
-                "7" : {label:$scope.kommuner[6].type},"8" : {label:$scope.kommuner[7].type},"9" : {llabel:$scope.kommuner[8].type},"10" : {label:$scope.kommuner[9].type},"11" : {label:$scope.kommuner[10].type},"12" : {label:$scope.kommuner[11].type},
-                "13" : {label:$scope.kommuner[12].type},"14" : {label:$scope.kommuner[13].type},"15" : {label:$scope.kommuner[14].type},"16" : {label:$scope.kommuner[15].type},"17" : {label:$scope.kommuner[16].type},"18" : {label:$scope.kommuner[17].type},
-                "19" : {label:$scope.kommuner[18].type},"20" : {label:$scope.kommuner[19].type},"21" : {label:$scope.kommuner[20].type}
+                "1": {label: $scope.kommuner[0]}, "2" : {label:$scope.kommuner[1]}, "3" : {label:$scope.kommuner[2]},"4" : {label:$scope.kommuner[3]},"5" : {label:$scope.kommuner[4]},"6" : {label:$scope.kommuner[5]},
+                "7" : {label:$scope.kommuner[6]},"8" : {label:$scope.kommuner[7]},"9" : {label:$scope.kommuner[8]},"10" : {label:$scope.kommuner[9]},"11" : {label:$scope.kommuner[10]},"12" : {label:$scope.kommuner[11]},
+                "13" : {label:$scope.kommuner[12]},"14" : {label:$scope.kommuner[13]},"15" : {label:$scope.kommuner[14]},"16" : {label:$scope.kommuner[15]},"17" : {label:$scope.kommuner[16]},"18" : {label:$scope.kommuner[17]},
+                "19" : {label:$scope.kommuner[18]},"20" : {label:$scope.kommuner[19]},"21" : {label:$scope.kommuner[20]}
             
             }
         },
         "2" : {
             label:"Aust-Agder",      
             kommuner:{
-                "1":{label: $scope.kommuner[21].type}, "2" : {label:$scope.kommuner[22].type}, "3" : {label:$scope.kommuner[23].type},"4" : {label:$scope.kommuner[24].type},"5" : {label:$scope.kommuner[25].type},"6" : {label:$scope.kommuner[26].type},
-                "7" : {label:$scope.kommuner[27].type},"8" : {label:$scope.kommuner[28].type},"9" : {llabel:$scope.kommuner[29].type},"10" : {label:$scope.kommuner[30].type},"11" : {label:$scope.kommuner[31].type},"12" : {label:$scope.kommuner[32].type},
-                "13" : {label:$scope.kommuner[33].type},"14" : {label:$scope.kommuner[34].type},"15" : {label:$scope.kommuner[35].type},"16" : {label:$scope.kommuner[36].type},"17" : {label:$scope.kommuner[37].type},"18" : {label:$scope.kommuner[38].type},
-                "19" : {label:$scope.kommuner[39].type},"20" : {label:$scope.kommuner[40].type},"21" : {label:$scope.kommuner[41].type}, "22":{label: $scope.kommuner[42].type},"23" : {label:$scope.kommuner[43].type},"24" : {label:$scope.kommuner[44].type}
+                "1":{label: $scope.kommuner[21]}, "2" : {label:$scope.kommuner[22]}, "3" : {label:$scope.kommuner[23]},"4" : {label:$scope.kommuner[24]},"5" : {label:$scope.kommuner[25]},"6" : {label:$scope.kommuner[26]},
+                "7" : {label:$scope.kommuner[27]},"8" : {label:$scope.kommuner[28]},"9" : {llabel:$scope.kommuner[29]},"10" : {label:$scope.kommuner[30]},"11" : {label:$scope.kommuner[31]},"12" : {label:$scope.kommuner[32]},
+                "13" : {label:$scope.kommuner[33]},"14" : {label:$scope.kommuner[34]},"15" : {label:$scope.kommuner[35]},"16" : {label:$scope.kommuner[36]},"17" : {label:$scope.kommuner[37]},"18" : {label:$scope.kommuner[38]},
+                "19" : {label:$scope.kommuner[39]},"20" : {label:$scope.kommuner[40]},"21" : {label:$scope.kommuner[41]}, "22":{label: $scope.kommuner[42]},"23" : {label:$scope.kommuner[43]},"24" : {label:$scope.kommuner[44]}
             
             }
         },
         "3" : {
             label:"Buskerud",  
              kommuner:{
-                "1" : {label:$scope.kommuner[45].type},"2" : {label:$scope.kommuner[46].type},"3" : {label:$scope.kommuner[47].type},
-                "4" : {label:$scope.kommuner[48].type},"5" : {label:$scope.kommuner[49].type},"6" : {label:$scope.kommuner[50].type},"7" : {label:$scope.kommuner[51].type},"8" : {label:$scope.kommuner[52].type},"9" : {label:$scope.kommuner[53].type},
-                "10" : {label:$scope.kommuner[54].type},"11" : {label:$scope.kommuner[55].type},"12" : {label:$scope.kommuner[56].type},"13" : {label:$scope.kommuner[57].type},"14" : {label:$scope.kommuner[58].type},"15" : {label:$scope.kommuner[59].type},
-                "16" : {label:$scope.kommuner[60].type},"17" : {label:$scope.kommuner[61].type}
+                "1" : {label:$scope.kommuner[45]},"2" : {label:$scope.kommuner[46]},"3" : {label:$scope.kommuner[47]},
+                "4" : {label:$scope.kommuner[48]},"5" : {label:$scope.kommuner[49]},"6" : {label:$scope.kommuner[50]},"7" : {label:$scope.kommuner[51]},"8" : {label:$scope.kommuner[52]},"9" : {label:$scope.kommuner[53]},
+                "10" : {label:$scope.kommuner[54]},"11" : {label:$scope.kommuner[55]},"12" : {label:$scope.kommuner[56]},"13" : {label:$scope.kommuner[57]},"14" : {label:$scope.kommuner[58]},"15" : {label:$scope.kommuner[59]},
+                "16" : {label:$scope.kommuner[60]},"17" : {label:$scope.kommuner[61]}
             }
         },
         "4" : {
             label:"Finnmark",      
             kommuner:{
-                "1" : {label:$scope.kommuner[62].type},"2" : {label:$scope.kommuner[63].type},"3" : {label:$scope.kommuner[64].type},
-                "4" : {label:$scope.kommuner[65].type},"5" : {label:$scope.kommuner[66].type},"6" : {label:$scope.kommuner[67].type},"7" : {label:$scope.kommuner[68].type},"8" : {label:$scope.kommuner[69].type},"9" : {label:$scope.kommuner[70].type},
-                "10" : {label:$scope.kommuner[71].type},"11" : {label:$scope.kommuner[72].type},"12" : {label:$scope.kommuner[73].type},"13" : {label:$scope.kommuner[74].type},"14" : {label:$scope.kommuner[75].type},"15" : {label:$scope.kommuner[76].type},
-                "16" : {label:$scope.kommuner[77].type},"17" : {label:$scope.kommuner[78].type},"17" : {label:$scope.kommuner[79].type},"17" : {label:$scope.kommuner[80].type}
+                "1" : {label:$scope.kommuner[62]},"2" : {label:$scope.kommuner[63]},"3" : {label:$scope.kommuner[64]},
+                "4" : {label:$scope.kommuner[65]},"5" : {label:$scope.kommuner[66]},"6" : {label:$scope.kommuner[67]},"7" : {label:$scope.kommuner[68]},"8" : {label:$scope.kommuner[69]},"9" : {label:$scope.kommuner[70]},
+                "10" : {label:$scope.kommuner[71]},"11" : {label:$scope.kommuner[72]},"12" : {label:$scope.kommuner[73]},"13" : {label:$scope.kommuner[74]},"14" : {label:$scope.kommuner[75]},"15" : {label:$scope.kommuner[76]},
+                "16" : {label:$scope.kommuner[77]},"17" : {label:$scope.kommuner[78]},"17" : {label:$scope.kommuner[79]},"17" : {label:$scope.kommuner[80]}
 
             }
         },
         "5" : {
             label:"Hedmark",      
             kommuner:{
-                 "1" : {label:$scope.kommuner[81].type},"2" : {label:$scope.kommuner[82].type},"3" : {label:$scope.kommuner[83].type},
-                "4" : {label:$scope.kommuner[84].type},"5" : {label:$scope.kommuner[85].type},"6" : {label:$scope.kommuner[86].type},"7" : {label:$scope.kommuner[87].type},"8" : {label:$scope.kommuner[88].type},"9" : {label:$scope.kommuner[89].type},
-                "10" : {label:$scope.kommuner[90].type},"11" : {label:$scope.kommuner[91].type},"12" : {label:$scope.kommuner[92].type},"13" : {label:$scope.kommuner[93].type},"14" : {label:$scope.kommuner[94].type},"15" : {label:$scope.kommuner[95].type},
-                "16" : {label:$scope.kommuner[96].type},"17" : {label:$scope.kommuner[97].type},"18" : {label:$scope.kommuner[98].type},"19" : {label:$scope.kommuner[99].type},"20" : {label:$scope.kommuner[100].type},"21" : {label:$scope.kommuner[101].type},"22" : {label:$scope.kommuner[102].type}
+                 "1" : {label:$scope.kommuner[81]},"2" : {label:$scope.kommuner[82]},"3" : {label:$scope.kommuner[83]},
+                "4" : {label:$scope.kommuner[84]},"5" : {label:$scope.kommuner[85]},"6" : {label:$scope.kommuner[86]},"7" : {label:$scope.kommuner[87]},"8" : {label:$scope.kommuner[88]},"9" : {label:$scope.kommuner[89]},
+                "10" : {label:$scope.kommuner[90]},"11" : {label:$scope.kommuner[91]},"12" : {label:$scope.kommuner[92]},"13" : {label:$scope.kommuner[93]},"14" : {label:$scope.kommuner[94]},"15" : {label:$scope.kommuner[95]},
+                "16" : {label:$scope.kommuner[96]},"17" : {label:$scope.kommuner[97]},"18" : {label:$scope.kommuner[98]},"19" : {label:$scope.kommuner[99]},"20" : {label:$scope.kommuner[100]},"21" : {label:$scope.kommuner[101]},"22" : {label:$scope.kommuner[102]}
 
             }
         },
         "6" : {
             label:"Hordaland",      
             kommuner:{
-                "1" : {label:$scope.kommuner[103].type},"2" : {label:$scope.kommuner[104].type},"3" : {label:$scope.kommuner[105].type},
-                "4" : {label:$scope.kommuner[106].type},"5" : {label:$scope.kommuner[107].type},"6" : {label:$scope.kommuner[108].type},"7" : {label:$scope.kommuner[109].type},"8" : {label:$scope.kommuner[110].type},"9" : {label:$scope.kommuner[111].type},
-                "10" : {label:$scope.kommuner[112].type},"11" : {label:$scope.kommuner[113].type},"12" : {label:$scope.kommuner[114].type},"13" : {label:$scope.kommuner[115].type},"14" : {label:$scope.kommuner[116].type},"15" : {label:$scope.kommuner[117].type},
-                "16" : {label:$scope.kommuner[118].type},"17" : {label:$scope.kommuner[119].type},"18" : {label:$scope.kommuner[120].type},"19" : {label:$scope.kommuner[121].type},"20" : {label:$scope.kommuner[122].type},"21" : {label:$scope.kommuner[123].type},"22" : {label:$scope.kommuner[124].type},
-                "23" : {label:$scope.kommuner[125].type},"24" : {label:$scope.kommuner[126].type},"25" : {label:$scope.kommuner[127].type},"26" : {label:$scope.kommuner[128].type},"27" : {label:$scope.kommuner[129].type},"28" : {label:$scope.kommuner[130].type},"29" : {label:$scope.kommuner[131].type},
-                "30" : {label:$scope.kommuner[132].type},"31" : {label:$scope.kommuner[133].type},"32" : {label:$scope.kommuner[134].type},"33" : {label:$scope.kommuner[135].type}
+                "1" : {label:$scope.kommuner[103]},"2" : {label:$scope.kommuner[104]},"3" : {label:$scope.kommuner[105]},
+                "4" : {label:$scope.kommuner[106]},"5" : {label:$scope.kommuner[107]},"6" : {label:$scope.kommuner[108]},"7" : {label:$scope.kommuner[109]},"8" : {label:$scope.kommuner[110]},"9" : {label:$scope.kommuner[111]},
+                "10" : {label:$scope.kommuner[112]},"11" : {label:$scope.kommuner[113]},"12" : {label:$scope.kommuner[114]},"13" : {label:$scope.kommuner[115]},"14" : {label:$scope.kommuner[116]},"15" : {label:$scope.kommuner[117]},
+                "16" : {label:$scope.kommuner[118]},"17" : {label:$scope.kommuner[119]},"18" : {label:$scope.kommuner[120]},"19" : {label:$scope.kommuner[121]},"20" : {label:$scope.kommuner[122]},"21" : {label:$scope.kommuner[123]},"22" : {label:$scope.kommuner[124]},
+                "23" : {label:$scope.kommuner[125]},"24" : {label:$scope.kommuner[126]},"25" : {label:$scope.kommuner[127]},"26" : {label:$scope.kommuner[128]},"27" : {label:$scope.kommuner[129]},"28" : {label:$scope.kommuner[130]},"29" : {label:$scope.kommuner[131]},
+                "30" : {label:$scope.kommuner[132]},"31" : {label:$scope.kommuner[133]},"32" : {label:$scope.kommuner[134]},"33" : {label:$scope.kommuner[135]}
 
               
             }
@@ -117,47 +119,47 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         "7" : {
             label:"Møre og Romsdal",      
             kommuner:{
-                "1" : {label:$scope.kommuner[136].type},"2" : {label:$scope.kommuner[137].type},"3" : {label:$scope.kommuner[138].type},
-                "4" : {label:$scope.kommuner[139].type},"5" : {label:$scope.kommuner[140].type},"6" : {label:$scope.kommuner[141].type},"7" : {label:$scope.kommuner[142].type},"8" : {label:$scope.kommuner[143].type},"9" : {label:$scope.kommuner[144].type},
-                "10" : {label:$scope.kommuner[145].type},"11" : {label:$scope.kommuner[146].type},"12" : {label:$scope.kommuner[147].type},"13" : {label:$scope.kommuner[148].type},"14" : {label:$scope.kommuner[149].type},"15" : {label:$scope.kommuner[150].type},
-                "16" : {label:$scope.kommuner[151].type},"17" : {label:$scope.kommuner[152].type},"18" : {label:$scope.kommuner[153].type},"19" : {label:$scope.kommuner[154].type},"20" : {label:$scope.kommuner[155].type},"21" : {label:$scope.kommuner[156].type},"22" : {label:$scope.kommuner[157].type},
-                "23" : {label:$scope.kommuner[158].type},"24" : {label:$scope.kommuner[159].type},"25" : {label:$scope.kommuner[160].type},"26" : {label:$scope.kommuner[161].type},"27" : {label:$scope.kommuner[162].type},"28" : {label:$scope.kommuner[163].type},"29" : {label:$scope.kommuner[164].type},
-                "30" : {label:$scope.kommuner[165].type},"31" : {label:$scope.kommuner[166].type},"32" : {label:$scope.kommuner[167].type},"33" : {label:$scope.kommuner[168].type},"34" : {label:$scope.kommuner[169].type},"35" : {label:$scope.kommuner[170].type},"36" : {label:$scope.kommuner[171].type}  
+                "1" : {label:$scope.kommuner[136]},"2" : {label:$scope.kommuner[137]},"3" : {label:$scope.kommuner[138]},
+                "4" : {label:$scope.kommuner[139]},"5" : {label:$scope.kommuner[140]},"6" : {label:$scope.kommuner[141]},"7" : {label:$scope.kommuner[142]},"8" : {label:$scope.kommuner[143]},"9" : {label:$scope.kommuner[144]},
+                "10" : {label:$scope.kommuner[145]},"11" : {label:$scope.kommuner[146]},"12" : {label:$scope.kommuner[147]},"13" : {label:$scope.kommuner[148]},"14" : {label:$scope.kommuner[149]},"15" : {label:$scope.kommuner[150]},
+                "16" : {label:$scope.kommuner[151]},"17" : {label:$scope.kommuner[152]},"18" : {label:$scope.kommuner[153]},"19" : {label:$scope.kommuner[154]},"20" : {label:$scope.kommuner[155]},"21" : {label:$scope.kommuner[156]},"22" : {label:$scope.kommuner[157]},
+                "23" : {label:$scope.kommuner[158]},"24" : {label:$scope.kommuner[159]},"25" : {label:$scope.kommuner[160]},"26" : {label:$scope.kommuner[161]},"27" : {label:$scope.kommuner[162]},"28" : {label:$scope.kommuner[163]},"29" : {label:$scope.kommuner[164]},
+                "30" : {label:$scope.kommuner[165]},"31" : {label:$scope.kommuner[166]},"32" : {label:$scope.kommuner[167]},"33" : {label:$scope.kommuner[168]},"34" : {label:$scope.kommuner[169]},"35" : {label:$scope.kommuner[170]},"36" : {label:$scope.kommuner[171]}  
             }
         },
         "8" : {
             label:"Nordland",      
             kommuner:{
-                "1" : {label:$scope.kommuner[172].type},"2" : {label:$scope.kommuner[173].type},"3" : {label:$scope.kommuner[174].type},
-                "4" : {label:$scope.kommuner[175].type},"5" : {label:$scope.kommuner[176].type},"6" : {label:$scope.kommuner[177].type},"7" : {label:$scope.kommuner[178].type},"8" : {label:$scope.kommuner[179].type},"9" : {label:$scope.kommuner[180].type},
-                "10" : {label:$scope.kommuner[181].type},"11" : {label:$scope.kommuner[182].type},"12" : {label:$scope.kommuner[183].type},"13" : {label:$scope.kommuner[184].type},"14" : {label:$scope.kommuner[185].type},"15" : {label:$scope.kommuner[186].type},
-                "16" : {label:$scope.kommuner[187].type},"17" : {label:$scope.kommuner[188].type},"18" : {label:$scope.kommuner[189].type},"19" : {label:$scope.kommuner[190].type},"20" : {label:$scope.kommuner[191].type},"21" : {label:$scope.kommuner[192].type},"22" : {label:$scope.kommuner[193].type},
-                "23" : {label:$scope.kommuner[194].type},"24" : {label:$scope.kommuner[195].type},"25" : {label:$scope.kommuner[196].type},"26" : {label:$scope.kommuner[197].type},"27" : {label:$scope.kommuner[198].type},"28" : {label:$scope.kommuner[199].type},"29" : {label:$scope.kommuner[200].type},
-                "30" : {label:$scope.kommuner[201].type},"31" : {label:$scope.kommuner[202].type},"32" : {label:$scope.kommuner[203].type},"33" : {label:$scope.kommuner[204].type},"34" : {label:$scope.kommuner[205].type},"35" : {label:$scope.kommuner[206].type},"36" : {label:$scope.kommuner[207].type},
-                "37" : {label:$scope.kommuner[208].type},"38" : {label:$scope.kommuner[209].type} ,"39" : {label:$scope.kommuner[210].type},"40" : {label:$scope.kommuner[211].type},"41" : {label:$scope.kommuner[212].type},"42" : {label:$scope.kommuner[213].type},"43" : {label:$scope.kommuner[214].type},
-                "44" : {label:$scope.kommuner[215].type}        
+                "1" : {label:$scope.kommuner[172]},"2" : {label:$scope.kommuner[173]},"3" : {label:$scope.kommuner[174]},
+                "4" : {label:$scope.kommuner[175]},"5" : {label:$scope.kommuner[176]},"6" : {label:$scope.kommuner[177]},"7" : {label:$scope.kommuner[178]},"8" : {label:$scope.kommuner[179]},"9" : {label:$scope.kommuner[180]},
+                "10" : {label:$scope.kommuner[181]},"11" : {label:$scope.kommuner[182]},"12" : {label:$scope.kommuner[183]},"13" : {label:$scope.kommuner[184]},"14" : {label:$scope.kommuner[185]},"15" : {label:$scope.kommuner[186]},
+                "16" : {label:$scope.kommuner[187]},"17" : {label:$scope.kommuner[188]},"18" : {label:$scope.kommuner[189]},"19" : {label:$scope.kommuner[190]},"20" : {label:$scope.kommuner[191]},"21" : {label:$scope.kommuner[192]},"22" : {label:$scope.kommuner[193]},
+                "23" : {label:$scope.kommuner[194]},"24" : {label:$scope.kommuner[195]},"25" : {label:$scope.kommuner[196]},"26" : {label:$scope.kommuner[197]},"27" : {label:$scope.kommuner[198]},"28" : {label:$scope.kommuner[199]},"29" : {label:$scope.kommuner[200]},
+                "30" : {label:$scope.kommuner[201]},"31" : {label:$scope.kommuner[202]},"32" : {label:$scope.kommuner[203]},"33" : {label:$scope.kommuner[204]},"34" : {label:$scope.kommuner[205]},"35" : {label:$scope.kommuner[206]},"36" : {label:$scope.kommuner[207]},
+                "37" : {label:$scope.kommuner[208]},"38" : {label:$scope.kommuner[209]} ,"39" : {label:$scope.kommuner[210]},"40" : {label:$scope.kommuner[211]},"41" : {label:$scope.kommuner[212]},"42" : {label:$scope.kommuner[213]},"43" : {label:$scope.kommuner[214]},
+                "44" : {label:$scope.kommuner[215]}        
                
             }
         },
         "9" : {
             label:"Nord-Trøndelag",      
             kommuner:{
-                "1" : {label:$scope.kommuner[216].type},"2" : {label:$scope.kommuner[217].type},"3" : {label:$scope.kommuner[218].type},
-                "4" : {label:$scope.kommuner[219].type},"5" : {label:$scope.kommuner[220].type},"6" : {label:$scope.kommuner[221].type},"7" : {label:$scope.kommuner[222].type},"8" : {label:$scope.kommuner[223].type},"9" : {label:$scope.kommuner[224].type},
-                "10" : {label:$scope.kommuner[225].type},"11" : {label:$scope.kommuner[226].type},"12" : {label:$scope.kommuner[227].type},"13" : {label:$scope.kommuner[228].type},"14" : {label:$scope.kommuner[229].type},"15" : {label:$scope.kommuner[230].type},
-                "16" : {label:$scope.kommuner[231].type},"17" : {label:$scope.kommuner[232].type},"18" : {label:$scope.kommuner[233].type},"19" : {label:$scope.kommuner[234].type},"20" : {label:$scope.kommuner[235].type},"21" : {label:$scope.kommuner[236].type},"22" : {label:$scope.kommuner[237].type},
-                "23" : {label:$scope.kommuner[238].type}
+                "1" : {label:$scope.kommuner[216]},"2" : {label:$scope.kommuner[217]},"3" : {label:$scope.kommuner[218]},
+                "4" : {label:$scope.kommuner[219]},"5" : {label:$scope.kommuner[220]},"6" : {label:$scope.kommuner[221]},"7" : {label:$scope.kommuner[222]},"8" : {label:$scope.kommuner[223]},"9" : {label:$scope.kommuner[224]},
+                "10" : {label:$scope.kommuner[225]},"11" : {label:$scope.kommuner[226]},"12" : {label:$scope.kommuner[227]},"13" : {label:$scope.kommuner[228]},"14" : {label:$scope.kommuner[229]},"15" : {label:$scope.kommuner[230]},
+                "16" : {label:$scope.kommuner[231]},"17" : {label:$scope.kommuner[232]},"18" : {label:$scope.kommuner[233]},"19" : {label:$scope.kommuner[234]},"20" : {label:$scope.kommuner[235]},"21" : {label:$scope.kommuner[236]},"22" : {label:$scope.kommuner[237]},
+                "23" : {label:$scope.kommuner[238]}
                 
             }
         },
         "10" : {
             label:"Oppland",      
             kommuner:{
-                "1" : {label:$scope.kommuner[239].type},"2" : {label:$scope.kommuner[240].type},"3" : {label:$scope.kommuner[241].type},
-                "4" : {label:$scope.kommuner[242].type},"5" : {label:$scope.kommuner[243].type},"6" : {label:$scope.kommuner[244].type},"7" : {label:$scope.kommuner[245].type},"8" : {label:$scope.kommuner[246].type},"9" : {label:$scope.kommuner[247].type},
-                "10" : {label:$scope.kommuner[248].type},"11" : {label:$scope.kommuner[249].type},"12" : {label:$scope.kommuner[250].type},"13" : {label:$scope.kommuner[251].type},"14" : {label:$scope.kommuner[252].type},"15" : {label:$scope.kommuner[253].type},
-                "16" : {label:$scope.kommuner[254].type},"17" : {label:$scope.kommuner[255].type},"18" : {label:$scope.kommuner[256].type},"19" : {label:$scope.kommuner[257].type},"20" : {label:$scope.kommuner[258].type},"21" : {label:$scope.kommuner[259].type},"22" : {label:$scope.kommuner[260].type},
-                "23" : {label:$scope.kommuner[261].type},"24" : {label:$scope.kommuner[262].type},"25" : {label:$scope.kommuner[263].type}
+                "1" : {label:$scope.kommuner[239]},"2" : {label:$scope.kommuner[240]},"3" : {label:$scope.kommuner[241]},
+                "4" : {label:$scope.kommuner[242]},"5" : {label:$scope.kommuner[243]},"6" : {label:$scope.kommuner[244]},"7" : {label:$scope.kommuner[245]},"8" : {label:$scope.kommuner[246]},"9" : {label:$scope.kommuner[247]},
+                "10" : {label:$scope.kommuner[248]},"11" : {label:$scope.kommuner[249]},"12" : {label:$scope.kommuner[250]},"13" : {label:$scope.kommuner[251]},"14" : {label:$scope.kommuner[252]},"15" : {label:$scope.kommuner[253]},
+                "16" : {label:$scope.kommuner[254]},"17" : {label:$scope.kommuner[255]},"18" : {label:$scope.kommuner[256]},"19" : {label:$scope.kommuner[257]},"20" : {label:$scope.kommuner[258]},"21" : {label:$scope.kommuner[259]},"22" : {label:$scope.kommuner[260]},
+                "23" : {label:$scope.kommuner[261]},"24" : {label:$scope.kommuner[262]},"25" : {label:$scope.kommuner[263]}
             
             }
         },
@@ -170,22 +172,22 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         "12" : {
             label:"Rogaland",      
             kommuner:{
-                "1" : {label:$scope.kommuner[264].type},"2" : {label:$scope.kommuner[265].type},"3" : {label:$scope.kommuner[266].type},
-                "4" : {label:$scope.kommuner[267].type},"5" : {label:$scope.kommuner[268].type},"6" : {label:$scope.kommuner[269].type},"7" : {label:$scope.kommuner[270].type},"8" : {label:$scope.kommuner[271].type},"9" : {label:$scope.kommuner[272].type},
-                "10" : {label:$scope.kommuner[273].type},"11" : {label:$scope.kommuner[274].type},"12" : {label:$scope.kommuner[275].type},"13" : {label:$scope.kommuner[276].type},"14" : {label:$scope.kommuner[277].type},"15" : {label:$scope.kommuner[278].type},
-                "16" : {label:$scope.kommuner[279].type},"17" : {label:$scope.kommuner[280].type},"18" : {label:$scope.kommuner[281].type},"19" : {label:$scope.kommuner[282].type},"20" : {label:$scope.kommuner[283].type},"21" : {label:$scope.kommuner[284].type},"22" : {label:$scope.kommuner[285].type},
-                "23" : {label:$scope.kommuner[286].type},"24" : {label:$scope.kommuner[287].type},"25" : {label:$scope.kommuner[288].type},"26" : {label:$scope.kommuner[289].type}
+                "1" : {label:$scope.kommuner[264]},"2" : {label:$scope.kommuner[265]},"3" : {label:$scope.kommuner[266]},
+                "4" : {label:$scope.kommuner[267]},"5" : {label:$scope.kommuner[268]},"6" : {label:$scope.kommuner[269]},"7" : {label:$scope.kommuner[270]},"8" : {label:$scope.kommuner[271]},"9" : {label:$scope.kommuner[272]},
+                "10" : {label:$scope.kommuner[273]},"11" : {label:$scope.kommuner[274]},"12" : {label:$scope.kommuner[275]},"13" : {label:$scope.kommuner[276]},"14" : {label:$scope.kommuner[277]},"15" : {label:$scope.kommuner[278]},
+                "16" : {label:$scope.kommuner[279]},"17" : {label:$scope.kommuner[280]},"18" : {label:$scope.kommuner[281]},"19" : {label:$scope.kommuner[282]},"20" : {label:$scope.kommuner[283]},"21" : {label:$scope.kommuner[284]},"22" : {label:$scope.kommuner[285]},
+                "23" : {label:$scope.kommuner[286]},"24" : {label:$scope.kommuner[287]},"25" : {label:$scope.kommuner[288]},"26" : {label:$scope.kommuner[289]}
                 
             }
         },
         "13" : {
             label:"Sogn og Fjordane",      
             kommuner:{
-                "1" : {label:$scope.kommuner[290].type},"2" : {label:$scope.kommuner[291].type},"3" : {label:$scope.kommuner[292].type},
-                "4" : {label:$scope.kommuner[293].type},"5" : {label:$scope.kommuner[294].type},"6" : {label:$scope.kommuner[295].type},"7" : {label:$scope.kommuner[296].type},"8" : {label:$scope.kommuner[297].type},"9" : {label:$scope.kommuner[298].type},
-                "10" : {label:$scope.kommuner[299].type},"11" : {label:$scope.kommuner[300].type},"12" : {label:$scope.kommuner[301].type},"13" : {label:$scope.kommuner[302].type},"14" : {label:$scope.kommuner[303].type},"15" : {label:$scope.kommuner[304].type},
-                "16" : {label:$scope.kommuner[305].type},"17" : {label:$scope.kommuner[306].type},"18" : {label:$scope.kommuner[307].type},"19" : {label:$scope.kommuner[308].type},"20" : {label:$scope.kommuner[309].type},"21" : {label:$scope.kommuner[310].type},"22" : {label:$scope.kommuner[311].type},
-                "23" : {label:$scope.kommuner[312].type},"24" : {label:$scope.kommuner[313].type},"25" : {label:$scope.kommuner[314].type},"26" : {label:$scope.kommuner[315].type}
+                "1" : {label:$scope.kommuner[290]},"2" : {label:$scope.kommuner[291]},"3" : {label:$scope.kommuner[292]},
+                "4" : {label:$scope.kommuner[293]},"5" : {label:$scope.kommuner[294]},"6" : {label:$scope.kommuner[295]},"7" : {label:$scope.kommuner[296]},"8" : {label:$scope.kommuner[297]},"9" : {label:$scope.kommuner[298]},
+                "10" : {label:$scope.kommuner[299]},"11" : {label:$scope.kommuner[300]},"12" : {label:$scope.kommuner[301]},"13" : {label:$scope.kommuner[302]},"14" : {label:$scope.kommuner[303]},"15" : {label:$scope.kommuner[304]},
+                "16" : {label:$scope.kommuner[305]},"17" : {label:$scope.kommuner[306]},"18" : {label:$scope.kommuner[307]},"19" : {label:$scope.kommuner[308]},"20" : {label:$scope.kommuner[309]},"21" : {label:$scope.kommuner[310]},"22" : {label:$scope.kommuner[311]},
+                "23" : {label:$scope.kommuner[312]},"24" : {label:$scope.kommuner[313]},"25" : {label:$scope.kommuner[314]},"26" : {label:$scope.kommuner[315]}
                
                 
             }
@@ -193,50 +195,50 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         "14" : {
             label:"Sør-Trøndelag",      
             kommuner:{
-                "2" : {label:$scope.kommuner[317].type},"3" : {label:$scope.kommuner[318].type},
-                "4" : {label:$scope.kommuner[319].type},"5" : {label:$scope.kommuner[320].type},"6" : {label:$scope.kommuner[321].type},"7" : {label:$scope.kommuner[322].type},"8" : {label:$scope.kommuner[323].type},"9" : {label:$scope.kommuner[324].type},
-                "10" : {label:$scope.kommuner[325].type},"11" : {label:$scope.kommuner[326].type},"12" : {label:$scope.kommuner[327].type},"13" : {label:$scope.kommuner[328].type},"14" : {label:$scope.kommuner[329].type},"15" : {label:$scope.kommuner[330].type},
-                "16" : {label:$scope.kommuner[331].type},"17" : {label:$scope.kommuner[332].type},"18" : {label:$scope.kommuner[333].type},"19" : {label:$scope.kommuner[334].type},"20" : {label:$scope.kommuner[335].type},"21" : {label:$scope.kommuner[336].type},"22" : {label:$scope.kommuner[337].type},
-                "23" : {label:$scope.kommuner[338].type},"24" : {label:$scope.kommuner[339].type},"25" : {label:$scope.kommuner[340].type},"26" : {label:$scope.kommuner[341].type}
+                "2" : {label:$scope.kommuner[317]},"3" : {label:$scope.kommuner[318]},
+                "4" : {label:$scope.kommuner[319]},"5" : {label:$scope.kommuner[320]},"6" : {label:$scope.kommuner[321]},"7" : {label:$scope.kommuner[322]},"8" : {label:$scope.kommuner[323]},"9" : {label:$scope.kommuner[324]},
+                "10" : {label:$scope.kommuner[325]},"11" : {label:$scope.kommuner[326]},"12" : {label:$scope.kommuner[327]},"13" : {label:$scope.kommuner[328]},"14" : {label:$scope.kommuner[329]},"15" : {label:$scope.kommuner[330]},
+                "16" : {label:$scope.kommuner[331]},"17" : {label:$scope.kommuner[332]},"18" : {label:$scope.kommuner[333]},"19" : {label:$scope.kommuner[334]},"20" : {label:$scope.kommuner[335]},"21" : {label:$scope.kommuner[336]},"22" : {label:$scope.kommuner[337]},
+                "23" : {label:$scope.kommuner[338]},"24" : {label:$scope.kommuner[339]},"25" : {label:$scope.kommuner[340]},"26" : {label:$scope.kommuner[341]}
                
             }
         },
         "15" : {
             label:"Telemark",      
             kommuner:{
-                "2" : {label:$scope.kommuner[342].type},"3" : {label:$scope.kommuner[343].type},
-                "4" : {label:$scope.kommuner[344].type},"5" : {label:$scope.kommuner[345].type},"6" : {label:$scope.kommuner[346].type},"7" : {label:$scope.kommuner[347].type},"8" : {label:$scope.kommuner[348].type},"9" : {label:$scope.kommuner[349].type},
-                "10" : {label:$scope.kommuner[350].type},"11" : {label:$scope.kommuner[351].type},"12" : {label:$scope.kommuner[352].type},"13" : {label:$scope.kommuner[353].type},"14" : {label:$scope.kommuner[354].type},"15" : {label:$scope.kommuner[355].type},
-                "16" : {label:$scope.kommuner[356].type},"17" : {label:$scope.kommuner[357].type},"18" : {label:$scope.kommuner[358].type},"19" : {label:$scope.kommuner[359].type}
+                "2" : {label:$scope.kommuner[342]},"3" : {label:$scope.kommuner[343]},
+                "4" : {label:$scope.kommuner[344]},"5" : {label:$scope.kommuner[345]},"6" : {label:$scope.kommuner[346]},"7" : {label:$scope.kommuner[347]},"8" : {label:$scope.kommuner[348]},"9" : {label:$scope.kommuner[349]},
+                "10" : {label:$scope.kommuner[350]},"11" : {label:$scope.kommuner[351]},"12" : {label:$scope.kommuner[352]},"13" : {label:$scope.kommuner[353]},"14" : {label:$scope.kommuner[354]},"15" : {label:$scope.kommuner[355]},
+                "16" : {label:$scope.kommuner[356]},"17" : {label:$scope.kommuner[357]},"18" : {label:$scope.kommuner[358]},"19" : {label:$scope.kommuner[359]}
          
             }
         },
         "16" : {
             label:"Troms",      
             kommuner:{
-                "2" : {label:$scope.kommuner[360].type},"3" : {label:$scope.kommuner[361].type},
-                "4" : {label:$scope.kommuner[362].type},"5" : {label:$scope.kommuner[363].type},"6" : {label:$scope.kommuner[364].type},"7" : {label:$scope.kommuner[365].type},"8" : {label:$scope.kommuner[366].type},"9" : {label:$scope.kommuner[367].type},
-                "10" : {label:$scope.kommuner[368].type},"11" : {label:$scope.kommuner[369].type},"12" : {label:$scope.kommuner[370].type},"13" : {label:$scope.kommuner[371].type},"14" : {label:$scope.kommuner[372].type},"15" : {label:$scope.kommuner[373].type},
-                "16" : {label:$scope.kommuner[374].type},"17" : {label:$scope.kommuner[375].type},"18" : {label:$scope.kommuner[376].type},"19" : {label:$scope.kommuner[377].type},"20" : {label:$scope.kommuner[378].type},
-                "21" : {label:$scope.kommuner[379].type},"22" : {label:$scope.kommuner[380].type},"23" : {label:$scope.kommuner[381].type},"24" : {label:$scope.kommuner[382].type}
+                "2" : {label:$scope.kommuner[360]},"3" : {label:$scope.kommuner[361]},
+                "4" : {label:$scope.kommuner[362]},"5" : {label:$scope.kommuner[363]},"6" : {label:$scope.kommuner[364]},"7" : {label:$scope.kommuner[365]},"8" : {label:$scope.kommuner[366]},"9" : {label:$scope.kommuner[367]},
+                "10" : {label:$scope.kommuner[368]},"11" : {label:$scope.kommuner[369]},"12" : {label:$scope.kommuner[370]},"13" : {label:$scope.kommuner[371]},"14" : {label:$scope.kommuner[372]},"15" : {label:$scope.kommuner[373]},
+                "16" : {label:$scope.kommuner[374]},"17" : {label:$scope.kommuner[375]},"18" : {label:$scope.kommuner[376]},"19" : {label:$scope.kommuner[377]},"20" : {label:$scope.kommuner[378]},
+                "21" : {label:$scope.kommuner[379]},"22" : {label:$scope.kommuner[380]},"23" : {label:$scope.kommuner[381]},"24" : {label:$scope.kommuner[382]}
                 
             }
         },
         "17" : {
             label:"Vest-Agder",      
             kommuner:{
-                "2" : {label:$scope.kommuner[383].type},"3" : {label:$scope.kommuner[384].type},
-                "4" : {label:$scope.kommuner[385].type},"5" : {label:$scope.kommuner[386].type},"6" : {label:$scope.kommuner[387].type},"7" : {label:$scope.kommuner[388].type},"8" : {label:$scope.kommuner[389].type},"9" : {label:$scope.kommuner[390].type},
-                "10": {label:$scope.kommuner[391].type},"11": {label:$scope.kommuner[392].type},"12" : {label:$scope.kommuner[393].type},"13" : {label:$scope.kommuner[394].type},"14" : {label:$scope.kommuner[395].type},"15" : {label:$scope.kommuner[396].type},"16" : {label:$scope.kommuner[397].type}
+                "2" : {label:$scope.kommuner[383]},"3" : {label:$scope.kommuner[384]},
+                "4" : {label:$scope.kommuner[385]},"5" : {label:$scope.kommuner[386]},"6" : {label:$scope.kommuner[387]},"7" : {label:$scope.kommuner[388]},"8" : {label:$scope.kommuner[389]},"9" : {label:$scope.kommuner[390]},
+                "10": {label:$scope.kommuner[391]},"11": {label:$scope.kommuner[392]},"12" : {label:$scope.kommuner[393]},"13" : {label:$scope.kommuner[394]},"14" : {label:$scope.kommuner[395]},"15" : {label:$scope.kommuner[396]},"16" : {label:$scope.kommuner[397]}
                 
             }
         },
         "18" : {
             label:"Vestfold",      
             kommuner:{
-                "2" : {label:$scope.kommuner[398].type},"3" : {label:$scope.kommuner[399].type},
-                "4" : {label:$scope.kommuner[400].type},"5" : {label:$scope.kommuner[401].type},"6" : {label:$scope.kommuner[402].type},"7" : {label:$scope.kommuner[403].type},"8" : {label:$scope.kommuner[404].type},"9" : {label:$scope.kommuner[405].type},
-                "10": {label:$scope.kommuner[406].type},"11": {label:$scope.kommuner[407].type},"12" : {label:$scope.kommuner[408].type},"13" : {label:$scope.kommuner[409].type},"14" : {label:$scope.kommuner[410].type},"15" : {label:$scope.kommuner[411].type}
+                "2" : {label:$scope.kommuner[398]},"3" : {label:$scope.kommuner[399]},
+                "4" : {label:$scope.kommuner[400]},"5" : {label:$scope.kommuner[401]},"6" : {label:$scope.kommuner[402]},"7" : {label:$scope.kommuner[403]},"8" : {label:$scope.kommuner[404]},"9" : {label:$scope.kommuner[405]},
+                "10": {label:$scope.kommuner[406]},"11": {label:$scope.kommuner[407]},"12" : {label:$scope.kommuner[408]},"13" : {label:$scope.kommuner[409]},"14" : {label:$scope.kommuner[410]},"15" : {label:$scope.kommuner[411]}
                 
             }
                
@@ -245,10 +247,10 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         "19" : {
             label:"Østfold",      
             kommuner:{
-                "2" : {label:$scope.kommuner[412].type},"3" : {label:$scope.kommuner[413].type},
-                "4" : {label:$scope.kommuner[414].type},"5" : {label:$scope.kommuner[415].type},"6" : {label:$scope.kommuner[416].type},"7" : {label:$scope.kommuner[417].type},"8" : {label:$scope.kommuner[418].type},"9" : {label:$scope.kommuner[419].type},
-                "10": {label:$scope.kommuner[420].type},"11": {label:$scope.kommuner[421].type},"12" : {label:$scope.kommuner[422].type},"13" : {label:$scope.kommuner[423].type},"14" : {label:$scope.kommuner[424].type},"15" : {label:$scope.kommuner[425].type},
-                "16" : {label:$scope.kommuner[426].type},"17" : {label:$scope.kommuner[427].type},"18" : {label:$scope.kommuner[428].type},"19" : {label:$scope.kommuner[429].type}
+                "2" : {label:$scope.kommuner[412]},"3" : {label:$scope.kommuner[413]},
+                "4" : {label:$scope.kommuner[414]},"5" : {label:$scope.kommuner[415]},"6" : {label:$scope.kommuner[416]},"7" : {label:$scope.kommuner[417]},"8" : {label:$scope.kommuner[418]},"9" : {label:$scope.kommuner[419]},
+                "10": {label:$scope.kommuner[420]},"11": {label:$scope.kommuner[421]},"12" : {label:$scope.kommuner[422]},"13" : {label:$scope.kommuner[423]},"14" : {label:$scope.kommuner[424]},"15" : {label:$scope.kommuner[425]},
+                "16" : {label:$scope.kommuner[426]},"17" : {label:$scope.kommuner[427]},"18" : {label:$scope.kommuner[428]},"19" : {label:$scope.kommuner[429]}
                 
             }
         }
@@ -391,5 +393,16 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         if($scope.sortReady) {
             $scope.reverse = !$scope.reverse;
         }
+    }
+
+    $scope.selectedMunicipalityChanged = function(selected){
+
+        console.log($scope.selectedFylke.kommuner[selected].value)
+        
+    }
+
+    $scope.selectedFylkeChanged = function(selected){
+        console.log($scope.fylker[selected]);
+        $scope.selectedFylke = $scope.fylker[selected];
     }
 });
