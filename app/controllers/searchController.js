@@ -398,13 +398,14 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     }
 
     $scope.selectedMunicipalityChanged = function(selected){
+        console.log("lsdakjfølajsdf" + $scope.selectedFylke.kommuner[selected].label)
 
         if (selected != undefined){
             $scope.selectedMunicipality = $scope.selectedFylke.kommuner[selected].label.value;
+            $scope.selectedFylkeIndex = 0;
         }
 
-        console.log($scope.selectedFylke.kommuner[selected].label)
-        
+
     }
 
     $scope.selectedFylkeChanged = function(selected){
@@ -412,6 +413,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         if (selected != undefined){
             $scope.selectedFylkeIndex = selected;
             $scope.selectedFylke = $scope.fylker[selected];
+            $scope.selectedMunicipality = 0;
         }
         
     }

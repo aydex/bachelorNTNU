@@ -49,13 +49,7 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
         $rootScope.$broadcast("documentClicked", angular.element(e.target));
     });
 
-    $rootScope.doQuery = function(type, id, page, pageSize) {
-        return $http.get("./api/test.php?" + type + "=" + id + "&page=" +
-            page + "&pageSize=" + pageSize)
-            .then(function (response) {
-                return {records: response.data.records, count: response.data.count};
-            });
-    };
+ 
 
     $rootScope.doQuery = function(type, id, page, pageSize, order, orderBy, filterBy, fylkenr, kommnr) {
         var request = "./api/ask.php?" + type + "=" + id + "&page=" +
@@ -66,15 +60,6 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
                 return {records: response.data.records, count: response.data.count,
                     combined: response.data.combined};
         });
-    };
-    
-    $rootScope.doQuery = function(name, kommunenr) {
-        return $http.get("./api/ask.php?name=" + name + "&kommunenr=" + kommunenr)
-            .then(function (response) {
-                return {
-                    records: response.data.records, count: response.data.count
-                };
-            })
     };
 
     /*$rootScope.open = true;
