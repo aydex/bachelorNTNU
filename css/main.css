@@ -110,6 +110,17 @@ header{
     margin-top: 90px;
 }
 
+#TransPageElements{
+	margin:auto;
+    width:60%;
+    margin-top: 50px;
+}
+
+#PropPageElements{
+	margin:auto;
+    width:60%;
+}
+
 #search {
 	width: 100%;
 	height: 35px;
@@ -543,7 +554,7 @@ div .container{
 	z-index: 90000000000000;
 	margin-top: -105px;
 	position:relative;
-	
+
 }
 
 
