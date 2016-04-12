@@ -4,9 +4,13 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$parse'
         restrict: 'EA',
         controller: function($scope) {
             this.updateMap = function (url) {
+                $scope.countySelected = true;
+
                 $http.get("images/kommunekart/" + url + ".svg", {cache: $templateCache})
                     .success(function(templateContent) {
-                        $scope.mapElement.replaceWith($compile(templateContent)($scope));
+                        var newMap = $compile(templateContent)($scope);
+                        $scope.mapElement.replaceWith(newMap);
+                        $scope.mapElement = newMap;
                         var cities = angular.element(document.querySelectorAll('.land'));
                         angular.forEach(cities, function(path) {
                             var cityElement = angular.element(path);
@@ -15,6 +19,22 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$parse'
                         });
                     });
             };
+
+            $scope.back = function() {
+                updateMap("norge");
+                console.log("click click");
+                /*$http.get("images/kommunekart/norge.svg", {cache: $templateCache})
+                    .success(function(templateContent) {
+                        var newMap = $compile(templateContent)($scope);
+                        $scope.mapElement.replaceWith(newMap);
+                        var cities = angular.element(document.querySelectorAll('.land'));
+                        angular.forEach(cities, function(path) {
+                            var cityElement = angular.element(path);
+                            cityElement.attr("city", "");
+                            $compile(cityElement)($scope)
+                        });
+                    })*/
+            }
         },
         link: function ($scope, element) {
             var regions = element[0].querySelectorAll('.land');
@@ -30,7 +50,7 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$parse'
       }
 }]);
 
-kommunalApp.directive('region', ['$compile', function ($compile) {
+kommunalApp.directive('region', ['$compile', function ($compile, $scope) {
     return {
         restrict: 'EA',
         scope: true,
