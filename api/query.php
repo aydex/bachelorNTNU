@@ -15,7 +15,7 @@ class Query
         $this->db = $db;
     }
 
-     public function selectPersonPaged($name, $page=1, $pageSize=10, $order="ASC", $orderBy, $filterBy) {
+     public function selectPersonPaged($name, $page=1, $pageSize=10, $order="ASC", $orderBy, $filterBy, $fylkenr, $kommnr) {
 
         $filterBy = $filterBy - 1;
         if($filterBy > -1){
@@ -23,6 +23,14 @@ class Query
             $filterByText = "AND Deltagertype = '$type'";
         }else{
             $filterByText = "";
+        }
+
+         if ($fylkenr > 0){
+            $kommFilterText = "AND Kommunenr = '$fylkenr'";
+        } else if ($kommnr > 0){
+            $kommFilterText = "AND Kommunenr = '$kommnr'";
+        }  else {
+            $kommFilterText = "";
         }
 
         $selectFromArray = array('id', 'Type', 'Navn', 'Kommuner', 'null');
@@ -36,6 +44,7 @@ class Query
                     LEFT JOIN DeltagerInvolvertKommune AS I USING (Deltagerid) 
                     LEFT JOIN Kommuner USING (Kommunenr)
                     WHERE Navn LIKE :name
+                    $kommFilterText
                     $filterByText
                     GROUP BY Deltagerid
                     ORDER BY " . $selectFromArray[$keyOrderBy] . " " . $this->selectFromOrder[$keyOrder] . "
@@ -145,6 +154,7 @@ class Query
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
 
     public function selectMunicipalityFromId($mId)
     {
