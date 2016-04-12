@@ -536,6 +536,11 @@ div .container{
 	  margin-top: 240px;
 }
 
+div .container button {
+    position: absolute;
+    left: 25%;
+}
+
 
 svg .land{
     stroke-width: 0.5;
