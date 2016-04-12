@@ -21,19 +21,19 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$parse'
             };
 
             $scope.back = function() {
-                updateMap("norge");
-                console.log("click click");
-                /*$http.get("images/kommunekart/norge.svg", {cache: $templateCache})
+                //updateMap("norge");
+                $http.get("images/kommunekart/norge.svg", {cache: $templateCache})
                     .success(function(templateContent) {
                         var newMap = $compile(templateContent)($scope);
                         $scope.mapElement.replaceWith(newMap);
-                        var cities = angular.element(document.querySelectorAll('.land'));
-                        angular.forEach(cities, function(path) {
-                            var cityElement = angular.element(path);
-                            cityElement.attr("city", "");
-                            $compile(cityElement)($scope)
+                        $scope.mapElement = newMap;
+                        var regions = $scope.mapElement(querySelectorAll('.land'));
+                        angular.forEach(regions, function(path) {
+                            var regionElement = angular.element(path);
+                            regionElement.attr("region", "");
+                            $compile(regionElement)($scope)
                         });
-                    })*/
+                    })
             }
         },
         link: function ($scope, element) {
@@ -62,6 +62,8 @@ kommunalApp.directive('region', ['$compile', function ($compile, $scope) {
             scope.regionClick = function() {
                 svgMapCtrl.updateMap(scope.elementId);
             };
+
+            console.log("testy testy test");
 
             element.attr("ng-mousemove", "regionHover()");
             element.attr("ng-click", "regionClick()");
@@ -104,7 +106,6 @@ kommunalApp.directive('city', ['$compile', '$location', '$http', function ($comp
                         });
                     });
                 };
-
                 element.attr("ng-click", "cityClick()");
 
                 element.removeAttr("city");
