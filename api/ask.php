@@ -17,6 +17,8 @@ $pageSize = 0;
 $order    = "";
 $orderBy  = "";
 $filterBy = "";
+$fylkenr = 0;
+$kommnr = 0;
 
 if (isset($_REQUEST['page']) && isset($_REQUEST['pageSize'])) {
     $page     = (int)$_REQUEST['page'];
@@ -24,21 +26,27 @@ if (isset($_REQUEST['page']) && isset($_REQUEST['pageSize'])) {
 }
 
 if (isset($_REQUEST['order']) && isset($_REQUEST['orderBy'])) {
-
     $order   = htmlspecialchars($_REQUEST['order']);
     $orderBy = htmlspecialchars($_REQUEST['orderBy']);
-
 }
 
 if(isset($_REQUEST['filterBy'])) {
     $filterBy = htmlspecialchars($_REQUEST['filterBy']);
 }
 
+if (isset($_REQUEST['fylkenr'])) {
+    $fylkenr     = (int)$_REQUEST['fylkenr'];
+}
+
+if (isset($_REQUEST['kommnr'])) {
+    $kommnr     = (int)$_REQUEST['kommnr'];
+}
+
 if (isset($_REQUEST['name']) && isset($_REQUEST['orderBy'])) {
 
     $name = htmlspecialchars($_REQUEST['name']);
 
-    echo $query->selectPersonPaged($name, $page, $pageSize, $order, $orderBy, $filterBy);
+    echo $query->selectPersonPaged($name, $page, $pageSize, $order, $orderBy, $filterBy, $fylkenr, $kommnr);
 
 }else if(isset($_REQUEST['transactionFromPerson'])){
 
@@ -51,6 +59,7 @@ if (isset($_REQUEST['name']) && isset($_REQUEST['orderBy'])) {
     $eId = htmlspecialchars($_REQUEST['transactionFromProperty']);
 
     echo $query->selectTransactionProperty($eId, $page, $pageSize, $order, $orderBy);
+
 
 }else if(isset($_REQUEST['municipalityId'])) {
     $mId = htmlspecialchars($_REQUEST['municipalityId']);

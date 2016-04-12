@@ -14,15 +14,15 @@
     </div>
     <div id="advanced-div">
     Søk etter type: 
-    <select data-ng-model="currentType" data-ng-options="a.type for a in searchTypes" data-ng-change="advanceChange()"> 
+    <select  data-ng-model="currentType" data-ng-options="a.type for a in searchTypes" data-ng-change="advanceChange()"> 
     </select>
     <i class="material-icons select-arrow">play_arrow</i>
-    <select data-ng-model="fylke" data-ng-options="fylkeId as fylkeInfo.label for (fylkeId, fylkeInfo) in fylker" >
+    <select data-ng-change="selectedFylkeChanged(fylke)" data-ng-model="fylke" data-ng-options="fylkeId as fylkeInfo.label for (fylkeId, fylkeInfo) in fylker" >
         <option value="">Velg fylke</option>
     </select>
     <i class="material-icons select-arrow">play_arrow</i>
 
-    <select name="kommune" data-ng-model="kommune" data-ng-options="kommuneId as kommuneInfo.label for (kommuneId, kommuneInfo) in fylker[fylke]['kommuner']" data-ng-disabled="fylke == undefined">
+    <select data-ng-change="selectedMunicipalityChanged(kommune)" name="kommune" data-ng-model="kommune" data-ng-options="kommuneId as kommuneInfo.label.type for (kommuneId, kommuneInfo) in fylker[fylke]['kommuner']" data-ng-disabled="fylke == undefined">
         <option value="">Velg kommune</option>
     </select>           
     <i class="material-icons select-arrow">play_arrow</i>    
