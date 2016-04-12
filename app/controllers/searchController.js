@@ -271,6 +271,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         queryPromis = $rootScope.doQuery("name", $scope.search.nameSearch,
             $scope.page, $scope.search.pageSize, $scope.order, $scope.orderBy, $scope.currentType.value, $scope.selectedFylkeIndex, $scope.selectedMunicipality)
         queryPromis.then(function(result){
+            console.log(result);
 
             angular.forEach(result.count[0], function(value) {
                 $scope.count = value;
@@ -299,7 +300,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
 
         console.log("Searching for " + $scope.search.nameSearch + " with page size " +
             $scope.search.pageSize + " at page " + $scope.page + " ordered by " + $scope.orderBy +
-            " " + $scope.order);
+            " " + $scope.order + "Fylke" + $scope.selectedFylkeIndex + " kommune " + $scope.selectedMunicipality);
 
 
 
@@ -312,7 +313,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             type = 0;
         }else type = $scope.currentType.value;
 
-        $location.path("/search/" + name_encoded + "/" + type + "/" + $scope.page + "/" + $scope.search.pageSize);
+        $location.path("/search/" + name_encoded + "/" + type + "/" + $scope.page + "/" + $scope.search.pageSize + "/" + $scope.selectedFylkeIndex + "/" + $scope.selectedMunicipality);
     };
 
     $scope.searchDelay = function(){
@@ -398,13 +399,20 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
 
     $scope.selectedMunicipalityChanged = function(selected){
 
+        if (selected != undefined){
+            $scope.selectedMunicipality = $scope.selectedFylke.kommuner[selected].label.value;
+        }
+
         console.log($scope.selectedFylke.kommuner[selected].label)
         
     }
 
     $scope.selectedFylkeChanged = function(selected){
         console.log($scope.fylker[selected]);
-        $scope.selectedFylkeIndex = selected;
-        $scope.selectedFylke = $scope.fylker[selected];
+        if (selected != undefined){
+            $scope.selectedFylkeIndex = selected;
+            $scope.selectedFylke = $scope.fylker[selected];
+        }
+        
     }
 });
