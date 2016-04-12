@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) cleaned up by Marmelad-->
-
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
@@ -75,14 +73,7 @@
      height="50%">
 
 
-.land
-{
-	fill:#c0c0c0;
-	fill-opacity:1.0000000;
-	fill-rule:nonzero;
-	stroke:none;
-	stroke-opacity:1.0000000;
-}
+
 
 /* color a few counties: */
 /*

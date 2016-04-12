@@ -53,14 +53,22 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
 
             //priceDatePairs = priceDatePairs.slice(($scope.page - 1) * $scope.pageSize, $scope.pageSize * $scope.page);
 
+            console.log(priceDatePairs);
+
+            $scope.chartObj = []
+
             angular.forEach(priceDatePairs, function(pair, key){
                 var splitValues = pair.split(":");
-                $scope.labels.push(splitValues[1]);
-                $scope.data[0].push(splitValues[0]);
-                dokumentnr.push(results[key].Dokumentnr);
+                //$scope.labels.push(splitValues[1]);
+                //$scope.data[0].push(splitValues[0]);
+                //dokumentnr.push(splitValues[2]);
+                $scope.chartObj[splitValues[2]] = {date: splitValues[1], value: splitValues[0], documentnr: splitValues[2]};
             });
 
-            $scope.populateChart($scope.labels, $scope.data[0], dokumentnr);
+            $scope.chartObj.sort(sortFunction);
+
+            //$scope.populateChart($scope.labels, $scope.data[0], dokumentnr);
+            $scope.populateChart($scope.chartObj);
 
         });
     }
@@ -70,10 +78,12 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
         $scope.queryTransaction();
     }
 
-    $scope.populateChart = function(labels, dataSet, dokumentnr) {
+    $scope.populateChart = function(obj) {
         var data = new google.visualization.DataTable();
         var currTransaction = "";
         var isMunicipal;
+
+        console.log($scope.unalteredTransactions);
 
         data.addColumn('date', 'År');
         data.addColumn('number', 'Sum');
@@ -83,7 +93,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
 
         dokumentnrList = {};
 
-        angular.forEach(labels, function(pair, key) {
+        angular.forEach(obj, function(pair, key) {
             currTransaction     = $scope.unalteredTransactions[key];
             currTransaction     = transaction.getRole(currTransaction);
             //currSeller          = getRole(currTransaction, "seller");
@@ -96,21 +106,21 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
                 annotationText = null;
             }
 
-            dokumentnrList[key] = dokumentnr[key];
-            dokumentnrList[dokumentnr[key]] = key;
-            var date = labels[key].split("-");
+            dokumentnrList[key] = obj[key].documentnr;
+            dokumentnrList[obj[key].documentnr] = key;
+            var date = obj[key].date.split("-");
 
             var dateParsed = new Date(date[0], date[1], date[2]);
-            var price = parseInt(dataSet[key]);
+            var price = parseInt(obj[key].value);
 
             if (price == 0){
                 price = null;
             }
 
-               data.addRow(
+            data.addRow(
                 [dateParsed, 
                 price, 
-                'Dokumentdato: ' + labels[key] + '\n Salgssum: ' + $filter('priceFilter')(dataSet[key]) + ' \n Dokumentnr: ' + dokumentnr[key],
+                'Dokumentdato: ' + obj[key].date + '\n Salgssum: ' + $filter('priceFilter')(obj[key].value) + ' \n Dokumentnr: ' + obj[key].documentnr,
                 annotation, annotationText]); 
             
             
@@ -122,6 +132,8 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             pointSize: 5,
             interpolateNulls: true,
         }
+
+        console.log(dokumentnrList);
 
 
         if(chart == undefined){
@@ -162,7 +174,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
     };
 
     angular.element($window).bind('resize', function(){
-        $scope.populateChart($scope.labels, $scope.data[0], dokumentnr);
+        $scope.populateChart($scope.chartObj);
     });
 
     $scope.setSelected = function (selectedDokumentnr, Salgssum) {
@@ -252,3 +264,13 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
     $scope.queryTransaction();
 
 });
+
+function sortFunction(a, b) {
+    if (a.date > b.date) {
+        return 1;
+    } else if (a.date == b.date) {
+        return 0;
+    } else {
+        return -1;
+    }
+}

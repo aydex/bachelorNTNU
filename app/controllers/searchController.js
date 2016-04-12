@@ -19,6 +19,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     };
     $scope.selectedMunicipality = 0;
     $scope.selectedFylke = 0;
+    $scope.selectedFylkeIndex = 0;
 
    $scope.kommuner = [{type:"Asker", value:220},{type:"Aurskog-Høland", value:221},{type:"Bærum", value:219},{type:"Eidsvoll", value:237},{type:"Fet", value:227},{type:"Frogn", value:215},{type:"Gjerdrum", value:239},{type:"Hurdal", value:230},
     {type:"Lørenskog", value:238},{type:"Nannestad", value:236},{type:"Nes", value:216},{type:"Nesodden", value:223},{type:"Nittedal", value:217},{type:"Oppegård", value:228},{type:"Rælingen", value:231},{type:"Skedsmo", value:213},{type:"Ski", value:226},
@@ -268,7 +269,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     $scope.queryPerson  = function() {
 
         queryPromis = $rootScope.doQuery("name", $scope.search.nameSearch,
-            $scope.page, $scope.search.pageSize, $scope.order, $scope.orderBy, $scope.currentType.value);
+            $scope.page, $scope.search.pageSize, $scope.order, $scope.orderBy, $scope.currentType.value, $scope.selectedFylkeIndex, $scope.selectedMunicipality)
         queryPromis.then(function(result){
 
             angular.forEach(result.count[0], function(value) {
@@ -397,12 +398,13 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
 
     $scope.selectedMunicipalityChanged = function(selected){
 
-        console.log($scope.selectedFylke.kommuner[selected].value)
+        console.log($scope.selectedFylke.kommuner[selected].label)
         
     }
 
     $scope.selectedFylkeChanged = function(selected){
         console.log($scope.fylker[selected]);
+        $scope.selectedFylkeIndex = selected;
         $scope.selectedFylke = $scope.fylker[selected];
     }
 });

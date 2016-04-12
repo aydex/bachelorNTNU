@@ -17,7 +17,8 @@ $pageSize = 0;
 $order    = "";
 $orderBy  = "";
 $filterBy = "";
-$kommunenr = 0;
+$fylkenr = "";
+$kommnr = "";
 
 if (isset($_REQUEST['page']) && isset($_REQUEST['pageSize'])) {
     $page     = (int)$_REQUEST['page'];
@@ -39,7 +40,7 @@ if (isset($_REQUEST['name']) && isset($_REQUEST['orderBy'])) {
 
     $name = htmlspecialchars($_REQUEST['name']);
 
-    echo $query->selectPersonPaged($name, $page, $pageSize, $order, $orderBy, $filterBy);
+    echo $query->selectPersonPaged($name, $page, $pageSize, $order, $orderBy, $filterBy, $fylkenr, $kommnr);
 
 }else if(isset($_REQUEST['transactionFromPerson'])){
 
@@ -53,10 +54,10 @@ if (isset($_REQUEST['name']) && isset($_REQUEST['orderBy'])) {
 
     echo $query->selectTransactionProperty($eId, $page, $pageSize, $order, $orderBy);
 
-}else if(isset($_REQUEST['name']) && isset($_REQUEST['kommunenr'])) {
-    $name = htmlspecialchars($_REQUEST['name']);
-    $kommunenr = htmlspecialchars($_REQUEST['kommunenr']);
-    echo $query->selectParticipantsInMunicipality($name, $kommunenr);
+
+}else if(isset($_REQUEST['municipalityId'])) {
+    $mId = htmlspecialchars($_REQUEST['municipalityId']);
+    echo $query->selectMunicipalityFromId($mId);
 }
 
 
