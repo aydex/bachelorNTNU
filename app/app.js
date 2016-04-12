@@ -57,10 +57,10 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
             });
     };
 
-    $rootScope.doQuery = function(type, id, page, pageSize, order, orderBy, filterBy) {
+    $rootScope.doQuery = function(type, id, page, pageSize, order, orderBy, filterBy, fylkenr, kommnr) {
         console.log(filterBy);
         return $http.get("./api/ask.php?" + type + "=" + id + "&page=" +
-            page + "&pageSize=" + pageSize + "&order=" + order + "&orderBy=" + orderBy + "&filterBy=" + filterBy)
+            page + "&pageSize=" + pageSize + "&order=" + order + "&orderBy=" + orderBy + "&filterBy=" + filterBy + "&fylkenr=" + fylkenr + "&kommnr=" +kommnr);
         .then(function (response) {
                 return {records: response.data.records, count: response.data.count,
                     combined: response.data.combined};

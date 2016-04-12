@@ -17,6 +17,8 @@ $pageSize = 0;
 $order    = "";
 $orderBy  = "";
 $filterBy = "";
+$fylkenr = "";
+$kommnr = "";
 
 if (isset($_REQUEST['page']) && isset($_REQUEST['pageSize'])) {
     $page     = (int)$_REQUEST['page'];
@@ -38,7 +40,7 @@ if (isset($_REQUEST['name']) && isset($_REQUEST['orderBy'])) {
 
     $name = htmlspecialchars($_REQUEST['name']);
 
-    echo $query->selectPersonPaged($name, $page, $pageSize, $order, $orderBy, $filterBy);
+    echo $query->selectPersonPaged($name, $page, $pageSize, $order, $orderBy, $filterBy, $fylkenr, $kommnr);
 
 }else if(isset($_REQUEST['transactionFromPerson'])){
 
