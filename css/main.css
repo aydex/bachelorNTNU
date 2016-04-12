@@ -107,6 +107,7 @@ header{
 #pageElements {
     margin:auto;
     width:60%;
+    margin-top: 90px;
 }
 
 #search {
@@ -163,7 +164,7 @@ div p{
 	margin: auto;
     margin-bottom: 20px;
     width: 60%;
-    margin-top: 100px;
+    margin-top: 90px;
     min-width: 600px;
 }
 
@@ -537,20 +538,18 @@ td:nth-child(even){
 
 
 div .container{
-	  width: 42%;
-	  height: auto;
-	  z-index: 90000000000000;
-	  margin-top: -80px;
-	  z-index: 10000000; 
-	  position:relative
-
+	width: 42%;
+	height: auto;
+	z-index: 90000000000000;
+	margin-top: -105px;
+	position:relative;
+	
 }
 
 
 svg .land{
     stroke-width: 0.5;
     stroke: #fff;
-    position: absolute;
 
 		fill:#c0c0c0;
 		fill-opacity:1;
@@ -565,8 +564,8 @@ svg .title {
 	display:none;
 }*/
 
-.container svg text {
 
+.container svg text {
 	font-style:normal;
 	font-variant:normal;
 	font-weight:400;
@@ -578,6 +577,7 @@ svg .title {
 }
 
 svg .land:hover, .land.active {
+	margin-top: 1000px;
     cursor: pointer;
     stroke-width: 1.5;
     stroke: #000;
