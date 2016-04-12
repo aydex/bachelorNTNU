@@ -17,9 +17,11 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         nameSearch: "",
         pageSize  : 25
     };
-    $scope.selectedMunicipality = 0;
+    $scope.selectedKommunenr = 0;
     $scope.selectedFylke = 0;
-    $scope.selectedFylkeIndex = 0;
+    $scope.selectedFylkenr = 0;
+
+
 
    $scope.kommuner = [{type:"Asker", value:220},{type:"Aurskog-Høland", value:221},{type:"Bærum", value:219},{type:"Eidsvoll", value:237},{type:"Fet", value:227},{type:"Frogn", value:215},{type:"Gjerdrum", value:239},{type:"Hurdal", value:230},
     {type:"Lørenskog", value:238},{type:"Nannestad", value:236},{type:"Nes", value:216},{type:"Nesodden", value:223},{type:"Nittedal", value:217},{type:"Oppegård", value:228},{type:"Rælingen", value:231},{type:"Skedsmo", value:213},{type:"Ski", value:226},
@@ -53,10 +55,13 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     {type:"Andebu", value:0719},{type:"Hof", value:0714},{type:"Holmestrand", value:0702},{type:"Horten", value:0701},{type:"Lardal", value:0728},{type:"Larvik", value:0709},{type:"Nøtterøy", value:0722},{type:"Re", value:0716},{type:"Sande", value:0713},{type:"Sandefjord", value:0706},{type:"Stokke", value:0720},{type:"Svelvik", value:0711},{type:"Tjøme", value:0723},{type:"Tønsberg", value:0704},{type:"Aremark", value:0118},{type:"Askim", value:0124},{type:"Eidsberg", value:0125},
     {type:"Fredrikstad", value:0106},{type:"Halden", value:0101},{type:"Hobøl", value:0138},{type:"Hvaler", value:0111},{type:"Marker", value:0119},{type:"Moss", value:0104},{type:"Rakkestad", value:0128},{type:"Rygge", value:0136},{type:"Råde", value:0135},{type:"Rømskog", value:0121},{type:"Sarpsborg", value:0105},{type:"Skiptvet", value:0127},{type:"Spydeberg", value:0123},{type:"Trøgstad", value:0122},{type:"Våler", value:0137}
     ];
+
+
     
     $scope.fylker = {
         "1" : {
-            label : "Akershus",        
+            label : "Akershus",
+            fylkenr :  2,    
             kommuner:{
                 "1": {label: $scope.kommuner[0]}, "2" : {label:$scope.kommuner[1]}, "3" : {label:$scope.kommuner[2]},"4" : {label:$scope.kommuner[3]},"5" : {label:$scope.kommuner[4]},"6" : {label:$scope.kommuner[5]},
                 "7" : {label:$scope.kommuner[6]},"8" : {label:$scope.kommuner[7]},"9" : {label:$scope.kommuner[8]},"10" : {label:$scope.kommuner[9]},"11" : {label:$scope.kommuner[10]},"12" : {label:$scope.kommuner[11]},
@@ -66,7 +71,8 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             }
         },
         "2" : {
-            label:"Aust-Agder",      
+            label:"Aust-Agder",   
+            fylkenr : 9,   
             kommuner:{
                 "1":{label: $scope.kommuner[21]}, "2" : {label:$scope.kommuner[22]}, "3" : {label:$scope.kommuner[23]},"4" : {label:$scope.kommuner[24]},"5" : {label:$scope.kommuner[25]},"6" : {label:$scope.kommuner[26]},
                 "7" : {label:$scope.kommuner[27]},"8" : {label:$scope.kommuner[28]},"9" : {llabel:$scope.kommuner[29]},"10" : {label:$scope.kommuner[30]},"11" : {label:$scope.kommuner[31]},"12" : {label:$scope.kommuner[32]},
@@ -77,6 +83,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         },
         "3" : {
             label:"Buskerud",  
+            fylkenr : 6,
              kommuner:{
                 "1" : {label:$scope.kommuner[45]},"2" : {label:$scope.kommuner[46]},"3" : {label:$scope.kommuner[47]},
                 "4" : {label:$scope.kommuner[48]},"5" : {label:$scope.kommuner[49]},"6" : {label:$scope.kommuner[50]},"7" : {label:$scope.kommuner[51]},"8" : {label:$scope.kommuner[52]},"9" : {label:$scope.kommuner[53]},
@@ -86,6 +93,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         },
         "4" : {
             label:"Finnmark",      
+            fylkenr : 20,
             kommuner:{
                 "1" : {label:$scope.kommuner[62]},"2" : {label:$scope.kommuner[63]},"3" : {label:$scope.kommuner[64]},
                 "4" : {label:$scope.kommuner[65]},"5" : {label:$scope.kommuner[66]},"6" : {label:$scope.kommuner[67]},"7" : {label:$scope.kommuner[68]},"8" : {label:$scope.kommuner[69]},"9" : {label:$scope.kommuner[70]},
@@ -95,7 +103,8 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             }
         },
         "5" : {
-            label:"Hedmark",      
+            label:"Hedmark",  
+            fylkenr : 4,    
             kommuner:{
                  "1" : {label:$scope.kommuner[81]},"2" : {label:$scope.kommuner[82]},"3" : {label:$scope.kommuner[83]},
                 "4" : {label:$scope.kommuner[84]},"5" : {label:$scope.kommuner[85]},"6" : {label:$scope.kommuner[86]},"7" : {label:$scope.kommuner[87]},"8" : {label:$scope.kommuner[88]},"9" : {label:$scope.kommuner[89]},
@@ -105,7 +114,8 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             }
         },
         "6" : {
-            label:"Hordaland",      
+            label:"Hordaland",  
+            fylkenr : 12,    
             kommuner:{
                 "1" : {label:$scope.kommuner[103]},"2" : {label:$scope.kommuner[104]},"3" : {label:$scope.kommuner[105]},
                 "4" : {label:$scope.kommuner[106]},"5" : {label:$scope.kommuner[107]},"6" : {label:$scope.kommuner[108]},"7" : {label:$scope.kommuner[109]},"8" : {label:$scope.kommuner[110]},"9" : {label:$scope.kommuner[111]},
@@ -118,7 +128,8 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             }
         },
         "7" : {
-            label:"Møre og Romsdal",      
+            label:"Møre og Romsdal",   
+            fylkenr : 15,
             kommuner:{
                 "1" : {label:$scope.kommuner[136]},"2" : {label:$scope.kommuner[137]},"3" : {label:$scope.kommuner[138]},
                 "4" : {label:$scope.kommuner[139]},"5" : {label:$scope.kommuner[140]},"6" : {label:$scope.kommuner[141]},"7" : {label:$scope.kommuner[142]},"8" : {label:$scope.kommuner[143]},"9" : {label:$scope.kommuner[144]},
@@ -129,7 +140,8 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             }
         },
         "8" : {
-            label:"Nordland",      
+            label:"Nordland",   
+            fylkenr : 18,
             kommuner:{
                 "1" : {label:$scope.kommuner[172]},"2" : {label:$scope.kommuner[173]},"3" : {label:$scope.kommuner[174]},
                 "4" : {label:$scope.kommuner[175]},"5" : {label:$scope.kommuner[176]},"6" : {label:$scope.kommuner[177]},"7" : {label:$scope.kommuner[178]},"8" : {label:$scope.kommuner[179]},"9" : {label:$scope.kommuner[180]},
@@ -143,7 +155,8 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             }
         },
         "9" : {
-            label:"Nord-Trøndelag",      
+            label:"Nord-Trøndelag",  
+            fylkenr : 17,    
             kommuner:{
                 "1" : {label:$scope.kommuner[216]},"2" : {label:$scope.kommuner[217]},"3" : {label:$scope.kommuner[218]},
                 "4" : {label:$scope.kommuner[219]},"5" : {label:$scope.kommuner[220]},"6" : {label:$scope.kommuner[221]},"7" : {label:$scope.kommuner[222]},"8" : {label:$scope.kommuner[223]},"9" : {label:$scope.kommuner[224]},
@@ -154,7 +167,8 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             }
         },
         "10" : {
-            label:"Oppland",      
+            label:"Oppland",    
+            fylkenr : 5,  
             kommuner:{
                 "1" : {label:$scope.kommuner[239]},"2" : {label:$scope.kommuner[240]},"3" : {label:$scope.kommuner[241]},
                 "4" : {label:$scope.kommuner[242]},"5" : {label:$scope.kommuner[243]},"6" : {label:$scope.kommuner[244]},"7" : {label:$scope.kommuner[245]},"8" : {label:$scope.kommuner[246]},"9" : {label:$scope.kommuner[247]},
@@ -165,13 +179,15 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             }
         },
         "11" : {
-            label:"Oslo",      
+            label:"Oslo",    
+            fylkenr : 3,  
             kommuner:{
                
             }
         },
         "12" : {
-            label:"Rogaland",      
+            label:"Rogaland", 
+            fylkenr : 11,     
             kommuner:{
                 "1" : {label:$scope.kommuner[264]},"2" : {label:$scope.kommuner[265]},"3" : {label:$scope.kommuner[266]},
                 "4" : {label:$scope.kommuner[267]},"5" : {label:$scope.kommuner[268]},"6" : {label:$scope.kommuner[269]},"7" : {label:$scope.kommuner[270]},"8" : {label:$scope.kommuner[271]},"9" : {label:$scope.kommuner[272]},
@@ -182,7 +198,8 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             }
         },
         "13" : {
-            label:"Sogn og Fjordane",      
+            label:"Sogn og Fjordane",  
+            fylkenr : 14,    
             kommuner:{
                 "1" : {label:$scope.kommuner[290]},"2" : {label:$scope.kommuner[291]},"3" : {label:$scope.kommuner[292]},
                 "4" : {label:$scope.kommuner[293]},"5" : {label:$scope.kommuner[294]},"6" : {label:$scope.kommuner[295]},"7" : {label:$scope.kommuner[296]},"8" : {label:$scope.kommuner[297]},"9" : {label:$scope.kommuner[298]},
@@ -194,7 +211,8 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             }
         },
         "14" : {
-            label:"Sør-Trøndelag",      
+            label:"Sør-Trøndelag",   
+            fylkenr : 16,   
             kommuner:{
                 "2" : {label:$scope.kommuner[317]},"3" : {label:$scope.kommuner[318]},
                 "4" : {label:$scope.kommuner[319]},"5" : {label:$scope.kommuner[320]},"6" : {label:$scope.kommuner[321]},"7" : {label:$scope.kommuner[322]},"8" : {label:$scope.kommuner[323]},"9" : {label:$scope.kommuner[324]},
@@ -205,7 +223,8 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             }
         },
         "15" : {
-            label:"Telemark",      
+            label:"Telemark",    
+            fylkenr : 8,  
             kommuner:{
                 "2" : {label:$scope.kommuner[342]},"3" : {label:$scope.kommuner[343]},
                 "4" : {label:$scope.kommuner[344]},"5" : {label:$scope.kommuner[345]},"6" : {label:$scope.kommuner[346]},"7" : {label:$scope.kommuner[347]},"8" : {label:$scope.kommuner[348]},"9" : {label:$scope.kommuner[349]},
@@ -215,7 +234,8 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             }
         },
         "16" : {
-            label:"Troms",      
+            label:"Troms",  
+            fylkenr : 19,   
             kommuner:{
                 "2" : {label:$scope.kommuner[360]},"3" : {label:$scope.kommuner[361]},
                 "4" : {label:$scope.kommuner[362]},"5" : {label:$scope.kommuner[363]},"6" : {label:$scope.kommuner[364]},"7" : {label:$scope.kommuner[365]},"8" : {label:$scope.kommuner[366]},"9" : {label:$scope.kommuner[367]},
@@ -226,7 +246,8 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             }
         },
         "17" : {
-            label:"Vest-Agder",      
+            label:"Vest-Agder",  
+            fylkenr : 10,    
             kommuner:{
                 "2" : {label:$scope.kommuner[383]},"3" : {label:$scope.kommuner[384]},
                 "4" : {label:$scope.kommuner[385]},"5" : {label:$scope.kommuner[386]},"6" : {label:$scope.kommuner[387]},"7" : {label:$scope.kommuner[388]},"8" : {label:$scope.kommuner[389]},"9" : {label:$scope.kommuner[390]},
@@ -235,7 +256,8 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             }
         },
         "18" : {
-            label:"Vestfold",      
+            label:"Vestfold",    
+            fylkenr : 7,  
             kommuner:{
                 "2" : {label:$scope.kommuner[398]},"3" : {label:$scope.kommuner[399]},
                 "4" : {label:$scope.kommuner[400]},"5" : {label:$scope.kommuner[401]},"6" : {label:$scope.kommuner[402]},"7" : {label:$scope.kommuner[403]},"8" : {label:$scope.kommuner[404]},"9" : {label:$scope.kommuner[405]},
@@ -246,7 +268,8 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             
         },
         "19" : {
-            label:"Østfold",      
+            label:"Østfold", 
+            fylkenr : 1,     
             kommuner:{
                 "2" : {label:$scope.kommuner[412]},"3" : {label:$scope.kommuner[413]},
                 "4" : {label:$scope.kommuner[414]},"5" : {label:$scope.kommuner[415]},"6" : {label:$scope.kommuner[416]},"7" : {label:$scope.kommuner[417]},"8" : {label:$scope.kommuner[418]},"9" : {label:$scope.kommuner[419]},
@@ -260,6 +283,9 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
 
     $scope.searchTypes    = [{type:"Alle", value: 0},{type:"Person", value: 1}, {type:"Kommune", value: 2}, {type:"Løpe", value: 3}, {type:"Selskap", value:4}];
     $scope.currentType = $scope.searchTypes[0];
+    $scope.fylke = $scope.fylker[10];
+    $scope.kommune;
+
 
     $scope.advanceChange = function(){
         if($scope.search.nameSearch != "")
@@ -269,7 +295,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     $scope.queryPerson  = function() {
 
         queryPromis = $rootScope.doQuery("name", $scope.search.nameSearch,
-            $scope.page, $scope.search.pageSize, $scope.order, $scope.orderBy, $scope.currentType.value, $scope.selectedFylkeIndex, $scope.selectedMunicipality)
+            $scope.page, $scope.search.pageSize, $scope.order, $scope.orderBy, $scope.currentType.value, $scope.selectedFylkenr, $scope.selectedKommunenr)
         queryPromis.then(function(result){
             console.log(result);
 
@@ -300,7 +326,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
 
         console.log("Searching for " + $scope.search.nameSearch + " with page size " +
             $scope.search.pageSize + " at page " + $scope.page + " ordered by " + $scope.orderBy +
-            " " + $scope.order + "Fylke" + $scope.selectedFylkeIndex + " kommune " + $scope.selectedMunicipality);
+            " " + $scope.order + "Fylke" + $scope.selectedFylkenr + " kommune " + $scope.selectedKommunenr);
 
 
 
@@ -313,7 +339,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             type = 0;
         }else type = $scope.currentType.value;
 
-        $location.path("/search/" + name_encoded + "/" + type + "/" + $scope.page + "/" + $scope.search.pageSize + "/" + $scope.selectedFylkeIndex + "/" + $scope.selectedMunicipality);
+        $location.path("/search/" + name_encoded + "/" + type + "/" + $scope.page + "/" + $scope.search.pageSize + "/" + $scope.selectedFylkenr + "/" + $scope.selectedKommunenr);
     };
 
     $scope.searchDelay = function(){
@@ -338,6 +364,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             $scope.noResultShow = true;
             $scope.hideNavigation = false;
             $scope.currentType = undefined;
+
         }
     };
 
@@ -354,6 +381,10 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         $scope.page              = parseInt($routeParams.page);
         $scope.search.pageSize   = parseInt($routeParams.pageSize);
         $scope.currentType       = $scope.searchTypes[$routeParams.type];
+
+        $scope.selectedFylkenr   = parseInt($routeParams.fylkenr);
+        $scope.selectedKommunenr = parseInt($routeParams.kommnr);
+        $scope.fylke             = $scope.fylker[10];
         $scope.queryPerson();
     }
 
@@ -398,11 +429,11 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     }
 
     $scope.selectedMunicipalityChanged = function(selected){
-        console.log("lsdakjfølajsdf" + $scope.selectedFylke.kommuner[selected].label)
+        console.log( $scope.selectedFylke.kommuner[selected])
 
         if (selected != undefined){
-            $scope.selectedMunicipality = $scope.selectedFylke.kommuner[selected].label.value;
-            $scope.selectedFylkeIndex = 0;
+            $scope.selectedKommunenr = $scope.selectedFylke.kommuner[selected].label.value;
+            $scope.selectedFylkenr = 0;
         }
 
 
@@ -411,10 +442,19 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     $scope.selectedFylkeChanged = function(selected){
         console.log($scope.fylker[selected]);
         if (selected != undefined){
-            $scope.selectedFylkeIndex = selected;
+            $scope.selectedFylkenr = $scope.fylker[selected].fylkenr;
             $scope.selectedFylke = $scope.fylker[selected];
-            $scope.selectedMunicipality = 0;
+            $scope.selectedKommunenr = 0;
         }
         
+    }
+
+    $scope.getFylkeByNr = function(fylkenr){
+        angular.forEach($scope.fylker, function(fylke){
+            if (fylke.fylkenr = fylkenr){
+                return fylke;
+            }
+        });
+
     }
 });

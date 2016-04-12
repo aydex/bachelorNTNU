@@ -25,14 +25,11 @@ class Query
             $filterByText = "";
         }
 
-        if ($fylkenr > 0){
-            $fylkeFilterText = "AND Fylkenr = '$fylkenr'";
-            $kommFilterText = "";
+         if ($fylkenr > 0){
+            $kommFilterText = "AND Kommunenr = '$fylkenr'";
         } else if ($kommnr > 0){
-            $fylkeFilterText = "";
             $kommFilterText = "AND Kommunenr = '$kommnr'";
-        } else {
-            $fylkeFilterText = "";
+        }  else {
             $kommFilterText = "";
         }
 
@@ -47,7 +44,6 @@ class Query
                     LEFT JOIN DeltagerInvolvertKommune AS I USING (Deltagerid) 
                     LEFT JOIN Kommuner USING (Kommunenr)
                     WHERE Navn LIKE :name
-                    $fylkeFilterText
                     $kommFilterText
                     $filterByText
                     GROUP BY Deltagerid

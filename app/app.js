@@ -50,7 +50,6 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
     });
 
  
-
     $rootScope.doQuery = function(type, id, page, pageSize, order, orderBy, filterBy, fylkenr, kommnr) {
         var request = "./api/ask.php?" + type + "=" + id + "&page=" +
             page + "&pageSize=" + pageSize + "&order=" + order + "&orderBy=" + orderBy + "&filterBy=" + filterBy + "&fylkenr=" + fylkenr + "&kommnr=" + kommnr;
@@ -62,27 +61,7 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
         });
     };
 
-    /*$rootScope.open = true;
-
-    $rootScope.clickMenu = function(){
-        $rootScope.open = !$rootScope.open;
-    };*/
-
-
     $rootScope.back = function(){
         $window.history.back();
-        //$location.path("/search/" + $scope.name + "/" + $scope.page + "/" + $scope.pageSize);
     };
-
-    /*$rootScope.openSearch = function(){
-                $rootScope.headerSearchOpen = !$rootScope.headerSearchOpen;
-                document.getElementById("headerInput").focus();
-            };
-
-        $rootScope.searchPerson = function(form) {
-            $location.path("/search/" + $rootScope.headerInput + "/1/25");
-            $rootScope.headerInput = "";
-            $rootScope.headerSearchOpen = false;
-        }
-*/
 });
