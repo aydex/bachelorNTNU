@@ -5,56 +5,65 @@ header("Content-Type: application/json; charset=UTF-8");
 
 require_once("config.php");
 require_once("query.php");
+require_once('../vendor/autoload.php');
+session_start();
 
 use bachelor\Config;
 use bachelor\Query;
 
-$config   = new Config();
-$query    = new Query($config->db);
-$name     = "";
-$page     = 0;
-$pageSize = 0;
-$order    = "";
-$orderBy  = "";
-$filterBy = "";
+setcookie("name", "dick", time()+3600, "/");  /* expire in 1 hour */
 
-if (isset($_REQUEST['page']) && isset($_REQUEST['pageSize'])) {
-    $page     = (int)$_REQUEST['page'];
-    $pageSize = (int)$_REQUEST['pageSize'];
-}
+if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1) {
 
-if (isset($_REQUEST['order']) && isset($_REQUEST['orderBy'])) {
+    $config   = new Config();
+    $query    = new Query($config->db);
+    $name     = "";
+    $page     = 0;
+    $pageSize = 0;
+    $order    = "";
+    $orderBy  = "";
+    $filterBy = "";
 
-    $order   = htmlspecialchars($_REQUEST['order']);
-    $orderBy = htmlspecialchars($_REQUEST['orderBy']);
+    if (isset($_REQUEST['page']) && isset($_REQUEST['pageSize'])) {
+        $page     = (int)$_REQUEST['page'];
+        $pageSize = (int)$_REQUEST['pageSize'];
+    }
 
-}
+    if (isset($_REQUEST['order']) && isset($_REQUEST['orderBy'])) {
 
-if(isset($_REQUEST['filterBy'])) {
-    $filterBy = htmlspecialchars($_REQUEST['filterBy']);
-}
+        $order   = htmlspecialchars($_REQUEST['order']);
+        $orderBy = htmlspecialchars($_REQUEST['orderBy']);
 
-if (isset($_REQUEST['name']) && isset($_REQUEST['orderBy'])) {
+    }
 
-    $name = htmlspecialchars($_REQUEST['name']);
+    if(isset($_REQUEST['filterBy'])) {
+        $filterBy = htmlspecialchars($_REQUEST['filterBy']);
+    }
 
-    echo $query->selectPersonPaged($name, $page, $pageSize, $order, $orderBy, $filterBy);
+    if (isset($_REQUEST['name']) && isset($_REQUEST['orderBy'])) {
 
-}else if(isset($_REQUEST['transactionFromPerson'])){
+        $name = htmlspecialchars($_REQUEST['name']);
 
-    $pId = htmlspecialchars($_REQUEST['transactionFromPerson']);
+        echo $query->selectPersonPaged($name, $page, $pageSize, $order, $orderBy, $filterBy);
 
-    echo $query->selectTransaction($pId, $page, $pageSize, $order, $orderBy);
+    }else if(isset($_REQUEST['transactionFromPerson'])){
 
-}else if(isset($_REQUEST['transactionFromProperty'])){
+        $pId = htmlspecialchars($_REQUEST['transactionFromPerson']);
 
-    $eId = htmlspecialchars($_REQUEST['transactionFromProperty']);
+        echo $query->selectTransaction($pId, $page, $pageSize, $order, $orderBy);
 
-    echo $query->selectTransactionProperty($eId, $page, $pageSize, $order, $orderBy);
+    }else if(isset($_REQUEST['transactionFromProperty'])){
 
-}else if(isset($_REQUEST['municipalityId'])) {
-    $mId = htmlspecialchars($_REQUEST['municipalityId']);
-    echo $query->selectMunicipalityFromId($mId);
+        $eId = htmlspecialchars($_REQUEST['transactionFromProperty']);
+
+        echo $query->selectTransactionProperty($eId, $page, $pageSize, $order, $orderBy);
+
+    }else if(isset($_REQUEST['municipalityId'])) {
+        $mId = htmlspecialchars($_REQUEST['municipalityId']);
+        echo $query->selectMunicipalityFromId($mId);
+    }
+} else {
+    echo json_encode(array("records" => "login_required"));
 }
 
 

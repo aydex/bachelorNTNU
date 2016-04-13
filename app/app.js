@@ -1,6 +1,6 @@
 google.load('visualization', '1', {packages:['corechart']});
 
-var kommunalApp = angular.module('kommunalApp', ['ngRoute']);
+var kommunalApp = angular.module('kommunalApp', ['ngRoute', 'ngCookies']);
 
 kommunalApp.config(function($routeProvider, $locationProvider) {
     $routeProvider
@@ -11,8 +11,13 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             controllers  : 'mainController'
         })*/
 
-
         .when('/search', {
+            templateUrl : '/views/search.html',
+            controller  : 'searchController',
+            //reloadOnSearch: false
+        })
+
+        .when('/search/:error/', {
             templateUrl : '/views/search.html',
             controller  : 'searchController',
             //reloadOnSearch: false
@@ -43,7 +48,12 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 });
 
-kommunalApp.run(function($rootScope, $http, $window, $location) {
+kommunalApp.run(function($rootScope, $http, $window, $location, $cookies) {
+
+    if($cookies.get("name")) {
+        $rootScope.loggedIn = true;
+        $rootScope.username = "dick";
+    }
 
     angular.element(document).on("click", function(e) {
         $rootScope.$broadcast("documentClicked", angular.element(e.target));
@@ -53,17 +63,26 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
         return $http.get("./api/test.php?" + type + "=" + id + "&page=" +
             page + "&pageSize=" + pageSize)
             .then(function (response) {
-                return {records: response.data.records, count: response.data.count};
+                if(response.data.records == "login_required"){
+                    $location.path("/search/login_required");
+                    return false;
+                } else {
+                    return {records: response.data.records, count: response.data.count};
+                }
             });
     };
 
     $rootScope.doQuery = function(type, id, page, pageSize, order, orderBy, filterBy) {
-        console.log(filterBy);
         return $http.get("./api/ask.php?" + type + "=" + id + "&page=" +
             page + "&pageSize=" + pageSize + "&order=" + order + "&orderBy=" + orderBy + "&filterBy=" + filterBy)
         .then(function (response) {
+                if(response.data.records == "login_required"){
+                    $location.path("/search/login_required");
+                    return false;
+                } else {
                 return {records: response.data.records, count: response.data.count,
                     combined: response.data.combined};
+                }
             });
     };
 
