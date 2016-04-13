@@ -51,8 +51,9 @@
             <a href="/"><img src="images/logo.svg" id="logo"></a>
 
             <div id="navigationHeader">
-                <a data-ng-href="http://bachelor.dev/api/login.php?prev={{previousUrl}}" target="_self" class="login" data-ng-show="!loggedIn">Logg Inn</a>
-                <a href="" id="separator">|</a>
+                <a data-ng-href="http://bachelor.dev/api/login.php" target="_self" class="login" data-ng-show="!loggedIn">Logg Inn</a>
+                <span class="login" data-ng-show="loggedIn" data-ng-bind="username">{{ username }}</span>
+                <span id="separator" class="login">|</span>
                 <a href="http://logginn.kommunal-rapport.no/?origin_uri=/" class="login" data-ng-show="!loggedIn">Abonner</a>
                 <a href="api/logout.php" data-ng-show="loggedIn" class="login" target="_self">Logg Ut</a>
             </div>

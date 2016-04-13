@@ -1,4 +1,10 @@
-kommunalApp.controller('transactionPersonController', function($scope, $rootScope, $routeParams, $location, $filter) {
+kommunalApp.controller('transactionPersonController', function($scope, $rootScope, $routeParams, $location, $filter, $cookies) {
+
+    if($cookies.get("name")) {
+        $rootScope.loggedIn = true;
+        $rootScope.username = $cookies.get("name").replace("+", " ");
+    }
+
     $scope.message        = $routeParams.targetId;
     $scope.name           = decodeURIComponent($routeParams.name);
     $scope.page           = 1;
@@ -30,8 +36,6 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
                 $scope.totalPages     = Math.ceil($scope.count / $scope.pageSize);
                 $scope.pageDisplay    = "Side: " + $scope.page + " av " + $scope.totalPages;
                 $scope.sortReady      = true;
-
-                console.log($scope.transactions)
             }
         });
 

@@ -11,7 +11,6 @@ session_start();
 use bachelor\Config;
 use bachelor\Query;
 
-setcookie("name", "dick", time()+3600, "/");  /* expire in 1 hour */
 
 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1) {
 

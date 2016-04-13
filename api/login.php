@@ -42,7 +42,7 @@ if (isset($_GET['state']) && isset($_GET['code']) && isset($_SESSION['oauth2stat
             	$_SESSION["loggedIn"] = true;
             	$prev = $_SESSION["prev"];
             	unset($_SESSION["prev"]);
-            	setcookie("name", $body["name"], time()+3600, "/");  /* expire in 1 hour */
+            	setcookie("name", $body["realname"], 0, "/"); 
             	header('Location: ' . $prev);
             }
            	// Sample result $body:

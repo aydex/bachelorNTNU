@@ -48,12 +48,7 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 });
 
-kommunalApp.run(function($rootScope, $http, $window, $location, $cookies) {
-
-    if($cookies.get("name")) {
-        $rootScope.loggedIn = true;
-        $rootScope.username = "dick";
-    }
+kommunalApp.run(function($rootScope, $http, $window, $location) {
 
     angular.element(document).on("click", function(e) {
         $rootScope.$broadcast("documentClicked", angular.element(e.target));

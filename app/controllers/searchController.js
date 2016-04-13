@@ -1,4 +1,9 @@
-kommunalApp.controller('searchController', function($scope, $rootScope, $timeout, $location, $routeParams) {
+kommunalApp.controller('searchController', function($scope, $rootScope, $timeout, $location, $routeParams, $cookies) {
+
+    if($cookies.get("name")) {
+        $rootScope.loggedIn = true;
+        $rootScope.username = $cookies.get("name").replace("+", " ");
+    }
 
     var _timeout;
     var queryPromis;
@@ -358,7 +363,6 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     }
 
     if($routeParams.error) {
-        console.log("You have to log in to search");
         $scope.error = true;
     }
 

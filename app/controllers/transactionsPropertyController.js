@@ -1,4 +1,9 @@
-kommunalApp.controller('transactionPropertyController', function($scope, $rootScope, $routeParams, $http, $window, $filter, transaction) {
+kommunalApp.controller('transactionPropertyController', function($scope, $rootScope, $routeParams, $http, $window, $filter, transaction, $cookies) {
+
+    if($cookies.get("name")) {
+        $rootScope.loggedIn = true;
+        $rootScope.username = $cookies.get("name").replace("+", " ");
+    }
 
     $scope.selectedDokumentnr = null;
 
@@ -55,8 +60,6 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
 
                 //priceDatePairs = priceDatePairs.slice(($scope.page - 1) * $scope.pageSize, $scope.pageSize * $scope.page);
 
-                console.log(priceDatePairs);
-
                 $scope.chartObj = []
 
                 angular.forEach(priceDatePairs, function(pair, key){
@@ -84,8 +87,6 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
         var data = new google.visualization.DataTable();
         var currTransaction = "";
         var isMunicipal;
-
-        console.log($scope.unalteredTransactions);
 
         data.addColumn('date', 'År');
         data.addColumn('number', 'Sum');
@@ -134,9 +135,6 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             pointSize: 5,
             interpolateNulls: true,
         }
-
-        console.log(dokumentnrList);
-
 
         if(chart == undefined){
             chart = new google.visualization.LineChart(document.getElementById('chartdiv'));
