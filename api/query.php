@@ -25,7 +25,7 @@ class Query
             $filterByText = "";
         }
 
-         if ($fylkenr > 0){
+         if ($fylkenr > 0 && $kommnr == 0){
             $kommFilterText = "AND Kommunenr = '$fylkenr'";
         } else if ($kommnr > 0){
             $kommFilterText = "AND Kommunenr = '$kommnr'";
