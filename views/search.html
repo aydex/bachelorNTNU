@@ -2,10 +2,12 @@
 
 
 <div id="fixedSite">
+
 <button type="button" class="btn btn-default backbutton" data-ng-show="showTable" data-ng-click="back()">&lt; Tilbake</button>
 
 <div id="searchElements">
-<h4 ng-bind="searchingForText"> </h4>
+
+    <h3 ng-bind="searchingForText" id="searchTitle">Eiendomsdatabasen</h3>
     <div>
     <form id="searchForm" data-ng-submit="searchForm(searchForm)">
         <i class="material-icons" id="searchIcon">search</i>
@@ -82,15 +84,7 @@
 </div>
 </div>
   <div data-ng-controller="mapController" data-ng-show="!showTable">
-    <div class="container">
+      <div class="container">
+      <button type="button" class="btn btn-default" data-ng-show="countySelected" data-ng-click="back()">&lt; Tilbake</button>
       <svg-map></svg-map>
     </div>
-<!---  nye eventuelle fix under
-<div data-ng-controller="mapController" data-ng-show="!showTable">
-  <div class="container">
-    <div svg-map ng-src="images/kommunekart/{{kart}}.svg"></div>
---->
-  </div>
-</div>
-
-<p id="pageNumber" data-ng-bind="pageDisplay" data-ng-show="showTable"></p>

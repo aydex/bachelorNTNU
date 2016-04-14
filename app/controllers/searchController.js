@@ -19,7 +19,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     };
     $scope.selectedKommunenr = 0;
     $scope.selectedFylkenr = 0;
-    $scope.searchingForText = "";
+    $scope.searchingForText = "Eiendomsdatabasen";
 
     $scope.fylker = [
         {
@@ -307,7 +307,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         if($scope.sortReady) {
             $scope.reverse = !$scope.reverse;
         }
-    }
+    };
 
     $scope.selectedMunicipalityChanged = function(){
         if ($scope.currentKommune != null){
@@ -317,6 +317,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         }
         $scope.doSearch();
     }
+
 
     $scope.selectedFylkeChanged = function(){
         if ($scope.currentFylke != null){
