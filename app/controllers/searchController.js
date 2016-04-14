@@ -1,4 +1,9 @@
-kommunalApp.controller('searchController', function($scope, $rootScope, $timeout, $location, $routeParams) {
+kommunalApp.controller('searchController', function($scope, $rootScope, $timeout, $location, $routeParams, $cookies) {
+
+    if($cookies.get("name")) {
+        $rootScope.loggedIn = true;
+        $rootScope.username = $cookies.get("name").replace("+", " ");
+    }
 
     var _timeout;
     var queryPromis;
@@ -13,6 +18,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     $scope.sortReady      = false;
     $scope.advancedShow   = false;
     $scope.lastSearched   = "";
+    $scope.error          = false;
     $scope.search         = {
         nameSearch: "",
         pageSize  : 25
@@ -22,6 +28,8 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     $scope.selectedFylkenr = 0;
 
 
+
+    $scope.userName = "dick";
 
    $scope.kommuner = [{type:"Asker", value:220},{type:"Aurskog-Høland", value:221},{type:"Bærum", value:219},{type:"Eidsvoll", value:237},{type:"Fet", value:227},{type:"Frogn", value:215},{type:"Gjerdrum", value:239},{type:"Hurdal", value:230},
     {type:"Lørenskog", value:238},{type:"Nannestad", value:236},{type:"Nes", value:216},{type:"Nesodden", value:223},{type:"Nittedal", value:217},{type:"Oppegård", value:228},{type:"Rælingen", value:231},{type:"Skedsmo", value:213},{type:"Ski", value:226},
@@ -299,23 +307,24 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         queryPromis.then(function(result){
             console.log(result);
 
-            angular.forEach(result.count[0], function(value) {
-                $scope.count = value;
-                //$scope.count = Math.ceil($scope.page * $scope.search.pageSize);
-            });
+            if(result) {
+                angular.forEach(result.count[0], function(value) {
+                    $scope.count = value;
+                    //$scope.count = Math.ceil($scope.page * $scope.search.pageSize);
+                });
 
-            $scope.lastSearched   = $scope.search.nameSearch;
-            $scope.names          = result.records;
-            $scope.showTable      = $scope.names.length > 0;
-            $scope.noResultShow   = !!($scope.names.length == 0 && $scope.search.nameSearch.length > 0);
-            $scope.showNavigation = true;
-            $scope.more_results   = $scope.count > ($scope.page * $scope.search.pageSize);
-            $scope.searched       = true;
-            $scope.hideNavigation = !(!$scope.more_results && $scope.page == 1);
-            $scope.totalPages     = Math.ceil($scope.count / $scope.search.pageSize);
-            $scope.pageDisplay    = "Side: " + $scope.page + " av " + $scope.totalPages;
-            $scope.sortReady      = true;
-
+                $scope.lastSearched   = $scope.search.nameSearch;
+                $scope.names          = result.records;
+                $scope.showTable      = $scope.names.length > 0;
+                $scope.noResultShow   = !!($scope.names.length == 0 && $scope.search.nameSearch.length > 0);
+                $scope.showNavigation = true;
+                $scope.more_results   = $scope.count > ($scope.page * $scope.search.pageSize);
+                $scope.searched       = true;
+                $scope.hideNavigation = !(!$scope.more_results && $scope.page == 1);
+                $scope.totalPages     = Math.ceil($scope.count / $scope.search.pageSize);
+                $scope.pageDisplay    = "Side: " + $scope.page + " av " + $scope.totalPages;
+                $scope.sortReady      = true;
+            }
         });
     };
 
@@ -386,6 +395,10 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         $scope.selectedKommunenr = parseInt($routeParams.kommnr);
         $scope.fylke             = $scope.fylker[10];
         $scope.queryPerson();
+    }
+
+    if($routeParams.error) {
+        $scope.error = true;
     }
 
     $scope.navigate = function(way) {
