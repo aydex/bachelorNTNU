@@ -84,6 +84,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
     }
 
     $scope.populateChart = function(obj) {
+
         var data = new google.visualization.DataTable();
         var currTransaction = "";
         var isMunicipal;

@@ -70,7 +70,7 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
                     $location.path("/unregistered");
                     return false;
                 } else {
-                    return {records: response.data.records, count: response.data.count};
+                    return {records: response.data.records, count: response.data.count, combined: response.data.combined};
                 }
         });
     };
