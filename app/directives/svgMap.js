@@ -1,5 +1,5 @@
 
-kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$parse', function ($compile, $http, $templateCache) {
+kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', function ($compile, $http, $templateCache) {
     return {
         restrict: 'EA',
         controller: function($scope, $route, $location) {
@@ -37,7 +37,6 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$parse'
                 $compile(regionElement)($scope);
             });
             $scope.mapElement = angular.element(element[0]);
-
         },
         templateUrl: "images/kommunekart/norge.svg"
       }
@@ -69,7 +68,8 @@ kommunalApp.directive('city', ['$compile', '$location', '$http', function ($comp
     return {
         restrict: 'EA',
         scope: {
-            cityId: '@'
+            cityId: '@',
+            municipalityToParticipant: '@'
         },
         controller: function($scope) {
 
@@ -89,9 +89,12 @@ kommunalApp.directive('city', ['$compile', '$location', '$http', function ($comp
                     var city = $scope.cityQuery($scope.cityId);
 
                     city.then(function(result) {
-                        var kommune = result.records[0].Kommunenavn;
+                        var kommune = result.records[0]["Kommunenavn"];
+                        var kommunenr = result.records[0]["Kommunenr"];
+                        console.log($scope.municipalityToParticipant);
+                        var kommuneDeltagerId = $scope.municipalityToParticipant[kommunenr]["DeltakerId"];
                         var name_encoded = encodeURIComponent(kommune);
-                        $location.path("/search/" + name_encoded + "/0/1/25/0/0");
+                        $location.path("/transactions/deltager/" + name_encoded + "KOMMUNE/" + kommuneDeltagerId + "/K");
                         angular.forEach(result.records[0], function(value, key) {
                             console.log(value);
                         });

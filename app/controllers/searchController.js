@@ -426,10 +426,10 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         if($scope.sortReady) {
             $scope.reverse = !$scope.reverse;
         }
-    }
+    };
 
     $scope.selectedMunicipalityChanged = function(selected){
-        console.log( $scope.selectedFylke.kommuner[selected])
+        console.log( $scope.selectedFylke.kommuner[selected]);
 
         if (selected != undefined){
             $scope.selectedKommunenr = $scope.selectedFylke.kommuner[selected].label.value;
@@ -437,7 +437,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         }
 
 
-    }
+    };
 
     $scope.selectedFylkeChanged = function(selected){
         console.log($scope.fylker[selected]);
@@ -447,7 +447,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             $scope.selectedKommunenr = 0;
         }
         
-    }
+    };
 
     $scope.getFylkeByNr = function(fylkenr){
         angular.forEach($scope.fylker, function(fylke){
