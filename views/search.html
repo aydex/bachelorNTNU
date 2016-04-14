@@ -4,8 +4,10 @@
 <div id="fixedSite">
 
 <button type="button" class="btn btn-default backbutton" data-ng-show="showTable" data-ng-click="back()">&lt; Tilbake</button>
+
 <div id="searchElements">
-    <h3 id="searchTitle">Eiendomsdatabasen</h3>
+
+    <h3 ng-bind="searchingForText" id="searchTitle">Eiendomsdatabasen</h3>
     <div>
     <form id="searchForm" data-ng-submit="searchForm(searchForm)">
         <i class="material-icons" id="searchIcon">search</i>
@@ -14,19 +16,21 @@
     </div>
     <div id="advanced-div">
     Søk etter type: 
-    <select  data-ng-model="currentType" data-ng-options="a.type for a in searchTypes" data-ng-change="advanceChange()"> 
-    </select>
-    <i class="material-icons select-arrow">play_arrow</i>
-    <select data-ng-change="selectedFylkeChanged(fylke)" data-ng-model="fylke" data-ng-options="fylkeId as fylkeInfo.label for (fylkeId, fylkeInfo) in fylker" >
-        <option value="">Velg fylke</option>
-    </select>
-    <i class="material-icons select-arrow">play_arrow</i>
+        <select  data-ng-model="currentType" data-ng-options="a.type for a in searchTypes" data-ng-change="advanceChange()"> </select>
+        <i class="material-icons select-arrow">play_arrow</i>
 
-    <select data-ng-change="selectedMunicipalityChanged(kommune)" name="kommune" data-ng-model="kommune" data-ng-options="kommuneId as kommuneInfo.label.type for (kommuneId, kommuneInfo) in fylker[fylke]['kommuner']" data-ng-disabled="fylke == undefined">
+        <select data-ng-change="selectedFylkeChanged(fylke)" data-ng-model="currentFylke" data-ng-options="fylke.label for fylke in fylker | orderBy:'label'" >
+            <option value="">Velg fylke</option>
+        </select>
+
+        <i class="material-icons select-arrow">play_arrow</i>
+
+        <select data-ng-change="selectedMunicipalityChanged(kommune)" name="kommune" data-ng-model="currentKommune" data-ng-options="(kommune.label | capitalFirstLettersFilter) for kommune in currentFylke.kommuner | orderBy:'label'" data-ng-disabled="currentFylke == undefined">
         <option value="">Velg kommune</option>
     </select>           
     <i class="material-icons select-arrow">play_arrow</i>    
     </div>
+    
 </div>
 
 <div id="pageElements" data-ng-show="showTable">
@@ -84,12 +88,3 @@
       <button type="button" class="btn btn-default" data-ng-show="countySelected" data-ng-click="back()">&lt; Tilbake</button>
       <svg-map></svg-map>
     </div>
-<!---  nye eventuelle fix under
-<div data-ng-controller="mapController" data-ng-show="!showTable">
-  <div class="container">
-    <div svg-map ng-src="images/kommunekart/{{kart}}.svg"></div>
---->
-  </div>
-</div>
-
-<p id="pageNumber" data-ng-bind="pageDisplay" data-ng-show="showTable"></p>
