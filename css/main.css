@@ -639,3 +639,40 @@ select:disabled{
 #advanced-div select:first-child{
 	margin-left:0px;
 }
+
+/********************************
+*********************************
+**********LOGININFO**************
+*********************************
+********************************/
+
+
+#loginInfo{
+	position: fixed;
+    background: white;
+    width: 500px;
+    height: 200px;
+    left: 0;
+    right: 0;
+    margin-right: auto;
+    margin-left: auto;
+    top: 35%;
+	-webkit-box-shadow: 0px 0px 33px -4px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 33px -4px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 33px -4px rgba(0,0,0,0.75);
+}
+
+#loginInfoCenter{
+	text-align: left;
+    padding: 35px;
+    font-size: 16px;
+}
+
+.red{
+	color:#D71010;
+}
+
+#loginInfoCenter a:hover{
+	color:#D71010;
+	text-decoration: none;
+}

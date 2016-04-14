@@ -17,9 +17,9 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             //reloadOnSearch: false
         })
 
-        .when('/search/:error/', {
-            templateUrl : '/views/search.html',
-            controller  : 'searchController',
+        .when('/unregistered/', {
+            templateUrl : '/views/error.html',
+            controller  : 'unregisteredController',
             //reloadOnSearch: false
         })
 
@@ -59,7 +59,7 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
             page + "&pageSize=" + pageSize)
             .then(function (response) {
                 if(response.data.records == "login_required"){
-                    $location.path("/search/login_required");
+                    $location.path("/unregistered");
                     return false;
                 } else {
                     return {records: response.data.records, count: response.data.count};
@@ -72,7 +72,7 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
             page + "&pageSize=" + pageSize + "&order=" + order + "&orderBy=" + orderBy + "&filterBy=" + filterBy)
         .then(function (response) {
                 if(response.data.records == "login_required"){
-                    $location.path("/search/login_required");
+                    $location.path("/unregistered");
                     return false;
                 } else {
                 return {records: response.data.records, count: response.data.count,

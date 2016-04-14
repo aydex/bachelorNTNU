@@ -40,10 +40,8 @@ if (isset($_GET['state']) && isset($_GET['code']) && isset($_SESSION['oauth2stat
 
             if($body["uid"] == "5330") {
             	$_SESSION["loggedIn"] = true;
-            	$prev = $_SESSION["prev"];
-            	unset($_SESSION["prev"]);
             	setcookie("name", $body["realname"], 0, "/"); 
-            	header('Location: ' . $prev);
+            	header('Location: /search');
             }
            	// Sample result $body:
             // { "uid": "5330", "name": "testuser_5330", "mail": "testuser@ramsalt.com", "theme": "", "signature": "", "signature_format": "full_html", "created": "1460358464", "access": "1460460439", "login": "1460459194", "status": "1", "timezone": "Europe\/Oslo", "language": "en", "picture": "0", "init": "testuser@ramsalt.com", "data": false, "roles": { "2": "authenticated user" }, "field_first_name": { "und": [ { "value": "George", "format": null, "safe_value": "George" } ] }, "field_last_name": { "und": [ { "value": "Ramsalt", "format": null, "safe_value": "Ramsalt" } ] }, "field_user_type": { "und": [ { "value": "annet" } ] }, "domain_user": { "1": "1", "5": "5" }, "realname": "George Ramsalt" }
@@ -53,8 +51,6 @@ if (isset($_GET['state']) && isset($_GET['code']) && isset($_SESSION['oauth2stat
         }
     }
 } else {
-
-	$_SESSION["prev"] = $_SERVER["HTTP_REFERER"];
 
 	$options = [
   		'scope' => ['user_profile']
