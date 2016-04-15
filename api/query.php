@@ -140,7 +140,7 @@ class Query
                         GROUP BY InterntDokumentnr
                         ORDER BY " . $selectFromArray[$keyOrderBy] . " " . $this->selectFromOrder[$keyOrder];
 
-        $query_2 = "SELECT Sammendrag 
+        $query_2 = "SELECT Historie as Sammendrag 
                     FROM Eiendomshistorie 
                     WHERE Eiendomsid= :query_target"; 
 
