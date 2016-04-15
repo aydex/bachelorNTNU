@@ -1,4 +1,10 @@
-kommunalApp.controller('transactionPersonController', function($scope, $rootScope, $routeParams, $location, $filter) {
+kommunalApp.controller('transactionPersonController', function($scope, $rootScope, $routeParams, $location, $filter, $cookies) {
+
+    if($cookies.get("name")) {
+        $rootScope.loggedIn = true;
+        $rootScope.username = $cookies.get("name").replace("+", " ");
+    }
+
     $scope.message        = $routeParams.targetId;
     $scope.name           = decodeURIComponent($routeParams.name);
     $scope.page           = 1;
@@ -14,21 +20,23 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
         var queryPromis = $rootScope.doQuery("transactionFromPerson", $routeParams.targetId,
             $scope.page, $scope.pageSize, $scope.order, $scope.orderBy);
         queryPromis.then(function(result){
-            angular.forEach(result.count[0], function(value) {
-                $scope.count = value;
-                //$scope.count = Math.ceil($scope.page * $scope.search.pageSize);
-            });
 
-            $scope.showTable      = true;
-            $scope.more_results   = $scope.count > ($scope.page * $scope.pageSize);
-            $scope.transactions   = result.records;
-            $scope.showNavigation = true;
-            $scope.hideNavigation = !(!$scope.more_results && $scope.page == 1);
-            $scope.totalPages     = Math.ceil($scope.count / $scope.pageSize);
-            $scope.pageDisplay    = "Side: " + $scope.page + " av " + $scope.totalPages;
-            $scope.sortReady      = true;
+            if(result){
 
-            console.log($scope.transactions)
+                angular.forEach(result.count[0], function(value) {
+                    $scope.count = value;
+                    //$scope.count = Math.ceil($scope.page * $scope.search.pageSize);
+                });
+
+                $scope.showTable      = true;
+                $scope.more_results   = $scope.count > ($scope.page * $scope.pageSize);
+                $scope.transactions   = result.records;
+                $scope.showNavigation = true;
+                $scope.hideNavigation = !(!$scope.more_results && $scope.page == 1);
+                $scope.totalPages     = Math.ceil($scope.count / $scope.pageSize);
+                $scope.pageDisplay    = "Side: " + $scope.page + " av " + $scope.totalPages;
+                $scope.sortReady      = true;
+            }
         });
 
 
@@ -40,6 +48,8 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
         var add;
         var seller = "";
         var buyer  = "";
+
+        console.log(results);
 
         for(var x in results) {
             involvement = results[x].Involvering.split(",");
