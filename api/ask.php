@@ -45,7 +45,6 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1 && $_SESSION["sub
         $kommnr     = (int)$_REQUEST['kommnr'];
     }
 
-
     if (isset($_REQUEST['name']) && isset($_REQUEST['orderBy'])) {
         $name = htmlspecialchars($_REQUEST['name']);
     
