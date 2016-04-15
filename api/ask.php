@@ -10,7 +10,7 @@ session_start();
 use bachelor\Config;
 use bachelor\Query;
 
-if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1 && $_SESSION["subscription_id"] == 6) {
+if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1 && isset($_SESSION['subscription_id']) && $_SESSION['subscription_id'] != -1) {
 
     $config   = new Config();
     $query    = new Query($config->db);
@@ -67,11 +67,11 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1 && $_SESSION["sub
         echo $query->selectMunicipalityFromId($mId);
     }
 } else {
-    if(isset($_SESSION["subscription_id"]) && $_SESSION["subscription_id"] != 6) {
+    /*if(isset($_SESSION["subscription_id"]) && $_SESSION["subscription_id"] != 6) {
         echo json_encode(array("records" => "wrong_subscription"));
-    } else {
+    } else {*/
         echo json_encode(array("records" => "login_required"));
-    }
+    //}
 }
 
 

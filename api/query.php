@@ -18,15 +18,15 @@ class Query
 
     private function authenticate()
     {
-        if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1 && $_SESSION['subscription_id'] == 6) return 2;
-        else if(isset($_SESSION['subscription_id']) && $_SESSION["subscription_id"] != 6) return 1;
-        else 0;
+        if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1 && isset($_SESSION['subscription_id']) && $_SESSION['subscription_id'] != -1) return true;
+        //else if(isset($_SESSION['subscription_id']) && $_SESSION["subscription_id"] != 6) return 1;
+        else false;
     }
 
      public function selectPersonPaged($name, $page=1, $pageSize=10, $order="ASC", $orderBy, $filterBy, $fylkenr, $kommnr) {
 
-        if($this->authenticate() != 2) {
-            return json_encode(array("records" => $this->returnArray[$this->authenticate()]));
+        if(!$this->authenticate()) {
+            return json_encode(array("records" => "login_required"));
             exit;
         }
 
@@ -80,8 +80,8 @@ class Query
     }
 
     public function selectTransaction($id, $page=1, $pageSize=10, $order, $orderBy) {
-        if($this->authenticate() != 2) {
-            return json_encode(array("records" => $this->returnArray[$this->authenticate()]));
+        if(!$this->authenticate()) {
+            return json_encode(array("records" => "login_required"));
             exit;
         }
         
@@ -122,8 +122,8 @@ class Query
     }
 
     public function selectTransactionProperty($id, $page=1, $pageSize=10, $order, $orderBy) {
-        if($this->authenticate() != 2) {
-            return json_encode(array("records" => $this->returnArray[$this->authenticate()]));
+        if(!$this->authenticate()) {
+            return json_encode(array("records" => "login_required"));
             exit;
         }
 
@@ -170,8 +170,8 @@ class Query
     }
 
     public function countRows() {
-        if($this->authenticate() != 2) {
-            return json_encode(array("records" => $this->returnArray[$this->authenticate()]));
+        if(!$this->authenticate()) {
+            return json_encode(array("records" => "login_required"));
             exit;
         }
         
@@ -186,8 +186,8 @@ class Query
 
     public function selectMunicipalityFromId($mId)
     {
-        if($this->authenticate() != 1) {
-            return json_encode(array("records" => $this->returnArray[$this->authenticate()]));
+        if(!$this->authenticate()) {
+            return json_encode(array("records" => "login_required"));
             exit;
         }
         

@@ -54,10 +54,17 @@ if (isset($_GET['state']) && isset($_GET['code']) && isset($_SESSION['oauth2stat
             $body2 = json_decode($res2->getBody()->getContents(), true);
 
             //if ($body[0]["product"]["product_id"] == 7) {
+            try {
             	$_SESSION["loggedIn"] = true;
                 $_SESSION["subscription_id"] = $body[0]["product"]["product_id"];
             	setcookie("name", $body2["realname"], 0, "/"); 
             	header('Location: /search');
+            } catch (Exception $e) {
+                $_SESSION["loggedIn"] = true;
+                $_SESSION["subscription_id"] = -1;
+                setcookie("name", $body2["realname"], 0, "/"); 
+                header('Location: /search');
+            }
             /*} else {
                 unset($_COOKIE['name']);
                 setcookie('name', null, -1, '/');
