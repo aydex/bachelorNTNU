@@ -1,6 +1,6 @@
 google.load('visualization', '1', {packages:['corechart']});
 
-var kommunalApp = angular.module('kommunalApp', ['ngRoute']);
+var kommunalApp = angular.module('kommunalApp', ['ngRoute', 'ngCookies']);
 
 kommunalApp.config(function($routeProvider, $locationProvider) {
     $routeProvider
@@ -11,7 +11,6 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             controllers  : 'mainController'
         })*/
 
-
         .when('/search', {
             templateUrl : '/views/search.html',
             controller  : 'searchController',
@@ -19,6 +18,18 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
         })
 
         .when('/search/:searchName/:type/:page/:pageSize/:fylkenr/:kommnr', {
+            templateUrl : '/views/search.html',
+            controller  : 'searchController',
+            //reloadOnSearch: false
+        })
+
+        .when('/unregistered/', {
+            templateUrl : '/views/error.html',
+            controller  : 'unregisteredController',
+            //reloadOnSearch: false
+        })
+
+        .when('/search/:searchName/:type/:page/:pageSize', {
             templateUrl : '/views/search.html',
             controller  : 'searchController'
         })
@@ -49,15 +60,18 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
         $rootScope.$broadcast("documentClicked", angular.element(e.target));
     });
 
- 
     $rootScope.doQuery = function(type, id, page, pageSize, order, orderBy, filterBy, fylkenr, kommnr) {
         var request = "./api/ask.php?" + type + "=" + id + "&page=" +
             page + "&pageSize=" + pageSize + "&order=" + order + "&orderBy=" + orderBy + "&filterBy=" + filterBy + "&fylkenr=" + fylkenr + "&kommnr=" + kommnr;
         console.log(request);
         return $http.get(request)
         .then(function (response) {
-                return {records: response.data.records, count: response.data.count,
-                    combined: response.data.combined};
+                if(response.data.records == "login_required"){
+                    $location.path("/unregistered");
+                    return false;
+                } else {
+                    return {records: response.data.records, count: response.data.count, combined: response.data.combined};
+                }
         });
     };
 
