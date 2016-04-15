@@ -362,6 +362,11 @@ th{
 	border-right:none;
 }
 
+.manglerData{
+	color: #d3d3d3;
+	font-size: 10px;
+}
+
 /********************
 ******tablewidth*****
 *********************/
@@ -377,28 +382,33 @@ th{
 /*Width on transaction site*/
 
 #propertyID{
-	width: 13%;
+	width: 5%;
 }
 
 #firstDateID{
-	width: 13%;
+	width: 5%;
 }
 
 #lastDateID{
-	width: 13%;
+	width: 5%;
 }
 
 #numberTransactionID{
-	width: 17%;
+	width: 5%;
 }
 
 #involvementID{
-	width: 15%;
+	width: 20%;
 	text-align: center;
 }
 
 #involvedMunicipID{
 	width: 16%;
+}
+
+
+#etterSalgColumn{
+	width: 20%;
 }
 
 /*Width on property site*/

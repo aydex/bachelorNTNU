@@ -21,7 +21,7 @@
 <table data-ng-show="showTable">
         <tr>
             <th id="propertyID" data-ng-click="orderByMe('Eiendomsid')" data-ng-class="{'disableSort' : !sortReady}">
-                Eiendomsid
+                ID
                 <span data-ng-show="orderBy == 'Eiendomsid' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Eiendomsid' && reverse" class="fa fa-caret-down"></span>
             </th>
@@ -37,7 +37,7 @@
                 <span data-ng-show="orderBy == 'SistRegistrert' && reverse" class="fa fa-caret-down"></span>
             </th>
             <th id="numberTransactionID" data-ng-click="orderByMe('AntallTransaksjoner')" data-ng-class="{'disableSort' : !sortReady}">
-                Antall Transaksjoner
+                Transaksjoner
                 <span data-ng-show="orderBy == 'AntallTransaksjoner' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'AntallTransaksjoner' && reverse" class="fa fa-caret-down"></span>
             </th>
@@ -46,14 +46,15 @@
                 <span data-ng-show="orderBy == 'Involvering' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Involvering' && reverse" class="fa fa-caret-down"></span>
             </th>
-              <th id="flaggingID" data-ng-click="orderByMe('InvolvertKommune')" data-ng-class="{'disableSort' : !sortReady}">
-                Størst Årlig Prisendring
+    
+            <th id="etterSalgColumn" data-ng-click="orderByMe('InvolvertKommune')" data-ng-class="{'disableSort' : !sortReady}">
+                Endring etter salg
                 <span data-ng-show="orderBy == 'InvolvertKommune' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'InvolvertKommune' && reverse" class="fa fa-caret-down"></span>
             </th>
                 <th id="involvedMunicipID" data-ng-click="orderByMe('InvolvertKommune')" data-ng-class="{'disableSort' : !sortReady}">
-                
-                Involverte Kommuner
+
+                Kommuner
                 <span data-ng-show="orderBy == 'InvolvertKommune' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'InvolvertKommune' && reverse" class="fa fa-caret-down"></span>
             </th>

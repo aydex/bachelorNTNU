@@ -55,143 +55,148 @@ kommunalApp.directive('transactionTable', function($filter){
 
             scope.transaction.InvolverteKommuner = out;
 
-            var prispunktSplit = scope.transaction.Historie.split(",");
             var prispunkt = [];
-            var scores;
-            var score = 0;
-            var count = 0;
-            var decrease = 1;
-            var increase = 0;
+            var omsetninger = {};
+            var keys = [];
+            var kommuneKjopt = [];
+            var kommuneSolgt = [];
 
-            
+            console.log(prispunktSplit)
 
+            function Omsetning(salgssum, dokumentdato, dokumentnr, parttype, deltagertype) {
+                this.salgssum = salgssum;
+                this.dokumentdato = dokumentdato;
+                this.dokumentnr = dokumentnr;
+                this.parttype = parttype;
+                this.deltagertype = deltagertype;
+            }
+
+            var prispunktSplit = scope.transaction.Historie.split(",");
             angular.forEach(prispunktSplit, function(entry){
+                console.log(entry);
                 var split = entry.split(":");
                 var currDateSplit = split[1].split("-");
-                //console.log(prispunkt)
-                var date = new Date(currDateSplit[0],currDateSplit[1]-1,currDateSplit[2]);
-                prispunkt.push({salgssum : split[0], dokumentdato : date, dokumentnr: split[2], parttype: split[3], deltagertype: split[4]});
+
+                var date = new Date(currDateSplit[0], currDateSplit[1]-1, currDateSplit[2]);
+
+                var omsetning = new Omsetning(split[0], date, split[2], split[3], split[4]);
+                var currentDate = omsetninger[omsetning.dokumentdato];
+
+                if (currentDate == undefined){
+                    omsetninger[omsetning.dokumentdato] = {salgssum: 0, dokumentdato: null, kjopere:[], selgere:[]};
+                    keys.push(omsetning.dokumentdato);
+                }
+
+                omsetninger[omsetning.dokumentdato].salgssum = omsetning.salgssum;
+                omsetninger[omsetning.dokumentdato].dokumentdato = date;
+                if (omsetning.parttype == "K"){
+                    omsetninger[omsetning.dokumentdato].kjopere.push(omsetning);
+
+                } else {
+                    omsetninger[omsetning.dokumentdato].selgere.push(omsetning);
+                }
+
+
+
             })
 
-            var date_sort_asc = function (punkt1, punkt2) {
-                if (punkt1.dokumentdato > punkt2.dokumentdato) return 1;
-                if (punkt1.dokumentdato < punkt2.dokumentdato) return -1;
-                if (punkt1.parttype == "K") return 1;
-                if (punkt2.parttype == "K") return -1;
+
+            var date_sort_asc = function (dato1, dato2) {
+                if (dato1 > dato2) return 1;
+                if (dato1 < dato2) return -1;
+
                 return 0;
             };
 
-            prispunkt.sort(date_sort_asc);
-            console.log(prispunkt)
-
-
-
-            var kommuneIndex = [];
-            var kommunePart = [];
-
-            angular.forEach(prispunkt, function(entry) {
-                if (entry.deltagertype == "K" && entry.salgssum != 0){
-                    kommunePart.push(entry.parttype);
-                    kommuneIndex.push(prispunkt.indexOf(entry));
-                }
-            })
-            var diff;
-
-            if (kommuneIndex.length > 1){
-                var last = prispunkt[kommuneIndex[kommuneIndex.length-1]];
-                var first = prispunkt[kommuneIndex[kommuneIndex.length-2]];
-
-
-                 diff = +last.salgssum - +first.salgssum;
-
-                console.log(diff)
-                scope.transaction.kommuneInvolvering = $filter('priceFilter')(diff)
-
-            } else {
-                scope.transaction.kommuneInvolvering = "";
-            }
-
-
-
-            if (prispunkt.length-1 > kommuneIndex[kommuneIndex.length-1]){
-                var last = prispunkt[kommuneIndex[kommuneIndex.length-1]+2];
-                var first = prispunkt[kommuneIndex[kommuneIndex.length-1]];
-                console.log(first);
-                console.log(last)
-                
-
-                diff = +last.salgssum - +first.salgssum;
-                console.log("After: " + diff)
-            }
-
-            /*
-
-            for (var i = 0; i < prispunkt.length-1; i++) {
-                score = 0;
-                //Parse datostring
-                var datestring = prispunkt[i].split(":")[1];
-                var nextDateString = prispunkt[i+1].split(":")[1];
-                var oneday = 24*60*60*1000;  // hours*minutes*seconds*milliseconds
-                var currDateSplit = datestring.split("-");
-                var date = new Date(currDateSplit[0],currDateSplit[1]-1,currDateSplit[2]);
-                var nextDateSplit = nextDateString.split("-");
-                var nextDate = new Date(nextDateSplit[0],nextDateSplit[1]-1,nextDateSplit[2]);
-
-                var diffDays = Math.round(Math.abs((date.getTime() - nextDate.getTime())/(oneday)));
-
-                var salgssum = prispunkt[i].split(":")[0];
-                var nesteSalgssum = prispunkt[i+1].split(":")[0];
-                var changePerDay = Math.pow((nesteSalgssum/salgssum), 1/diffDays);
-
-                console.log("Score: " + score + " PD: " + changePerDay + " for " + diffDays + " days from " + datestring + " to " +nextDateString);
-
-                if (changePerDay >= 1){
-                    if (changePerDay - 1 > increase){
-                        increase = changePerDay - 1;
-                    }
-                } else {
-                    if (1- changePerDay < decrease){
-                        decrease = 1- changePerDay;
+            keys.sort(date_sort_asc);
+   
+            var lastSale;
+            var lastBuy;
+            var nextSale;
+            for ( i = keys.length - 1; i >= 0; i--) {
+                var currOmsetning = omsetninger[keys[i]];
+                for (var j = currOmsetning.kjopere.length - 1; j >= 0; j--) {
+                    if (currOmsetning.kjopere[j].deltagertype == "K"){
+                        lastBuy = (currOmsetning.kjopere[j]);
+                        break;
                     }
                 }
-                
-                scores = scores + ", " + score;
-            }
-
-            var validIncrease = (increase != 0);
-            var validDecrease = (decrease != 1);
-            var decimalInc = increase * 365;
-            var decimalDec = decrease * 365;
-            increase = decimalInc * 100;
-            decrease = decimalDec * 100;
-            decrease = Math.round(decrease * 100) / 100;
-            increase = Math.round(increase * 100) / 100;
-
-
-
-            if (validIncrease){
-                if (increase > 100){
-                    increase = "Mer enn +100%";
-                } else {
-                    increase = "+" + increase + "%";
+                for (var j = currOmsetning.selgere.length - 1; j >= 0; j--) {
+                    if (currOmsetning.selgere[j].deltagertype == "K"){
+                        lastSale = (currOmsetning.selgere[j]);
+                        if (i <= keys.length-2){
+                            nextSale = (omsetninger[keys[i+1]].kjopere[0]);
+                        }
+                        break;
+                    }
                 }
-            }else{
-                increase = ""
-            }
-            if (validDecrease){
-                if (decrease > 100){
-                    decrease = "Mer enn -100%";
-                } else {
-                    decrease = "-" + decrease + "%";
+                if ((lastSale != undefined)&&(lastBuy != undefined)){
+                    break;
                 }
-                
-            }else {
-                decrease = ""
             }
-            
-            */
-
     
+
+            var iEierskap ="";
+            var etterSalg ="";
+
+            var lastSalePrice= parseInt(lastSale.salgssum);
+            var nextSalePrice= parseInt(nextSale.salgssum);
+            var lastBuyPrice = parseInt(lastBuy.salgssum);
+
+            function daydiff(first, second) {
+                console.log("--- DATEDIFF ---")
+                console.log(typeof first);
+                console.log(typeof second)
+                var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+
+                var dager = Math.round(Math.abs((first.getTime() - second.getTime())/(oneDay)));
+                console.log(dager)
+
+                if (dager > 365){
+                    var aar = Math.round(dager/365);
+                    return aar + " år";
+                }
+
+                if (dager > 30){
+                    var mnd = Math.Round(mnd/30);
+                    return mnd + " mnd";
+                }
+                console.log("--- END ---")
+                return dager + " dager";
+
+            }    
+
+            if ((lastSalePrice != 0)&&(lastBuyPrice != 0)&&(lastSalePrice != undefined)&&(lastBuyPrice != undefined)){
+                iEierskap = +lastSalePrice - +lastBuyPrice;
+                iEierskap = $filter('priceFilter')(String(iEierskap));
+            }
+
+            function niceNumber(number){
+                if (number > 1000000 || number < -1000000){
+                    return (Math.round((number/1000000) * 10) / 10) + " mill"
+                }
+
+                return $filter('priceFilter')(String(number));;
+            }
+
+            if ((lastSalePrice != 0)&&(nextSalePrice != 0)){
+                etterSalg = +nextSalePrice - +lastSalePrice;
+                var prefix = "";
+                if (etterSalg > 0){
+                    prefix = "+"
+                }
+
+                etterSalg = niceNumber(etterSalg);
+                var tid = daydiff(lastSale.dokumentdato, nextSale.dokumentdato);
+                etterSalg = prefix + etterSalg +" etter "+ tid;
+            } 
+
+
+                
+            scope.transaction.iEierskap = iEierskap;
+            scope.transaction.etterSalg = etterSalg;
+
+
 
 
         }
