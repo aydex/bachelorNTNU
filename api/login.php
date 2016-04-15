@@ -53,11 +53,18 @@ if (isset($_GET['state']) && isset($_GET['code']) && isset($_SESSION['oauth2stat
             $body = json_decode($res->getBody()->getContents(), true);
             $body2 = json_decode($res2->getBody()->getContents(), true);
 
-            if($body[0]["product"]["product_id"] == 6) {
+            //if ($body[0]["product"]["product_id"] == 7) {
             	$_SESSION["loggedIn"] = true;
+                $_SESSION["subscription_id"] = $body[0]["product"]["product_id"];
             	setcookie("name", $body2["realname"], 0, "/"); 
             	header('Location: /search');
-            }
+            /*} else {
+                unset($_COOKIE['name']);
+                setcookie('name', null, -1, '/');
+                unset($_SESSION['loggedIn']);
+                unset($_SESSION['oauth2state']);
+                header('Location: /unregistered/wrong_subscription');
+            }*/
         } catch (Exception $e) {
             exit('ERROR: ' . $e->getMessage());
         }

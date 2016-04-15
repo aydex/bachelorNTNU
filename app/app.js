@@ -29,6 +29,12 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             //reloadOnSearch: false
         })
 
+        .when('/unregistered/:code', {
+            templateUrl : '/views/error.html',
+            controller  : 'unregisteredController',
+            //reloadOnSearch: false
+        })
+
         .when('/search/:searchName/:type/:page/:pageSize', {
             templateUrl : '/views/search.html',
             controller  : 'searchController'
@@ -66,8 +72,11 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
         console.log(request);
         return $http.get(request)
         .then(function (response) {
-                if(response.data.records == "login_required"){
+                if(response.data.records == "login_required") {
                     $location.path("/unregistered");
+                    return false;
+                } else if(response.data.records == "wrong_subscription") {
+                    $location.path("/unregistered/wrong_subscription");
                     return false;
                 } else {
                     return {records: response.data.records, count: response.data.count, combined: response.data.combined};
