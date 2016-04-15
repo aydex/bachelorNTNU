@@ -547,6 +547,14 @@ td:nth-child(even){
 /***************  MAP CSS  **************/
 /****************************************/
 
+.btn-map {
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    font-size: 32px;
+    text-decoration: none;
+    padding: 0;
+}
 
 div .container{
 	width: 42%;
@@ -559,7 +567,7 @@ div .container{
 
 div .container button {
     position: absolute;
-    left: 1%;
+    right: 1%;
 }
 
 

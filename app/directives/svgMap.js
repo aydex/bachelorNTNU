@@ -4,6 +4,8 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', function
         restrict: 'EA',
         controller: function($scope, $route, $location) {
             this.updateMap = function (url) {
+                $scope.county = url;
+                console.log($scope.regionId);
                 if(url == "oslo") {
                     var name_encoded = encodeURIComponent("oslo");
                     $location.path("/search/" + name_encoded + "/0/1/25/0/0");
