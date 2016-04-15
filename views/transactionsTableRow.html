@@ -4,9 +4,8 @@
 	<td id="lastDateID" data-ng-bind="transaction.SistRegistrert | yearFilter"></td>
 	<td id="numberTransactionID" data-ng-bind="transaction.AntallTransaksjoner"></td>
 	<td id="involvementID" data-ng-bind="transaction.involvements"></td>
-	<td id="flaggingID">
-		<span data-ng-style="{'color':transaction.IncStyle}" data-ng-bind="transaction.MaxIncrease"></span>
-		<span data-ng-style="{'color':transaction.DecStyle}"data-ng-bind="transaction.MaxDecrease"></span>
+	<td id="flaggingID" data-ng-bind="transaction.kommuneInvolvering">
+		
 	</td>
 	<td id="involvedMunicipID" class="leftalign">
     	<span  data-ng-repeat="kommune in transaction.InvolverteKommuner track by $index">

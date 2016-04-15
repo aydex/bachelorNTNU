@@ -273,8 +273,12 @@ table{
 	z-index: 100000000;
 	top: 315px;
 	width: 94%;
-	left: 51.52%;
-	margin-left: -48.48%;
+	/*left: 51.52%;
+	margin-left: -48.48%;*/
+	left:0;
+	right:0;
+	margin-left: auto;
+	margin-right:auto;
 	min-width: 50%;
 }
 
