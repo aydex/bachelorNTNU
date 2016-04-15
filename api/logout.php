@@ -4,5 +4,5 @@
     setcookie('name', null, -1, '/');
 	unset($_SESSION['loggedIn']);
 	unset($_SESSION['oauth2state']);
-	//header('Location: /');
+	header('Location: /');
 ?>
