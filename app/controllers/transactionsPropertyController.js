@@ -47,8 +47,8 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
 
             $scope.unalteredTransactions = result.records;
 
-            var storedString   = result.combined[0].Sammendrag;
-            var priceDatePairs = storedString.split(",");
+            var storedString   = result.combined[0].Prispunkt;
+            var priceDatePairs = storedString.split(", ");
             dokumentnr         = [];
 
             //priceDatePairs = priceDatePairs.slice(($scope.page - 1) * $scope.pageSize, $scope.pageSize * $scope.page);
