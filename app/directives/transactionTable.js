@@ -1,4 +1,4 @@
-kommunalApp.directive('transactionTable', function(){
+kommunalApp.directive('transactionTable', function($filter){
     return{
         restrict: 'EA',
         replace: false,
@@ -10,7 +10,6 @@ kommunalApp.directive('transactionTable', function(){
             var involvements = scope.transaction.Involvering.split(", ");
             var out = [];
 
-            console.log(involvements);
 
             if (involvements.length > 5){
                 var antKjopt = 0;
@@ -56,22 +55,82 @@ kommunalApp.directive('transactionTable', function(){
 
             scope.transaction.InvolverteKommuner = out;
 
-            var prispunkt = scope.transaction.Sammendrag.split(",");
-            var prispunktSanitized = [];
+            var prispunktSplit = scope.transaction.Historie.split(",");
+            var prispunkt = [];
             var scores;
             var score = 0;
             var count = 0;
             var decrease = 1;
             var increase = 0;
 
-            //Fjern punk der salgssum er null
-            angular.forEach(prispunkt, function(entry){
-                if (entry.split(":")[0] != 0){
-                    prispunktSanitized.push(entry);
-                }
+            
+
+            angular.forEach(prispunktSplit, function(entry){
+                var split = entry.split(":");
+                var currDateSplit = split[1].split("-");
+                //console.log(prispunkt)
+                var date = new Date(currDateSplit[0],currDateSplit[1]-1,currDateSplit[2]);
+                prispunkt.push({salgssum : split[0], dokumentdato : date, dokumentnr: split[2], parttype: split[3], deltagertype: split[4]});
             })
 
-            prispunkt = prispunktSanitized
+            var date_sort_asc = function (punkt1, punkt2) {
+                if (punkt1.dokumentdato > punkt2.dokumentdato) return 1;
+                if (punkt1.dokumentdato < punkt2.dokumentdato) return -1;
+                if (punkt1.parttype == "K") return 1;
+                if (punkt2.parttype == "K") return -1;
+                return 0;
+            };
+
+            prispunkt.sort(date_sort_asc);
+            console.log(prispunkt)
+
+
+
+            var kommuneIndex = [];
+            var kommunePart = [];
+
+            angular.forEach(prispunkt, function(entry) {
+                if (entry.deltagertype == "K" && entry.salgssum != 0){
+                    kommunePart.push(entry.parttype);
+                    kommuneIndex.push(prispunkt.indexOf(entry));
+                }
+            })
+            var diff;
+
+            if (kommuneIndex.length > 1){
+                var last = prispunkt[kommuneIndex[kommuneIndex.length-1]];
+                var first = prispunkt[kommuneIndex[kommuneIndex.length-2]];
+
+
+                 diff = +last.salgssum - +first.salgssum;
+
+                console.log(diff)
+                scope.transaction.kommuneInvolvering = $filter('priceFilter')(diff)
+
+            } else {
+                scope.transaction.kommuneInvolvering = "";
+            }
+
+
+
+            if (prispunkt.length-1 > kommuneIndex[kommuneIndex.length-1]){
+                var last = prispunkt[kommuneIndex[kommuneIndex.length-1]+2];
+                var first = prispunkt[kommuneIndex[kommuneIndex.length-1]];
+                console.log(first);
+                console.log(last)
+                
+
+                diff = +last.salgssum - +first.salgssum;
+                console.log("After: " + diff)
+            }
+
+
+
+
+            
+            
+
+            /*
 
             for (var i = 0; i < prispunkt.length-1; i++) {
                 score = 0;
@@ -93,12 +152,10 @@ kommunalApp.directive('transactionTable', function(){
                 console.log("Score: " + score + " PD: " + changePerDay + " for " + diffDays + " days from " + datestring + " to " +nextDateString);
 
                 if (changePerDay >= 1){
-                    console.log("INC");
                     if (changePerDay - 1 > increase){
                         increase = changePerDay - 1;
                     }
                 } else {
-                    console.log("DEC");
                     if (1- changePerDay < decrease){
                         decrease = 1- changePerDay;
                     }
@@ -138,18 +195,9 @@ kommunalApp.directive('transactionTable', function(){
                 decrease = ""
             }
             
-            var incColor = Math.round(255 * decimalInc);
-            var decColor = Math.round(255 * decimalDec);
+            */
 
-            if (incColor > 255){incColor = 255};
-            if (decColor > 255){decColor = 255};
-
-            scope.transaction.IncStyle = "rgba(0," + incColor +" ,0,1)";
-            scope.transaction.DecStyle = "rgba("+ decColor + ",0,0,1)";
-
-
-            scope.transaction.MaxIncrease = increase;
-            scope.transaction.MaxDecrease = decrease;
+    
 
 
         }
