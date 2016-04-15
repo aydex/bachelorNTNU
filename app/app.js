@@ -1,6 +1,6 @@
 google.load('visualization', '1', {packages:['corechart']});
 
-var kommunalApp = angular.module('kommunalApp', ['ngRoute']);
+var kommunalApp = angular.module('kommunalApp', ['ngRoute', 'ngCookies']);
 
 kommunalApp.config(function($routeProvider, $locationProvider) {
     $routeProvider
@@ -11,10 +11,27 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             controllers  : 'mainController'
         })*/
 
-
         .when('/search', {
             templateUrl : '/views/search.html',
             controller  : 'searchController',
+            //reloadOnSearch: false
+        })
+
+        .when('/search/:searchName/:type/:page/:pageSize/:fylkenr/:kommnr', {
+            templateUrl : '/views/search.html',
+            controller  : 'searchController',
+            //reloadOnSearch: false
+        })
+
+        .when('/unregistered/', {
+            templateUrl : '/views/error.html',
+            controller  : 'unregisteredController',
+            //reloadOnSearch: false
+        })
+
+        .when('/unregistered/:code', {
+            templateUrl : '/views/error.html',
+            controller  : 'unregisteredController',
             //reloadOnSearch: false
         })
 
@@ -49,45 +66,25 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
         $rootScope.$broadcast("documentClicked", angular.element(e.target));
     });
 
-    $rootScope.doQuery = function(type, id, page, pageSize) {
-        return $http.get("./api/test.php?" + type + "=" + id + "&page=" +
-            page + "&pageSize=" + pageSize)
-            .then(function (response) {
-                return {records: response.data.records, count: response.data.count};
-            });
-    }
-
-    $rootScope.doQuery = function(type, id, page, pageSize, order, orderBy, filterBy) {
-        console.log(filterBy);
-        return $http.get("./api/ask.php?" + type + "=" + id + "&page=" +
-            page + "&pageSize=" + pageSize + "&order=" + order + "&orderBy=" + orderBy + "&filterBy=" + filterBy)
+    $rootScope.doQuery = function(type, id, page, pageSize, order, orderBy, filterBy, fylkenr, kommnr) {
+        var request = "./api/ask.php?" + type + "=" + id + "&page=" +
+            page + "&pageSize=" + pageSize + "&order=" + order + "&orderBy=" + orderBy + "&filterBy=" + filterBy + "&fylkenr=" + fylkenr + "&kommnr=" + kommnr;
+        console.log(request);
+        return $http.get(request)
         .then(function (response) {
-                return {records: response.data.records, count: response.data.count,
-                    combined: response.data.combined};
-            });
+                if(response.data.records == "login_required") {
+                    $location.path("/unregistered");
+                    return false;
+                } else if(response.data.records == "wrong_subscription") {
+                    $location.path("/unregistered/wrong_subscription");
+                    return false;
+                } else {
+                    return {records: response.data.records, count: response.data.count, combined: response.data.combined};
+                }
+        });
     };
-
-    /*$rootScope.open = true;
-
-    $rootScope.clickMenu = function(){
-        $rootScope.open = !$rootScope.open;
-    };*/
-
 
     $rootScope.back = function(){
         $window.history.back();
-        //$location.path("/search/" + $scope.name + "/" + $scope.page + "/" + $scope.pageSize);
     };
-
-    /*$rootScope.openSearch = function(){
-                $rootScope.headerSearchOpen = !$rootScope.headerSearchOpen;
-                document.getElementById("headerInput").focus();
-            };
-
-        $rootScope.searchPerson = function(form) {
-            $location.path("/search/" + $rootScope.headerInput + "/1/25");
-            $rootScope.headerInput = "";
-            $rootScope.headerSearchOpen = false;
-        }
-*/
 });

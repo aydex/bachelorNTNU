@@ -11,15 +11,18 @@
         <link rel="stylesheet" href="/css/main.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-cookies.min.js"></script>
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
         <!-- Modules -->
         <script src="/app/app.js"></script>
+
         <!-- Controllers -->
         <script src="/app/controllers/searchController.js"></script>
         <script src="/app/controllers/transactionsPersonController.js"></script>
         <script src="/app/controllers/transactionsPropertyController.js"></script>
         <script src="/app/controllers/mapController.js"></script>
+        <script src="/app/controllers/unregisteredController.js"></script>
 
         <!-- Directives -->
         <script src="/app/directives/kommunevaapen.js"></script>
@@ -27,16 +30,17 @@
         <script src="/app/directives/transactionPropertyTable.js"></script>
         <script src="/app/directives/transactionTable.js"></script>
         <script src="/app/directives/svgMap.js"></script>
-        <script src="/app/directives/dropdown.js"></script>
 
         <!-- Services -->
         <script src="/app/services/transaction.js"></script>
+
         <!-- Filters -->
         <script src="/app/filters/capitalFirstLettersFilter.js"></script>
         <script src="/app/filters/deltagerTypeFilter.js"></script>
         <script src="/app/filters/nameFilter.js"></script>
         <script src="/app/filters/priceFilter.js"></script>
         <script src="/app/filters/yearFilter.js"></script>
+        <script src="/app/filters/capitalizeFilter.js"></script>
 
 
 
@@ -50,9 +54,11 @@
             <a href="/"><img src="images/logo.svg" id="logo"></a>
 
             <div id="navigationHeader">
-                <a href="http://kommunal-rapport.no/user/ramid_login" class="login">Logg Inn</a>
-                <a href="" id="separator">|</a>
-                <a href="http://logginn.kommunal-rapport.no/?origin_uri=/" class="login">Abonner</a>
+                <a data-ng-href="api/login.php" target="_self" class="login" data-ng-show="!loggedIn">Logg Inn</a>
+                <a class="login" data-ng-show="loggedIn" data-ng-bind="username" href="http://komrap.dev-id.ramsalt.com/user"></a>
+                <span id="separator" class="login">|</span>
+                <a href="http://logginn.kommunal-rapport.no/?origin_uri=/" class="login" data-ng-show="!loggedIn">Abonner</a>
+                <a href="api/logout.php" data-ng-show="loggedIn" class="login" target="_self">Logg Ut</a>
             </div>
 
         </div>

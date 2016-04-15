@@ -13,7 +13,6 @@ kommunalApp.directive('transactionPropertyTable', function(transaction){
                     entry.kommune = false;
                     entry.ukjent = false;
                     entry.searchurl = "transactions/deltager/" + encodeURI(entry.navn) +"/" + entry.deltagerid +"/" + entry.deltagertype
-                    console.log(entry.searchurl)
                     if (entry.deltagertype == "F") {
                         //entry.navn = transaction.setLastnameAfterFirstname(entry.navn);
                         entry.navn = transaction.abbreviateMiddleNames(entry.navn);

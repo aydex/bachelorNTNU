@@ -5,7 +5,7 @@ kommunalApp.directive('kommunevaapen', function(){
         scope: {
             id: '='
         },
-        template: '<img class="kommunevaapen" src="images/kommunevaapen/{{id}}.svg.png">',
+        template: '<img class="kommunevaapen" ng-src="images/kommunevaapen/{{id}}.svg.png">',
         link: function(scope, element, attr) {
         }
     }
