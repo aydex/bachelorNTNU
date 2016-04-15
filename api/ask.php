@@ -5,13 +5,12 @@ header("Content-Type: application/json; charset=UTF-8");
 
 require_once("config.php");
 require_once("query.php");
-require_once('../vendor/autoload.php');
 session_start();
 
 use bachelor\Config;
 use bachelor\Query;
 
-if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1) {
+if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1 && isset($_SESSION['subscription_id']) && $_SESSION['subscription_id'] != -1) {
 
     $config   = new Config();
     $query    = new Query($config->db);
@@ -46,7 +45,6 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1) {
         $kommnr     = (int)$_REQUEST['kommnr'];
     }
 
-
     if (isset($_REQUEST['name']) && isset($_REQUEST['orderBy'])) {
         $name = htmlspecialchars($_REQUEST['name']);
     
@@ -69,7 +67,11 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1) {
         echo $query->selectMunicipalityFromId($mId);
     }
 } else {
-    echo json_encode(array("records" => "login_required"));
+    /*if(isset($_SESSION["subscription_id"]) && $_SESSION["subscription_id"] != 6) {
+        echo json_encode(array("records" => "wrong_subscription"));
+    } else {*/
+        echo json_encode(array("records" => "login_required"));
+    //}
 }
 
 

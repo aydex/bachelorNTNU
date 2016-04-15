@@ -33,6 +33,7 @@
 
         <!-- Services -->
         <script src="/app/services/transaction.js"></script>
+
         <!-- Filters -->
         <script src="/app/filters/capitalFirstLettersFilter.js"></script>
         <script src="/app/filters/deltagerTypeFilter.js"></script>
@@ -54,7 +55,7 @@
 
             <div id="navigationHeader">
                 <a data-ng-href="api/login.php" target="_self" class="login" data-ng-show="!loggedIn">Logg Inn</a>
-                <span class="login" data-ng-show="loggedIn" data-ng-bind="username"></span>
+                <a class="login" data-ng-show="loggedIn" data-ng-bind="username" href="http://komrap.dev-id.ramsalt.com/user"></a>
                 <span id="separator" class="login">|</span>
                 <a href="http://logginn.kommunal-rapport.no/?origin_uri=/" class="login" data-ng-show="!loggedIn">Abonner</a>
                 <a href="api/logout.php" data-ng-show="loggedIn" class="login" target="_self">Logg Ut</a>

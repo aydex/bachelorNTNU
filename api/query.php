@@ -9,6 +9,7 @@ class Query
     private $db;
     private $selectFromOrder = array('DESC', 'ASC');
     private $filterByArray   = array('F', 'K', 'L', 'S');
+    private $returnArray     = array('login_required', 'wrong_subscription');
 
     public function __construct(PDO $db)
     {
@@ -17,7 +18,8 @@ class Query
 
     private function authenticate()
     {
-        if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1) return true;
+        if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1 && isset($_SESSION['subscription_id']) && $_SESSION['subscription_id'] != -1) return true;
+        //else if(isset($_SESSION['subscription_id']) && $_SESSION["subscription_id"] != 6) return 1;
         else false;
     }
 
