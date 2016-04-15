@@ -49,6 +49,8 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
         var seller = "";
         var buyer  = "";
 
+        console.log(results);
+
         for(var x in results) {
             involvement = results[x].Involvering.split(",");
             for(var y in involvement) {
