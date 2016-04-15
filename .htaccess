@@ -1,5 +1,8 @@
 Options +FollowSymLinks
 RewriteEngine On
 DirectoryIndex index.html
+
+#RewriteRule ^(api/login.php)($|/) - [L]
+
 RewriteCond %{REQUEST_URI} ^(?!(.*\/(api|css|views|app|images|templates)\/.*))(.*)$
 RewriteRule ^(.*)$ index.html [L]

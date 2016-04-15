@@ -1,4 +1,10 @@
-kommunalApp.controller('searchController', function($scope, $rootScope, $timeout, $location, $routeParams,$filter) {
+
+kommunalApp.controller('searchController', function($scope, $rootScope, $timeout, $location, $routeParams, $filter, $cookies) {
+
+    if($cookies.get("name")) {
+        $rootScope.loggedIn = true;
+        $rootScope.username = $cookies.get("name").replace("+", " ");
+    }
 
     var _timeout;
     var queryPromis;
@@ -13,6 +19,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     $scope.sortReady      = false;
     $scope.advancedShow   = false;
     $scope.lastSearched   = "";
+    $scope.error          = false;
     $scope.search         = {
         nameSearch: "",
         pageSize  : 25
@@ -26,7 +33,6 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             label:"Østfold", 
             value : 1,     
             kommuner: [{"kommunenr":101,"label":"halden"},{"kommunenr":104,"label":"moss"},{"kommunenr":105,"label":"sarpsborg"},{"kommunenr":106,"label":"fredrikstad"},{"kommunenr":111,"label":"hvaler"},{"kommunenr":118,"label":"aremark"},{"kommunenr":119,"label":"marker"},{"kommunenr":121,"label":"rømskog"},{"kommunenr":122,"label":"trøgstad"},{"kommunenr":123,"label":"spydeberg"},{"kommunenr":124,"label":"askim"},{"kommunenr":125,"label":"eidsberg"},{"kommunenr":127,"label":"skiptvet"},{"kommunenr":128,"label":"rakkestad"},{"kommunenr":135,"label":"råde"},{"kommunenr":136,"label":"rygge"},{"kommunenr":137,"label":"våler"},{"kommunenr":138,"label":"hobøl"}]
-
         },
         {
             label : "Akershus",
@@ -139,23 +145,24 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             $scope.page, $scope.search.pageSize, $scope.order, $scope.orderBy, $scope.currentType.value, $scope.selectedFylkenr, $scope.selectedKommunenr)
         queryPromis.then(function(result){
 
-            angular.forEach(result.count[0], function(value) {
-                $scope.count = value;
-                //$scope.count = Math.ceil($scope.page * $scope.search.pageSize);
-            });
+            if(result) {
+                angular.forEach(result.count[0], function(value) {
+                    $scope.count = value;
+                    //$scope.count = Math.ceil($scope.page * $scope.search.pageSize);
+                });
 
-            $scope.lastSearched   = $scope.search.nameSearch;
-            $scope.names          = result.records;
-            $scope.showTable      = $scope.names.length > 0;
-            $scope.noResultShow   = !!($scope.names.length == 0 && $scope.search.nameSearch.length > 0);
-            $scope.showNavigation = true;
-            $scope.more_results   = $scope.count > ($scope.page * $scope.search.pageSize);
-            $scope.searched       = true;
-            $scope.hideNavigation = !(!$scope.more_results && $scope.page == 1);
-            $scope.totalPages     = Math.ceil($scope.count / $scope.search.pageSize);
-            $scope.pageDisplay    = "Side: " + $scope.page + " av " + $scope.totalPages;
-            $scope.sortReady      = true;
-
+                $scope.lastSearched   = $scope.search.nameSearch;
+                $scope.names          = result.records;
+                $scope.showTable      = $scope.names.length > 0;
+                $scope.noResultShow   = !!($scope.names.length == 0 && $scope.search.nameSearch.length > 0);
+                $scope.showNavigation = true;
+                $scope.more_results   = $scope.count > ($scope.page * $scope.search.pageSize);
+                $scope.searched       = true;
+                $scope.hideNavigation = !(!$scope.more_results && $scope.page == 1);
+                $scope.totalPages     = Math.ceil($scope.count / $scope.search.pageSize);
+                $scope.pageDisplay    = "Side: " + $scope.page + " av " + $scope.totalPages;
+                $scope.sortReady      = true;
+            }
         });
     };
 
@@ -267,6 +274,10 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         }
         $scope.queryPerson();
         $scope.setSearchText();
+    }
+
+    if($routeParams.error) {
+        $scope.error = true;
     }
 
     $scope.navigate = function(way) {

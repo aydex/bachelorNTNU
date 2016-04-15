@@ -15,7 +15,18 @@ class Query
         $this->db = $db;
     }
 
+    private function authenticate()
+    {
+        if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1) return true;
+        else false;
+    }
+
      public function selectPersonPaged($name, $page=1, $pageSize=10, $order="ASC", $orderBy, $filterBy, $fylkenr, $kommnr) {
+
+        if(!$this->authenticate()) {
+            return json_encode(array("records" => "login_required"));
+            exit;
+        }
 
         $filterBy = $filterBy - 1;
         if($filterBy > -1){
@@ -67,19 +78,24 @@ class Query
     }
 
     public function selectTransaction($id, $page=1, $pageSize=10, $order, $orderBy) {
-        $selectFromArray = array('Kommunenavn', 'Eiendomsid', 'ForstRegistrert', 'SistRegistrert', 'AntallTransaksjoner', 'Involvering', 'InvolverteKommuner', 'Sammendrag', 'null');
+        if(!$this->authenticate()) {
+            return json_encode(array("records" => "login_required"));
+            exit;
+        }
+        
+        $selectFromArray = array('Kommunenavn', 'Eiendomsid', 'ForstRegistrert', 'SistRegistrert', 'AntallTransaksjoner', 'Involvering', 'InvolverteKommuner', 'Historie', 'null');
+
         $keyOrderBy      = array_search($orderBy, $selectFromArray);
         $keyOrder        = array_search($order, $this->selectFromOrder);
 
-        $query = "SELECT SQL_CALC_FOUND_ROWS Kommuner.Kommunenavn, E.Kommunenr, Eiendomsid, ForstRegistrert,
+        $query = "SELECT SQL_CALC_FOUND_ROWS  Eiendomsid, ForstRegistrert,
                   SistRegistrert, AntallTransaksjoner,
                   GROUP_CONCAT(DISTINCT CONCAT_WS(':', Dokumentdato, PartType) SEPARATOR ', ') AS Involvering,
-                  GROUP_CONCAT(DISTINCT CONCAT_WS(':', EI.Kommunenr, K.Kommunenavn) SEPARATOR ', ') AS InvolverteKommuner, Sammendrag
+                  GROUP_CONCAT(DISTINCT CONCAT_WS(':', EI.Kommunenr, K.Kommunenavn) SEPARATOR ', ') AS InvolverteKommuner, Historie
                   FROM Omsetninger
                   NATURAL JOIN Dokumenter
                   NATURAL JOIN Eiendomshistorie
                   NATURAL JOIN Eiendommer AS E
-                  NATURAL JOIN Kommuner
                   LEFT JOIN EiendomInvolvertKommune AS EI USING(Eiendomsid)
                   JOIN Kommuner AS K ON EI.Kommunenr = K.Kommunenr
                   WHERE Deltagerid= :query_target
@@ -104,6 +120,10 @@ class Query
     }
 
     public function selectTransactionProperty($id, $page=1, $pageSize=10, $order, $orderBy) {
+        if(!$this->authenticate()) {
+            return json_encode(array("records" => "login_required"));
+            exit;
+        }
 
         $selectFromArray = array('Dokumentdato', 'OmsetningsTypenavn', 'Salgssum', 'Dokumentnr', 'Deltagere', 'null');
         $keyOrderBy      = array_search($orderBy, $selectFromArray);
@@ -120,7 +140,8 @@ class Query
                         GROUP BY InterntDokumentnr
                         ORDER BY " . $selectFromArray[$keyOrderBy] . " " . $this->selectFromOrder[$keyOrder];
 
-        $query_2 = "SELECT Sammendrag 
+
+        $query_2 = "SELECT Prispunkt 
                     FROM Eiendomshistorie 
                     WHERE Eiendomsid= :query_target"; 
 
@@ -147,6 +168,11 @@ class Query
     }
 
     public function countRows() {
+        if(!$this->authenticate()) {
+            return json_encode(array("records" => "login_required"));
+            exit;
+        }
+        
         $query = "SELECT FOUND_ROWS()";
 
         $stmt = $this->db->prepare($query);
@@ -158,6 +184,11 @@ class Query
 
     public function selectMunicipalityFromId($mId)
     {
+        if(!$this->authenticate()) {
+            return json_encode(array("records" => "login_required"));
+            exit;
+        }
+        
         $query = "SELECT * 
                   FROM Kommuner 
                   WHERE Kommunenr=:mId";
