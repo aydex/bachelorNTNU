@@ -6,7 +6,7 @@ session_start();
 $provider = new \ChrisHemmings\OAuth2\Client\Provider\Drupal([
   'clientId'          => 'bachelor.dev.id.ramsalt.com',
   'clientSecret'      => 'sKHJGkb348bue3BKH3b3784',
-  'redirectUri'       => 'http://bachelor.dev/api/login.php',
+  'redirectUri'       => 'http://' . $_SERVER["HTTP_HOST"] . '/api/login.php',
   'baseUrl'           => 'http://komrap.dev-id.ramsalt.com/',
 ]);
 
