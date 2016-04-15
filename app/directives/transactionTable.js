@@ -124,12 +124,6 @@ kommunalApp.directive('transactionTable', function($filter){
                 console.log("After: " + diff)
             }
 
-
-
-
-            
-            
-
             /*
 
             for (var i = 0; i < prispunkt.length-1; i++) {
