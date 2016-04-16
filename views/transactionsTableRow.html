@@ -1,18 +1,15 @@
 <tr>
-	<td id="propertyID" data-ng-bind="transaction.Eiendomsid"></td>
-	<td id="firstDateID" data-ng-bind="transaction.ForstRegistrert | yearFilter"></td>
-	<td id="lastDateID" data-ng-bind="transaction.SistRegistrert | yearFilter"></td>
-	<td id="numberTransactionID" data-ng-bind="transaction.AntallTransaksjoner"></td>
-	<td id="involvementID" data-ng-bind="transaction.involvements"></td>
-	<td id="etterSalgColumn" >
-		<span data-ng-bind="transaction.etterSalg"></span>
-		<span data-ng-if="transaction.etterSalg == undefined || transaction.etterSalg == ''" class="manglerData">MANGLER DATA</span>
-	</td>
 	<td id="involvedMunicipID" class="leftalign">
     	<span  data-ng-repeat="kommune in transaction.InvolverteKommuner track by $index">
     		<kommunevaapen  id="kommune.kommunenr"></kommunevaapen>
     		<span  data-ng-bind="kommune.kommunenavn | capitalFirstLettersFilter"></span>
     	</span>
     </td>
+    <td id="involvementID" data-ng-bind="transaction.involvements"></td>
+	<td id="etterSalgColumn" >
+		<span data-ng-bind="transaction.etterSalg"></span>
+		<span data-ng-if="transaction.etterSalg == undefined || transaction.etterSalg == ''" class="manglerData">MANGLER DATA</span>
+	</td>
+	
 
 </tr>
