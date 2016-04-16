@@ -115,10 +115,7 @@ kommunalApp.directive('transactionTable', function($filter){
                 return 0;
             };
 
-            function daydiff(first, second) {
-                var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
-                var dager = Math.round(Math.abs((first.getTime() - second.getTime())/(oneDay)));
-
+            function niceTime(dager){
                 if (dager > 365){
                     var aar = Math.round(dager/365);
                     return aar + " år";
@@ -129,6 +126,13 @@ kommunalApp.directive('transactionTable', function($filter){
                     return mnd + " mnd";
                 }
                 return dager + " dager";
+            }
+
+            function daydiff(first, second) {
+                var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+                return Math.round(Math.abs((first.getTime() - second.getTime())/(oneDay)));
+
+                
             }
 
             function niceNumber(number){
@@ -143,6 +147,11 @@ kommunalApp.directive('transactionTable', function($filter){
                     return Math.round(number/1000) + " k"
                 }
                 return $filter('priceFilter')(String(number));;
+            }
+
+            function changePerYear(first,second,days){
+                var changePerDay = Math.pow((first/second), 1/days);
+                return (changePerDay-1) *100 *365;
             }
 
             keys.sort(date_sort_asc);
@@ -167,6 +176,7 @@ kommunalApp.directive('transactionTable', function($filter){
             }
     
             var etterSalg ="";
+            var changePerDay ="";
 
             if ((lastSale != undefined)&&(nextSale != undefined)){
 
@@ -181,8 +191,13 @@ kommunalApp.directive('transactionTable', function($filter){
                     }
     
                     etterSalg = niceNumber(etterSalg);
-                    var tid = daydiff(lastSale.dokumentdato, nextSale.dokumentdato);
-                    etterSalg = prefix + etterSalg + " på " + tid ;
+                    var diffDays = daydiff(lastSale.dokumentdato, nextSale.dokumentdato);
+                    var changePercent = changePerYear(lastSalePrice,nextSalePrice,diffDays)
+
+                    
+                    etterSalg = prefix + etterSalg + " på " + niceTime(diffDays) + " (" + changePercent +")";
+
+
                 }
             } 
 
