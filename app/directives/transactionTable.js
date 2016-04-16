@@ -150,8 +150,22 @@ kommunalApp.directive('transactionTable', function($filter){
             }
 
             function changePerYear(first,second,days){
-                var changePerDay = Math.pow((first/second), 1/days);
-                return (changePerDay-1) *100 *365;
+                var perYear;
+                if (first < second){
+                    perYear = Math.pow((second/first), 1/days);
+                } else {
+                    perYear = Math.pow((first/second), 1/days);
+                }
+
+                perYear =((perYear-1)*365*100);
+                perYear = Math.round(perYear * 100) / 100;
+                
+
+                console.log(perYear)
+                console.log(first + " -> " + second + "(" +days +")");
+
+   
+                return perYear;
             }
 
             keys.sort(date_sort_asc);
@@ -189,13 +203,30 @@ kommunalApp.directive('transactionTable', function($filter){
                     if (etterSalg > 0){
                         prefix = "+"
                     }
-    
-                    etterSalg = niceNumber(etterSalg);
+
                     var diffDays = daydiff(lastSale.dokumentdato, nextSale.dokumentdato);
                     var changePercent = changePerYear(lastSalePrice,nextSalePrice,diffDays)
+    
+                    var changeClass ="";
 
+                    console.log(etterSalg)
+
+                    if (etterSalg > 0){
+                        if (changePercent > 60){
+                            changeClass = "posChange"
+                        }
+                    } else {
+                        if (changePercent > 60){
+                            changeClass = "negChange"
+                        }
+                    }
                     
-                    etterSalg = prefix + etterSalg + " på " + niceTime(diffDays) + " (" + changePercent +")";
+
+                    etterSalg = niceNumber(etterSalg);
+                    
+                    etterSalg = prefix + etterSalg + " på " + niceTime(diffDays) ;
+                    scope.transaction.bigincrease  = changePercent;
+                    scope.transaction.changeClass = changeClass;
 
 
                 }

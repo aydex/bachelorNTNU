@@ -410,7 +410,17 @@ th{
 #etterSalgColumn{
 	width: 20%;
 }
+/*Price change colors for transactions*/
 
+
+
+.posChange{
+	color: #49A34B;
+}
+
+.negChange{
+	color: #F25244;
+}
 /*Width on property site*/
 #dateID{
 	width: 10%;

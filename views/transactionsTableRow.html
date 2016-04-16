@@ -7,7 +7,7 @@
     </td>
     <td id="involvementID" data-ng-bind="transaction.involvements"></td>
 	<td id="etterSalgColumn" >
-		<span data-ng-bind="transaction.etterSalg"></span>
+		<span data-ng-bind="transaction.etterSalg" data-ng-class="transaction.changeClass"></span>
 		<span data-ng-if="transaction.etterSalg == undefined || transaction.etterSalg == ''" class="manglerData">MANGLER DATA</span>
 	</td>
 </tr>
