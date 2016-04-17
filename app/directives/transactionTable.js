@@ -7,45 +7,6 @@ kommunalApp.directive('transactionTable', function($filter){
         },
         templateUrl: 'views/transactionsTableRow.html',
         link: function(scope, element, attr) {
-            var involvements = scope.transaction.Involvering.split(", ");
-            var out = [];
-
-            /*
-            if (involvements.length > 5){
-                var antKjopt = 0;
-                var antSolgt = 0;
-                angular.forEach(involvements, function(entry){
-                    var type = entry.split(":")[1];
-                    switch(type){
-                        case "K":
-                            antKjopt = antKjopt +1;
-                            break;
-                        case "S":
-                            antSolgt = antSolgt +1;
-                            break;
-                    }
-                })
-
-                scope.transaction.involvements =  "Kjøper " + antKjopt +" ganger, selger " + antSolgt +" ganger";
-            } else {
-                angular.forEach(involvements, function(entry){
-                    var year = entry.split(":")[0].split("-")[0];
-                    var type = entry.split(":")[1];
-                    if (year == "0001"){
-                        year = "ukjent år";
-                    }
-
-                    if (type == "K"){
-                        type = "Kjøpt";
-                    } else if (type == "S"){
-                        type = "Solgt";
-                    }
-                    out.push(type + " "+year);
-                });
-                
-            }
-            */
-
             var involverteKommuner = scope.transaction.InvolverteKommuner.split(", ");
             var out = [];
             angular.forEach(involverteKommuner, function(entry){
@@ -53,10 +14,6 @@ kommunalApp.directive('transactionTable', function($filter){
                 var kommunenavn = entry.split(":")[1];
                 out.push({kommunenr: kommunenr, kommunenavn: kommunenavn});
             })
-
-            
-
-
 
             scope.transaction.InvolverteKommuner = out;
             var involveringer = [];
@@ -80,7 +37,6 @@ kommunalApp.directive('transactionTable', function($filter){
                 }
             }
 
-
             var prispunktSplit = scope.transaction.Historie.split(",");
 
             angular.forEach(prispunktSplit, function(entry){
@@ -88,8 +44,8 @@ kommunalApp.directive('transactionTable', function($filter){
                 var currDateSplit = split[1].split("-");
                 var date = new Date(currDateSplit[0], currDateSplit[1]-1, currDateSplit[2]);
                 var omsetning = new Omsetning(split[0], date, split[2], split[3], split[4]);
-                var currentDate = omsetninger[omsetning.dokumentdato];
 
+                var currentDate = omsetninger[omsetning.dokumentdato];
                 if (currentDate == undefined){
                     omsetninger[omsetning.dokumentdato] = {salgssum: 0, dokumentdato: null, kjopere:[], selgere:[]};
                     keys.push(omsetning.dokumentdato);
@@ -120,7 +76,6 @@ kommunalApp.directive('transactionTable', function($filter){
                     var aar = Math.round(dager/365);
                     return aar + " år";
                 }
-
                 if (dager > 30){
                     var mnd = Math.round(dager/30);
                     return mnd + " mnd";
@@ -131,8 +86,6 @@ kommunalApp.directive('transactionTable', function($filter){
             function daydiff(first, second) {
                 var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
                 return Math.round(Math.abs((first.getTime() - second.getTime())/(oneDay)));
-
-                
             }
 
             function niceNumber(number){
@@ -156,15 +109,8 @@ kommunalApp.directive('transactionTable', function($filter){
                 } else {
                     perYear = Math.pow((first/second), 1/days);
                 }
-
                 perYear =((perYear-1)*365*100);
                 perYear = Math.round(perYear * 100) / 100;
-                
-
-                console.log(perYear)
-                console.log(first + " -> " + second + "(" +days +")");
-
-   
                 return perYear;
             }
 
@@ -207,32 +153,22 @@ kommunalApp.directive('transactionTable', function($filter){
                     var diffDays = daydiff(lastSale.dokumentdato, nextSale.dokumentdato);
                     var changePercent = changePerYear(lastSalePrice,nextSalePrice,diffDays)
     
-                    var changeClass ="";
 
-                    console.log(etterSalg)
-
+                    var flagClass ="";
                     if (etterSalg > 0){
                         if (changePercent > 60){
-                            changeClass = "posChange"
+                            flagClass = "posChange"
                         }
                     } else {
                         if (changePercent > 60){
-                            changeClass = "negChange"
+                            flagClass = "negChange"
                         }
                     }
-                    
-
-                    etterSalg = niceNumber(etterSalg);
-                    
-                    etterSalg = prefix + etterSalg + " på " + niceTime(diffDays) ;
+                    etterSalg = prefix + niceNumber(etterSalg) + " etter " + niceTime(diffDays) ;
                     scope.transaction.bigincrease  = changePercent;
-                    scope.transaction.changeClass = changeClass;
-
-
+                    scope.transaction.flagClass = flagClass;
                 }
             } 
-
-       
 
             scope.transaction.etterSalg = etterSalg;
             scope.transaction.involvements = involveringer.join(", ");
