@@ -581,8 +581,9 @@ div .container{
 }
 
 div .container button {
-    position: absolute;
-    left: 1%;
+    position: fixed;
+    left: 5px;
+    top: 75px;
 }
 
 
