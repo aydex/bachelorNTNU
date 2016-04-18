@@ -260,7 +260,7 @@ table{
 
 #transactionBumpDown{
 	display: block;
-	margin-top: 270px;
+	margin-top: 265px;
 }
 
 #propertyBumpDown{
@@ -363,7 +363,7 @@ th{
 }
 
 .manglerData{
-	color: #d3d3d3;
+	color: #565656;
 	font-size: 10px;
 }
 

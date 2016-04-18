@@ -72,7 +72,6 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
         console.log(request);
         return $http.get(request)
         .then(function (response) {
-            console.log(response);
                 if(response.data.records == "login_required") {
                     $location.path("/unregistered");
                     return false;
