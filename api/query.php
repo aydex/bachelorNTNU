@@ -103,7 +103,6 @@ class Query
                   JOIN Kommuner AS K ON EI.Kommunenr = K.Kommunenr
                   WHERE Deltagerid= :query_target
                   GROUP BY Eiendomsid
-                  HAVING AntallTransaksjoner > 2
                   ORDER BY " . $selectFromArray[$keyOrderBy] . " " . $this->selectFromOrder[$keyOrder] . "
                   LIMIT :offset, :pageSize";
 
