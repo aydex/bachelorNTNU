@@ -30,6 +30,7 @@ class Query
             exit;
         }
 
+
         $filterBy = $filterBy - 1;
         if($filterBy > -1){
             $type = (string)$this->filterByArray[$filterBy];

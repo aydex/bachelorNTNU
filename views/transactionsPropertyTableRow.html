@@ -1,10 +1,7 @@
 <tr>
-	<td id="dateID" data-ng-bind="transaction.Dokumentdato"></td>
-	<td id="typeID" class="leftalign" data-ng-bind="transaction.OmsetningsTypenavn"></td>
-	<td id="priceID" class="rightalign" data-ng-bind="transaction.Salgssum | priceFilter"></td>
-	<td id="docnrID" data-ng-bind="transaction.Dokumentnr"></td>
-	<td id="saleID" >
-		<span ng-repeat="deltager in transaction.seller">
+		<td id="dateID" class="leftalign" data-ng-bind="transaction.Dokumentdato | dateFilter"></td>
+		<td id="saleID" >
+		<span data-ng-repeat="deltager in transaction.seller">
 			<span ng-if="deltager.ukjent">Ukjent</span>
 			<kommunevaapen id="deltager.kommunenr" data-ng-if="deltager.kommune"></kommunevaapen>
 			<a class="transactionurl" data-ng-href="{{deltager.searchurl}}" data-ng-bind="deltager.navn"></a>
@@ -29,4 +26,9 @@
 			<br>
 		</span>
 	</td>
+	
+	<td id="typeID" class="leftalign" data-ng-bind="transaction.OmsetningsTypenavn"></td>
+	<td id="priceID" class="rightalign" data-ng-bind="transaction.Salgssum | priceFilter"></td>
+	
+
 </tr>
