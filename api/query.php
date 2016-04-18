@@ -30,6 +30,7 @@ class Query
             exit;
         }
 
+
         $filterBy = $filterBy - 1;
         if($filterBy > -1){
             $type = (string)$this->filterByArray[$filterBy];
@@ -102,6 +103,7 @@ class Query
                   JOIN Kommuner AS K ON EI.Kommunenr = K.Kommunenr
                   WHERE Deltagerid= :query_target
                   GROUP BY Eiendomsid
+                  HAVING AntallTransaksjoner > 2
                   ORDER BY " . $selectFromArray[$keyOrderBy] . " " . $this->selectFromOrder[$keyOrder] . "
                   LIMIT :offset, :pageSize";
 

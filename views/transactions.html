@@ -20,43 +20,26 @@
 <div id="tableTransactionHeader" class="tableWidth">
 <table data-ng-show="showTable">
         <tr>
-            <th id="propertyID" data-ng-click="orderByMe('Eiendomsid')" data-ng-class="{'disableSort' : !sortReady}">
-                Eiendomsid
-                <span data-ng-show="orderBy == 'Eiendomsid' && !reverse" class="fa fa-caret-up"></span>
-                <span data-ng-show="orderBy == 'Eiendomsid' && reverse" class="fa fa-caret-down"></span>
-            </th>
-    
-            <th id="firstDateID" data-ng-click="orderByMe('ForstRegistrert')" data-ng-class="{'disableSort' : !sortReady}">
-                Først Omsatt
-                <span data-ng-show="orderBy == 'ForstRegistrert' && !reverse" class="fa fa-caret-up"></span>
-                <span data-ng-show="orderBy == 'ForstRegistrert' && reverse" class="fa fa-caret-down"></span>
-            </th>
-            <th id="lastDateID" data-ng-click="orderByMe('SistRegistrert')" data-ng-class="{'disableSort' : !sortReady}">
-                Sist Omsatt
-                <span data-ng-show="orderBy == 'SistRegistrert' && !reverse" class="fa fa-caret-up"></span>
-                <span data-ng-show="orderBy == 'SistRegistrert' && reverse" class="fa fa-caret-down"></span>
-            </th>
-            <th id="numberTransactionID" data-ng-click="orderByMe('AntallTransaksjoner')" data-ng-class="{'disableSort' : !sortReady}">
-                Antall Transaksjoner
-                <span data-ng-show="orderBy == 'AntallTransaksjoner' && !reverse" class="fa fa-caret-up"></span>
-                <span data-ng-show="orderBy == 'AntallTransaksjoner' && reverse" class="fa fa-caret-down"></span>
+            <th id="involvedMunicipID" data-ng-click="orderByMe('InvolvertKommune')" data-ng-class="{'disableSort' : !sortReady}">
+
+                Kommuner
+                <span data-ng-show="orderBy == 'InvolvertKommune' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'InvolvertKommune' && reverse" class="fa fa-caret-down"></span>
             </th>
             <th id="involvementID" data-ng-click="orderByMe('Involvering')" data-ng-class="{'disableSort' : !sortReady}">
-                Involvering
+                Kommunens Involvering
                 <span data-ng-show="orderBy == 'Involvering' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Involvering' && reverse" class="fa fa-caret-down"></span>
             </th>
-              <th id="flaggingID" data-ng-click="orderByMe('InvolvertKommune')" data-ng-class="{'disableSort' : !sortReady}">
-                Størst Årlig Prisendring
+        
+
+    
+            <th id="etterSalgColumn" data-ng-click="orderByMe('InvolvertKommune')" data-ng-class="{'disableSort' : !sortReady}">
+                Endring etter salg
                 <span data-ng-show="orderBy == 'InvolvertKommune' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'InvolvertKommune' && reverse" class="fa fa-caret-down"></span>
             </th>
-                <th id="involvedMunicipID" data-ng-click="orderByMe('InvolvertKommune')" data-ng-class="{'disableSort' : !sortReady}">
-                
-                Involverte Kommuner
-                <span data-ng-show="orderBy == 'InvolvertKommune' && !reverse" class="fa fa-caret-up"></span>
-                <span data-ng-show="orderBy == 'InvolvertKommune' && reverse" class="fa fa-caret-down"></span>
-            </th>
+
         </tr>
     </table>
 </div>
