@@ -244,8 +244,10 @@ table{
 	display: block;
 	width: 100%;
 	top: 0;
-	left: 50%;
-	margin-left: -50%;
+	left: 0;
+	right:0px;
+	margin-left: auto;
+	margin-right:auto;
 	margin-top:70px;
 	z-index: 100000;
 	height: 320px;
@@ -260,7 +262,7 @@ table{
 
 #transactionBumpDown{
 	display: block;
-	margin-top: 270px;
+	margin-top: 265px;
 }
 
 #propertyBumpDown{
@@ -268,10 +270,9 @@ table{
 }
 
 
-#tableHeader{
+#tableHeader, #tableTransactionHeader{
 	position: fixed;
 	z-index: 100000000;
-	top: 315px;
 	width: 94%;
 	/*left: 51.52%;
 	margin-left: -48.48%;*/
@@ -282,14 +283,12 @@ table{
 	min-width: 50%;
 }
 
+#tableHeader{
+	top:315px;
+}
+
 #tableTransactionHeader{
-	position: fixed;
-	z-index: 1000000;
 	top: 230px;
-	width: 94%;
-	left: 51.52%;
-	margin-left: -48.48%;
-	min-width: 50%;
 }
 
 #tablePropertyHeader{
@@ -363,7 +362,7 @@ th{
 }
 
 .manglerData{
-	color: #d3d3d3;
+	color: #565656;
 	font-size: 10px;
 }
 
