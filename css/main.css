@@ -563,9 +563,13 @@ td:nth-child(even){
 div .container{
 	width: 42%;
 	height: auto;
-	z-index: 90000000000000;
+	z-index: 9000000;
 	margin-top: -105px;
 	position:relative;
+
+}
+
+.tooltip {
 
 }
 
@@ -601,6 +605,7 @@ svg .title {
 	font-family:Calibri;
 	fill:#000000;
 	pointer-events: none;
+    display: none;
 
 }
 

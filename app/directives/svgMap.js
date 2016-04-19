@@ -2,13 +2,13 @@
 kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', function ($compile, $http, $templateCache) {
     return {
         restrict: 'EA',
-        controller: function($scope, $route, $location) {
+        controller: function($scope, $route, $location, transaction) {
             this.updateMap = function (url) {
                 $scope.county = url;
-                console.log($scope.regionId);
-                if(url == "oslo") {
-                    var name_encoded = encodeURIComponent("oslo");
-                    $location.path("/search/" + name_encoded + "/0/1/25/0/0");
+                if(url == "Oslo") {
+                    var name_encoded = encodeURIComponent("Oslo");
+                    $location.path("/transactions/deltager/" + name_encoded + " KOMMUNE/437842/K");
+
                 } else {
                     $scope.countySelected = true;
 
@@ -27,18 +27,28 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', function
                 }
             };
 
+            $scope.getMunicipalities = function () {
+                return $http.get("./api/ask.php?getMunicipalities")
+                    .then(function (response) {
+                        return {records: response.data.records};
+                    });
+            };
+
             $scope.back = function() {
                 $route.reload();
             }
         },
         link: function ($scope, element) {
-            var regions = element[0].querySelectorAll('.land');
-            angular.forEach(regions, function (path) {
-                var regionElement = angular.element(path);
-                regionElement.attr("region", "");
-                $compile(regionElement)($scope);
-            });
-            $scope.mapElement = angular.element(element[0]);
+            $scope.municipalities = $scope.getMunicipalities();
+            $scope.municipalities.then(function() {
+                var regions = element[0].querySelectorAll('.land');
+                angular.forEach(regions, function (path) {
+                    var regionElement = angular.element(path);
+                    regionElement.attr("region", "");
+                    $compile(regionElement)($scope);
+                });
+                $scope.mapElement = angular.element(element[0]);
+            })
         },
         templateUrl: "images/kommunekart/norge.svg"
       }
@@ -66,12 +76,10 @@ kommunalApp.directive('region', ['$compile', function ($compile) {
     }
 }]);
 
-kommunalApp.directive('city', ['$compile', '$location', '$http', function ($compile, $location, $http) {
+kommunalApp.directive('city', ['$compile', '$location', '$http', '$filter', function ($compile, $location, $http, $filter) {
     return {
         restrict: 'EA',
-        scope: {
-            cityId: '@',
-        },
+        scope: true,
         controller: function($scope) {
 
             $scope.cityQuery = function(cityId) {
@@ -81,9 +89,10 @@ kommunalApp.directive('city', ['$compile', '$location', '$http', function ($comp
                     });
             }
         },
-        link: function($scope, element) {
+        link: function($scope, element, attrs, svgMapCtrl) {
 
             if(element.attr("inkscape:label") != undefined) {
+                $scope.cityId = String(parseInt(element.attr("inkscape:label").slice(2)));
                 $scope.municipalityToParticipant = {
                     "101": {
                         "Deltagerid": 437899
@@ -1358,27 +1367,30 @@ kommunalApp.directive('city', ['$compile', '$location', '$http', function ($comp
                         "Deltagerid": 433941
                     }
                 };
-                $scope.cityName = element.attr("id");
-                $scope.cityId = element.attr("inkscape:label").substring(2);
+                $scope.municipalities.then(function(result) {
+                    $scope.kommune = $filter('filter')(result.records, {'Kommunenr': $scope.cityId}, true);
+                    $scope.kommunenavn = $scope.kommune[0]["Kommunenavn"];
+                    $scope.kommunenr = $scope.cityId;
+                    $scope.cityName = element.attr("id");
+                    $scope.cityId = element.attr("inkscape:label").substring(2);
+                    $scope.kommuneDeltagerId = $scope.municipalityToParticipant[parseInt($scope.cityId)]["Deltagerid"];
+
+                    $scope.name_encoded = encodeURIComponent($scope.kommunenavn);
+                    element.attr("ng-click", "cityClick()");
+                    var tooltip = angular.element("<md-tooltip style='z-index: 900000000' md-direction='right'>{{kommunenavn}}</md-tooltip>");
+                    element.append(tooltip);
+
+                    element.removeAttr("city");
+                    $compile(element)($scope);
+                });
+
+               /* var city = $scope.cityQuery($scope.cityId);
+                city.then(function(result) {
+                });*/
+
                 $scope.cityClick = function() {
-                    var city = $scope.cityQuery($scope.cityId);
-
-                    city.then(function(result) {
-                        var kommune = result.records[0]["Kommunenavn"];
-                        var kommunenr = result.records[0]["Kommunenr"];
-                        console.log($scope.municipalityToParticipant[kommunenr]);
-                        var kommuneDeltagerId = $scope.municipalityToParticipant[kommunenr]["Deltagerid"];
-                        var name_encoded = encodeURIComponent(kommune);
-                        $location.path("/transactions/deltager/" + name_encoded + " KOMMUNE/" + kommuneDeltagerId + "/K");
-                        angular.forEach(result.records[0], function(value, key) {
-                            console.log(value);
-                        });
-                    });
+                    $location.path("/transactions/deltager/" + $scope.name_encoded + " KOMMUNE/" + $scope.kommuneDeltagerId + "/K");
                 };
-                element.attr("ng-click", "cityClick()");
-
-                element.removeAttr("city");
-                $compile(element)($scope);
             }
         }
     }
