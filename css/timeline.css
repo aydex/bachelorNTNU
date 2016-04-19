@@ -9,12 +9,7 @@
 }
 
 
-.cbp_name_col{
-	width: 40%;
-	font-size: 17px;
-	display: inline-block;
-	vertical-align: middle;
-}
+
 
 .cbp_type{
 	text-align: right;
@@ -42,9 +37,32 @@
 	height: 100%
 	width: 20%
 	font-size: 15px;
+	padding-right: 1em;
+	padding-left: 1em;
 	display: inline-block;
 	vertical-align: middle;
 }
+
+
+.cbp_name_col_h{
+	text-align: left;
+}
+
+.cbp_name_col_v{
+	text-align: right;
+}
+
+.cbp_name_col{
+	
+	width: 40%;
+	font-size: 17px;
+	display: inline-block;
+	vertical-align: middle;
+	
+}
+
+
+
 
 .cbp_tmtimeline {
 	margin: 30px 0 0 0;
