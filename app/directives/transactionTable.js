@@ -202,7 +202,6 @@ kommunalApp.directive('transactionTable', function($filter){
                         }
                     }
                     etterSalg = prefix + niceNumber(etterSalg) + " etter " + niceTime(diffDays) ;
-                    scope.transaction.bigincrease  = changePercent;
                     scope.transaction.flagClass = flagClass;
                 }
             } 

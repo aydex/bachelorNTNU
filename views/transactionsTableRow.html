@@ -12,8 +12,10 @@
             <br>
         </span>
     </td>
-	<td id="etterSalgColumn" >
-		<span data-ng-bind="transaction.etterSalg" data-ng-class="transaction.flagClass"></span>
-		<span data-ng-if="transaction.etterSalg == undefined || transaction.etterSalg == ''" class="manglerData">MANGLER DATA</span>
+	<td id="etterSalgColumn">
+        <span data-ng-if="transaction.flagClass == 'posChange'" tooltips tooltip-template="Denne transaksjonen har hatt en årlig prisøkning på mer enn 60% per år etter kommunen solgte"><span data-ng-bind="transaction.etterSalg" data-ng-class="transaction.flagClass"></span></span>
+        <span data-ng-if="transaction.flagClass == ''"  data-ng-bind="transaction.etterSalg" data-ng-class="transaction.flagClass"></span>
+        <span data-ng-if="transaction.flagClass == 'negChange'" tooltips tooltip-template="Denne transaksjonen har hatt prisnedgang på mer enn 60% per år etter kommunen solgte"><span data-ng-bind="transaction.etterSalg" data-ng-class="transaction.flagClass"></span></span>
+		<span  data-ng-if="transaction.etterSalg == undefined || transaction.etterSalg == ''" class="manglerData">MANGLER DATA</span>
 	</td>
 </tr>
