@@ -13,20 +13,24 @@
     </form>
     </div>
     <div id="advanced-div">
-    Søk etter type: 
-        <select  data-ng-model="currentType" data-ng-options="a.type for a in searchTypes" data-ng-change="advanceChange()"> </select>
-        <i class="material-icons select-arrow">play_arrow</i>
-
-        <select data-ng-change="selectedFylkeChanged(fylke)" data-ng-model="currentFylke" data-ng-options="fylke.label for fylke in fylker | orderBy:'label'" >
-            <option value="">Velg fylke</option>
-        </select>
-
-        <i class="material-icons select-arrow">play_arrow</i>
-
-        <select data-ng-change="selectedMunicipalityChanged(kommune)" name="kommune" data-ng-model="currentKommune" data-ng-options="(kommune.label | capitalFirstLettersFilter) for kommune in currentFylke.kommuner | orderBy:'label'" data-ng-disabled="currentFylke == undefined">
-        <option value="">Velg kommune</option>
-    </select>           
-    <i class="material-icons select-arrow">play_arrow</i>    
+        <span tooltips tooltip-template="Vis kun deltagere av denne typen" tooltip-size="large" >
+            <select  
+            data-ng-model="currentType"  class="searchSelect" data-ng-options="a.type for a in searchTypes" data-ng-change="advanceChange()"></select>
+            </span>
+            <i class="material-icons select-arrow">play_arrow</i>
+        
+        <span tooltips tooltip-template="Vis kun deltagere som har handlet med dette fylket" tooltip-size="large">
+            <select  data-ng-change="selectedFylkeChanged(fylke)" data-ng-model="currentFylke" class="searchSelect" data-ng-options="fylke.label for fylke in fylker | orderBy:'label'" >
+            <option value="">Velg fylke</option></select>
+            </span>
+            <i class="material-icons select-arrow">play_arrow</i>
+        
+            <span tooltips tooltip-template="Vis kun deltagere som har handlet med denne kommunen" tooltip-size="large">
+            <select  data-ng-change="selectedMunicipalityChanged(kommune)" class="searchSelect" name="kommune" data-ng-model="currentKommune" data-ng-options="(kommune.label | capitalFirstLettersFilter) for kommune in currentFylke.kommuner | orderBy:'label'" data-ng-disabled="currentFylke == undefined">
+                <option value="">Velg kommune</option></select>
+        </span>          
+        <i class="material-icons select-arrow">play_arrow</i> 
+         
     </div>
     
 </div>
@@ -57,11 +61,6 @@
                 Kommuner handlet med
                 <span data-ng-show="orderBy == 'Kommuner' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'Kommuner' && reverse" class="fa fa-caret-down"></span>
-            </th>
-            <th id="idColumn" data-ng-click="orderByMe('id')" data-ng-class="{'disableSort' : !sortReady}">
-                id
-                <span data-ng-show="orderBy == 'id' && !reverse" class="fa fa-caret-up"></span>
-                <span data-ng-show="orderBy == 'id' && reverse" class="fa fa-caret-down"></span>
             </th>
         </tr>
     </table>

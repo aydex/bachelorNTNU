@@ -146,6 +146,11 @@ div p{
 	color:white;
 }
 
+.searchSelect{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
 
 /**************************************************
 ***************************************************
@@ -244,8 +249,10 @@ table{
 	display: block;
 	width: 100%;
 	top: 0;
-	left: 50%;
-	margin-left: -50%;
+	left: 0;
+	right:0px;
+	margin-left: auto;
+	margin-right:auto;
 	margin-top:70px;
 	z-index: 100000;
 	height: 320px;
@@ -260,7 +267,7 @@ table{
 
 #transactionBumpDown{
 	display: block;
-	margin-top: 270px;
+	margin-top: 265px;
 }
 
 #propertyBumpDown{
@@ -268,10 +275,9 @@ table{
 }
 
 
-#tableHeader{
+#tableHeader, #tableTransactionHeader{
 	position: fixed;
 	z-index: 100000000;
-	top: 315px;
 	width: 94%;
 	/*left: 51.52%;
 	margin-left: -48.48%;*/
@@ -282,14 +288,12 @@ table{
 	min-width: 50%;
 }
 
+#tableHeader{
+	top:315px;
+}
+
 #tableTransactionHeader{
-	position: fixed;
-	z-index: 1000000;
 	top: 230px;
-	width: 94%;
-	left: 51.52%;
-	margin-left: -48.48%;
-	min-width: 50%;
 }
 
 #tablePropertyHeader{
@@ -362,6 +366,11 @@ th{
 	border-right:none;
 }
 
+.manglerData{
+	color: #565656;
+	font-size: 10px;
+}
+
 /********************
 ******tablewidth*****
 *********************/
@@ -377,23 +386,23 @@ th{
 /*Width on transaction site*/
 
 #propertyID{
-	width: 13%;
+	width: 5%;
 }
 
 #firstDateID{
-	width: 13%;
+	width: 5%;
 }
 
 #lastDateID{
-	width: 13%;
+	width: 5%;
 }
 
 #numberTransactionID{
-	width: 17%;
+	width: 5%;
 }
 
 #involvementID{
-	width: 15%;
+	width: 20%;
 	text-align: center;
 }
 
@@ -401,6 +410,21 @@ th{
 	width: 16%;
 }
 
+
+#etterSalgColumn{
+	width: 20%;
+}
+/*Price change colors for transactions*/
+
+
+
+.posChange{
+	color: #49A34B;
+}
+
+.negChange{
+	color: #F25244;
+}
 /*Width on property site*/
 #dateID{
 	width: 10%;
@@ -571,9 +595,9 @@ div .container{
 }
 
 div .container button {
-    position: absolute;
-    right: 1%;
-}
+     position: absolute;
+     right: 1%;
+ }
 
 .map-link {
     color: black !important;

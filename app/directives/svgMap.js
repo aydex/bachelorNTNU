@@ -18,7 +18,6 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$filter
                             $scope.mapElement.replaceWith(newMap);
                             $scope.mapElement = newMap;
                             var cities = angular.element(document.querySelectorAll('.land'));
-                            console.log(cities);
                             $scope.countyId = cities[0].attributes["inkscape:label"].value.slice(2,4);
                             $scope.county = url;
                             var countyName = $scope.countyQuery($scope.countyId);
@@ -1472,7 +1471,6 @@ kommunalApp.directive('city', ['$compile', '$location', '$http', '$filter', func
                     $scope.kommunenr = $scope.cityId;
                     $scope.cityName = element.attr("id");
                     $scope.cityId = element.attr("inkscape:label").substring(2);
-                    console.log($scope.cityId);
                     $scope.kommuneDeltagerId = $scope.municipalityToParticipant[parseInt($scope.cityId)]["Deltagerid"];
 
                     $scope.name_encoded = encodeURIComponent($scope.kommunenavn);

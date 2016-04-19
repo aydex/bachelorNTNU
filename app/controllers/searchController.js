@@ -339,4 +339,6 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         }
         $scope.doSearch();
     }
+
+
 });
