@@ -575,22 +575,34 @@ td:nth-child(even){
 /***************  MAP CSS  **************/
 /****************************************/
 
+.btn-map {
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    font-size: 32px;
+    text-decoration: none;
+    padding: 0;
+}
 
 div .container{
 	width: 42%;
 	height: auto;
-	z-index: 90000000000000;
+	z-index: 9000000;
 	margin-top: -105px;
 	position:relative;
+    padding-top: 20px;
 
 }
 
 div .container button {
-    position: fixed;
-    left: 5px;
-    top: 75px;
-}
+     position: absolute;
+     right: 1%;
+ }
 
+.map-link {
+    color: black !important;
+    font-size: 16px;
+}
 
 svg .land{
     stroke-width: 0.5;
@@ -618,6 +630,7 @@ svg .title {
 	font-family:Calibri;
 	fill:#000000;
 	pointer-events: none;
+    display: none;
 
 }
 

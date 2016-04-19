@@ -1,6 +1,6 @@
 google.load('visualization', '1', {packages:['corechart']});
 
-var kommunalApp = angular.module('kommunalApp', ['ngRoute', 'ngCookies','720kb.tooltips']);
+var kommunalApp = angular.module('kommunalApp', ['ngRoute', 'ngCookies', 'ngMaterial', '720kb.tooltips']);
 
 kommunalApp.config(function($routeProvider, $locationProvider) {
     $routeProvider

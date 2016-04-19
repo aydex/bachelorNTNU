@@ -65,6 +65,11 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1 && isset($_SESSIO
     }else if(isset($_REQUEST['municipalityId'])) {
         $mId = htmlspecialchars($_REQUEST['municipalityId']);
         echo $query->selectMunicipalityFromId($mId);
+    } else if(isset($_REQUEST['getMunicipalities'])) {
+        echo $query->getMunicipalities();
+    } else if(isset($_REQUEST['countyId'])) {
+        $cId = htmlspecialchars($_REQUEST['countyId']);
+        echo $query->selectCountyFromId($cId);
     }
 } else {
     /*if(isset($_SESSION["subscription_id"]) && $_SESSION["subscription_id"] != 6) {
