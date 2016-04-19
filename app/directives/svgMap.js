@@ -1,11 +1,11 @@
 
-kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', function ($compile, $http, $templateCache) {
+kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$filter', function ($compile, $http, $templateCache, $filter) {
     return {
         restrict: 'EA',
-        controller: function($scope, $route, $location, transaction) {
+        controller: function($scope, $route, $location, $attrs) {
             this.updateMap = function (url) {
-                $scope.county = url;
-                if(url == "Oslo") {
+
+                if(url == "oslo" || url=="Oslo") {
                     var name_encoded = encodeURIComponent("Oslo");
                     $location.path("/transactions/deltager/" + name_encoded + " KOMMUNE/437842/K");
 
@@ -18,10 +18,17 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', function
                             $scope.mapElement.replaceWith(newMap);
                             $scope.mapElement = newMap;
                             var cities = angular.element(document.querySelectorAll('.land'));
-                            angular.forEach(cities, function(path) {
-                                var cityElement = angular.element(path);
-                                cityElement.attr("city", "");
-                                $compile(cityElement)($scope)
+                            console.log(cities);
+                            $scope.countyId = cities[0].attributes["inkscape:label"].value.slice(2,4);
+                            $scope.county = url;
+                            var countyName = $scope.countyQuery($scope.countyId);
+                            countyName.then(function(result) {
+                                $scope.countyName = (result.records[0]["Fylkenavn"]);
+                                angular.forEach(cities, function(path) {
+                                    var cityElement = angular.element(path);
+                                    cityElement.attr("city", "");
+                                    $compile(cityElement)($scope)
+                                });
                             });
                         });
                 }
@@ -36,7 +43,108 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', function
 
             $scope.back = function() {
                 $route.reload();
-            }
+            };
+
+            $scope.countyQuery = function(countyId) {
+                return $http.get("./api/ask.php?countyId=" + countyId)
+                    .then(function (response) {
+                        return {records: response.data.records};
+                    });
+            };
+
+            $scope.showAllCounty = function() {
+                $scope.countyToParticipant = {
+                    "data":
+                        [
+                            {
+                                "Kommune": 1,
+                                "Deltagerid": 425564
+                            },
+                            {
+                                "Kommune": 2,
+                                "Deltagerid": 437703
+                            },
+                            {
+                                "Kommune": 4,
+                                "Deltagerid": 433946
+                            },
+                            {
+                                "Kommune": 5,
+                                "Deltagerid": 438511
+                            },
+                            {
+                                "Kommune": 6,
+                                "Deltagerid": 439376
+                            },
+                            {
+                                "Kommune": 7,
+                                "Deltagerid": 434278
+                            },
+                            {
+                                "Kommune": 8,
+                                "Deltagerid": 433663
+                            },
+                            {
+                                "Kommune": 9,
+                                "Deltagerid": 434085
+                            },
+                            {
+                                "Kommune": 10,
+                                "Deltagerid": 438365
+                            },
+                            {
+                                "Kommune": 11,
+                                "Deltagerid": 440935
+                            },
+                            {
+                                "Kommune": 11,
+                                "Deltagerid": 442245
+                            },
+                            {
+                                "Kommune": 12,
+                                "Deltagerid": 433395
+                            },
+                            {
+                                "Kommune": 14,
+                                "Deltagerid": 433819
+                            },
+                            {
+                                "Kommune": 15,
+                                "Deltagerid": 434302
+                            },
+                            {
+                                "Kommune": 16,
+                                "Deltagerid": 433397
+                            },
+                            {
+                                "Kommune": 17,
+                                "Deltagerid": 433448
+                            },
+                            {
+                                "Kommune": 17,
+                                "Deltagerid": 442232
+                            },
+                            {
+                                "Kommune": 18,
+                                "Deltagerid": 439481
+                            },
+                            {
+                                "Kommune": 19,
+                                "Deltagerid": 426078
+                            },
+                            {
+                                "Kommune": 19,
+                                "Deltagerid": 442262
+                            },
+                            {
+                                "Kommune": 20,
+                                "Deltagerid": 439491
+                            }
+                        ]
+                };
+                $scope.countyDeltagerId = ($filter('filter')($scope.countyToParticipant.data, {'Kommune': parseInt($scope.countyId)}, true));
+                $location.path("/transactions/deltager/" + $scope.countyName + " FYLKESKOMMUNE/" + $scope.countyDeltagerId[0]["Deltagerid"] + "/K");
+            };
         },
         link: function ($scope, element) {
             $scope.municipalities = $scope.getMunicipalities();
@@ -48,7 +156,7 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', function
                     $compile(regionElement)($scope);
                 });
                 $scope.mapElement = angular.element(element[0]);
-            })
+            });
         },
         templateUrl: "images/kommunekart/norge.svg"
       }
@@ -80,16 +188,7 @@ kommunalApp.directive('city', ['$compile', '$location', '$http', '$filter', func
     return {
         restrict: 'EA',
         scope: true,
-        controller: function($scope) {
-
-            $scope.cityQuery = function(cityId) {
-                return $http.get("./api/ask.php?municipalityId=" + cityId)
-                    .then(function (response) {
-                        return {records: response.data.records};
-                    });
-            }
-        },
-        link: function($scope, element, attrs, svgMapCtrl) {
+        link: function($scope, element, attrs) {
 
             if(element.attr("inkscape:label") != undefined) {
                 $scope.cityId = String(parseInt(element.attr("inkscape:label").slice(2)));
@@ -1373,6 +1472,7 @@ kommunalApp.directive('city', ['$compile', '$location', '$http', '$filter', func
                     $scope.kommunenr = $scope.cityId;
                     $scope.cityName = element.attr("id");
                     $scope.cityId = element.attr("inkscape:label").substring(2);
+                    console.log($scope.cityId);
                     $scope.kommuneDeltagerId = $scope.municipalityToParticipant[parseInt($scope.cityId)]["Deltagerid"];
 
                     $scope.name_encoded = encodeURIComponent($scope.kommunenavn);
@@ -1383,10 +1483,6 @@ kommunalApp.directive('city', ['$compile', '$location', '$http', '$filter', func
                     element.removeAttr("city");
                     $compile(element)($scope);
                 });
-
-               /* var city = $scope.cityQuery($scope.cityId);
-                city.then(function(result) {
-                });*/
 
                 $scope.cityClick = function() {
                     $location.path("/transactions/deltager/" + $scope.name_encoded + " KOMMUNE/" + $scope.kommuneDeltagerId + "/K");

@@ -219,4 +219,24 @@ class Query
         
         return json_encode(array("records" => $result));
     }
+
+    public function selectCountyFromId($cId)
+    {
+        if(!$this->authenticate()) {
+            return json_encode(array("records" => "login_required"));
+            exit;
+        }
+
+        $query = "SELECT * 
+                  FROM Fylker 
+                  WHERE Fylkenr=:cId";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':cId', $cId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return json_encode(array("records" => $result));
+    }
 }

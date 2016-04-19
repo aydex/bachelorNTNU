@@ -566,10 +566,7 @@ div .container{
 	z-index: 9000000;
 	margin-top: -105px;
 	position:relative;
-
-}
-
-.tooltip {
+    padding-top: 20px;
 
 }
 
@@ -578,6 +575,10 @@ div .container button {
     right: 1%;
 }
 
+.map-link {
+    color: black !important;
+    font-size: 16px;
+}
 
 svg .land{
     stroke-width: 0.5;

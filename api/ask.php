@@ -69,6 +69,9 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1) {
         echo $query->selectMunicipalityFromId($mId);
     } else if(isset($_REQUEST['getMunicipalities'])) {
         echo $query->getMunicipalities();
+    } else if(isset($_REQUEST['countyId'])) {
+        $cId = htmlspecialchars($_REQUEST['countyId']);
+        echo $query->selectCountyFromId($cId);
     }
 } else {
     echo json_encode(array("records" => "login_required"));
