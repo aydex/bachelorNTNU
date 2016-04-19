@@ -51,6 +51,11 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             controller  : 'transactionPropertyController'
         })
 
+        .when('/transactions/propertytimeline/:targetId', {
+            templateUrl : '/views/transactionsPropertyTimeline.html',
+            controller  : 'transactionPropertyTimelineController'
+        })
+
         .otherwise({
             redirectTo: '/search'
         });

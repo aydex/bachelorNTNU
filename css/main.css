@@ -259,6 +259,21 @@ table{
 	background-color: white;
 }
 
+#fixedPropertyTimeline{
+	position: fixed;
+	display: block;
+	width: 100%;
+	top: 0;
+	left: 0;
+	right:0px;
+	margin-left: auto;
+	margin-right:auto;
+	margin-top:70px;
+	z-index: 100000;
+	height: 100px;
+	background-color: white;
+}
+
 
 #bumpDown{
 	margin-top: 350px;
@@ -273,6 +288,19 @@ table{
 #propertyBumpDown{
 	margin-top: 425px;
 }
+
+#tableTimelinePropertyHeader{
+	position: fixed;
+	z-index: 1000000;
+	top: 400px;
+	width: 94%;
+}
+
+#propertyTimelineBumpDown{
+	margin-top: 200px;
+}
+
+
 
 
 #tableHeader, #tableTransactionHeader{
@@ -308,7 +336,6 @@ table{
 	position: relative;
 	display: block;
 	margin-bottom: 5%;
-
 }
 
 #footer{
