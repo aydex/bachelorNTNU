@@ -1,0 +1,26 @@
+<div id="fixedPropertyTimeline">
+<button type="button" class="btn btn-default backbutton" data-ng-click="back()">&lt; Tilbake</button>
+<div id="navbar">
+    <h3 id="transaksjonsType" data-ng-bind="type"></h3>
+</div>
+
+
+<div id="PropPageElements">
+</div>
+</div>
+
+<div id="propertyTimelineBumpDown">
+<div class="verticalline">
+</div>
+
+<ul class="cbp_tmtimeline">
+    <li transaction-property-timeline transaction="transaction" data-ng-repeat="transaction in transactions"  data-ng-mouseover="setSelected(transaction.Dokumentnr,transaction.Salgssum)" data-ng-mouseout="setSelected(null)">
+        
+    </li>
+</ul>
+</div>
+
+
+
+<p id="pageNumber" data-ng-bind="pageDisplay" data-ng-show="showTable"></p>
+

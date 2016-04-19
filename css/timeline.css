@@ -1,0 +1,156 @@
+.cbp_table {
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+
+
+.cbp_text{
+	color: #2d2d2d;
+}
+
+
+.cbp_name_col{
+	width: 40%;
+	font-size: 17px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.cbp_type{
+	text-align: right;
+	width: 45%;
+	display: inline-block;
+}
+
+.cbp_type > a{
+	color: #bfbfbf;
+	text-decoration: none;
+}
+
+.cbp_date{
+	text-align: left;
+	width: 45%;
+	display: inline-block;
+}
+
+.cbp_date > a{
+	color: #bfbfbf;
+	text-decoration: none;
+}
+
+.cbp_center_col{
+	height: 100%
+	width: 20%
+	font-size: 15px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.cbp_tmtimeline {
+	margin: 30px 0 0 0;
+	padding: 0;
+	list-style: none;
+	position: relative;
+} 
+
+
+.verticalline{
+	content: '';
+	top: 20%;
+	bottom: 0;
+	width: 5px;
+	left: 30.3%;
+	position: absolute;
+	background-color: #003762;
+	float: left;
+	z-index: 10000;
+}
+
+.cbp_tmtimeline{
+	margin-bottom: 20%;
+}
+
+.cbp_tmtimeline > li {
+	position: relative;
+}
+
+/* The date/time */
+.cbp_tmtimeline > li .cbp_tmtime {
+	display: block;
+	width: 30%;
+	padding-right: 50px;
+	position: absolute;
+}
+
+.cbp_tmtimeline > li .cbp_tmtime span {
+	display: block;
+	text-align: right;
+}
+
+.cbp_tmtimeline > li .cbp_tmtime span:first-child {
+	font-size: 0.9em;
+}
+
+.cbp_tmtimeline > li .cbp_tmtime span:last-child {
+	font-size: 1.5em;
+}
+
+
+/* Right content */
+.cbp_tmtimeline > li .cbp_tmlabel {
+	margin: 0 20% 30px 35%;
+	background: #EAEAEA;
+	line-height: 1.4;
+	position: relative;
+	border-radius: 4px;
+	padding-bottom: 1em;
+	padding-top: 0.5em;
+
+}
+
+
+/* The triangle */
+.cbp_tmtimeline > li .cbp_tmlabel:after {
+	right: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-right-color: #EAEAEA;
+	border-width: 10px;
+	top: 10px;
+}
+
+
+/* The icons */
+.cbp_tmtimeline > li .cbp_tmicon {
+	z-index: 10000;
+	width: 32px;
+	height: 32px;
+	font-family: 'ecoico';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	font-size: 1.4em;
+	line-height: 40px;
+	-webkit-font-smoothing: antialiased;
+	position: absolute;
+	color: #003762;
+	background: #003762;
+	border-radius: 50%;
+	box-shadow: 0 0 0 8px #003762;
+	text-align: center;
+	left: 30%;
+	top: 0;
+	margin: 0 0 0 -25px;
+}
+
+.cbp_tmicon-phone:before {
+	content: "\e000";
+}
+
+
