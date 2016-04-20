@@ -20,13 +20,29 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     $scope.advancedShow   = false;
     $scope.lastSearched   = "";
     $scope.error          = false;
+    $scope.searchTypes    = [
+                {value: 'name', label:'Søk etter navn', placeholder: "Navn, kommune, bedrift..."},
+                {value:'address', label:'Søk etter adresse', placeholder: "Adresse, postkode, poststed..."}]
+    $scope.selectedSearchType = $scope.searchTypes[0];
     $scope.search         = {
         nameSearch: "",
         pageSize  : 25
     };
+
+    $scope.participantSearchTypes    = [
+            {type:"Velg type", value: 0},
+            {type:"Person", value: 1}, 
+            {type:"Kommune", value: 2}, 
+            {type:"Løpe", value: 3}, 
+            {type:"Selskap", value:4}];
+    $scope.currentType = $scope.participantSearchTypes[0];
+    $scope.currentFylke = undefined;
+    $scope.currentKommune = undefined;
+    $scope.kommune;
     $scope.selectedKommunenr = 0;
     $scope.selectedFylkenr = 0;
     $scope.searchingForText = "Eiendomsdatabasen";
+    
 
     $scope.fylker = [
         {
@@ -127,20 +143,12 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
      ];
 
 
-    $scope.searchTypes    = [{type:"Alle", value: 0},{type:"Person", value: 1}, {type:"Kommune", value: 2}, {type:"Løpe", value: 3}, {type:"Selskap", value:4}];
-    $scope.currentType = $scope.searchTypes[0];
-    $scope.currentFylke = undefined;
-    $scope.currentKommune = undefined;
-    $scope.kommune;
-
-
     $scope.advanceChange = function(){
         if($scope.search.nameSearch != "")
             $scope.doSearch();
       };
 
     $scope.queryPerson  = function() {
-
         queryPromis = $rootScope.doQuery("name", $scope.search.nameSearch,
             $scope.page, $scope.search.pageSize, $scope.order, $scope.orderBy, $scope.currentType.value, $scope.selectedFylkenr, $scope.selectedKommunenr)
         queryPromis.then(function(result){
@@ -264,7 +272,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         $scope.search.nameSearch = decodeURIComponent($routeParams.searchName);
         $scope.page              = parseInt($routeParams.page);
         $scope.search.pageSize   = parseInt($routeParams.pageSize);
-        $scope.currentType       = $scope.searchTypes[$routeParams.type];
+        $scope.currentType       = $scope.participantSearchTypes[$routeParams.type];
 
         $scope.selectedFylkenr   = parseInt($routeParams.fylkenr);
         $scope.selectedKommunenr = parseInt($routeParams.kommnr);
@@ -320,9 +328,21 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         }
     };
 
-    $scope.selectedMunicipalityChanged = function(){
-        if ($scope.currentKommune != null){
-            $scope.selectedKommunenr = $scope.currentKommune.kommunenr;
+    $scope.participantTypeChanged = function(type){
+        console.log(type)
+        if (type != null){
+            $scope.currentType = $scope.participantSearchTypes[type.value];
+            $scope.doSearch();
+        } else {
+            $scope.currentType = $scope.participantSearchTypes[0];
+
+        }
+    }
+
+    $scope.selectedMunicipalityChanged = function(kommune){
+        console.log(kommune)
+        if (kommune != null){
+            $scope.selectedKommunenr = kommune.kommunenr;
         } else {
             $scope.selectedKommunenr = 0;
         }
@@ -330,13 +350,16 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     }
 
 
-    $scope.selectedFylkeChanged = function(){
-        if ($scope.currentFylke != null){
-            $scope.selectedFylkenr = $scope.currentFylke.value;
+    $scope.selectedFylkeChanged = function(fylke){
+
+        if (fylke != null){
+            $scope.selectedFylkenr = fylke.value;
             $scope.selectedKommunenr = 0;
         } else {
             $scope.selectedFylkenr = 0;
         }
+
+        console.log($scope.selectedFylkenr);
         $scope.doSearch();
     }
 
