@@ -1,6 +1,6 @@
 google.load('visualization', '1', {packages:['corechart']});
 
-var kommunalApp = angular.module('kommunalApp', ['ngRoute', 'ngCookies','720kb.tooltips']);
+var kommunalApp = angular.module('kommunalApp', ['ngRoute', 'ngCookies','720kb.tooltips', 'ui.bootstrap']);
 
 kommunalApp.config(function($routeProvider, $locationProvider) {
     $routeProvider
@@ -15,6 +15,11 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             templateUrl : '/views/search.html',
             controller  : 'searchController',
             //reloadOnSearch: false
+        })
+
+        .when('/test/:targetId', {
+            templateUrl : '/views/tabTest.html',
+            controller  : 'mainController',
         })
 
         .when('/search/:searchName/:type/:page/:pageSize/:fylkenr/:kommnr', {

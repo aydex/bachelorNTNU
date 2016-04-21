@@ -1,5 +1,7 @@
-kommunalApp.controller('mainController', function($scope) {
+kommunalApp.controller('mainController', function($scope, $cookies, $location, $routeParams) {
+    $scope.activeTab = 1;
 
-    $scope.message = "I am from the mainController";
-
+    $scope.changeTab = function(index) {
+    	$scope.activeTab = index;
+    }
 });
