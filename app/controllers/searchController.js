@@ -202,7 +202,8 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         }
         if ($scope.search.nameSearch.length == 0 && ($scope.showTable || $scope.noResultShow || $scope.hideNavigation)){
             $scope.showTable = false;
-            $scope.noResultShow = true;
+            $scope.noResultShow = false;
+            $scope.searched = false;
             $scope.hideNavigation = false;
         }
     };
