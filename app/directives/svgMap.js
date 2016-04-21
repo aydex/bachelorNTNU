@@ -186,6 +186,7 @@ kommunalApp.directive('region', ['$compile', '$filter', function ($compile, $fil
                 scope.elementId = element.attr("id");
 
                 scope.regionClick = function() {
+                    element.remove(tooltip);
                     svgMapCtrl.updateMap(scope.elementId);
                 };
 
