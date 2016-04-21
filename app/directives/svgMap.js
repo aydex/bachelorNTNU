@@ -20,7 +20,7 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$filter
                             var cities = angular.element(document.querySelectorAll('.land'));
                             $scope.countyId = cities[0].attributes["inkscape:label"].value.slice(2,4);
                             $scope.county = url;
-                            var countyName = this.countyQuery($scope.countyId);
+                            var countyName = $scope.countyQuery($scope.countyId);
                             countyName.then(function(result) {
                                 $scope.countyName = (result.records[0]["Fylkenavn"]);
                                 angular.forEach(cities, function(path) {
@@ -31,6 +31,13 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$filter
                             });
                         });
                 }
+            };
+            
+            $scope.getCounties = function() {
+                return $http.get("./api/ask.php?getCounties")
+                    .then(function (response) {
+                        return {records: response.data.records};
+                    });
             };
 
             $scope.getMunicipalities = function () {
@@ -44,7 +51,7 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$filter
                 $route.reload();
             };
 
-            this.countyQuery = function(countyId) {
+            $scope.countyQuery = function(countyId) {
                 return $http.get("./api/ask.php?countyId=" + countyId)
                     .then(function (response) {
                         return {records: response.data.records};
@@ -146,48 +153,45 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$filter
             };
         },
         link: function ($scope, element) {
-            $scope.municipalities = $scope.getMunicipalities();
-            $scope.municipalities.then(function() {
-                var regions = element[0].querySelectorAll('.land');
-                angular.forEach(regions, function (path) {
-                    var regionElement = angular.element(path);
-                    regionElement.attr("region", "");
-                    $compile(regionElement)($scope);
+            $scope.counties = $scope.getCounties();
+            $scope.counties.then(function () {
+                $scope.municipalities = $scope.getMunicipalities();
+                $scope.municipalities.then(function() {
+                    var regions = element[0].querySelectorAll('.land');
+                    angular.forEach(regions, function (path) {
+                        var regionElement = angular.element(path);
+                        regionElement.attr("region", "");
+                        $compile(regionElement)($scope);
+                    });
+                    $scope.mapElement = angular.element(element[0]);
                 });
-                $scope.mapElement = angular.element(element[0]);
             });
         },
         templateUrl: "images/kommunekart/norge.svg"
       }
 }]);
 
-kommunalApp.directive('region', ['$compile', function ($compile) {
+kommunalApp.directive('region', ['$compile', '$filter', function ($compile, $filter) {
     return {
         restrict: 'EA',
         scope: true,
         require: '^^svgMap',
 		link: function (scope, element, attrs, svgMapCtrl) {
-            scope.elementId = element.attr("id");
-            scope.regionHover = function () {
-            };
-            scope.regionClick = function() {
-                svgMapCtrl.updateMap(scope.elementId);
-            };
+            scope.counties.then(function(result) {
+                var countyIndex = element.attr("class").indexOf("county");
+                scope.countyId = String(parseInt(element.attr("class").slice(countyIndex+6, countyIndex+8)));
+                scope.fylke = $filter('filter')(result.records, {'Fylkenr': scope.countyId}, true);
+                scope.fylkenavn = scope.fylke[0]["Fylkenavn"];
+                scope.fylkenr = scope.countyId;
+                scope.elementId = element.attr("id");
 
-            element.attr("ng-mousemove", "regionHover()");
-            element.attr("ng-click", "regionClick()");
+                scope.regionClick = function() {
+                    svgMapCtrl.updateMap(scope.elementId);
+                };
 
-            var countyIndex = element.attr("class").indexOf("county");
-            scope.countyId = element.attr("class").slice(countyIndex+6, countyIndex+8);
-            //scope.countyId = String(parseInt(element.attr("inkscape:label").slice(2)));
-
-            var countyName = svgMapCtrl.countyQuery(scope.countyId);
-            countyName.then(function(result) {
-                scope.countyName = (result.records[0]["Fylkenavn"]);
-                console.log(scope.countyName);
-                var tooltip = angular.element("<md-tooltip style='z-index: 900000000' md-direction='right'>{{countyName}}</md-tooltip>");
+                var tooltip = angular.element("<md-tooltip style='z-index: 900000000' md-direction='right'>{{fylkenavn}}</md-tooltip>");
                 element.append(tooltip);
-
+                element.attr("ng-click", "regionClick()");
                 element.removeAttr("region");
                 $compile(element)(scope);
             });

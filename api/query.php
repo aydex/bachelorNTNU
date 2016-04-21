@@ -242,4 +242,22 @@ class Query
 
         return json_encode(array("records" => $result));
     }
+
+    public function getCounties()
+    {
+        if(!$this->authenticate()) {
+            return json_encode(array("records" => "login_required"));
+            exit;
+        }
+
+        $query = "SELECT Fylkenr, Fylkenavn 
+                  FROM kommunalrapport.Fylker";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return json_encode(array("records" => $result));
+    }
 }
