@@ -8,13 +8,10 @@ kommunalApp.directive('transactionTable', function($filter){
         templateUrl: 'views/transactionsTableRow.html',
         link: function(scope, element, attr) {
             scope.transaction.showInvolvementsShield = false;
-
             
-
             if (scope.transaction.Gatenavn != 0 && scope.transaction.Gatenavn != null){
                 scope.transaction.adresse = scope.transaction.Gatenavn + " " + scope.transaction.Husnr + scope.transaction.Bokstav + ", " + $filter('nameFilter')(scope.transaction.Poststed);
             }
-
 
             var involverteKommuner = scope.transaction.InvolverteKommuner.split(", ");
             var out = [];

@@ -8,7 +8,7 @@
     <h3 ng-bind="searchingForText" id="searchTitle">Eiendomsdatabasen</h3>
     <div>
     <form id="searchForm" data-ng-submit="searchForm(searchForm)">
-        <select  ng-model="selectedSearchType" id="searchTypeSelect" data-ng-options="a.label for a in searchTypes">
+        <select  data-ng-change="advanceChange()" ng-model="selectedSearchType" id="searchTypeSelect" data-ng-options="a.label for a in searchTypes">
         </select>
         <i class="material-icons select-arrow typeSelectArrow ">play_arrow</i> 
         <i class="material-icons" id="searchIcon">search</i>
@@ -48,8 +48,9 @@
 </div>
 </div>
 
-<div id="tableHeader" class="tableWidth">
-    <table data-ng-show="showTable">
+
+<div id="tableHeader" class="tableWidth" >
+    <table data-ng-show="showTable" data-ng-if="selectedSearchType.value == 'name'">
         <tr>
             <th id ="nameColumn" data-ng-click="orderByMe('Navn')" data-ng-class="{'disableSort' : !sortReady}">
                 Navn
@@ -68,6 +69,33 @@
             </th>
         </tr>
     </table>
+    <table data-ng-show="showTable" data-ng-if="selectedSearchType.value == 'address'">
+        <tr>
+
+            <th id="involvedMunicipID" data-ng-click="orderByMe('InvolvertKommune')" data-ng-class="{'disableSort' : !sortReady}">
+
+                Kommuner
+                <span data-ng-show="orderBy == 'InvolvertKommune' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'InvolvertKommune' && reverse" class="fa fa-caret-down"></span>
+            </th>
+            <th id="adresseColumn" data-ng-click="orderByMe('Gatenavn')" data-ng-class="{'disableSort' : !sortReady}">
+
+                Adresse
+                <span data-ng-show="orderBy == 'InvolvertKommune' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'InvolvertKommune' && reverse" class="fa fa-caret-down"></span>
+            </th>
+            <th id="involvementID" data-ng-click="orderByMe('Involvering')" data-ng-class="{'disableSort' : !sortReady}">
+                Kommunens Involvering
+                <span data-ng-show="orderBy == 'Involvering' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'Involvering' && reverse" class="fa fa-caret-down"></span>
+            </th>
+            <th id="etterSalgColumn" data-ng-click="orderByMe('InvolvertKommune')" data-ng-class="{'disableSort' : !sortReady}">
+                Endring etter salg
+                <span data-ng-show="orderBy == 'InvolvertKommune' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'InvolvertKommune' && reverse" class="fa fa-caret-down"></span>
+            </th>
+        </tr>
+    </table>
 </div>
 
 <div id="bumpDown">
@@ -78,8 +106,9 @@
     <img src="/images/loader.gif" data-ng-show="!showTable && searched && !noResultShow" alt="Loading.." />
        <table data-ng-show="showTable">
     
-        <tr search-table participant="participant" data-ng-repeat="participant in names | filter:searchName" data-ng-click="showTransactionsPerson(participant.id, participant.Navn, participant.Type)">
-
+        <tr search-table participant="participant" data-ng-if="selectedSearchType.value == 'name'" data-ng-repeat="participant in names | filter:searchName" data-ng-click="showTransactionsPerson(participant.id, participant.Navn, participant.Type)">
+        </tr>
+         <tr transaction-table transaction="transaction" data-ng-if="selectedSearchType.value == 'address'" data-ng-repeat="transaction in transactions" data-ng-click="showTransactionsProperty(transaction.Eiendomsid)">
         </tr>
     </table>
 </div>

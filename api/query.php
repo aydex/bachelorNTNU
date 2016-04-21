@@ -85,7 +85,6 @@ class Query
             return json_encode(array("records" => "login_required"));
             exit;
         }
-        
         $selectFromArray = array('Kommunenavn', 'Eiendomsid', 'ForstRegistrert', 'SistRegistrert', 'AntallTransaksjoner', 'Involvering', 'Gatenavn', 'Husnr', 'Bokstav', 'InvolverteKommuner', 'Historie', 'null');
 
         $keyOrderBy      = array_search($orderBy, $selectFromArray);
@@ -120,6 +119,45 @@ class Query
 
         return json_encode(array("records" => $results, "count" => $count));
     }
+
+    public function selectTransactionByAddress($address, $page=1, $pageSize=10, $order, $orderBy) {
+        if(!$this->authenticate()) {
+            return json_encode(array("records" => "login_required"));
+            exit;
+        }
+        $selectFromArray = array('Kommunenavn', 'Eiendomsid', 'ForstRegistrert', 'SistRegistrert', 'AntallTransaksjoner', 'Involvering', 'Gatenavn', 'Husnr', 'Bokstav', 'InvolverteKommuner', 'Historie', 'null');
+
+        $keyOrderBy      = array_search($orderBy, $selectFromArray);
+        $keyOrder        = array_search($order, $this->selectFromOrder);
+
+        $query = "SELECT SQL_CALC_FOUND_ROWS  Eiendomsid, 
+                  GROUP_CONCAT(DISTINCT CONCAT_WS(':', Dokumentdato, PartType) SEPARATOR ', ') AS Involvering,
+                  GROUP_CONCAT(DISTINCT CONCAT_WS(':', EI.Kommunenr, K.Kommunenavn) SEPARATOR ', ') AS InvolverteKommuner, Historie, Gatenavn, Husnr,Bokstav, Poststed
+                  FROM Omsetninger
+                  NATURAL JOIN Dokumenter
+                  NATURAL JOIN Eiendomshistorie
+                  NATURAL JOIN (SELECT * FROM Eiendommer WHERE Gatenavn LIKE :query_target ) AS E
+                  LEFT JOIN EiendomInvolvertKommune AS EI USING(Eiendomsid)
+                  JOIN Kommuner AS K ON EI.Kommunenr = K.Kommunenr
+                  GROUP BY Eiendomsid
+                  ORDER BY  " . $selectFromArray[$keyOrderBy] . " " . $this->selectFromOrder[$keyOrder] . "
+                  LIMIT :offset, :pageSize";
+
+        $offset = ($page - 1)*$pageSize;
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':query_target', $address, PDO::PARAM_STR);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->bindValue(':pageSize', $pageSize, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $count = $this->countRows();
+
+        return json_encode(array("records" => $results, "count" => $count));
+    }
+
 
     public function selectTransactionProperty($id, $page=1, $pageSize=10, $order, $orderBy) {
         if(!$this->authenticate()) {

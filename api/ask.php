@@ -20,6 +20,7 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1 && isset($_SESSIO
     $order    = "";
     $orderBy  = "";
     $filterBy = "";
+    $address  = "";
 
     if (isset($_REQUEST['page']) && isset($_REQUEST['pageSize'])) {
         $page     = (int)$_REQUEST['page'];
@@ -49,6 +50,11 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1 && isset($_SESSIO
         $name = htmlspecialchars($_REQUEST['name']);
     
         echo $query->selectPersonPaged($name, $page, $pageSize, $order, $orderBy, $filterBy, $fylkenr, $kommnr);
+
+    }else if (isset($_REQUEST['address'])) {
+        $address = htmlspecialchars($_REQUEST['address']);
+    
+        echo $query->selectTransactionByAddress($address, $page, $pageSize, $order, $orderBy);
 
     }else if(isset($_REQUEST['transactionFromPerson'])){
 
