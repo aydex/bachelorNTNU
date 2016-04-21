@@ -1,108 +1,17 @@
 <div id="tabContainer">
     <ul class="nav nav-tabs" role="tablist">
         <li id="tab1Button" ng-class="{'active': activeTab == 1}">
-            <a href="" ng-click="changeTab(1)">Table</a>
+            <a href="" ng-click="changeTab(1)">Timeline</a>
         </li>
         <li id="tab2Button" ng-class="{'active': activeTab == 2}">
-            <a href="" ng-click="changeTab(2)">Timeline</a>
+            <a href="" ng-click="changeTab(2)">Table</a>
         </li>
     </ul>
 </div>
 
-<div id="tab1" data-ng-controller="transactionPropertyController" data-ng-show="activeTab == 1">
-    <div id="fixedPropertyTable">
-        <button type="button" class="btn btn-default backbutton" data-ng-click="back()">&lt; Tilbake</button>
-        <div id="navbar">
-            <h3 id="transaksjonsType" data-ng-bind="type"></h3>
-        </div>
-
-        <div id="chartContainer">
-            <div id="chartdiv">
-            </div>
-        </div>
-
-        <div id="PropPageElements">
-            <br>
-            <span>Trykk på feltene for å endre rekkefølge:</span>
-        </div>
-    </div>
-
-    <div id="tablePropertyHeader">
-        <table data-ng-show="showTable" class="propertyTable">
-            <tr>
-                <th id="dateID" data-ng-click="orderByMe('Dokumentdato')" data-ng-class="{'disableSort' : !sortReady}">
-                    Dato
-                    <span data-ng-show="orderBy == 'Dokumentdato' && !reverse" class="fa fa-caret-up"></span>
-                    <span data-ng-show="orderBy == 'Dokumentdato' && reverse" class="fa fa-caret-down"></span>
-                </th>
-                <!--<th data-ng-click="orderByMe('seller'); reverseOrder()">-->
-                <th id="saleID" data-ng-class="{'disableSort' : !sortReady}">
-                    Selger
-                    <!--<span data-ng-show="orderBy == 'seller' && !reverse" class="fa fa-caret-up"></span>
-                    <span data-ng-show="orderBy == 'seller' && reverse" class="fa fa-caret-down"></span>-->
-                </th>
-                <!--<th data-ng-click="orderByMe('buyer'); reverseOrder()">-->
-                <th id="buyID" data-ng-class="{'disableSort' : !sortReady}">
-                    Kjøper
-                    <!--<span data-ng-show="orderBy == 'buyer' && !reverse" class="fa fa-caret-up"></span>
-                    <span data-ng-show="orderBy == 'buyer' && reverse" class="fa fa-caret-down"></span>-->
-                </th>
-                
-                <th id="typeID" data-ng-click="orderByMe('OmsetningsTypenavn')" data-ng-class="{'disableSort' : !sortReady}">
-                    Omsetningstype
-                    <span data-ng-show="orderBy == 'OmsetningsTypenavn' && !reverse" class="fa fa-caret-up"></span>
-                    <span data-ng-show="orderBy == 'OmsetningsTypenavn' && reverse" class="fa fa-caret-down"></span>
-                </th>
-                
-                <th id="priceID" data-ng-click="orderByMe('Salgssum')" data-ng-class="{'disableSort' : !sortReady}">
-                    Salgssum
-                    <span data-ng-show="orderBy == 'Salgssum' && !reverse" class="fa fa-caret-up"></span>
-                    <span data-ng-show="orderBy == 'Salgssum' && reverse" class="fa fa-caret-down"></span>
-                </th>
-          
-            </tr>
-        </table>
-
-    </div>
-
-    <div id="propertyBumpDown">
-        <div id="tableContainer">
-            <span data-ng-class="{'navButtonInactive' : page == 1 || !showNavigation, 'navButtonActive' : page > 1 && showNavigation}" class="fa fa-chevron-left" data-ng-show="hideNavigation" data-ng-click="navigate(-1)" id="prevPage"></span>
-            <span data-ng-class="{'navButtonInactive' : !more_results || !showNavigation, 'navButtonActive' : more_results && showNavigation }" class="fa fa-chevron-right" data-ng-show="hideNavigation" data-ng-click="navigate(1)" id="nextPage"></span>
-            <img src="/images/loader.gif" data-ng-show="!showTable" alt="Loading.." />
-            <table data-ng-show="showTable" class="propertyTable">
-                <tr transaction-property-table transaction="transaction" data-ng-repeat="transaction in transactions" data-ng-click="setSelected(transaction.Dokumentnr)"
-                    data-ng-class="{ 'selected-row': transaction.Dokumentnr == selectedDokumentnr }" data-ng-mouseover="setSelected(transaction.Dokumentnr,transaction.Salgssum)" data-ng-mouseout="setSelected(null)">
-                </tr>
-            </table>
-        </div>
-    </div>
-    <p id="pageNumber" data-ng-bind="pageDisplay" data-ng-show="showTable"></p>
+<div id="tab1" data-ng-controller="transactionPropertyTimelineController" data-ng-show="activeTab == 1" data-ng-include="'views/transactionsPropertyTimeline.html'">
 </div>
 
-<div id="tab2" data-ng-controller="transactionPropertyTimelineController" data-ng-show="activeTab == 2">
-    <div id="fixedPropertyTimeline">
-        <button type="button" class="btn btn-default backbutton" data-ng-click="back()">&lt; Tilbake</button>
-        <div id="navbar">
-            <h3 id="transaksjonsType" data-ng-bind="type"></h3>
-        </div>
-
-
-        <div id="PropPageElements">
-        </div>
-    </div>
-
-    <div id="propertyTimelineBumpDown">
-        <div class="verticalline">
-        </div>
-
-        <ul class="cbp_tmtimeline">
-            <li transaction-property-timeline transaction="transaction" data-ng-repeat="transaction in transactions"  data-ng-mouseover="setSelected(transaction.Dokumentnr,transaction.Salgssum)" data-ng-mouseout="setSelected(null)">
-                
-            </li>
-        </ul>
-    </div>
-
-    <p id="pageNumber" data-ng-bind="pageDisplay" data-ng-show="showTable"></p>
+<div id="tab2" data-ng-show="activeTab == 2" data-ng-controller="transactionPropertyController" data-ng-include="'views/transactionsProperty.html'">
 </div>
 

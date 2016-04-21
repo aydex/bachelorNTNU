@@ -41,7 +41,7 @@ kommunalApp.controller('transactionPropertyTimelineController', function($scope,
                 $scope.showTable      = true;
                 results               = $scope.getParticipantsCorrectly(result.records);
 
-                $scope.transactions   = result.records;
+                $scope.transactions   = result.records.sort(sortFunctionTable);
                 $scope.showNavigation = true;
                 $scope.hideNavigation = false;
                 $scope.labels         = [];
@@ -113,13 +113,3 @@ kommunalApp.controller('transactionPropertyTimelineController', function($scope,
     $scope.queryTransaction();
 
 });
-
-function sortFunction(a, b) {
-    if (a.date > b.date) {
-        return 1;
-    } else if (a.date == b.date) {
-        return 0;
-    } else {
-        return -1;
-    }
-}
