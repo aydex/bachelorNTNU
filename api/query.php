@@ -232,7 +232,6 @@ class Query
 
     public function getCounties()
     {
-
         $query = "SELECT Fylkenr, Fylkenavn 
                   FROM kommunalrapport.Fylker";
 
