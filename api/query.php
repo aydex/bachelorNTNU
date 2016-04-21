@@ -186,12 +186,7 @@ class Query
 
 
     public function selectMunicipalityFromId($mId)
-    {
-        if(!$this->authenticate()) {
-            return json_encode(array("records" => "login_required"));
-            exit;
-        }
-        
+    {   
         $query = "SELECT * 
                   FROM Kommuner 
                   WHERE Kommunenr=:mId";
@@ -207,11 +202,7 @@ class Query
 
     public function getMunicipalities()
     {
-        if(!$this->authenticate()) {
-            return json_encode(array("records" => "login_required"));
-            exit;
-        }
-        
+
         $query = "SELECT Kommunenr, Kommunenavn 
                   FROM kommunalrapport.Kommuner";
 
@@ -225,10 +216,6 @@ class Query
 
     public function selectCountyFromId($cId)
     {
-        if(!$this->authenticate()) {
-            return json_encode(array("records" => "login_required"));
-            exit;
-        }
 
         $query = "SELECT * 
                   FROM Fylker 
@@ -245,10 +232,6 @@ class Query
 
     public function getCounties()
     {
-        if(!$this->authenticate()) {
-            return json_encode(array("records" => "login_required"));
-            exit;
-        }
 
         $query = "SELECT Fylkenr, Fylkenavn 
                   FROM kommunalrapport.Fylker";

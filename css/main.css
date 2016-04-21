@@ -780,3 +780,15 @@ select:disabled{
 .nav-tabs li a:hover{
 	color:initial !important;
 }
+
+/** tooltips **/
+
+.tooltip{
+	position: absolute;
+	display: none;
+	z-index: 100000000000000000;
+}
+
+.tooltip-arrow{
+	display: none;
+}
