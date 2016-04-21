@@ -18,11 +18,12 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$filter
                             $scope.mapElement.replaceWith(newMap);
                             $scope.mapElement = newMap;
                             var cities = angular.element(document.querySelectorAll('.land'));
-                            $scope.countyId = cities[0].attributes["inkscape:label"].value.slice(2,4);
+                            $scope.countyId = String(parseInt(cities[0].attributes["inkscape:label"].value.slice(2,4)));
                             $scope.county = url;
-                            var countyName = $scope.countyQuery($scope.countyId);
-                            countyName.then(function(result) {
-                                $scope.countyName = (result.records[0]["Fylkenavn"]);
+                            console.log($scope.counties);
+                            $scope.counties.then(function(result) {
+                                $scope.fylke = $filter('filter')(result.records, {'Fylkenr': $scope.countyId}, true);
+                                $scope.countyName = ($scope.fylke[0]["Fylkenavn"]);
                                 angular.forEach(cities, function(path) {
                                     var cityElement = angular.element(path);
                                     cityElement.attr("city", "");
@@ -205,7 +206,6 @@ kommunalApp.directive('city', ['$compile', '$location', '$http', '$filter', func
         restrict: 'EA',
         scope: true,
         link: function($scope, element, attrs) {
-
             if(element.attr("inkscape:label") != undefined) {
                 $scope.cityId = String(parseInt(element.attr("inkscape:label").slice(2)));
                 $scope.municipalityToParticipant = {
