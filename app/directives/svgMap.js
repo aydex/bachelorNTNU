@@ -20,7 +20,7 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$filter
                             var cities = angular.element(document.querySelectorAll('.land'));
                             $scope.countyId = cities[0].attributes["inkscape:label"].value.slice(2,4);
                             $scope.county = url;
-                            var countyName = $scope.countyQuery($scope.countyId);
+                            var countyName = this.countyQuery($scope.countyId);
                             countyName.then(function(result) {
                                 $scope.countyName = (result.records[0]["Fylkenavn"]);
                                 angular.forEach(cities, function(path) {
@@ -44,7 +44,7 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$filter
                 $route.reload();
             };
 
-            $scope.countyQuery = function(countyId) {
+            this.countyQuery = function(countyId) {
                 return $http.get("./api/ask.php?countyId=" + countyId)
                     .then(function (response) {
                         return {records: response.data.records};
@@ -177,8 +177,20 @@ kommunalApp.directive('region', ['$compile', function ($compile) {
             element.attr("ng-mousemove", "regionHover()");
             element.attr("ng-click", "regionClick()");
 
-            element.removeAttr("region");
-            $compile(element)(scope);
+            var countyIndex = element.attr("class").indexOf("county");
+            scope.countyId = element.attr("class").slice(countyIndex+6, countyIndex+8);
+            //scope.countyId = String(parseInt(element.attr("inkscape:label").slice(2)));
+
+            var countyName = svgMapCtrl.countyQuery(scope.countyId);
+            countyName.then(function(result) {
+                scope.countyName = (result.records[0]["Fylkenavn"]);
+                console.log(scope.countyName);
+                var tooltip = angular.element("<md-tooltip style='z-index: 900000000' md-direction='right'>{{countyName}}</md-tooltip>");
+                element.append(tooltip);
+
+                element.removeAttr("region");
+                $compile(element)(scope);
+            });
         }
     }
 }]);
