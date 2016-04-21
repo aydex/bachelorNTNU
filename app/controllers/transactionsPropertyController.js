@@ -136,6 +136,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             tooltip: {trigger: 'both'},
             pointSize: 5,
             interpolateNulls: true,
+            width: window.innerWidth * 0.6
         }
 
         if(chart == undefined){
