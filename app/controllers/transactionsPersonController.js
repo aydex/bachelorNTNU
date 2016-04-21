@@ -107,7 +107,7 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
     };
 
     $scope.showTransactionsProperty = function(id){
-        $location.path("/transactions/propertytimeline/" + id);
+        $location.path("/test/" + id);
     };
 
     $scope.queryTransaction();

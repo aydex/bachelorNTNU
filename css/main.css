@@ -737,3 +737,25 @@ select:disabled{
 	color:#D71010;
 	text-decoration: none;
 }
+
+
+/******************
+******************
+*******TABS********
+*******************
+******************/
+
+#tabContainer{
+	position: fixed;
+    z-index: 100000000;
+    top: 70px;
+    left: 22%;
+}
+
+.nav-tabs{
+	width:55vw;
+}
+
+#tab1Button, #tab2Button{
+	width:50%;
+}
