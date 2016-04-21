@@ -28,6 +28,8 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     $scope.selectedFylkenr = 0;
     $scope.searchingForText = "Eiendomsdatabasen";
 
+    document.getElementById("search").focus();
+
     $scope.fylker = [
         {
             label:"Østfold", 
@@ -205,6 +207,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             $scope.noResultShow = false;
             $scope.searched = false;
             $scope.hideNavigation = false;
+            $location.path("/search");
         }
     };
 
