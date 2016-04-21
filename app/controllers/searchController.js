@@ -144,12 +144,13 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         queryPromis = $rootScope.doQuery("name", $scope.search.nameSearch,
             $scope.page, $scope.search.pageSize, $scope.order, $scope.orderBy, $scope.currentType.value, $scope.selectedFylkenr, $scope.selectedKommunenr)
         queryPromis.then(function(result){
-
             if(result) {
                 angular.forEach(result.count[0], function(value) {
                     $scope.count = value;
                     //$scope.count = Math.ceil($scope.page * $scope.search.pageSize);
                 });
+
+                document.getElementById("search").focus();
 
                 $scope.lastSearched   = $scope.search.nameSearch;
                 $scope.names          = result.records;

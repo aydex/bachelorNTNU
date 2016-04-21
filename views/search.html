@@ -9,7 +9,7 @@
     <div>
     <form id="searchForm" data-ng-submit="searchForm(searchForm)">
         <i class="material-icons" id="searchIcon">search</i>
-        <input type="text" data-ng-model="search.nameSearch" data-ng-change="searchDelay()" placeholder="Navn, kommune, bedrift å søke på.." id="search" autocomplete="off">
+        <input type="text" data-ng-model="search.nameSearch" data-ng-change="searchDelay()" autofocus placeholder="Navn, kommune, bedrift å søke på.." id="search" autocomplete="off">
     </form>
     </div>
     <div id="advanced-div">
@@ -85,4 +85,8 @@
           <a href="#" class="map-link" data-ng-show="countySelected" data-ng-click="showAllCounty()">Klikk her for å se alle transjaksjoner i {{countyName}}</a>
           <button type="button" class="btn-map" data-ng-show="countySelected" data-ng-click="back()">x</button>
           <svg-map></svg-map>
+          <div class="description"></div>
     </div>
+</div>
+    <p id="pageNumber" data-ng-bind="pageDisplay" data-ng-show="showTable"></p>
+

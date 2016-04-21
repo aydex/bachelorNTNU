@@ -20,7 +20,6 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$filter
                             var cities = angular.element(document.querySelectorAll('.land'));
                             $scope.countyId = String(parseInt(cities[0].attributes["inkscape:label"].value.slice(2,4)));
                             $scope.county = url;
-                            console.log($scope.counties);
                             $scope.counties.then(function(result) {
                                 $scope.fylke = $filter('filter')(result.records, {'Fylkenr': $scope.countyId}, true);
                                 $scope.countyName = ($scope.fylke[0]["Fylkenavn"]);
@@ -187,12 +186,24 @@ kommunalApp.directive('region', ['$compile', '$filter', function ($compile, $fil
                 scope.elementId = element.attr("id");
 
                 scope.regionClick = function() {
-                    element.remove(tooltip);
+                    //element.remove(tooltip);
+                    try {
+                        document.getElementsByClassName("tooltip")[0].remove();
+                    } catch(err) {}
                     svgMapCtrl.updateMap(scope.elementId);
                 };
 
-                var tooltip = angular.element("<md-tooltip style='z-index: 900000000' md-direction='right'>{{fylkenavn}}</md-tooltip>");
-                element.append(tooltip);
+                //<span tooltips tooltip-template="Vis kun deltagere av denne typen" tooltip-size="large" >
+                //var tooltip = angular.element("<md-tooltip style='z-index: 900000000' md-direction='right'>{{fylkenavn}}</md-tooltip>");
+                //var tooltip = angular.element("<span tooltips tooltip-template='TOOOOT' tooltip-size='medium' tooltip-side='right' style='z-index: 90000000;' ></span>");
+                //console.log(tooltip);
+                //element.append(tooltip);
+                element.attr('uib-tooltip', '{{fylkenavn}}');
+                element.attr('tooltip', 'dicktip');
+                element.attr('tooltip-placement', 'top');
+                element.attr('data-ng-mousemove', 'move($event)');
+                //element.attr('tooltip-trigger', 'click');
+                element.attr('tooltip-append-to-body', true);
                 element.attr("ng-click", "regionClick()");
                 element.removeAttr("region");
                 $compile(element)(scope);
@@ -1492,14 +1503,23 @@ kommunalApp.directive('city', ['$compile', '$location', '$http', '$filter', func
 
                     $scope.name_encoded = encodeURIComponent($scope.kommunenavn);
                     element.attr("ng-click", "cityClick()");
-                    var tooltip = angular.element("<md-tooltip style='z-index: 900000000' md-direction='right'>{{kommunenavn}}</md-tooltip>");
-                    element.append(tooltip);
+                    //var tooltip = angular.element("<md-tooltip style='z-index: 900000000' md-direction='right'>{{kommunenavn}}</md-tooltip>");
+                    //element.append(tooltip);
+
+                    element.attr('uib-tooltip', '{{kommunenavn}}');
+                    element.attr('tooltip-placement', 'top');
+                    element.attr('data-ng-mousemove', 'move($event)');
+                    //element.attr('tooltip-trigger', 'click');
+                    element.attr('tooltip-append-to-body', true);
 
                     element.removeAttr("city");
                     $compile(element)($scope);
                 });
 
                 $scope.cityClick = function() {
+                    try{
+                        document.getElementsByClassName("tooltip")[0].remove();
+                    } catch(err){}
                     $location.path("/transactions/deltager/" + $scope.name_encoded + " KOMMUNE/" + $scope.kommuneDeltagerId + "/K");
                 };
             }

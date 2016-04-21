@@ -62,16 +62,6 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1 && isset($_SESSIO
 
         echo $query->selectTransactionProperty($eId, $page, $pageSize, $order, $orderBy);
 
-    }else if(isset($_REQUEST['municipalityId'])) {
-        $mId = htmlspecialchars($_REQUEST['municipalityId']);
-        echo $query->selectMunicipalityFromId($mId);
-    } else if(isset($_REQUEST['getMunicipalities'])) {
-        echo $query->getMunicipalities();
-    } else if(isset($_REQUEST['countyId'])) {
-        $cId = htmlspecialchars($_REQUEST['countyId']);
-        echo $query->selectCountyFromId($cId);
-    } else if(isset($_REQUEST['getCounties'])) {
-        echo $query->getCounties();
     }
 } else {
     /*if(isset($_SESSION["subscription_id"]) && $_SESSION["subscription_id"] != 6) {
@@ -81,5 +71,16 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1 && isset($_SESSIO
     //}
 }
 
+if(isset($_REQUEST['municipalityId'])) {
+    $mId = htmlspecialchars($_REQUEST['municipalityId']);
+    echo $query->selectMunicipalityFromId($mId);
+} else if(isset($_REQUEST['getMunicipalities'])) {
+    echo $query->getMunicipalities();
+} else if(isset($_REQUEST['countyId'])) {
+    $cId = htmlspecialchars($_REQUEST['countyId']);
+    echo $query->selectCountyFromId($cId);
+} else if(isset($_REQUEST['getCounties'])) {
+    echo $query->getCounties();
+}
 
 ?>

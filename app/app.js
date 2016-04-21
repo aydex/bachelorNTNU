@@ -1,6 +1,6 @@
 google.load('visualization', '1', {packages:['corechart']});
 
-var kommunalApp = angular.module('kommunalApp', ['ngRoute', 'ngCookies', 'ngMaterial', '720kb.tooltips']);
+var kommunalApp = angular.module('kommunalApp', ['ngRoute', 'ngCookies', 'ui.bootstrap', '720kb.tooltips']);
 
 kommunalApp.config(function($routeProvider, $locationProvider) {
     $routeProvider
@@ -15,6 +15,11 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             templateUrl : '/views/search.html',
             controller  : 'searchController',
             //reloadOnSearch: false
+        })
+
+        .when('/transactions/property/:targetId', {
+            templateUrl : '/views/transactionsDetailed.html',
+            controller  : 'transactionsDetailedController',
         })
 
         .when('/search/:searchName/:type/:page/:pageSize/:fylkenr/:kommnr', {
@@ -46,9 +51,14 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             controller  : 'transactionPersonController'
         })
 
-        .when('/transactions/property/:targetId', {
+        .when('/test/:targetId', {
             templateUrl : '/views/transactionsProperty.html',
             controller  : 'transactionPropertyController'
+        })
+
+        .when('/transactions/propertytimeline/:targetId', {
+            templateUrl : '/views/transactionsPropertyTimeline.html',
+            controller  : 'transactionPropertyTimelineController'
         })
 
         .otherwise({
@@ -69,7 +79,6 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
     $rootScope.doQuery = function(type, id, page, pageSize, order, orderBy, filterBy, fylkenr, kommnr) {
         var request = "./api/ask.php?" + type + "=" + id + "&page=" +
             page + "&pageSize=" + pageSize + "&order=" + order + "&orderBy=" + orderBy + "&filterBy=" + filterBy + "&fylkenr=" + fylkenr + "&kommnr=" + kommnr;
-        console.log(request);
         return $http.get(request)
         .then(function (response) {
                 if(response.data.records == "login_required") {
