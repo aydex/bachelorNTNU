@@ -4,11 +4,13 @@
 
 html{
 	text-align: center;
+	height:auto;
 }
 
 body{
 	font-family: 'Exo 2', sans-serif;
 	font-weight:400;
+	height:auto;
 }
 
 /******************************
