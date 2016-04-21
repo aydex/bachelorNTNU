@@ -79,7 +79,6 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
     $rootScope.doQuery = function(type, id, page, pageSize, order, orderBy, filterBy, fylkenr, kommnr) {
         var request = "./api/ask.php?" + type + "=" + id + "&page=" +
             page + "&pageSize=" + pageSize + "&order=" + order + "&orderBy=" + orderBy + "&filterBy=" + filterBy + "&fylkenr=" + fylkenr + "&kommnr=" + kommnr;
-        console.log(request);
         return $http.get(request)
         .then(function (response) {
                 if(response.data.records == "login_required") {

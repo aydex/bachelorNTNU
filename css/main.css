@@ -4,14 +4,16 @@
 
 html{
 	text-align: center;
-	height:auto;
+	height:auto !important;
 }
 
 body{
 	font-family: 'Exo 2', sans-serif;
 	font-weight:400;
-	height:auto;
+	height:auto !important;
 }
+
+html.md-default-theme, html, body.md-default-theme, body{background-color:white;}
 
 /******************************
 *******************************
@@ -524,11 +526,11 @@ td:nth-child(even){
 }
 
 .transactionurl{
-	color: #2d2d2d;
+	color: #2d2d2d !important;
 }
 
 .transactionurl:hover{
-	color: #2d2d2d;
+	color: #2d2d2d !important;
 	/*text-decoration: none;*/
 }
 
@@ -773,4 +775,8 @@ select:disabled{
 
 #tab1Button, #tab2Button{
 	width:50%;
+}
+
+.nav-tabs li a:hover{
+	color:initial !important;
 }
