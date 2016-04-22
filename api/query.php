@@ -142,7 +142,7 @@ class Query
                   FROM Omsetninger
                   NATURAL JOIN Dokumenter
                   NATURAL JOIN Eiendomshistorie
-                  NATURAL JOIN (SELECT Eiendomsid,Gatenavn,Husnr,Bokstav,Poststed FROM Eiendommer JOIN Kommuner ON Eiendommer.AdresseKommunenr = Kommuner.Kommunenr WHERE Gatenavn LIKE :query_target $filterText) AS E
+                  NATURAL JOIN (SELECT Eiendomsid,Gatenavn,Husnr,Bokstav,Poststed FROM Eiendommer JOIN Kommuner ON Eiendommer.AdresseKommunenr = Kommuner.Kommunenr WHERE Gatenavn LIKE :query_target OR Poststed LIKE :query_target  $filterText) AS E
                   LEFT JOIN EiendomInvolvertKommune AS EI USING(Eiendomsid)
                   JOIN Kommuner AS K ON EI.Kommunenr = K.Kommunenr
                   GROUP BY Eiendomsid

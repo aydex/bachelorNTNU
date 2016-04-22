@@ -52,9 +52,9 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             controller  : 'transactionPropertyController'
         })
 
-        .when('/transactions/propertytimeline/:targetId', {
-            templateUrl : '/views/transactionsPropertyTimeline.html',
-            controller  : 'transactionPropertyTimelineController'
+        .when('/transactions/property/:targetId', {
+            templateUrl : '/views/transactionsDetailed.html',
+            controller  : 'transactionsDetailedController'
         })
 
         .otherwise({

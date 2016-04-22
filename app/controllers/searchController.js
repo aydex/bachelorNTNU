@@ -333,6 +333,6 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     }
 
   	$scope.showTransactionsProperty = function(id){
-        $location.path("/transactions/propertytimeline/" + id);
+        $location.path("/transactions/property/" + id);
     };
 });
