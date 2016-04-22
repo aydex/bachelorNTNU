@@ -35,6 +35,20 @@
         </span>          
         <i class="material-icons select-arrow">play_arrow</i>     
     </div>
+    <div id="advanced-div" data-ng-show="selectedSearchType.value == 'address'">
+        
+        <span tooltips tooltip-template="Vis kun eiendommer i dette fylket" tooltip-size="large">
+            <select   data-ng-model="currentFylke" class="searchSelect" data-ng-options="fylke.label for fylke in fylker | orderBy:'label'"  data-ng-change="selectedFylkeChanged(fylke)">
+            <option value="">Velg fylke</option></select>
+            </span>
+            <i class="material-icons select-arrow">play_arrow</i>
+        
+            <span tooltips tooltip-template="Vis kun eiendommer i denne kommunen" tooltip-size="large">
+            <select  data-ng-change="selectedMunicipalityChanged(kommune)" class="searchSelect" name="kommune" data-ng-model="currentKommune" data-ng-options="(kommune.label | capitalFirstLettersFilter) for kommune in currentFylke.kommuner | orderBy:'label'" data-ng-disabled="currentFylke == undefined">
+                <option value="">Velg kommune</option></select>
+        </span>          
+        <i class="material-icons select-arrow">play_arrow</i>     
+    </div>
     
 </div>
 

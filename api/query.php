@@ -29,8 +29,6 @@ class Query
             return json_encode(array("records" => "login_required"));
             exit;
         }
-
-
         $filterBy = $filterBy - 1;
         if($filterBy > -1){
             $type = (string)$this->filterByArray[$filterBy];
@@ -120,11 +118,19 @@ class Query
         return json_encode(array("records" => $results, "count" => $count));
     }
 
-    public function selectTransactionByAddress($address, $page=1, $pageSize=10, $order, $orderBy) {
+    public function selectTransactionByAddress($address, $page=1, $pageSize=10, $order, $orderBy, $fylkenr, $kommnr) {
         if(!$this->authenticate()) {
             return json_encode(array("records" => "login_required"));
             exit;
         }
+         if ($kommnr > 0){
+            $filterText = " AND AdresseKommunenr = '$kommnr'";
+        } else if ($fylkenr > 0){
+            $filterText = " AND Fylkenr = '$fylkenr'";
+        }  else {
+            $filterText = "";
+        }
+
         $selectFromArray = array('Kommunenavn', 'Eiendomsid', 'ForstRegistrert', 'SistRegistrert', 'AntallTransaksjoner', 'Involvering', 'Gatenavn', 'Husnr', 'Bokstav', 'InvolverteKommuner', 'Historie', 'null');
 
         $keyOrderBy      = array_search($orderBy, $selectFromArray);
@@ -136,7 +142,7 @@ class Query
                   FROM Omsetninger
                   NATURAL JOIN Dokumenter
                   NATURAL JOIN Eiendomshistorie
-                  NATURAL JOIN (SELECT * FROM Eiendommer WHERE Gatenavn LIKE :query_target ) AS E
+                  NATURAL JOIN (SELECT Eiendomsid,Gatenavn,Husnr,Bokstav,Poststed FROM Eiendommer JOIN Kommuner ON Eiendommer.AdresseKommunenr = Kommuner.Kommunenr WHERE Gatenavn LIKE :query_target $filterText) AS E
                   LEFT JOIN EiendomInvolvertKommune AS EI USING(Eiendomsid)
                   JOIN Kommuner AS K ON EI.Kommunenr = K.Kommunenr
                   GROUP BY Eiendomsid

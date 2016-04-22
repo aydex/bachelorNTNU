@@ -54,7 +54,7 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1 && isset($_SESSIO
     }else if (isset($_REQUEST['address'])) {
         $address = htmlspecialchars($_REQUEST['address']);
     
-        echo $query->selectTransactionByAddress($address, $page, $pageSize, $order, $orderBy);
+        echo $query->selectTransactionByAddress($address, $page, $pageSize, $order, $orderBy, $fylkenr, $kommnr);
 
     }else if(isset($_REQUEST['transactionFromPerson'])){
 

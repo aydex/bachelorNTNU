@@ -83,7 +83,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
 
     $scope.queryAddress  = function() {
         queryPromis = $rootScope.doQuery("address", $scope.search.query,
-            $scope.page, $scope.search.pageSize, $scope.order, $scope.orderBy)
+            $scope.page, $scope.search.pageSize, $scope.order, $scope.orderBy,$scope.currentType.value, $scope.selectedFylkenr, $scope.selectedKommunenr)
         queryPromis.then(function(result){
             if(result) {
                 angular.forEach(result.count[0], function(value) {
@@ -106,6 +106,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
 
 
     $scope.doSearch = function(){
+        console.log($scope.selectedKommunenr)
         if ($scope.selectedSearchType.value == 'name'){
             $scope.doNameSearch();
         } else {
@@ -113,7 +114,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         }
     }
 
-    $scope.doNameSearch    = function(){
+    $scope.doNameSearch = function(){
         if ($scope.search.query.length != 0){
                 if($scope.lastSearch != $scope.search.query){
                 $scope.page = 1;
@@ -151,7 +152,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
                 type = 0;
             }else type = $scope.currentType.value;
     
-            $location.path("/search/a/" + query_encoded + "/" + type + "/" + $scope.page + "/" + $scope.search.pageSize);
+            $location.path("/search/a/" + query_encoded + "/" + type + "/" + $scope.page + "/" + $scope.search.pageSize+ "/" + $scope.selectedFylkenr + "/" + $scope.selectedKommunenr);
         }
     };
 
@@ -259,7 +260,6 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             $scope.page          += way;
             $scope.showNavigation = false;
             $scope.doSearch();
-            //$location.path("/search/" + $scope.search.query + "/" + $scope.page + "/" + $scope.search.pageSize);
         }
     };
 
@@ -305,8 +305,9 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     }
 
     $scope.selectedMunicipalityChanged = function(kommune){
-
+console.log($scope.currentKommune)
         if (kommune != $scope.currentKommune){
+
             $scope.selectedKommunenr = $scope.currentKommune.kommunenr;
         } else {
             $scope.selectedKommunenr = 0;
