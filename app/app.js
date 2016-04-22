@@ -18,13 +18,7 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
         })
 
 
-        .when('/search/:searchName/:type/:page/:pageSize/:fylkenr/:kommnr', {
-            templateUrl : '/views/search.html',
-            controller  : 'searchController',
-            //reloadOnSearch: false
-        })
-
-        .when('/search/:searchAddress/:page/:pageSize', {
+        .when('/search/:searchType/:searchName/:type/:page/:pageSize/:fylkenr/:kommnr', {
             templateUrl : '/views/search.html',
             controller  : 'searchController',
             //reloadOnSearch: false
@@ -42,7 +36,7 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             //reloadOnSearch: false
         })
 
-        .when('/search/:searchName/:type/:page/:pageSize', {
+        .when('/search/:searchType/:searchName/:type/:page/:pageSize', {
             templateUrl : '/views/search.html',
             controller  : 'searchController'
         })

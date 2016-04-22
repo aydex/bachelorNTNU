@@ -145,6 +145,8 @@ class Query
 
         $offset = ($page - 1)*$pageSize;
 
+        $address = "%$address%";
+
         $stmt = $this->db->prepare($query);
         $stmt->bindValue(':query_target', $address, PDO::PARAM_STR);
         $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);

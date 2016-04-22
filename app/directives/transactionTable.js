@@ -10,7 +10,7 @@ kommunalApp.directive('transactionTable', function($filter){
             scope.transaction.showInvolvementsShield = false;
             
             if (scope.transaction.Gatenavn != 0 && scope.transaction.Gatenavn != null){
-                scope.transaction.adresse = scope.transaction.Gatenavn + " " + scope.transaction.Husnr + scope.transaction.Bokstav + ", " + $filter('nameFilter')(scope.transaction.Poststed);
+                scope.transaction.adresse = $filter('capitalFirstLettersFilter')(scope.transaction.Gatenavn) + " " + scope.transaction.Husnr + scope.transaction.Bokstav + ", " + $filter('nameFilter')(scope.transaction.Poststed);
             }
 
             var involverteKommuner = scope.transaction.InvolverteKommuner.split(", ");
@@ -156,7 +156,6 @@ kommunalApp.directive('transactionTable', function($filter){
             keys.sort(date_sort_asc);
             //involveringer.sort(date_sort_asc_internal);
             //console.log(Object.keys(involveringer))
-            console.log(involveringer)
 
             var lastSale;
             var lastBuy;
