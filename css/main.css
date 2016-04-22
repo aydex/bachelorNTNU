@@ -792,3 +792,97 @@ select:disabled{
 .tooltip-arrow{
 	display: none;
 }
+
+.show-only-mobile{
+	display:none;
+}
+
+/****MOBILE*****/
+
+@media only screen and (max-width: 736px) and (max-width:600px), only screen and (max-device-width: 736px)  and (orientation: landscape){
+	#searchTitle{
+		display: block;
+	}
+
+	#logo{
+		width: 50%;
+	}
+
+	#navigationHeader{
+		float:none;
+	}
+
+	.searchSelect{
+		width:100px;
+	}
+
+	#advanced-div, #search, #searchForm, #searchTitle{
+		width:75%;
+	}
+
+	div .container{
+		width:100%;
+	}
+
+	#tableHeader, #tableTransactionHeader{
+		width: 96%;
+	}
+
+	.show-only-mobile{
+		display:table-row;
+	}
+
+	#tablePropertyHeader, #tableHeader{
+		display: none;
+	}
+
+	#tableTransactionHeader{
+		top:265px;
+		display: none;
+	}
+
+	#transactionBumpDown{
+		margin-top:300px;
+	}
+
+	#propertyBumpDown{
+		margin-top:355px;
+	}
+
+	#PropPageElements{
+		width:100%;
+		margin-top:-24px;
+	}
+
+	.scrollX{
+		overflow-x:scroll;
+	}
+
+	#tableContainer{
+		overflow:scroll;
+	}
+
+	#transaksjonsType{
+		width:100%;
+	}
+
+	#nextPage, #prevPage{
+		margin-top:-25%;
+	}
+
+	.backbutton{
+		display: none;
+	}
+
+	#nextPage{
+		margin-right:38%;
+	}
+
+	#pageElements{
+		margin-top:70px;
+	}
+
+	#nextPage{
+		margin-right: 5%;
+	}
+}

@@ -50,6 +50,28 @@
     <span data-ng-class="{'navButtonInactive' : !more_results || !showNavigation, 'navButtonActive' : more_results && showNavigation }" class="fa fa-chevron-right" data-ng-show="hideNavigation" data-ng-click="navigate(1)" id="nextPage"></span>
     <img src="/images/loader.gif" data-ng-show="!showTable" alt="Loading.." />
     <table data-ng-show="showTable">
+        <tr class="show-only-mobile">
+            <th id="involvedMunicipID" data-ng-click="orderByMe('InvolvertKommune')" data-ng-class="{'disableSort' : !sortReady}">
+
+                Kommuner
+                <span data-ng-show="orderBy == 'InvolvertKommune' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'InvolvertKommune' && reverse" class="fa fa-caret-down"></span>
+            </th>
+            <th id="involvementID" data-ng-click="orderByMe('Involvering')" data-ng-class="{'disableSort' : !sortReady}">
+                Kommunens Involvering
+                <span data-ng-show="orderBy == 'Involvering' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'Involvering' && reverse" class="fa fa-caret-down"></span>
+            </th>
+        
+
+    
+            <th id="etterSalgColumn" data-ng-click="orderByMe('InvolvertKommune')" data-ng-class="{'disableSort' : !sortReady}">
+                Endring etter salg
+                <span data-ng-show="orderBy == 'InvolvertKommune' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'InvolvertKommune' && reverse" class="fa fa-caret-down"></span>
+            </th>
+
+        </tr>
         <tr transaction-table transaction="transaction" data-ng-repeat="transaction in transactions" data-ng-click="showTransactionsProperty(transaction.Eiendomsid)">
         </tr>
     </table>
