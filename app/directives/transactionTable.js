@@ -154,8 +154,7 @@ kommunalApp.directive('transactionTable', function($filter){
             }
 
             keys.sort(date_sort_asc);
-            //involveringer.sort(date_sort_asc_internal);
-            //console.log(Object.keys(involveringer))
+
 
             var lastSale;
             var lastBuy;

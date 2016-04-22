@@ -1,0 +1,17 @@
+<div id="tabContainer">
+    <ul class="nav nav-tabs" role="tablist">
+        <li id="tab1Button" ng-class="{'active': activeTab == 1}">
+            <a href="" ng-click="changeTab(1)">Timeline</a>
+        </li>
+        <li id="tab2Button" ng-class="{'active': activeTab == 2}">
+            <a href="" ng-click="changeTab(2)">Table</a>
+        </li>
+    </ul>
+</div>
+
+<div id="tab1" data-ng-controller="transactionPropertyTimelineController" data-ng-show="activeTab == 1" data-ng-include="'views/transactionsPropertyTimeline.html'">
+</div>
+
+<div id="tab2" data-ng-show="activeTab == 2" data-ng-controller="transactionPropertyController" data-ng-include="'views/transactionsProperty.html'">
+</div>
+

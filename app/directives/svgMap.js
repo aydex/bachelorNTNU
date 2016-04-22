@@ -18,11 +18,11 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$filter
                             $scope.mapElement.replaceWith(newMap);
                             $scope.mapElement = newMap;
                             var cities = angular.element(document.querySelectorAll('.land'));
-                            $scope.countyId = cities[0].attributes["inkscape:label"].value.slice(2,4);
+                            $scope.countyId = String(parseInt(cities[0].attributes["inkscape:label"].value.slice(2,4)));
                             $scope.county = url;
-                            var countyName = $scope.countyQuery($scope.countyId);
-                            countyName.then(function(result) {
-                                $scope.countyName = (result.records[0]["Fylkenavn"]);
+                            $scope.counties.then(function(result) {
+                                $scope.fylke = $filter('filter')(result.records, {'Fylkenr': $scope.countyId}, true);
+                                $scope.countyName = ($scope.fylke[0]["Fylkenavn"]);
                                 angular.forEach(cities, function(path) {
                                     var cityElement = angular.element(path);
                                     cityElement.attr("city", "");
@@ -31,6 +31,13 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$filter
                             });
                         });
                 }
+            };
+            
+            $scope.getCounties = function() {
+                return $http.get("./api/ask.php?getCounties")
+                    .then(function (response) {
+                        return {records: response.data.records};
+                    });
             };
 
             $scope.getMunicipalities = function () {
@@ -146,39 +153,61 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$filter
             };
         },
         link: function ($scope, element) {
-            $scope.municipalities = $scope.getMunicipalities();
-            $scope.municipalities.then(function() {
-                var regions = element[0].querySelectorAll('.land');
-                angular.forEach(regions, function (path) {
-                    var regionElement = angular.element(path);
-                    regionElement.attr("region", "");
-                    $compile(regionElement)($scope);
+            $scope.counties = $scope.getCounties();
+            $scope.counties.then(function () {
+                $scope.municipalities = $scope.getMunicipalities();
+                $scope.municipalities.then(function() {
+                    var regions = element[0].querySelectorAll('.land');
+                    angular.forEach(regions, function (path) {
+                        var regionElement = angular.element(path);
+                        regionElement.attr("region", "");
+                        $compile(regionElement)($scope);
+                    });
+                    $scope.mapElement = angular.element(element[0]);
                 });
-                $scope.mapElement = angular.element(element[0]);
             });
         },
         templateUrl: "images/kommunekart/norge.svg"
       }
 }]);
 
-kommunalApp.directive('region', ['$compile', function ($compile) {
+kommunalApp.directive('region', ['$compile', '$filter', function ($compile, $filter) {
     return {
         restrict: 'EA',
         scope: true,
         require: '^^svgMap',
 		link: function (scope, element, attrs, svgMapCtrl) {
-            scope.elementId = element.attr("id");
-            scope.regionHover = function () {
-            };
-            scope.regionClick = function() {
-                svgMapCtrl.updateMap(scope.elementId);
-            };
+            scope.counties.then(function(result) {
+                var countyIndex = element.attr("class").indexOf("county");
+                scope.countyId = String(parseInt(element.attr("class").slice(countyIndex+6, countyIndex+8)));
+                scope.fylke = $filter('filter')(result.records, {'Fylkenr': scope.countyId}, true);
+                scope.fylkenavn = scope.fylke[0]["Fylkenavn"];
+                scope.fylkenr = scope.countyId;
+                scope.elementId = element.attr("id");
 
-            element.attr("ng-mousemove", "regionHover()");
-            element.attr("ng-click", "regionClick()");
+                scope.regionClick = function() {
+                    //element.remove(tooltip);
+                    try {
+                        document.getElementsByClassName("tooltip")[0].remove();
+                    } catch(err) {}
+                    svgMapCtrl.updateMap(scope.elementId);
+                };
 
-            element.removeAttr("region");
-            $compile(element)(scope);
+                //<span tooltips tooltip-template="Vis kun deltagere av denne typen" tooltip-size="large" >
+                //var tooltip = angular.element("<md-tooltip style='z-index: 900000000' md-direction='right'>{{fylkenavn}}</md-tooltip>");
+                //var tooltip = angular.element("<span tooltips tooltip-template='TOOOOT' tooltip-size='medium' tooltip-side='right' style='z-index: 90000000;' ></span>");
+                //console.log(tooltip);
+                //element.append(tooltip);
+                element.attr('uib-tooltip', '{{fylkenavn}}');
+                element.attr('tooltip', 'dicktip');
+                element.attr('tooltip-placement', 'top');
+                element.attr('data-ng-mousemove', 'move($event)');
+                //element.attr('tooltip-trigger', 'click');
+                element.attr('tooltip-append-to-body', true);
+                element.attr("ng-click", "regionClick()");
+                element.removeAttr("region");
+                $compile(element)(scope);
+            });
         }
     }
 }]);
@@ -188,7 +217,6 @@ kommunalApp.directive('city', ['$compile', '$location', '$http', '$filter', func
         restrict: 'EA',
         scope: true,
         link: function($scope, element, attrs) {
-
             if(element.attr("inkscape:label") != undefined) {
                 $scope.cityId = String(parseInt(element.attr("inkscape:label").slice(2)));
                 $scope.municipalityToParticipant = {
@@ -1475,14 +1503,23 @@ kommunalApp.directive('city', ['$compile', '$location', '$http', '$filter', func
 
                     $scope.name_encoded = encodeURIComponent($scope.kommunenavn);
                     element.attr("ng-click", "cityClick()");
-                    var tooltip = angular.element("<md-tooltip style='z-index: 900000000' md-direction='right'>{{kommunenavn}}</md-tooltip>");
-                    element.append(tooltip);
+                    //var tooltip = angular.element("<md-tooltip style='z-index: 900000000' md-direction='right'>{{kommunenavn}}</md-tooltip>");
+                    //element.append(tooltip);
+
+                    element.attr('uib-tooltip', '{{kommunenavn}}');
+                    element.attr('tooltip-placement', 'top');
+                    element.attr('data-ng-mousemove', 'move($event)');
+                    //element.attr('tooltip-trigger', 'click');
+                    element.attr('tooltip-append-to-body', true);
 
                     element.removeAttr("city");
                     $compile(element)($scope);
                 });
 
                 $scope.cityClick = function() {
+                    try{
+                        document.getElementsByClassName("tooltip")[0].remove();
+                    } catch(err){}
                     $location.path("/transactions/deltager/" + $scope.name_encoded + " KOMMUNE/" + $scope.kommuneDeltagerId + "/K");
                 };
             }

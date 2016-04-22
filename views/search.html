@@ -117,10 +117,10 @@
     <p id="noResultDescription" data-ng-show="noResultShow">Ingen resultater...</p>
     <img src="/images/loader.gif" data-ng-show="!showTable && searched && !noResultShow" alt="Loading.." />
        <table data-ng-show="showTable">
-    
         <tr search-table participant="participant" data-ng-if="selectedSearchType.value == 'name'" data-ng-repeat="participant in names | filter:searchName" data-ng-click="showTransactionsPerson(participant.id, participant.Navn, participant.Type)">
         </tr>
          <tr transaction-table transaction="transaction" data-ng-if="selectedSearchType.value == 'address'" data-ng-repeat="transaction in transactions" data-ng-click="showTransactionsProperty(transaction.Eiendomsid)">
+
         </tr>
     </table>
 </div>
@@ -130,6 +130,7 @@
           <a href="#" class="map-link" data-ng-show="countySelected" data-ng-click="showAllCounty()">Klikk her for å se alle transjaksjoner i {{countyName}}</a>
           <button type="button" class="btn-map" data-ng-show="countySelected" data-ng-click="back()">x</button>
           <svg-map></svg-map>
+          <div class="description"></div>
     </div>
 </div>
-    <p id="pageNumber" data-ng-bind="pageDisplay" data-ng-show="showTable"></p>
+<p id="pageNumber" data-ng-bind="pageDisplay" data-ng-show="showTable"></p>

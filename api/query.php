@@ -112,19 +112,19 @@ class Query
         $stmt->execute();
 
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
         $count = $this->countRows();
-
         return json_encode(array("records" => $results, "count" => $count));
     }
 
-    public function selectTransactionByAddress($address, $page=1, $pageSize=10, $order, $orderBy, $fylkenr, $kommnr) {
+    public function selectTransactionByAddress($address, $page=1, $pageSize=10, $order, $orderBy, $filterBy, $fylkenr, $kommnr) {
         if(!$this->authenticate()) {
             return json_encode(array("records" => "login_required"));
             exit;
         }
          if ($kommnr > 0){
             $filterText = " AND AdresseKommunenr = '$kommnr'";
+        } else if ($fylkenr == 301){
+            $filterText = " AND AdresseKommunenr = '$fylkenr'";
         } else if ($fylkenr > 0){
             $filterText = " AND Fylkenr = '$fylkenr'";
         }  else {
@@ -198,8 +198,6 @@ class Query
 
         $stmt = $this->db->prepare($query_1);
         $stmt->bindValue(':query_target', $id, PDO::PARAM_INT);
-        //$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-        //$stmt->bindValue(':pageSize', $pageSize, PDO::PARAM_INT);
         $stmt->execute();
 
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -230,13 +228,7 @@ class Query
     }
 
 
-    public function selectMunicipalityFromId($mId)
-    {
-        if(!$this->authenticate()) {
-            return json_encode(array("records" => "login_required"));
-            exit;
-        }
-        
+    public function selectMunicipalityFromId($mId){   
         $query = "SELECT * 
                   FROM Kommuner 
                   WHERE Kommunenr=:mId";
@@ -250,13 +242,8 @@ class Query
         return json_encode(array("records" => $result));
     }
 
-    public function getMunicipalities()
-    {
-        if(!$this->authenticate()) {
-            return json_encode(array("records" => "login_required"));
-            exit;
-        }
-        
+    public function getMunicipalities(){
+
         $query = "SELECT Kommunenr, Kommunenavn 
                   FROM kommunalrapport.Kommuner";
 
@@ -268,19 +255,25 @@ class Query
         return json_encode(array("records" => $result));
     }
 
-    public function selectCountyFromId($cId)
-    {
-        if(!$this->authenticate()) {
-            return json_encode(array("records" => "login_required"));
-            exit;
-        }
-
+    public function selectCountyFromId($cId){
         $query = "SELECT * 
                   FROM Fylker 
                   WHERE Fylkenr=:cId";
 
         $stmt = $this->db->prepare($query);
         $stmt->bindValue(':cId', $cId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return json_encode(array("records" => $result));
+    }
+
+    public function getCounties(){
+        $query = "SELECT Fylkenr, Fylkenavn 
+                  FROM kommunalrapport.Fylker";
+
+        $stmt = $this->db->prepare($query);
         $stmt->execute();
 
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

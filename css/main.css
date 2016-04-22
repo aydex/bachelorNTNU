@@ -4,12 +4,16 @@
 
 html{
 	text-align: center;
+	height:auto !important;
 }
 
 body{
 	font-family: 'Exo 2', sans-serif;
 	font-weight:400;
+	height:auto !important;
 }
+
+html.md-default-theme, html, body.md-default-theme, body{background-color:white;}
 
 /******************************
 *******************************
@@ -277,6 +281,21 @@ table{
 	background-color: white;
 }
 
+#fixedPropertyTimeline{
+	position: fixed;
+	display: block;
+	width: 100%;
+	top: 0;
+	left: 0;
+	right:0px;
+	margin-left: auto;
+	margin-right:auto;
+	margin-top:70px;
+	z-index: 100000;
+	height: 100px;
+	background-color: white;
+}
+
 
 #bumpDown{
 	margin-top: 350px;
@@ -291,6 +310,19 @@ table{
 #propertyBumpDown{
 	margin-top: 425px;
 }
+
+#tableTimelinePropertyHeader{
+	position: fixed;
+	z-index: 1000000;
+	top: 400px;
+	width: 94%;
+}
+
+#propertyTimelineBumpDown{
+	margin-top: 200px;
+}
+
+
 
 
 #tableHeader, #tableTransactionHeader{
@@ -326,7 +358,6 @@ table{
 	position: relative;
 	display: block;
 	margin-bottom: 5%;
-
 }
 
 #footer{
@@ -517,11 +548,11 @@ td:nth-child(even){
 }
 
 .transactionurl{
-	color: #2d2d2d;
+	color: #2d2d2d !important;
 }
 
 .transactionurl:hover{
-	color: #2d2d2d;
+	color: #2d2d2d !important;
 	/*text-decoration: none;*/
 }
 
@@ -742,4 +773,136 @@ select:disabled{
 #loginInfoCenter a:hover{
 	color:#D71010;
 	text-decoration: none;
+}
+
+
+/******************
+******************
+*******TABS********
+*******************
+******************/
+
+#tabContainer{
+	position: fixed;
+    z-index: 100000000;
+    top: 70px;
+    left: 22%;
+}
+
+.nav-tabs{
+	width:55vw;
+}
+
+#tab1Button, #tab2Button{
+	width:50%;
+}
+
+.nav-tabs li a:hover{
+	color:initial !important;
+}
+
+/** tooltips **/
+
+.tooltip{
+	position: absolute;
+	display: none;
+	z-index: 100000000000000000;
+}
+
+.tooltip-arrow{
+	display: none;
+}
+
+.show-only-mobile{
+	display:none;
+}
+
+/****MOBILE*****/
+
+@media only screen and (max-width: 736px) and (max-width:600px), only screen and (max-device-width: 736px)  and (orientation: landscape){
+	#searchTitle{
+		display: block;
+	}
+
+	#logo{
+		width: 50%;
+	}
+
+	#navigationHeader{
+		float:none;
+	}
+
+	.searchSelect{
+		width:100px;
+	}
+
+	#advanced-div, #search, #searchForm, #searchTitle{
+		width:75%;
+	}
+
+	div .container{
+		width:100%;
+	}
+
+	#tableHeader, #tableTransactionHeader{
+		width: 96%;
+	}
+
+	.show-only-mobile{
+		display:table-row;
+	}
+
+	#tablePropertyHeader, #tableHeader{
+		display: none;
+	}
+
+	#tableTransactionHeader{
+		top:265px;
+		display: none;
+	}
+
+	#transactionBumpDown{
+		margin-top:300px;
+	}
+
+	#propertyBumpDown{
+		margin-top:355px;
+	}
+
+	#PropPageElements{
+		width:100%;
+		margin-top:-24px;
+	}
+
+	.scrollX{
+		overflow-x:scroll;
+	}
+
+	#tableContainer{
+		overflow:scroll;
+	}
+
+	#transaksjonsType{
+		width:100%;
+	}
+
+	#nextPage, #prevPage{
+		margin-top:-25%;
+	}
+
+	.backbutton{
+		display: none;
+	}
+
+	#nextPage{
+		margin-right:38%;
+	}
+
+	#pageElements{
+		margin-top:70px;
+	}
+
+	#nextPage{
+		margin-right: 5%;
+	}
 }

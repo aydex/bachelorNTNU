@@ -18,7 +18,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
 
     var _timeout;
     var queryPromis;
-
+	$scope.pageSwitch	  = false;
     $scope.page           = 1;
     $scope.orderBy        = null;
     $scope.order          = "ASC";
@@ -48,8 +48,6 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     
 
 
-
-
     $scope.advanceChange = function(){
         if($scope.search.query != "")
             $scope.doSearch();
@@ -59,14 +57,18 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         queryPromis = $rootScope.doQuery("name", $scope.search.query,
             $scope.page, $scope.search.pageSize, $scope.order, $scope.orderBy, $scope.currentType.value, $scope.selectedFylkenr, $scope.selectedKommunenr)
         queryPromis.then(function(result){
-
             if(result) {
                 angular.forEach(result.count[0], function(value) {
                     $scope.count = value;
                     //$scope.count = Math.ceil($scope.page * $scope.search.pageSize);
                 });
 
+
                 $scope.lastSearched   = $scope.search.query;
+
+                document.getElementById("search").focus();
+
+
                 $scope.names          = result.records;
                 $scope.showTable      = $scope.names.length > 0;
                 $scope.noResultShow   = !!($scope.names.length == 0 && $scope.search.query.length > 0);
@@ -106,7 +108,6 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
 
 
     $scope.doSearch = function(){
-        console.log($scope.selectedKommunenr)
         if ($scope.selectedSearchType.value == 'name'){
             $scope.doNameSearch();
         } else {
@@ -116,9 +117,10 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
 
     $scope.doNameSearch = function(){
         if ($scope.search.query.length != 0){
-                if($scope.lastSearch != $scope.search.query){
+
+                if(($scope.lastSearch != $scope.search.query) && ($scope.pageSwitch == false)){
                 $scope.page = 1;
-                }
+            }
     
             console.log("Searching for " + $scope.search.query + " with page size " +
                 $scope.search.pageSize + " at page " + $scope.page + " ordered by " + $scope.orderBy +
@@ -137,7 +139,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
 
     $scope.doAddressSearch = function(){
         if ($scope.search.query.length != 0){
-                if($scope.lastSearch != $scope.search.query){
+                if(($scope.lastSearch != $scope.search.query)&&($scope.pageSwitch == false)){
                     $scope.page = 1;
                 }
     
@@ -170,8 +172,10 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         }
         if ($scope.search.query.length == 0 && ($scope.showTable || $scope.noResultShow || $scope.hideNavigation)){
             $scope.showTable = false;
-            $scope.noResultShow = true;
+            $scope.noResultShow = false;
+            $scope.searched = false;
             $scope.hideNavigation = false;
+            $location.path("/search");
         }
     };
 
@@ -257,7 +261,8 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
 
     $scope.navigate = function(way) {
         if((way == -1 && $scope.page > 1 && $scope.showNavigation) || (way == 1 && $scope.more_results && $scope.showNavigation)){
-            $scope.page          += way;
+        	$scope.pageSwitch = true;
+            $scope.page += way;
             $scope.showNavigation = false;
             $scope.doSearch();
         }
@@ -305,7 +310,6 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     }
 
     $scope.selectedMunicipalityChanged = function(kommune){
-console.log($scope.currentKommune)
         if (kommune != $scope.currentKommune){
 
             $scope.selectedKommunenr = $scope.currentKommune.kommunenr;
@@ -328,9 +332,7 @@ console.log($scope.currentKommune)
         $scope.advanceChange();
     }
 
-    $scope.showTransactionsProperty = function(id){
-        $location.path("/transactions/property/" + id);
+  	$scope.showTransactionsProperty = function(id){
+        $location.path("/transactions/propertytimeline/" + id);
     };
-
-
 });
