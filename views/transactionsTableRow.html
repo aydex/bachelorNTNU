@@ -1,4 +1,7 @@
 <tr>
+    <td id="adresseColumn" class="leftalign">
+    <span data-ng-bind="transaction.adresse"></span><span  data-ng-if="transaction.adresse == '' || transaction.adresse == undefined" class="manglerData">ADRESSE MANGLER</span>
+    </td>
 	<td id="involvedMunicipID" class="leftalign">
     	<span  data-ng-repeat="kommune in transaction.InvolverteKommuner track by $index">
     		<kommunevaapen  id="kommune.kommnr"></kommunevaapen>
@@ -18,4 +21,5 @@
         <span data-ng-if="transaction.flagClass == 'negChange'" tooltips tooltip-template="Denne transaksjonen har hatt prisnedgang på mer enn 60% per år etter kommunen solgte"><span data-ng-bind="transaction.etterSalg" data-ng-class="transaction.flagClass"></span></span>
 		<span  data-ng-if="transaction.etterSalg == undefined || transaction.etterSalg == ''" class="manglerData">MANGLER DATA</span>
 	</td>
+    
 </tr>

@@ -18,8 +18,20 @@ $pageSize = 0;
 $order    = "";
 $orderBy  = "";
 $filterBy = "";
+$address  = "";
 
+
+    $config   = new Config();
+    $query    = new Query($config->db);
+    $name     = "";
+    $page     = 0;
+    $pageSize = 0;
+    $order    = "";
+    $orderBy  = "";
+    $filterBy = "";
+    
 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1 && isset($_SESSION['subscription_id']) && $_SESSION['subscription_id'] != -1) {
+
 
     if (isset($_REQUEST['page']) && isset($_REQUEST['pageSize'])) {
         $page     = (int)$_REQUEST['page'];
@@ -61,6 +73,11 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1 && isset($_SESSIO
         $name = htmlspecialchars($_REQUEST['name']);
     
         echo $query->selectPersonPaged($name, $page, $pageSize, $order, $orderBy, $filterBy, $fylkenr, $kommnr);
+
+    }else if (isset($_REQUEST['address'])) {
+        $address = htmlspecialchars($_REQUEST['address']);
+    
+        echo $query->selectTransactionByAddress($address, $page, $pageSize, $order, $orderBy, $filterBy, $fylkenr, $kommnr);
 
     }else if(isset($_REQUEST['transactionFromPerson'])){
 

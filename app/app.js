@@ -17,12 +17,8 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             //reloadOnSearch: false
         })
 
-        .when('/transactions/property/:targetId', {
-            templateUrl : '/views/transactionsDetailed.html',
-            controller  : 'transactionsDetailedController',
-        })
 
-        .when('/search/:searchName/:type/:page/:pageSize/:fylkenr/:kommnr', {
+        .when('/search/:searchType/:searchName/:type/:page/:pageSize/:fylkenr/:kommnr', {
             templateUrl : '/views/search.html',
             controller  : 'searchController',
             //reloadOnSearch: false
@@ -40,7 +36,7 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             //reloadOnSearch: false
         })
 
-        .when('/search/:searchName/:type/:page/:pageSize', {
+        .when('/search/:searchType/:searchName/:type/:page/:pageSize', {
             templateUrl : '/views/search.html',
             controller  : 'searchController'
         })
@@ -56,9 +52,9 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             controller  : 'transactionPropertyController'
         })
 
-        .when('/transactions/propertytimeline/:targetId', {
-            templateUrl : '/views/transactionsPropertyTimeline.html',
-            controller  : 'transactionPropertyTimelineController'
+        .when('/transactions/property/:targetId', {
+            templateUrl : '/views/transactionsDetailed.html',
+            controller  : 'transactionsDetailedController'
         })
 
         .otherwise({
