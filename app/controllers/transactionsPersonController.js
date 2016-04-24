@@ -36,8 +36,6 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
                 $scope.sortReady      = true;
             }
         });
-
-
     };
 
     $scope.pageSizeChange = function(){

@@ -46,8 +46,6 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     $scope.selectedFylkenr = 0;
     $scope.searchingForText = "Eiendomsdatabasen";
     
-
-
     $scope.advanceChange = function(){
         if($scope.search.query != "")
             $scope.doSearch();
@@ -60,14 +58,11 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             if(result) {
                 angular.forEach(result.count[0], function(value) {
                     $scope.count = value;
-                    //$scope.count = Math.ceil($scope.page * $scope.search.pageSize);
                 });
-
 
                 $scope.lastSearched   = $scope.search.query;
 
                 document.getElementById("search").focus();
-
 
                 $scope.names          = result.records;
                 $scope.showTable      = $scope.names.length > 0;
@@ -251,7 +246,6 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
              $scope.queryAddress();
              $scope.selectedSearchType = $scope.searchTypes[1];
         }
-        
         $scope.setSearchText();
     }
 
