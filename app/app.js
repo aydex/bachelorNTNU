@@ -24,6 +24,11 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             //reloadOnSearch: false
         })
 
+        .when('/search/:searchType/:searchName/:type/:page/:pageSize', {
+            templateUrl : '/views/search.html',
+            controller  : 'searchController'
+        })
+
         .when('/unregistered/', {
             templateUrl : '/views/error.html',
             controller  : 'unregisteredController',
@@ -36,25 +41,24 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             //reloadOnSearch: false
         })
 
-        .when('/search/:searchType/:searchName/:type/:page/:pageSize', {
-            templateUrl : '/views/search.html',
-            controller  : 'searchController'
-        })
-
-
         .when('/transactions/deltager/:name/:targetId/:type', {
             templateUrl : '/views/transactions.html',
             controller  : 'transactionPersonController'
         })
 
-        .when('/test/:targetId', {
-            templateUrl : '/views/transactionsProperty.html',
-            controller  : 'transactionPropertyController'
-        })
-
         .when('/transactions/property/:targetId', {
             templateUrl : '/views/transactionsDetailed.html',
             controller  : 'transactionsDetailedController'
+        })
+
+        .when('/transactions/property/:targetId/:targetAddress', {
+            templateUrl : '/views/transactionsDetailed.html',
+            controller  : 'transactionsDetailedController'
+        })
+
+         .when('/test/:targetId', {
+            templateUrl : '/views/transactionsProperty.html',
+            controller  : 'transactionPropertyController'
         })
 
         .otherwise({

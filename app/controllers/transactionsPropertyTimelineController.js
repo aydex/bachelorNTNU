@@ -8,12 +8,13 @@ kommunalApp.controller('transactionPropertyTimelineController', function($scope,
     $scope.selectedDokumentnr = null;
 
     $scope.message        = $routeParams.targetId;
+    $scope.address        = decodeURIComponent($routeParams.targetAddress);
     $scope.page           = 1;
     $scope.pageSize       = 10;
     $scope.orderBy        = null;
     $scope.order          = "ASC";
     $scope.reverse        = false;
-    $scope.type           = "Alle transaksjoner med eiendommen";
+    $scope.pageTitle      = "Transaksjoner for " + $scope.address;
     $scope.showNavigation = true;
     $scope.labels         = [];
     $scope.data           = [[],[]];

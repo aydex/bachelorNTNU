@@ -3,18 +3,17 @@
 <div id="fixedSite">
 
 <button type="button" class="btn btn-default backbutton" data-ng-show="showTable" data-ng-click="back()">&lt; Tilbake</button>
-
 <div id="searchElements">
+
     <h3 ng-bind="searchingForText" id="searchTitle">Eiendomsdatabasen</h3>
     <div>
-    <form id="searchForm" data-ng-submit="searchForm(searchForm)">
-        <select  data-ng-change="advanceChange()" ng-model="selectedSearchType" id="searchTypeSelect" data-ng-options="a.label for a in searchTypes">
-        </select>
-        <i class="material-icons select-arrow typeSelectArrow ">play_arrow</i> 
-        <i class="material-icons" id="searchIcon">search</i>
-        <input type="text" data-ng-model="search.query" data-ng-change="searchDelay()" placeholder="{{selectedSearchType.placeholder}}" id="search" autocomplete="off">
-
-    </form>
+        <form id="searchForm" data-ng-submit="searchForm(searchForm)">
+            <select  data-ng-change="advanceChange()" ng-model="selectedSearchType" id="searchTypeSelect" data-ng-options="a.label for a in searchTypes">
+            </select>
+            <i class="material-icons select-arrow typeSelectArrow ">play_arrow</i> 
+            <i class="material-icons" id="searchIcon">search</i>
+            <input type="text" data-ng-model="search.query" data-ng-change="searchDelay()" placeholder="{{selectedSearchType.placeholder}}" id="search"     autocomplete="off">
+        </form>
     </div>
     <div id="advanced-div" data-ng-show="selectedSearchType.value == 'name'">
         <span tooltips tooltip-template="Vis kun deltagere av denne typen" tooltip-size="large" >
@@ -119,7 +118,7 @@
        <table data-ng-show="showTable">
         <tr search-table participant="participant" data-ng-if="selectedSearchType.value == 'name'" data-ng-repeat="participant in names | filter:searchName" data-ng-click="showTransactionsPerson(participant.id, participant.Navn, participant.Type)">
         </tr>
-         <tr transaction-table transaction="transaction" data-ng-if="selectedSearchType.value == 'address'" data-ng-repeat="transaction in transactions" data-ng-click="showTransactionsProperty(transaction.Eiendomsid)">
+         <tr transaction-table transaction="transaction" data-ng-if="selectedSearchType.value == 'address'" data-ng-repeat="transaction in transactions" data-ng-click="showTransactionsProperty(transaction.Eiendomsid, transaction.adresse)">
 
         </tr>
     </table>

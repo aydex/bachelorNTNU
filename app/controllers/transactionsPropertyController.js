@@ -8,12 +8,13 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
     $scope.selectedDokumentnr = null;
 
     $scope.message        = $routeParams.targetId;
+    $scope.address        = decodeURIComponent($routeParams.targetAddress);
     $scope.page           = 1;
     $scope.pageSize       = 10;
     $scope.orderBy        = null;
     $scope.order          = "ASC";
     $scope.reverse        = false;
-    $scope.type           = "Alle transaksjoner med eiendommen";
+    $scope.pageTitle      = "Transaksjoner for " + $scope.address;
     $scope.showNavigation = true;
     $scope.labels         = [];
     $scope.data           = [[],[]];
@@ -24,6 +25,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
     lastDokumentnr        = "";
     var dokumentnr        = [];
     var chart;
+
 
     $scope.unalteredTransactions;
 
@@ -37,11 +39,9 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
 
                 angular.forEach(result.count[0], function(value) {
                     $scope.count = value;
-                    //$scope.count = Math.ceil($scope.page * $scope.search.pageSize);
                 });
 
                 $scope.showTable      = true;
-                //$scope.more_results   = $scope.count > ($scope.page * $scope.pageSize);
                 results               = $scope.getParticipantsCorrectly(result.records);
 
                 $scope.transactions   = result.records.sort(sortFunctionTable);
@@ -59,21 +59,17 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
                 var priceDatePairs = storedString.split(",");
                 dokumentnr         = [];
 
-                //priceDatePairs = priceDatePairs.slice(($scope.page - 1) * $scope.pageSize, $scope.pageSize * $scope.page);
 
                 if($scope.chartObj.length == 0) {
                     angular.forEach(priceDatePairs, function(pair, key){
                         var splitValues = pair.split(":");
-                        //$scope.labels.push(splitValues[1]);
-                        //$scope.data[0].push(splitValues[0]);
-                        //dokumentnr.push(splitValues[2]);
+
                         $scope.chartObj[splitValues[2]] = {date: splitValues[1], value: splitValues[0], documentnr: splitValues[2]};
                     });
 
                     $scope.chartObj.sort(sortFunction);
                 }
 
-                //$scope.populateChart($scope.labels, $scope.data[0], dokumentnr);
                 $scope.populateChart($scope.chartObj);
             }
         });
@@ -101,7 +97,6 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
         angular.forEach(obj, function(pair, key) {
             currTransaction     = $scope.unalteredTransactions[key];
             currTransaction     = transaction.getRole(currTransaction);
-            //currSeller          = getRole(currTransaction, "seller");
 
             if(currTransaction.kommune) {
                 annotation     = "K";
