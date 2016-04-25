@@ -1,4 +1,10 @@
-kommunalApp.controller('transactionPersonController', function($scope, $rootScope, $routeParams, $location, $filter) {
+kommunalApp.controller('transactionPersonController', function($scope, $rootScope, $routeParams, $location, $filter, $cookies) {
+
+    if($cookies.get("name")) {
+        $rootScope.loggedIn = true;
+        $rootScope.username = $cookies.get("name").replace("+", " ");
+    }
+
     $scope.message        = $routeParams.targetId;
     $scope.name           = decodeURIComponent($routeParams.name);
     $scope.page           = 1;
@@ -14,49 +20,23 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
         var queryPromis = $rootScope.doQuery("transactionFromPerson", $routeParams.targetId,
             $scope.page, $scope.pageSize, $scope.order, $scope.orderBy);
         queryPromis.then(function(result){
-            angular.forEach(result.count[0], function(value) {
-                $scope.count = value;
-                //$scope.count = Math.ceil($scope.page * $scope.search.pageSize);
-            });
 
-            $scope.showTable      = true;
-            $scope.more_results   = $scope.count > ($scope.page * $scope.pageSize);
-            $scope.transactions   = result.records;
-            $scope.showNavigation = true;
-            $scope.hideNavigation = !(!$scope.more_results && $scope.page == 1);
-            $scope.totalPages     = Math.ceil($scope.count / $scope.pageSize);
-            $scope.pageDisplay    = "Side: " + $scope.page + " av " + $scope.totalPages;
-            $scope.sortReady      = true;
+            if(result){
+                angular.forEach(result.count[0], function(value) {
+                    $scope.count = value;
+                });
 
-            console.log($scope.transactions)
-        });
-
-
-    };
-
-    $scope.filterResults = function(results) {
-        var involvement;
-        var involvementType;
-        var add;
-        var seller = "";
-        var buyer  = "";
-
-        for(var x in results) {
-            involvement = results[x].Involvering.split(",");
-            for(var y in involvement) {
-                involvementType = involvement[y].split(":");
-                if(involvementType[1].toLowerCase() == "k") {
-                    buyer = "Kjøpt " + involvementType[0];
-                } else if(involvementType[1].toLowerCase() == "s") {
-                    seller = "Solgt " + involvementType[0];
-                }
+                $scope.showTable      = true;
+                $scope.more_results   = $scope.count > ($scope.page * $scope.pageSize);
+                $scope.transactions   = result.records;
+                $scope.showNavigation = true;
+                $scope.hideNavigation = !(!$scope.more_results && $scope.page == 1);
+                $scope.totalPages     = Math.ceil($scope.count / $scope.pageSize);
+                $scope.pageDisplay    = "Side: " + $scope.page + " av " + $scope.totalPages;
+                $scope.sortReady      = true;
             }
-
-            add = buyer != "" && seller != "" ? " og " : "";
-            results[x].Involvering = buyer + add + seller;
-        }
-        return results;
-    }
+        });
+    };
 
     $scope.pageSizeChange = function(){
         $scope.page = 1;
@@ -94,7 +74,7 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
         if($scope.sortReady) {
             $scope.reverse = !$scope.reverse;
         }
-    }
+    };
 
     $scope.showTransactionsProperty = function(id){
         $location.path("/transactions/property/" + id);

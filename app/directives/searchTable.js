@@ -19,8 +19,7 @@ kommunalApp.directive('searchTable', function(){
             });
             scope.participant.HandletMedKommune = (scope.participant.Kommuner != "");
             scope.participant.Kommuner = kommuner;
-            
-            console.log(scope.participant.HandletMedKommune);
+
         }
     }
 })

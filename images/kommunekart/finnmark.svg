@@ -60,14 +60,6 @@
          offset="0"
          id="stop5737" />
     </linearGradient>
-    <clipPath
-       clipPathUnits="userSpaceOnUse"
-       id="clipEmfPath1">
-      <path
-         d="m 0.3125,-0.3125 0,752.1875 1230.6275,0 0,-752.1875 z"
-         id="path7"
-         class="land" />
-    </clipPath>
     <pattern
        id="EMFhbasepattern"
        patternUnits="userSpaceOnUse"
@@ -79,12 +71,6 @@
   <g
      id="gfinnmark"
      inkscape:label="f20">
-    <path
-       class="land"
-       id="path10"
-       d=""
-       clip-path="url(#clipEmfPath1)"
-        />
     <path
        inkscape:label="kn2004"
        transform="matrix(0.28222222,0,0,0.28222222,0,-6.1820329e-6)"
