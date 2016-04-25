@@ -199,6 +199,7 @@ kommunalApp.directive('region', ['$compile', '$filter', function ($compile, $fil
                 //console.log(tooltip);
                 //element.append(tooltip);
                 element.attr('uib-tooltip', '{{fylkenavn}}');
+                element.attr('tooltip-class', 'same-design-tooltip');
                 element.attr('tooltip-placement', 'auto top');
                 element.attr('data-ng-mouseenter', 'move($event)');
                 element.attr('tooltip-append-to-body', true);
@@ -1505,6 +1506,7 @@ kommunalApp.directive('city', ['$compile', '$location', '$http', '$filter', func
                     //element.append(tooltip);
 
                     element.attr('uib-tooltip', '{{kommunenavn}}');
+                    element.attr('tooltip-class', 'same-design-tooltip');
                     element.attr('tooltip-placement', 'top');
                     element.attr('data-ng-mousemove', 'move($event)');
                     //element.attr('tooltip-trigger', 'click');
