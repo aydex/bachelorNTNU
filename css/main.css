@@ -833,7 +833,7 @@ select:disabled{
 #tabContainer{
 	position: fixed;
     z-index: 100000000;
-    top: 70px;
+    top: 75px;
     left: 22%;
 }
 
@@ -843,6 +843,10 @@ select:disabled{
 
 #tab1Button, #tab2Button{
 	width:50%;
+}
+
+#tab1Button a, #tab2Button a{
+	color: #4d4d4d;
 }
 
 .nav-tabs li a:hover{
