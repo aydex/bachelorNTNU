@@ -11,7 +11,7 @@ kommunalApp.factory('transaction', function() {
         return word.replace(/[\S]+/g, function(innerWord){
            var out = innerWord.substring(0,1).toUpperCase() + innerWord.substring(1, innerWord.length).toLowerCase();
             if (out.indexOf("-")!= -1){
-                console.log(out)
+
                 var split = out.split("-");
                 out = split[0] + "-" + split[1].substring(0,1).toUpperCase() + split[1].substring(1, split[1].length)
             }

@@ -3,13 +3,64 @@
 @import url(http://fonts.googleapis.com/css?family=Exo+2:400,200,700) ;
 
 html{
+	height: 100%;
 	text-align: center;
+	height:auto !important;
 }
 
 body{
 	font-family: 'Exo 2', sans-serif;
 	font-weight:400;
+	height:auto !important;
+	position: relative;
+	margin: 0;
+	padding: 0;
 }
+
+
+/****FOOTER****/
+
+
+#mainFooter{
+	position: relative;
+	bottom: 0;
+	background-color: #003762;
+	height: 200px;
+	color: white;
+	text-align: left;
+	display: block;
+	z-index: 100000;
+}
+
+#mainFooter div{
+	margin-left: 50px;
+	font-family: 'Times New Roman';
+	font-weight: bold;
+	padding-top: 20px;
+	margin-right: 40px;
+}
+
+#mainFooter h3{
+	border-bottom: 1px solid white;
+	width: 270px;
+}
+
+#mainFooter span{
+	font-weight: lighter;
+	font-size: 18px;
+}
+
+#mainFooter p{
+	font-size: 15px;
+	color: white;
+	font-family: 'Times New Roman';
+	margin-left: 50px;
+	margin-top: 40px;
+}
+/*****/
+
+html.md-default-theme, html, body.md-default-theme, body{background-color:white;}
+
 
 /******************************
 *******************************
@@ -107,18 +158,42 @@ header{
 #pageElements {
     margin:auto;
     width:60%;
+    margin-top: 90px;
+}
+
+#TransPageElements{
+	margin:auto;
+    width:60%;
+    margin-top: 50px;
+}
+
+#PropPageElements{
+	margin:auto;
+    width:60%;
 }
 
 #search {
-	width: 100%;
+	width: 60%;
 	height: 35px;
 	font-size: 20px;
+}
+
+#searchTypeSelect{
+	display: inline-block;
+	height: 35px;
+	width: 20%;
+	padding-bottom: 1px;
+}
+
+.typeSelectArrow{
+	margin-right: 10px;
 }
 
 #main{
 	width:94%;
 	margin:auto;
 	margin-top:70px;
+
 }
 
 .text-center{
@@ -134,6 +209,17 @@ div p{
 	color:white;
 }
 
+.searchSelect{
+	width: 150px;
+	padding-left: 20px;
+	margin-right: 5px;
+	color: #3e3f3a;
+	border:none;
+}
+
+
+
+
 
 /**************************************************
 ***************************************************
@@ -146,6 +232,12 @@ div p{
 	padding-top: 20px;
 }
 
+#searchTitle{
+	text-align: center;
+	display: inline-block;
+	margin-bottom: 30px;
+}
+
 .backbutton {
 	position: fixed;
 	left: 5px;
@@ -153,10 +245,12 @@ div p{
 }
 
 #searchElements{
+    height: 95px;
 	margin: auto;
     margin-bottom: 20px;
     width: 60%;
-    margin-top: 150px;
+    margin-top: 90px;
+    min-width: 600px;
 }
 
 #search{
@@ -192,6 +286,8 @@ table{
 	margin-top: 30px;
 }
 
+
+
 #fixedSite{
 	position: fixed;
 	display: block;
@@ -200,36 +296,122 @@ table{
 	left: 50%;
 	margin-left: -50%;
 	z-index: 1000;
-	height: 260px;
+	height: 320px;
+	background-color: white;
+}
+
+#fixedTransactionSite{
+	position: fixed;
+	display: block;
+	width: 100%;
+	top: 0;
+	left: 50%;
+	margin-left: -50%;
+	margin-top:70px;
+	z-index: 100000;
+	height: 160px;
+	background-color: white;
+}
+
+#fixedPropertyTable{
+	position: fixed;
+	display: block;
+	width: 100%;
+	top: 0;
+	left: 0;
+	right:0px;
+	margin-left: auto;
+	margin-right:auto;
+	margin-top:70px;
+	z-index: 100000;
+	height: 320px;
+	background-color: white;
+}
+
+#fixedPropertyTimeline{
+	position: fixed;
+	display: block;
+	width: 100%;
+	top: 0;
+	left: 0;
+	right:0px;
+	margin-left: auto;
+	margin-right:auto;
+	margin-top:70px;
+	z-index: 100000;
+	height: 100px;
 	background-color: white;
 }
 
 
 #bumpDown{
-	margin-top: 295px;
+	margin-top: 350px;
+	display: block;
+}
+
+#transactionBumpDown{
+	display: block;
+	margin-top: 265px;
+}
+
+#propertyBumpDown{
+	margin-top: 425px;
+}
+
+#tableTimelinePropertyHeader{
+	position: fixed;
+	z-index: 1000000;
+	top: 400px;
+	width: 94%;
+}
+
+#propertyTimelineBumpDown{
+	margin-top: 200px;
+}
+
+
+
+
+#tableHeader, #tableTransactionHeader{
+	position: fixed;
+	z-index: 100000000;
+	width: 94%;
+	/*left: 51.52%;
+	margin-left: -48.48%;*/
+	left:0;
+	right:0;
+	margin-left: auto;
+	margin-right:auto;
+	min-width: 50%;
 }
 
 #tableHeader{
-	position: fixed;
-	z-index: 100000000;
-	top: 260px;
-	width: 94%;
-	left: 51.52%;
-	margin-left: -48.48%;
-	min-width: 50%;
+	top:315px;
 }
+
+#tableTransactionHeader{
+	top: 230px;
+}
+
+#tablePropertyHeader{
+	position: fixed;
+	z-index: 1000000;
+	top: 390px;
+	width: 94%;
+}
+
 
 #tableContainer{
 	position: relative;
 	display: block;
 	margin-bottom: 5%;
-
 }
 
 #footer{
 	position: fixed;
 	bottom: 0;
 	text-align: center;
+	display: block;
 }
 
 div #pageNumber{
@@ -260,6 +442,7 @@ table{
  	border: 1;
  	width: 60%;
  	margin:auto;
+ 	min-width: 600px;
 }
 
 table, tr {
@@ -280,12 +463,98 @@ th{
 	border-right:none;
 }
 
+.manglerData{
+	color: #565656;
+	font-size: 10px;
+}
+
+/********************
+******tablewidth*****
+*********************/
+
+/*Width on Searchtable*/
 #nameColumn, #typeColumn, #municipalityColumn, #idColumn{
 	min-width: 25%;
 	max-width: 25%;
 	width: 200px;
 	table-layout: fixed;
 }
+
+/*Width on transaction site*/
+
+#propertyID{
+	width: 5%;
+}
+
+#firstDateID{
+	width: 5%;
+}
+
+#lastDateID{
+	width: 5%;
+}
+
+#numberTransactionID{
+	width: 5%;
+}
+
+#involvementID{
+	width: 15%;
+	text-align: center;
+}
+
+#involvedMunicipID{
+	width: 14%;
+}
+
+
+#etterSalgColumn{
+	width: 20%;
+}
+
+#adresseColumn{
+	width: 20%;
+}
+/*Price change colors for transactions*/
+
+
+
+.posChange{
+	color: #49A34B;
+}
+
+.negChange{
+	color: #F25244;
+}
+/*Width on property site*/
+#dateID{
+	width: 10%;
+}
+
+#typeID{
+	width: 15%;
+	text-align: center;
+}
+
+#priceID{
+	width: 15%;
+	text-align: center;
+}
+
+#docnrID{
+	width: 20%;
+}
+
+#saleID{
+	width: 20%;
+}
+
+#buyID{
+	width: 20%;
+}
+
+
+/*******************/
 
 tr:nth-child(odd){
 	background-color:#EAEAEA;
@@ -327,11 +596,11 @@ td:nth-child(even){
 }
 
 .transactionurl{
-	color: #2d2d2d;
+	color: #2d2d2d !important;
 }
 
 .transactionurl:hover{
-	color: #2d2d2d;
+	color: #2d2d2d !important;
 	/*text-decoration: none;*/
 }
 
@@ -402,38 +671,290 @@ td:nth-child(even){
 	margin:auto;
 }
 
+
+/****************************************/
+/***************  MAP CSS  **************/
+/****************************************/
+
+.btn-map {
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    font-size: 32px;
+    text-decoration: none;
+    padding: 0;
+}
+
 div .container{
-	  width: 42%;
-	  height: auto;
-	  margin-top: 240px;
+	width: 42%;
+	height: auto;
+	z-index: 9000000;
+	margin-top: -105px;
+	position:relative;
+    padding-top: 20px;
+
 }
 
+div .container button {
+     position: absolute;
+     right: 1%;
+ }
 
-svg .land {
-    stroke-width: 0;
+.map-link {
+    color: black !important;
+    font-size: 16px;
+}
+
+svg .land{
+    stroke-width: 0.5;
     stroke: #fff;
-    position: absolute;
-    -webkit-transition: stroke 0.3s, stroke-width 0.3s, fill 0.3s;
-    -o-transition: stroke 0.3s, stroke-width 0.3s, fill 0.3s;
-    transition: stroke 0.3s, stroke-width 0.3s, fill 0.3s;
+
+		fill:#c0c0c0;
+		fill-opacity:1;
+
+
+    -webkit-transition: stroke 0.5s, stroke-width 0.5s;
+    -o-transition: stroke 0.5s, stroke-width 0.5s;
+    transition: stroke 0.5s, stroke-width 0.5s;
+}
+/*
+svg .title {
+	display:none;
+}*/
+
+
+.container svg text {
+	font-style:normal;
+	font-variant:normal;
+	font-weight:400;
+	font-size:2.82222223px;
+	font-family:Calibri;
+	fill:#000000;
+	pointer-events: none;
+    display: none;
+
 }
 
-
-
-svg .land:hover, svg .land:active {
-
+svg .land:hover, .land.active {
+	margin-top: 1000px;
     cursor: pointer;
-    stroke-width: 1;
+    stroke-width: 1.5;
     stroke: #000;
     opacity: 1;
     position:relative;
-    fill:#d2232a;
-    /*
-    transform: scale(1.2);
-    transform-origin: 30% 70%;
-    z-index: -30;/*
-    top:0px;
-    left:0px;
-    /*transform: translate(-250 -270);*/
+	fill: #eee;
+}
 
+/********************************
+*********************************
+********DROPDOWN*****************
+*********************************
+********************************/
+
+#advanced-div{
+	margin-top: 2px;
+}
+
+select {
+	-webkit-appearance:none;
+	-webkit-border-radius:0px;
+    border: 1px solid #111;
+    background: white;
+    padding: 5px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid #2D2D2D;
+    height: 34px;
+}
+
+select:focus{
+	outline:none;
+}
+
+select:disabled{
+	color:gray;
+}
+
+.select-arrow{
+	-webkit-transform:rotate(90deg);
+	margin-left:-15px;
+	font-size:10px;
+	pointer-events:none;
+}
+
+#advanced-div select:first-child{
+	margin-left:0px;
+}
+
+/********************************
+*********************************
+**********LOGININFO**************
+*********************************
+********************************/
+
+
+#loginInfo{
+	position: fixed;
+    background: white;
+    width: 500px;
+    height: 200px;
+    left: 0;
+    right: 0;
+    margin-right: auto;
+    margin-left: auto;
+    top: 35%;
+	-webkit-box-shadow: 0px 0px 33px -4px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 33px -4px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 33px -4px rgba(0,0,0,0.75);
+}
+
+#loginInfoCenter{
+	text-align: left;
+    padding: 35px;
+    font-size: 16px;
+}
+
+.red{
+	color:#D71010;
+}
+
+#loginInfoCenter a:hover{
+	color:#D71010;
+	text-decoration: none;
+}
+
+
+/******************
+******************
+*******TABS********
+*******************
+******************/
+
+#tabContainer{
+	position: fixed;
+    z-index: 100000000;
+    top: 75px;
+    left: 22%;
+}
+
+.nav-tabs{
+	width:55vw;
+}
+
+#tab1Button, #tab2Button{
+	width:50%;
+}
+
+#tab1Button a, #tab2Button a{
+	color: #4d4d4d;
+}
+
+.nav-tabs li a:hover{
+	color:initial !important;
+}
+
+/** tooltips **/
+
+.tooltip{
+	position: absolute;
+	display: none;
+	z-index: 100000000000000000;
+}
+
+.tooltip-arrow{
+	display: none;
+}
+
+.show-only-mobile{
+	display:none;
+}
+
+/****MOBILE*****/
+
+@media only screen and (max-width: 736px) and (max-width:600px), only screen and (max-device-width: 736px)  and (orientation: landscape){
+	#searchTitle{
+		display: block;
+	}
+
+	#logo{
+		width: 50%;
+	}
+
+	#navigationHeader{
+		float:none;
+	}
+
+	.searchSelect{
+		width:100px;
+	}
+
+	#advanced-div, #search, #searchForm, #searchTitle{
+		width:75%;
+	}
+
+	div .container{
+		width:100%;
+	}
+
+	#tableHeader, #tableTransactionHeader{
+		width: 96%;
+	}
+
+	.show-only-mobile{
+		display:table-row;
+	}
+
+	#tablePropertyHeader, #tableHeader{
+		display: none;
+	}
+
+	#tableTransactionHeader{
+		top:265px;
+		display: none;
+	}
+
+	#transactionBumpDown{
+		margin-top:300px;
+	}
+
+	#propertyBumpDown{
+		margin-top:355px;
+	}
+
+	#PropPageElements{
+		width:100%;
+		margin-top:-24px;
+	}
+
+	.scrollX{
+		overflow-x:scroll;
+	}
+
+	#tableContainer{
+		overflow:scroll;
+	}
+
+	#transaksjonsType{
+		width:100%;
+	}
+
+	#nextPage, #prevPage{
+		margin-top:-25%;
+	}
+
+	.backbutton{
+		display: none;
+	}
+
+	#nextPage{
+		margin-right:38%;
+	}
+
+	#pageElements{
+		margin-top:70px;
+	}
+
+	#nextPage{
+		margin-right: 5%;
+	}
 }

@@ -1,14 +1,14 @@
 kommunalApp.controller('mapController', function ($scope) {
-        var fylker = ["ostfold","akershus","oslo","hedmark","oppland","buskerud",
-        "vestfold","telemark","aust-agder","vest-agder","rogaland","hordaland",
-        "sogn_og_fjordane","more_og_romsdal","sor-trondelag","nord-trondelag",
-        "nordland","troms","finnmark"];
-        $scope.createDummyData = function () {
-            var dataTemp = {};
-            angular.forEach(fylker, function (land, key) {
-                dataTemp[land] = {value: Math.random()}
-            });
-            $scope.dummyData = dataTemp;
-        };
-        $scope.createDummyData();
-    });
+    $scope.countySelected = false;
+    
+    $scope.move = function(evt){
+    	self = document.getElementsByClassName("tooltip")[0];
+    	var rect = evt.path[0].getBoundingClientRect();
+
+    	if(self && evt.path[0].tagName == "path") {
+	    	self.style.left = rect.left + rect.width + 5 + "px";
+	    	self.style.top = rect.top - 285 + window.scrollY + rect.height + "px";
+	    	self.style.display = "block";
+    	}
+    }
+});

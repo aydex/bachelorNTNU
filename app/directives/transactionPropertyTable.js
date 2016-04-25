@@ -12,10 +12,9 @@ kommunalApp.directive('transactionPropertyTable', function(transaction){
                     entry.navn = transaction.capitalFirstLetters(entry.navn);
                     entry.kommune = false;
                     entry.ukjent = false;
-                    entry.searchurl = "transactions/deltager/" + encodeURI(entry.navn) +"/" + entry.deltagerid +"/" + entry.deltagertype
-                    console.log(entry.searchurl)
+                    entry.searchurl = "transactions/deltager/" + encodeURI(entry.navn) +"/" + entry.deltagerid +"/" + entry.deltagertype;
                     if (entry.deltagertype == "F") {
-                        entry.navn = transaction.setLastnameAfterFirstname(entry.navn);
+                        //entry.navn = transaction.setLastnameAfterFirstname(entry.navn);
                         entry.navn = transaction.abbreviateMiddleNames(entry.navn);
                     } else if (transaction.isMunicipality(entry.deltagertype, entry.navn)) {
                         entry.kommune = true;

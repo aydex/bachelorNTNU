@@ -1,23 +1,31 @@
-kommunalApp.controller('transactionPropertyController', function($scope, $rootScope, $routeParams, $http, $window, $filter, transaction) {
+kommunalApp.controller('transactionPropertyController', function($scope, $rootScope, $routeParams, $http, $window, $filter, transaction, $cookies) {
+
+    if($cookies.get("name")) {
+        $rootScope.loggedIn = true;
+        $rootScope.username = $cookies.get("name").replace("+", " ");
+    }
 
     $scope.selectedDokumentnr = null;
 
     $scope.message        = $routeParams.targetId;
+    $scope.address        = decodeURIComponent($routeParams.targetAddress);
     $scope.page           = 1;
     $scope.pageSize       = 10;
     $scope.orderBy        = null;
     $scope.order          = "ASC";
     $scope.reverse        = false;
-    $scope.type           = "Alle transaksjoner med eiendommen";
+    $scope.pageTitle      = "Transaksjoner for " + $scope.address;
     $scope.showNavigation = true;
     $scope.labels         = [];
     $scope.data           = [[],[]];
     $scope.isSelected     = [];
     $scope.sortReady      = false;
     $scope.selectedIndex  = 0;
+    $scope.chartObj       = [];
     lastDokumentnr        = "";
     var dokumentnr        = [];
     var chart;
+
 
     $scope.unalteredTransactions;
 
@@ -27,41 +35,43 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             $scope.page, $scope.pageSize, $scope.order, $scope.orderBy);
         queryPromis.then(function(result){
 
-            angular.forEach(result.count[0], function(value) {
-                $scope.count = value;
-                //$scope.count = Math.ceil($scope.page * $scope.search.pageSize);
-            });
+            if(result){
 
-            $scope.showTable      = true;
-            //$scope.more_results   = $scope.count > ($scope.page * $scope.pageSize);
-            results               = $scope.getParticipantsCorrectly(result.records);
+                angular.forEach(result.count[0], function(value) {
+                    $scope.count = value;
+                });
 
-            $scope.transactions   = result.records;
-            $scope.showNavigation = true;
-            $scope.hideNavigation = false;
-            $scope.labels         = [];
-            $scope.data           = [[], []];
-            $scope.totalPages     = Math.ceil($scope.count / $scope.pageSize);
-            $scope.pageDisplay    = "Side: " + $scope.page;
-            $scope.sortReady      = true;
+                $scope.showTable      = true;
+                results               = $scope.getParticipantsCorrectly(result.records);
 
-            $scope.unalteredTransactions = result.records;
+                $scope.transactions   = result.records.sort(sortFunctionTable);
+                $scope.showNavigation = true;
+                $scope.hideNavigation = false;
+                $scope.labels         = [];
+                $scope.data           = [[], []];
+                $scope.totalPages     = Math.ceil($scope.count / $scope.pageSize);
+                $scope.pageDisplay    = "Side: " + $scope.page;
+                $scope.sortReady      = true;
 
-            var storedString   = result.combined[0].Sammendrag;
-            var priceDatePairs = storedString.split(",");
-            dokumentnr         = [];
+                if($scope.unalteredTransactions == undefined) $scope.unalteredTransactions = result.records;
 
-            //priceDatePairs = priceDatePairs.slice(($scope.page - 1) * $scope.pageSize, $scope.pageSize * $scope.page);
+                var storedString   = result.combined[0].Prispunkt;
+                var priceDatePairs = storedString.split(",");
+                dokumentnr         = [];
 
-            angular.forEach(priceDatePairs, function(pair, key){
-                var splitValues = pair.split(":");
-                $scope.labels.push(splitValues[1]);
-                $scope.data[0].push(splitValues[0]);
-                dokumentnr.push(results[key].Dokumentnr);
-            });
 
-            $scope.populateChart($scope.labels, $scope.data[0], dokumentnr);
+                if($scope.chartObj.length == 0) {
+                    angular.forEach(priceDatePairs, function(pair, key){
+                        var splitValues = pair.split(":");
 
+                        $scope.chartObj[splitValues[2]] = {date: splitValues[1], value: splitValues[0], documentnr: splitValues[2]};
+                    });
+
+                    $scope.chartObj.sort(sortFunction);
+                }
+
+                $scope.populateChart($scope.chartObj);
+            }
         });
     }
 
@@ -70,7 +80,8 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
         $scope.queryTransaction();
     }
 
-    $scope.populateChart = function(labels, dataSet, dokumentnr) {
+    $scope.populateChart = function(obj) {
+
         var data = new google.visualization.DataTable();
         var currTransaction = "";
         var isMunicipal;
@@ -83,10 +94,9 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
 
         dokumentnrList = {};
 
-        angular.forEach(labels, function(pair, key) {
+        angular.forEach(obj, function(pair, key) {
             currTransaction     = $scope.unalteredTransactions[key];
             currTransaction     = transaction.getRole(currTransaction);
-            //currSeller          = getRole(currTransaction, "seller");
 
             if(currTransaction.kommune) {
                 annotation     = "K";
@@ -96,21 +106,21 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
                 annotationText = null;
             }
 
-            dokumentnrList[key] = dokumentnr[key];
-            dokumentnrList[dokumentnr[key]] = key;
-            var date = labels[key].split("-");
+            dokumentnrList[key] = obj[key].documentnr;
+            dokumentnrList[obj[key].documentnr] = key;
+            var date = obj[key].date.split("-");
 
             var dateParsed = new Date(date[0], date[1], date[2]);
-            var price = parseInt(dataSet[key]);
+            var price = parseInt(obj[key].value);
 
             if (price == 0){
                 price = null;
             }
 
-               data.addRow(
+            data.addRow(
                 [dateParsed, 
                 price, 
-                'Dokumentdato: ' + labels[key] + '\n Salgssum: ' + $filter('priceFilter')(dataSet[key]) + ' \n Dokumentnr: ' + dokumentnr[key],
+                'Dokumentdato: ' + obj[key].date + '\n Salgssum: ' + $filter('priceFilter')(obj[key].value) + ' \n Dokumentnr: ' + obj[key].documentnr,
                 annotation, annotationText]); 
             
             
@@ -121,8 +131,8 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             tooltip: {trigger: 'both'},
             pointSize: 5,
             interpolateNulls: true,
+            width: window.innerWidth * 0.6
         }
-
 
         if(chart == undefined){
             chart = new google.visualization.LineChart(document.getElementById('chartdiv'));
@@ -162,7 +172,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
     };
 
     angular.element($window).bind('resize', function(){
-        $scope.populateChart($scope.labels, $scope.data[0], dokumentnr);
+        $scope.populateChart($scope.chartObj);
     });
 
     $scope.setSelected = function (selectedDokumentnr, Salgssum) {
@@ -252,3 +262,21 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
     $scope.queryTransaction();
 
 });
+
+function sortFunction(a, b) {
+    if (a.date > b.date) {
+        return 1;
+    } else if (a.date == b.date) {
+        return 0;
+    } else {
+        return -1;
+    }
+}
+
+function sortFunctionTable(a, b) {
+    if(a.Dokumentdato < b.Dokumentdato) {
+        return 1;
+    } else if (a.Dokumentdato == b.Dokumentdato) {
+        return 0;
+    } else {}
+}
