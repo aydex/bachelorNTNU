@@ -70,7 +70,9 @@
         <tr transaction-table transaction="transaction" data-ng-repeat="transaction in transactions" data-ng-click="showTransactionsProperty(transaction.Eiendomsid)">
         </tr>
     </table>
-</div>
+    <p id="pageNumber" data-ng-bind="pageDisplay"></p>
 </div>
 
-<p id="pageNumber" data-ng-bind="pageDisplay"></p>
+</div>
+
+

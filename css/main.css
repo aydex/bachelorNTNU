@@ -11,6 +11,45 @@ body{
 	font-weight:400;
 }
 
+/****FOOTER****/
+
+#mainFooter{
+	vertical-align: bottom;
+	bottom: 0;
+	background-color: #003762;
+	height: 200px;
+	color: white;
+	text-align: left;
+	display: block;
+	position: relative;
+}
+
+#mainFooter div{
+	margin-left: 50px;
+	font-family: 'Times New Roman';
+	font-weight: bold;
+	padding-top: 20px;
+	margin-right: 40px;
+}
+
+#mainFooter h3{
+	border-bottom: 1px solid white;
+	width: 270px;
+}
+
+#mainFooter span{
+	font-weight: lighter;
+	font-size: 18px;
+}
+
+#mainFooter p{
+	font-size: 15px;
+	color: white;
+	font-family: 'Times New Roman';
+	margin-left: 50px;
+	margin-top: 45px;
+}
+
 /******************************
 *******************************
 *************Header************
@@ -307,6 +346,7 @@ table{
 	position: fixed;
 	bottom: 0;
 	text-align: center;
+	display: block;
 }
 
 div #pageNumber{
