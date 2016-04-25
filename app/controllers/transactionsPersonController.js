@@ -76,8 +76,9 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
         }
     };
 
-    $scope.showTransactionsProperty = function(id){
-        $location.path("/transactions/property/" + id);
+    $scope.showTransactionsProperty = function(id,address){
+        if(address != undefined) $location.path("/transactions/property/" + id + "/" + address);
+        else $location.path("/transactions/property/" + id);
     };
 
     $scope.tooltip_show = function(index, event) {

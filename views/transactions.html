@@ -81,7 +81,7 @@
             </th>
 
         </tr>
-        <tr transaction-table transaction="transaction" data-ng-repeat="transaction in transactions" data-ng-click="showTransactionsProperty(transaction.Eiendomsid)" uib-tooltip="Trykk for å se mer info" tooltip-placement="auto top" tooltip-append-to-body="true" data-ng-mouseenter="tooltip_show($index, $event)" tooltip-class="enabled-arrow same-design-tooltip">
+        <tr transaction-table transaction="transaction" data-ng-repeat="transaction in transactions" data-ng-click="showTransactionsProperty(transaction.Eiendomsid, transaction.adresse)" uib-tooltip="Trykk for å se mer info" tooltip-placement="auto top" tooltip-append-to-body="true" data-ng-mouseenter="tooltip_show($index, $event)" tooltip-class="enabled-arrow same-design-tooltip">
         </tr>
     </table>
 </div>

@@ -9,8 +9,6 @@ kommunalApp.controller('mapController', function ($scope) {
         	var rect   = target.getBoundingClientRect();
             var vars   = {x: 0, y: 0};
 
-            console.log(rect.top - 285 + window.scrollY + rect.height);
-
         	if(self) {
                 if(rect.x == undefined){
                     vars.x = rect.left;
