@@ -116,11 +116,52 @@
     <p id="noResultDescription" data-ng-show="noResultShow">Ingen resultater...</p>
     <img src="/images/loader.gif" data-ng-show="!showTable && searched && !noResultShow" alt="Loading.." />
        <table data-ng-show="showTable">
-        <tr search-table participant="participant" data-ng-if="selectedSearchType.value == 'name'" data-ng-repeat="participant in names | filter:searchName" data-ng-click="showTransactionsPerson(participant.id, participant.Navn, participant.Type)">
+        <tr class="show-only-mobile" data-ng-if="selectedSearchType.value == 'name'">
+            <th id ="nameColumn" data-ng-click="orderByMe('Navn')" data-ng-class="{'disableSort' : !sortReady}">
+                Navn
+                <span data-ng-show="orderBy == 'Navn' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'Navn' && reverse" class="fa fa-caret-down"></span>
+            </th>
+            <th id ="typeColumn" data-ng-click="orderByMe('Type')" data-ng-class="{'disableSort' : !sortReady}">
+                Type
+                <span data-ng-show="orderBy == 'Type' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'Type' && reverse" class="fa fa-caret-down"></span>
+            </th>
+            <th id ="municipalityColumn" data-ng-click="orderByMe('Kommuner')" data-ng-class="{'disableSort' : !sortReady}">
+                Kommuner handlet med
+                <span data-ng-show="orderBy == 'Kommuner' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'Kommuner' && reverse" class="fa fa-caret-down"></span>
+            </th>
         </tr>
-         <tr transaction-table transaction="transaction" data-ng-if="selectedSearchType.value == 'address'" data-ng-repeat="transaction in transactions" data-ng-click="showTransactionsProperty(transaction.Eiendomsid, transaction.adresse)">
+        <tr class="show-only-mobile" data-ng-if="selectedSearchType.value == 'address'">
+            <th id="adresseColumn" data-ng-click="orderByMe('Gatenavn')" data-ng-class="{'disableSort' : !sortReady}">
 
+                Adresse
+                <span data-ng-show="orderBy == 'InvolvertKommune' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'InvolvertKommune' && reverse" class="fa fa-caret-down"></span>
+            </th>
+            <th id="involvedMunicipID" data-ng-click="orderByMe('InvolvertKommune')" data-ng-class="{'disableSort' : !sortReady}">
+                Involverte Kommuner
+                <span data-ng-show="orderBy == 'InvolvertKommune' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'InvolvertKommune' && reverse" class="fa fa-caret-down"></span>
+            </th>
+            
+            <th id="involvementID" data-ng-click="orderByMe('Involvering')" data-ng-class="{'disableSort' : !sortReady}">
+                Kommunens Involvering
+                <span data-ng-show="orderBy == 'Involvering' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'Involvering' && reverse" class="fa fa-caret-down"></span>
+            </th>
+            <th id="etterSalgColumn" data-ng-click="orderByMe('InvolvertKommune')" data-ng-class="{'disableSort' : !sortReady}">
+                Endring etter salg
+                <span data-ng-show="orderBy == 'InvolvertKommune' && !reverse" class="fa fa-caret-up"></span>
+                <span data-ng-show="orderBy == 'InvolvertKommune' && reverse" class="fa fa-caret-down"></span>
+            </th>
         </tr>
+        <tr search-table participant="participant" uib-tooltip="Trykk for å se mer info" tooltip-placement="auto top" tooltip-append-to-body="true" data-ng-mouseenter="tooltip_show($index, $event)" tooltip-class="enabled-arrow same-design-tooltip" data-ng-if="selectedSearchType.value == 'name'" data-ng-repeat="participant in names | filter:searchName" data-ng-click="showTransactionsPerson(participant.id, participant.Navn, participant.Type)">
+        </tr>
+         <tr transaction-table transaction="transaction" uib-tooltip="Trykk for å se mer info" tooltip-placement="auto top" tooltip-append-to-body="true" tooltip-class="enabled-arrow same-design-tooltip" data-ng-mouseenter="tooltip_show($index, $event)" data-ng-if="selectedSearchType.value == 'address'" data-ng-repeat="transaction in transactions" data-ng-click="showTransactionsProperty(transaction.Eiendomsid, transaction.adresse)">
+        </tr>
+        </span>
     </table>
 </div>
 </div>
