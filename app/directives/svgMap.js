@@ -181,7 +181,7 @@ kommunalApp.directive('region', ['$compile', '$filter', function ($compile, $fil
                 var countyIndex = element.attr("class").indexOf("county");
                 scope.countyId = String(parseInt(element.attr("class").slice(countyIndex+6, countyIndex+8)));
                 scope.fylke = $filter('filter')(result.records, {'Fylkenr': scope.countyId}, true);
-                scope.fylkenavn = scope.fylke[0]["Fylkenavn"];
+                scope.fylkenavn = $filter('capitalFirstLettersFilter')(scope.fylke[0]["Fylkenavn"]);
                 scope.fylkenr = scope.countyId;
                 scope.elementId = element.attr("id");
 
@@ -1494,7 +1494,7 @@ kommunalApp.directive('city', ['$compile', '$location', '$http', '$filter', func
                 };
                 $scope.municipalities.then(function(result) {
                     $scope.kommune = $filter('filter')(result.records, {'Kommunenr': $scope.cityId}, true);
-                    $scope.kommunenavn = $scope.kommune[0]["Kommunenavn"];
+                    $scope.kommunenavn = $filter('capitalFirstLettersFilter')($scope.kommune[0]["Kommunenavn"]);
                     $scope.kommunenr = $scope.cityId;
                     $scope.cityName = element.attr("id");
                     $scope.cityId = element.attr("inkscape:label").substring(2);

@@ -15,7 +15,7 @@ kommunalApp.controller('mapController', function ($scope) {
                     vars.y = rect.top;
                 }else vars = rect;
     	    	self.style.left    = vars.x + rect.width + 5 + "px";
-    	    	self.style.top     = vars.y - 285 + window.scrollY + rect.height + "px";
+    	    	self.style.top     = vars.y - 299 + window.scrollY + rect.height + "px";
     	    	self.style.display = "block";
         	}
         }, 10);
