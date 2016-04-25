@@ -9,6 +9,7 @@ html{
 }
 
 body{
+	height: 100%;
 	font-family: 'Exo 2', sans-serif;
 	font-weight:400;
 	height:auto !important;
@@ -23,13 +24,18 @@ body{
 
 #mainFooter{
 	position: absolute;
-	bottom: -300px;
+	bottom: -309px;
 	background-color: #003762;
 	height: 220px;
 	color: white;
 	text-align: left;
 	display: block;
 	z-index: 100000;
+	width: 100%;
+}
+
+.push, #mainFooter{
+	height:220px;
 }
 
 #mainFooter div{
@@ -194,7 +200,10 @@ header{
 	width:94%;
 	margin:auto;
 	margin-top:70px;
-
+	min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -220px; /* the bottom margin is the negative value of the footer's height */
 }
 
 .text-center{
