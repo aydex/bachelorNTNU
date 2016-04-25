@@ -10,7 +10,16 @@ session_start();
 use bachelor\Config;
 use bachelor\Query;
 
-if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1 && isset($_SESSION['subscription_id']) && $_SESSION['subscription_id'] != -1) {
+$config   = new Config();
+$query    = new Query($config->db);
+$name     = "";
+$page     = 0;
+$pageSize = 0;
+$order    = "";
+$orderBy  = "";
+$filterBy = "";
+$address  = "";
+
 
     $config   = new Config();
     $query    = new Query($config->db);
@@ -20,6 +29,9 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1 && isset($_SESSIO
     $order    = "";
     $orderBy  = "";
     $filterBy = "";
+    
+if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1 && isset($_SESSION['subscription_id']) && $_SESSION['subscription_id'] != -1) {
+
 
     if (isset($_REQUEST['page']) && isset($_REQUEST['pageSize'])) {
         $page     = (int)$_REQUEST['page'];
@@ -45,10 +57,27 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1 && isset($_SESSIO
         $kommnr     = (int)$_REQUEST['kommnr'];
     }
 
+    if(isset($_REQUEST['municipalityId'])) {
+        $mId = htmlspecialchars($_REQUEST['municipalityId']);
+        echo $query->selectMunicipalityFromId($mId);
+    } else if(isset($_REQUEST['getMunicipalities'])) {
+        echo $query->getMunicipalities();
+    } else if(isset($_REQUEST['countyId'])) {
+        $cId = htmlspecialchars($_REQUEST['countyId']);
+        echo $query->selectCountyFromId($cId);
+    } else if(isset($_REQUEST['getCounties'])) {
+        echo $query->getCounties();
+    }
+
     if (isset($_REQUEST['name']) && isset($_REQUEST['orderBy'])) {
         $name = htmlspecialchars($_REQUEST['name']);
     
         echo $query->selectPersonPaged($name, $page, $pageSize, $order, $orderBy, $filterBy, $fylkenr, $kommnr);
+
+    }else if (isset($_REQUEST['address'])) {
+        $address = htmlspecialchars($_REQUEST['address']);
+    
+        echo $query->selectTransactionByAddress($address, $page, $pageSize, $order, $orderBy, $filterBy, $fylkenr, $kommnr);
 
     }else if(isset($_REQUEST['transactionFromPerson'])){
 
@@ -62,10 +91,17 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1 && isset($_SESSIO
 
         echo $query->selectTransactionProperty($eId, $page, $pageSize, $order, $orderBy);
 
-    }else if(isset($_REQUEST['municipalityId'])) {
-        $mId = htmlspecialchars($_REQUEST['municipalityId']);
-        echo $query->selectMunicipalityFromId($mId);
     }
+} else if(isset($_REQUEST['municipalityId'])) {
+    $mId = htmlspecialchars($_REQUEST['municipalityId']);
+    echo $query->selectMunicipalityFromId($mId);
+} else if(isset($_REQUEST['getMunicipalities'])) {
+    echo $query->getMunicipalities();
+} else if(isset($_REQUEST['countyId'])) {
+    $cId = htmlspecialchars($_REQUEST['countyId']);
+    echo $query->selectCountyFromId($cId);
+} else if(isset($_REQUEST['getCounties'])) {
+    echo $query->getCounties();
 } else {
     /*if(isset($_SESSION["subscription_id"]) && $_SESSION["subscription_id"] != 6) {
         echo json_encode(array("records" => "wrong_subscription"));
@@ -73,6 +109,7 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1 && isset($_SESSIO
         echo json_encode(array("records" => "login_required"));
     //}
 }
+
 
 
 ?>

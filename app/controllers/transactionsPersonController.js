@@ -22,10 +22,8 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
         queryPromis.then(function(result){
 
             if(result){
-
                 angular.forEach(result.count[0], function(value) {
                     $scope.count = value;
-                    //$scope.count = Math.ceil($scope.page * $scope.search.pageSize);
                 });
 
                 $scope.showTable      = true;
@@ -38,35 +36,7 @@ kommunalApp.controller('transactionPersonController', function($scope, $rootScop
                 $scope.sortReady      = true;
             }
         });
-
-
     };
-
-    $scope.filterResults = function(results) {
-        var involvement;
-        var involvementType;
-        var add;
-        var seller = "";
-        var buyer  = "";
-
-        console.log(results);
-
-        for(var x in results) {
-            involvement = results[x].Involvering.split(",");
-            for(var y in involvement) {
-                involvementType = involvement[y].split(":");
-                if(involvementType[1].toLowerCase() == "k") {
-                    buyer = "Kjøpt " + involvementType[0];
-                } else if(involvementType[1].toLowerCase() == "s") {
-                    seller = "Solgt " + involvementType[0];
-                }
-            }
-
-            add = buyer != "" && seller != "" ? " og " : "";
-            results[x].Involvering = buyer + add + seller;
-        }
-        return results;
-    }
 
     $scope.pageSizeChange = function(){
         $scope.page = 1;

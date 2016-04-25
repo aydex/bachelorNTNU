@@ -4,12 +4,16 @@
 
 html{
 	text-align: center;
+	height:auto !important;
 }
 
 body{
 	font-family: 'Exo 2', sans-serif;
 	font-weight:400;
+	height:auto !important;
 }
+
+html.md-default-theme, html, body.md-default-theme, body{background-color:white;}
 
 /******************************
 *******************************
@@ -122,15 +126,27 @@ header{
 }
 
 #search {
-	width: 100%;
+	width: 60%;
 	height: 35px;
 	font-size: 20px;
+}
+
+#searchTypeSelect{
+	display: inline-block;
+	height: 35px;
+	width: 20%;
+	padding-bottom: 1px;
+}
+
+.typeSelectArrow{
+	margin-right: 10px;
 }
 
 #main{
 	width:94%;
 	margin:auto;
 	margin-top:70px;
+
 }
 
 .text-center{
@@ -145,6 +161,17 @@ div p{
 #navigationHeader a:hover, #navigationHeader a:active, #navigationHeader a:visited{
 	color:white;
 }
+
+.searchSelect{
+	width: 150px;
+	padding-left: 20px;
+	margin-right: 5px;
+	color: #3e3f3a;
+	border:none;
+}
+
+
+
 
 
 /**************************************************
@@ -244,11 +271,28 @@ table{
 	display: block;
 	width: 100%;
 	top: 0;
-	left: 50%;
-	margin-left: -50%;
+	left: 0;
+	right:0px;
+	margin-left: auto;
+	margin-right:auto;
 	margin-top:70px;
 	z-index: 100000;
 	height: 320px;
+	background-color: white;
+}
+
+#fixedPropertyTimeline{
+	position: fixed;
+	display: block;
+	width: 100%;
+	top: 0;
+	left: 0;
+	right:0px;
+	margin-left: auto;
+	margin-right:auto;
+	margin-top:70px;
+	z-index: 100000;
+	height: 100px;
 	background-color: white;
 }
 
@@ -260,18 +304,30 @@ table{
 
 #transactionBumpDown{
 	display: block;
-	margin-top: 270px;
+	margin-top: 265px;
 }
 
 #propertyBumpDown{
 	margin-top: 425px;
 }
 
+#tableTimelinePropertyHeader{
+	position: fixed;
+	z-index: 1000000;
+	top: 400px;
+	width: 94%;
+}
 
-#tableHeader{
+#propertyTimelineBumpDown{
+	margin-top: 200px;
+}
+
+
+
+
+#tableHeader, #tableTransactionHeader{
 	position: fixed;
 	z-index: 100000000;
-	top: 315px;
 	width: 94%;
 	/*left: 51.52%;
 	margin-left: -48.48%;*/
@@ -282,14 +338,12 @@ table{
 	min-width: 50%;
 }
 
+#tableHeader{
+	top:315px;
+}
+
 #tableTransactionHeader{
-	position: fixed;
-	z-index: 1000000;
 	top: 230px;
-	width: 94%;
-	left: 51.52%;
-	margin-left: -48.48%;
-	min-width: 50%;
 }
 
 #tablePropertyHeader{
@@ -304,7 +358,6 @@ table{
 	position: relative;
 	display: block;
 	margin-bottom: 5%;
-
 }
 
 #footer{
@@ -362,6 +415,11 @@ th{
 	border-right:none;
 }
 
+.manglerData{
+	color: #565656;
+	font-size: 10px;
+}
+
 /********************
 ******tablewidth*****
 *********************/
@@ -377,19 +435,19 @@ th{
 /*Width on transaction site*/
 
 #propertyID{
-	width: 13%;
+	width: 5%;
 }
 
 #firstDateID{
-	width: 13%;
+	width: 5%;
 }
 
 #lastDateID{
-	width: 13%;
+	width: 5%;
 }
 
 #numberTransactionID{
-	width: 17%;
+	width: 5%;
 }
 
 #involvementID{
@@ -398,9 +456,28 @@ th{
 }
 
 #involvedMunicipID{
-	width: 16%;
+	width: 14%;
 }
 
+
+#etterSalgColumn{
+	width: 20%;
+}
+
+#adresseColumn{
+	width: 20%;
+}
+/*Price change colors for transactions*/
+
+
+
+.posChange{
+	color: #49A34B;
+}
+
+.negChange{
+	color: #F25244;
+}
 /*Width on property site*/
 #dateID{
 	width: 10%;
@@ -471,11 +548,11 @@ td:nth-child(even){
 }
 
 .transactionurl{
-	color: #2d2d2d;
+	color: #2d2d2d !important;
 }
 
 .transactionurl:hover{
-	color: #2d2d2d;
+	color: #2d2d2d !important;
 	/*text-decoration: none;*/
 }
 
@@ -551,21 +628,34 @@ td:nth-child(even){
 /***************  MAP CSS  **************/
 /****************************************/
 
+.btn-map {
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    font-size: 32px;
+    text-decoration: none;
+    padding: 0;
+}
 
 div .container{
 	width: 42%;
 	height: auto;
-	z-index: 90000000000000;
+	z-index: 9000000;
 	margin-top: -105px;
 	position:relative;
+    padding-top: 20px;
 
 }
 
 div .container button {
-    position: absolute;
-    left: 1%;
-}
+     position: absolute;
+     right: 1%;
+ }
 
+.map-link {
+    color: black !important;
+    font-size: 16px;
+}
 
 svg .land{
     stroke-width: 0.5;
@@ -593,6 +683,7 @@ svg .title {
 	font-family:Calibri;
 	fill:#000000;
 	pointer-events: none;
+    display: none;
 
 }
 
@@ -613,7 +704,7 @@ svg .land:hover, .land.active {
 ********************************/
 
 #advanced-div{
-	margin-top: 10px;
+	margin-top: 2px;
 }
 
 select {
@@ -621,13 +712,11 @@ select {
 	-webkit-border-radius:0px;
     border: 1px solid #111;
     background: white;
-    width: 150px;
     padding: 5px;
     font-size: 16px;
     border: none;
     border-bottom: 1px solid #2D2D2D;
     height: 34px;
-    margin-left:25px;
 }
 
 select:focus{
@@ -640,7 +729,7 @@ select:disabled{
 
 .select-arrow{
 	-webkit-transform:rotate(90deg);
-	margin-left:-18px;
+	margin-left:-15px;
 	font-size:10px;
 	pointer-events:none;
 }
@@ -684,4 +773,136 @@ select:disabled{
 #loginInfoCenter a:hover{
 	color:#D71010;
 	text-decoration: none;
+}
+
+
+/******************
+******************
+*******TABS********
+*******************
+******************/
+
+#tabContainer{
+	position: fixed;
+    z-index: 100000000;
+    top: 70px;
+    left: 22%;
+}
+
+.nav-tabs{
+	width:55vw;
+}
+
+#tab1Button, #tab2Button{
+	width:50%;
+}
+
+.nav-tabs li a:hover{
+	color:initial !important;
+}
+
+/** tooltips **/
+
+.tooltip{
+	position: absolute;
+	display: none;
+	z-index: 100000000000000000;
+}
+
+.tooltip-arrow{
+	display: none;
+}
+
+.show-only-mobile{
+	display:none;
+}
+
+/****MOBILE*****/
+
+@media only screen and (max-width: 736px) and (max-width:600px), only screen and (max-device-width: 736px)  and (orientation: landscape){
+	#searchTitle{
+		display: block;
+	}
+
+	#logo{
+		width: 50%;
+	}
+
+	#navigationHeader{
+		float:none;
+	}
+
+	.searchSelect{
+		width:100px;
+	}
+
+	#advanced-div, #search, #searchForm, #searchTitle{
+		width:75%;
+	}
+
+	div .container{
+		width:100%;
+	}
+
+	#tableHeader, #tableTransactionHeader{
+		width: 96%;
+	}
+
+	.show-only-mobile{
+		display:table-row;
+	}
+
+	#tablePropertyHeader, #tableHeader{
+		display: none;
+	}
+
+	#tableTransactionHeader{
+		top:265px;
+		display: none;
+	}
+
+	#transactionBumpDown{
+		margin-top:300px;
+	}
+
+	#propertyBumpDown{
+		margin-top:355px;
+	}
+
+	#PropPageElements{
+		width:100%;
+		margin-top:-24px;
+	}
+
+	.scrollX{
+		overflow-x:scroll;
+	}
+
+	#tableContainer{
+		overflow:scroll;
+	}
+
+	#transaksjonsType{
+		width:100%;
+	}
+
+	#nextPage, #prevPage{
+		margin-top:-25%;
+	}
+
+	.backbutton{
+		display: none;
+	}
+
+	#nextPage{
+		margin-right:38%;
+	}
+
+	#pageElements{
+		margin-top:70px;
+	}
+
+	#nextPage{
+		margin-right: 5%;
+	}
 }

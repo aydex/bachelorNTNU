@@ -29,7 +29,6 @@ class Query
             return json_encode(array("records" => "login_required"));
             exit;
         }
-
         $filterBy = $filterBy - 1;
         if($filterBy > -1){
             $type = (string)$this->filterByArray[$filterBy];
@@ -84,16 +83,14 @@ class Query
             return json_encode(array("records" => "login_required"));
             exit;
         }
-        
-        $selectFromArray = array('Kommunenavn', 'Eiendomsid', 'ForstRegistrert', 'SistRegistrert', 'AntallTransaksjoner', 'Involvering', 'InvolverteKommuner', 'Historie', 'null');
+        $selectFromArray = array('Kommunenavn', 'Eiendomsid', 'ForstRegistrert', 'SistRegistrert', 'AntallTransaksjoner', 'Involvering', 'Gatenavn', 'Husnr', 'Bokstav', 'InvolverteKommuner', 'Historie', 'null');
 
         $keyOrderBy      = array_search($orderBy, $selectFromArray);
         $keyOrder        = array_search($order, $this->selectFromOrder);
 
-        $query = "SELECT SQL_CALC_FOUND_ROWS  Eiendomsid, ForstRegistrert,
-                  SistRegistrert, AntallTransaksjoner,
+        $query = "SELECT SQL_CALC_FOUND_ROWS  Eiendomsid, 
                   GROUP_CONCAT(DISTINCT CONCAT_WS(':', Dokumentdato, PartType) SEPARATOR ', ') AS Involvering,
-                  GROUP_CONCAT(DISTINCT CONCAT_WS(':', EI.Kommunenr, K.Kommunenavn) SEPARATOR ', ') AS InvolverteKommuner, Historie
+                  GROUP_CONCAT(DISTINCT CONCAT_WS(':', EI.Kommunenr, K.Kommunenavn) SEPARATOR ', ') AS InvolverteKommuner, Historie, Gatenavn, Husnr,Bokstav, Poststed
                   FROM Omsetninger
                   NATURAL JOIN Dokumenter
                   NATURAL JOIN Eiendomshistorie
@@ -102,7 +99,7 @@ class Query
                   JOIN Kommuner AS K ON EI.Kommunenr = K.Kommunenr
                   WHERE Deltagerid= :query_target
                   GROUP BY Eiendomsid
-                  ORDER BY " . $selectFromArray[$keyOrderBy] . " " . $this->selectFromOrder[$keyOrder] . "
+                  ORDER BY  " . $selectFromArray[$keyOrderBy] . " " . $this->selectFromOrder[$keyOrder] . "
                   LIMIT :offset, :pageSize";
 
 
@@ -115,11 +112,60 @@ class Query
         $stmt->execute();
 
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $count = $this->countRows();
+        return json_encode(array("records" => $results, "count" => $count));
+    }
+
+    public function selectTransactionByAddress($address, $page=1, $pageSize=10, $order, $orderBy, $filterBy, $fylkenr, $kommnr) {
+        if(!$this->authenticate()) {
+            return json_encode(array("records" => "login_required"));
+            exit;
+        }
+         if ($kommnr > 0){
+            $filterText = " AND AdresseKommunenr = '$kommnr'";
+        } else if ($fylkenr == 301){
+            $filterText = " AND AdresseKommunenr = '$fylkenr'";
+        } else if ($fylkenr > 0){
+            $filterText = " AND Fylkenr = '$fylkenr'";
+        }  else {
+            $filterText = "";
+        }
+
+        $selectFromArray = array('Kommunenavn', 'Eiendomsid', 'ForstRegistrert', 'SistRegistrert', 'AntallTransaksjoner', 'Involvering', 'Gatenavn', 'Husnr', 'Bokstav', 'InvolverteKommuner', 'Historie', 'null');
+
+        $keyOrderBy      = array_search($orderBy, $selectFromArray);
+        $keyOrder        = array_search($order, $this->selectFromOrder);
+
+        $query = "SELECT SQL_CALC_FOUND_ROWS  Eiendomsid, 
+                  GROUP_CONCAT(DISTINCT CONCAT_WS(':', Dokumentdato, PartType) SEPARATOR ', ') AS Involvering,
+                  GROUP_CONCAT(DISTINCT CONCAT_WS(':', EI.Kommunenr, K.Kommunenavn) SEPARATOR ', ') AS InvolverteKommuner, Historie, Gatenavn, Husnr,Bokstav, Poststed
+                  FROM Omsetninger
+                  NATURAL JOIN Dokumenter
+                  NATURAL JOIN Eiendomshistorie
+                  NATURAL JOIN (SELECT Eiendomsid,Gatenavn,Husnr,Bokstav,Poststed FROM Eiendommer JOIN Kommuner ON Eiendommer.AdresseKommunenr = Kommuner.Kommunenr WHERE ((Gatenavn LIKE :query_target) OR (Poststed LIKE :query_target))  $filterText) AS E
+                  LEFT JOIN EiendomInvolvertKommune AS EI USING(Eiendomsid)
+                  JOIN Kommuner AS K ON EI.Kommunenr = K.Kommunenr
+                  GROUP BY Eiendomsid
+                  ORDER BY  " . $selectFromArray[$keyOrderBy] . " " . $this->selectFromOrder[$keyOrder] . "
+                  LIMIT :offset, :pageSize";
+
+        $offset = ($page - 1)*$pageSize;
+
+        $address = "%$address%";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':query_target', $address, PDO::PARAM_STR);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->bindValue(':pageSize', $pageSize, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $count = $this->countRows();
 
         return json_encode(array("records" => $results, "count" => $count));
     }
+
 
     public function selectTransactionProperty($id, $page=1, $pageSize=10, $order, $orderBy) {
         if(!$this->authenticate()) {
@@ -152,8 +198,6 @@ class Query
 
         $stmt = $this->db->prepare($query_1);
         $stmt->bindValue(':query_target', $id, PDO::PARAM_INT);
-        //$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-        //$stmt->bindValue(':pageSize', $pageSize, PDO::PARAM_INT);
         $stmt->execute();
 
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -184,13 +228,7 @@ class Query
     }
 
 
-    public function selectMunicipalityFromId($mId)
-    {
-        if(!$this->authenticate()) {
-            return json_encode(array("records" => "login_required"));
-            exit;
-        }
-        
+    public function selectMunicipalityFromId($mId){   
         $query = "SELECT * 
                   FROM Kommuner 
                   WHERE Kommunenr=:mId";
@@ -199,6 +237,45 @@ class Query
         $stmt->bindValue(':mId', $mId, PDO::PARAM_INT);
         $stmt->execute();
         
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return json_encode(array("records" => $result));
+    }
+
+    public function getMunicipalities(){
+
+        $query = "SELECT Kommunenr, Kommunenavn 
+                  FROM kommunalrapport.Kommuner";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        return json_encode(array("records" => $result));
+    }
+
+    public function selectCountyFromId($cId){
+        $query = "SELECT * 
+                  FROM Fylker 
+                  WHERE Fylkenr=:cId";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':cId', $cId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return json_encode(array("records" => $result));
+    }
+
+    public function getCounties(){
+        $query = "SELECT Fylkenr, Fylkenavn 
+                  FROM kommunalrapport.Fylker";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         return json_encode(array("records" => $result));

@@ -1,18 +1,18 @@
-kommunalApp.directive('transactionPropertyTable', function(transaction){
+kommunalApp.directive('transactionPropertyTimeline', function(transaction){
     return{
         restrict: 'EA',
         replace: false,
         scope: {
             transaction: '='
         },
-        templateUrl: 'views/transactionsPropertyTableRow.html',
+        templateUrl: 'views/transactionsPropertyTimelineRow.html',
         link: function(scope, element, attr) {
             var handleEntry = function(list){
                 angular.forEach(list, function(entry){
                     entry.navn = transaction.capitalFirstLetters(entry.navn);
                     entry.kommune = false;
                     entry.ukjent = false;
-                    entry.searchurl = "transactions/deltager/" + encodeURI(entry.navn) +"/" + entry.deltagerid +"/" + entry.deltagertype;
+                    entry.searchurl = "transactions/deltager/" + encodeURI(entry.navn) +"/" + entry.deltagerid +"/" + entry.deltagertype
                     if (entry.deltagertype == "F") {
                         //entry.navn = transaction.setLastnameAfterFirstname(entry.navn);
                         entry.navn = transaction.abbreviateMiddleNames(entry.navn);
