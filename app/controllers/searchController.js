@@ -16,6 +16,8 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         $rootScope.username = $cookies.get("name").replace("+", " ");
     }
 
+    document.getElementById("search").focus();
+
     var _timeout;
     var queryPromis;
 	$scope.pageSwitch	  = false;
