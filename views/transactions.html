@@ -1,3 +1,4 @@
+<div id="transactionSite">
 <div id="fixedTransactionSite">
 
 <button type="button" class="btn btn-default backbutton" data-ng-click="back()">&lt; Tilbake</button>
@@ -84,7 +85,10 @@
         <tr transaction-table transaction="transaction" data-ng-repeat="transaction in transactions" data-ng-click="showTransactionsProperty(transaction.Eiendomsid, transaction.adresse)" uib-tooltip="Trykk for å se mer info" tooltip-placement="auto top" tooltip-append-to-body="true" data-ng-mouseenter="tooltip_show($index, $event)" tooltip-class="enabled-arrow same-design-tooltip">
         </tr>
     </table>
+    <p id="pageNumber" data-ng-bind="pageDisplay"></p>
+</div>
+
 </div>
 </div>
 
-<p id="pageNumber" data-ng-bind="pageDisplay"></p>
+

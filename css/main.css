@@ -3,6 +3,7 @@
 @import url(http://fonts.googleapis.com/css?family=Exo+2:400,200,700) ;
 
 html{
+	height: 100%;
 	text-align: center;
 	height:auto !important;
 }
@@ -11,9 +12,56 @@ body{
 	font-family: 'Exo 2', sans-serif;
 	font-weight:400;
 	height:auto !important;
+	position: relative;
+	margin: 0;
+	padding: 0;
 }
 
+
+/****FOOTER****/
+
+
+#mainFooter{
+	position: absolute;
+	bottom: -300px;
+	background-color: #003762;
+	height: 220px;
+	color: white;
+	text-align: left;
+	display: block;
+	z-index: 100000;
+}
+
+#mainFooter div{
+	margin-left: 50px;
+	padding-top: 20px;
+	margin-right: 40px;
+}
+
+#mainFooter h3{
+	margin-bottom: 15px;
+}
+
+#mainFooter span{
+
+	font-size: 15px;
+}
+
+#madeBy{
+	font-size: 13px;
+	color: white;
+	margin-left: 50px;
+	margin-top: 35px;
+}
+
+#madeFor{
+	color:white;
+	margin-left: 50px;
+}
+/*****/
+
 html.md-default-theme, html, body.md-default-theme, body{background-color:white;}
+
 
 /******************************
 *******************************
@@ -364,6 +412,7 @@ table{
 	position: fixed;
 	bottom: 0;
 	text-align: center;
+	display: block;
 }
 
 div #pageNumber{
@@ -567,7 +616,7 @@ td:nth-child(even){
 #prevPage {
     left: 0;
     margin-left: 5%;
-    margin-top: 10%;
+    margin-top: 4%;
     font-size: 100px;
     position: fixed;
     z-index: 10000;
@@ -576,7 +625,7 @@ td:nth-child(even){
 #nextPage {
     right: 0;
     margin-right: 10%;
-    margin-top: 10%;
+    margin-top: 4%;
     font-size: 100px;
     position: fixed;
     z-index: 10000;
@@ -787,7 +836,7 @@ select:disabled{
 #tabContainer{
 	position: fixed;
     z-index: 100000000;
-    top: 70px;
+    top: 75px;
     left: 22%;
 }
 
@@ -797,6 +846,10 @@ select:disabled{
 
 #tab1Button, #tab2Button{
 	width:50%;
+}
+
+#tab1Button a, #tab2Button a{
+	color: #4d4d4d;
 }
 
 .nav-tabs li a:hover{
