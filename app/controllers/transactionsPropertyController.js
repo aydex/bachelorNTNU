@@ -61,15 +61,14 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
 
                 if($scope.unalteredTransactions == undefined) $scope.unalteredTransactions = result.records;
 
-                var storedString   = result.combined[0].Prispunkt;
-                var priceDatePairs = storedString.split(",");
+                var storedString   = result.combined[0].Historie;
+                var priceDatePairs = storedString.split(", ");
                 dokumentnr         = [];
 
 
                 if($scope.chartObj.length == 0) {
                     angular.forEach(priceDatePairs, function(pair, key){
                         var splitValues = pair.split(":");
-
                         $scope.chartObj[splitValues[2]] = {date: splitValues[1], value: splitValues[0], documentnr: splitValues[2]};
                     });
 
