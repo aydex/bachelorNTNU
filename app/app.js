@@ -5,23 +5,15 @@ var kommunalApp = angular.module('kommunalApp', ['ngRoute', 'ngCookies', 'ui.boo
 kommunalApp.config(function($routeProvider, $locationProvider) {
     $routeProvider
 
-        //route for homepage
-        /*.when('/', {
-            templateUrl : '/views/frontpage.html',
-            controllers  : 'mainController'
-        })*/
-
         .when('/search', {
             templateUrl : '/views/search.html',
             controller  : 'searchController',
-            //reloadOnSearch: false
         })
 
 
         .when('/search/:searchType/:searchName/:type/:page/:pageSize/:fylkenr/:kommnr', {
             templateUrl : '/views/search.html',
             controller  : 'searchController',
-            //reloadOnSearch: false
         })
 
         .when('/search/:searchType/:searchName/:type/:page/:pageSize', {
@@ -32,13 +24,11 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
         .when('/unregistered/', {
             templateUrl : '/views/error.html',
             controller  : 'unregisteredController',
-            //reloadOnSearch: false
         })
 
         .when('/unregistered/:code', {
             templateUrl : '/views/error.html',
             controller  : 'unregisteredController',
-            //reloadOnSearch: false
         })
 
         .when('/transactions/deltager/:name/:targetId/:type', {

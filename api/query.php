@@ -189,7 +189,7 @@ class Query
                         ORDER BY " . $selectFromArray[$keyOrderBy] . " " . $this->selectFromOrder[$keyOrder];
 
 
-        $query_2 = "SELECT Prispunkt 
+        $query_2 = "SELECT Historie 
                     FROM Eiendomshistorie 
                     WHERE Eiendomsid= :query_target"; 
 
