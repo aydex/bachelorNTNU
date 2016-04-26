@@ -8,7 +8,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             {type:"Velg type", value: 0},
             {type:"Person", value: 1}, 
             {type:"Kommune", value: 2}, 
-            {type:"Løpe", value: 3}, 
+            {type:"Udefinert", value: 3}, 
             {type:"Selskap", value:4}];
 
     if($cookies.get("name")) {
