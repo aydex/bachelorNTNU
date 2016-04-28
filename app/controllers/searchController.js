@@ -206,17 +206,26 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             kommune = $filter('capitalFirstLettersFilter')($scope.currentKommune.label) + " Kommune";
         }
 
-        if ($scope.currentType.value != 1){
-           type = $scope.currentType.type + "r";
-        } else {
-            type = $scope.currentType.type + "er";
+
+
+        switch($scope.currentType.value){
+        	case 1: type = $scope.currentType.type + "er"; break;
+        	case 2: type = $scope.currentType.type + "r"; break;
+        	case 3: type = $scope.currentType.type + "e"; break;
+        	case 4: type = $scope.currentType.type + "er"; break;
         }
-            
-        if (kommune != "" && $scope.currentType.value != 0){
-            $scope.searchingForText = "Viser " + type + " som har handlet med " +kommune;
+
+        if ($scope.selectedSearchType.value == 'name'){
+        	 if (kommune != "" && $scope.currentType.value != 0){
+            	$scope.searchingForText = "Viser " + type + " som har handlet med " +kommune;
         } else {
-            $scope.searchingForText = ""
+            	$scope.searchingForText = ""
+        	}
+        } else {
+        		$scope.searchingForText = "Viser eiendommer i " +kommune;
         }
+ 
+       
     }
 
     if($routeParams.searchName) {
