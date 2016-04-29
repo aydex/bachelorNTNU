@@ -1060,6 +1060,7 @@ select:disabled{
 
 	.left{
 		left:0px;
+		border-right:1px solid #004e7e;
 	}
 
 	.right{
