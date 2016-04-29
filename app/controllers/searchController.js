@@ -8,15 +8,8 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             {type:"Velg type", value: 0},
             {type:"Person", value: 1}, 
             {type:"Kommune", value: 2}, 
-            {type:"Løpe", value: 3}, 
+            {type:"Udefinert", value: 3}, 
             {type:"Selskap", value:4}];
-
-    if($cookies.get("name")) {
-        $rootScope.loggedIn = true;
-        $rootScope.username = $cookies.get("name").replace("+", " ");
-    }
-
-    document.getElementById("search").focus();
 
     var _timeout;
     var queryPromis;
@@ -32,21 +25,21 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     $scope.advancedShow   = false;
     $scope.lastSearched   = "";
     $scope.error          = false;
-    
     $scope.selectedSearchType = $scope.searchTypes[0];
-    $scope.search         = {
-        nameSearch: "",
-        pageSize  : 25
-    };
-
-    
+    $scope.search         = {nameSearch: "", pageSize  : 25};
     $scope.currentType = $scope.participantSearchTypes[0];
     $scope.currentFylke = undefined;
     $scope.currentKommune = undefined;
-    $scope.kommune;
     $scope.selectedKommunenr = 0;
     $scope.selectedFylkenr = 0;
     $scope.searchingForText = "Eiendomsdatabasen";
+
+    if($cookies.get("name")) {
+        $rootScope.loggedIn = true;
+        $rootScope.username = $cookies.get("name").replace("+", " ");
+    }
+
+    document.getElementById("search").focus();
     
     $scope.advanceChange = function(){
         if($scope.search.query != "")
@@ -205,7 +198,6 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     $scope.setSearchText = function(){
         var kommune = "";
         var type = "";
-        var intro = "Søker etter "
         var searchTerm = $scope.searchName;
 
         if ($scope.currentFylke != undefined){
@@ -215,16 +207,24 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             kommune = $filter('capitalFirstLettersFilter')($scope.currentKommune.label) + " Kommune";
         }
 
-        if ($scope.currentType.value != 1){
-           type = $scope.currentType.type + "r";
-        } else {
-            type = $scope.currentType.type + "er";
+        switch($scope.currentType.value){
+        	case 1: type = $scope.currentType.type + "er"; break;
+        	case 2: type = $scope.currentType.type + "r"; break;
+        	case 3: type = $scope.currentType.type + "e"; break;
+        	case 4: type = $scope.currentType.type + "er"; break;
         }
-            
-        if (kommune != "" && $scope.currentType.value != 0){
-            $scope.searchingForText = "Viser " + type + " som har handlet med " +kommune;
+
+        if ($scope.selectedSearchType.value == 'name'){
+        	 if (kommune != "" && $scope.currentType.value != 0){
+            	$scope.searchingForText = "Viser " + type + " som har handlet med " +kommune;
         } else {
-            $scope.searchingForText = ""
+            	$scope.searchingForText = ""
+        	}
+        } else {
+        	if (kommune != ""){
+        		
+        		$scope.searchingForText = "Viser eiendommer i " +kommune;
+        	}
         }
     }
 
@@ -265,11 +265,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         }
     };
 
-    $scope.showTransactionsPerson = function(id, name, type){
-        name = encodeURIComponent(name);
-        $location.path("/transactions/deltager/" + name + "/" + id + "/" +type);
-        //$routeParams ==> {chapterId:1, sectionId:2, search:'moby'}
-    };
+
 
     $scope.orderByMe = function(x) {
         if($scope.sortReady) {
@@ -302,13 +298,11 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             $scope.doNameSearch();
         } else {
             $scope.currentType = $scope.participantSearchTypes[0];
-
         }
     }
 
     $scope.selectedMunicipalityChanged = function(kommune){
         if (kommune != $scope.currentKommune){
-
             $scope.selectedKommunenr = $scope.currentKommune.kommunenr;
         } else {
             $scope.selectedKommunenr = 0;
@@ -316,21 +310,23 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
         $scope.advanceChange();
     }
 
-
     $scope.selectedFylkeChanged = function(fylke){
-
         if (fylke != $scope.currentFylke){
             $scope.selectedFylkenr = $scope.currentFylke.value;
             $scope.selectedKommunenr = 0;
         } else {
             $scope.selectedFylkenr = 0;
         }
-
         $scope.advanceChange();
     }
 
   	$scope.showTransactionsProperty = function(id,address){
         $location.path("/transactions/property/" + id + "/" + address);
+    };
+
+    $scope.showTransactionsPerson = function(id, name, type){
+        name = encodeURIComponent(name);
+        $location.path("/transactions/deltager/" + name + "/" + id + "/" +type);
     };
 
     $scope.tooltip_show = function(index, event) {

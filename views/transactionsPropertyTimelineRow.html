@@ -1,39 +1,51 @@
 <li data-ng-class="{ 'selected-row': transaction.Dokumentnr == selectedDokumentnr }">
-<time class="cbp_tmtime"> <span data-ng-bind="transaction.Dokumentdato | yearFilter"></span></time>
-       <div class="cbp_tmicon cbp_tmicon-phone"></div>
-       <div class="cbp_tmlabel">
-       		<span class="cbp_date">
-       			<a  class="cbp_text" data-ng-bind="transaction.Dokumentdato | dateOnlyFilter"></a>
-       		</span>
-       		<span class="cbp_type">
-       			<a  class="cbp_text" data-ng-bind="transaction.OmsetningsTypenavn"></a>
-       		</span>
-       		<div class="cbp_table">
-       		<span class="cbp_name_col cbp_name_col_v">
-       			<span data-ng-repeat="deltager in transaction.seller">
-					<span class="cbp_text" ng-if="deltager.ukjent" tooltips tooltip-template="Selgeren er ikke oppgitt i databasen">Ukjent</span>
-					<kommunevaapen id="deltager.kommunenr" data-ng-if="deltager.kommune"></kommunevaapen>
-					<a class="transactionurl" data-ng-href="{{deltager.searchurl}}" data-ng-bind="deltager.navn"></a>
-					<span class="cbp_text cbp_brok" data-ng-if="deltager.andelNevner > 1">
-						<sup data-ng-bind="deltager.andelTeller"></sup>
-						<span ng-if="!deltager.ukjent"> &frasl;</span>
-						<sub data-ng-bind="deltager.andelNevner"></sub>
-					</span>
-					<br>
+	<time class="cbp_tmtime">
+		<span data-ng-bind="transaction.Dokumentdato | yearFilter"></span>
+	</time>
+    <div class="cbp_tmicon cbp_tmicon-phone"></div>
+    <div class="cbp_tmlabel">
+      	<span class="cbp_date">
+      		<a  class="cbp_text" data-ng-bind="transaction.Dokumentdato | dateOnlyFilter"></a>
+      	</span>
+      	<span class="cbp_type">
+      		<a  class="cbp_text" data-ng-bind="transaction.OmsetningsTypenavn"></a>
+      	</span>
+      	<div class="cbp_table">
+      	<span class="cbp_name_col cbp_name_col_v">
+      		<span data-ng-repeat="deltager in transaction.seller">
+				<span 
+					class="cbp_text" 
+					data-ng-if="deltager.ukjent" 
+					tooltips 
+					tooltip-template="Selgeren er ikke oppgitt i databasen">
+						Ukjent
 				</span>
+				<kommunevaapen id="deltager.kommunenr" data-ng-if="deltager.kommune"></kommunevaapen>
+				<a 
+					class="transactionurl" 
+					data-ng-href="{{deltager.searchurl}}" 
+					data-ng-bind="deltager.navn">
+				</a>
+				<span class="cbp_text cbp_brok" data-ng-if="deltager.andelNevner > 1">
+					<sup data-ng-bind="deltager.andelTeller"></sup>
+					<span ng-if="!deltager.ukjent"> &frasl;</span>
+					<sub data-ng-bind="deltager.andelNevner"></sub>
+				</span>
+				<br>
 			</span>
+		</span>
 			<span class="cbp_center_col">
-				<span class="cbp_text"> 
-					
-					solgte til
-			
-				</span>
+				<span class="cbp_text">solgte til</span>
 			</span>
 			<span class="cbp_name_col cbp_name_col_h">
 				<span ng-repeat="deltager in transaction.buyer">
 					<span ng-if="deltager.ukjent">Ukjent</span>
 					<kommunevaapen id="deltager.kommunenr" data-ng-if="deltager.kommune"></kommunevaapen>
-					<a class="transactionurl" data-ng-href="{{deltager.searchurl}}" data-ng-bind="deltager.navn"></a>
+					<a 
+						class="transactionurl" 
+						data-ng-href="{{deltager.searchurl}}" 
+						data-ng-bind="deltager.navn">
+					</a>
 					<span class="cbp_text cbp_brok" data-ng-if="deltager.andelNevner > 1">
 						<sup data-ng-bind="deltager.andelTeller"></sup>
 						<span ng-if="!deltager.ukjent"> &frasl;</span>
@@ -43,8 +55,7 @@
 				</span>
 			</span>
 		</div>
-
-			for <span data-ng-bind="transaction.Salgssum | priceFilter"></span> kroner
-
-       </div>
- </li>
+		for
+		<span data-ng-bind="transaction.Salgssum | priceFilter"></span> kroner
+    </div>
+</li>
