@@ -5,10 +5,16 @@ kommunalApp.controller('transactionPropertyTimelineController', function($scope,
         $rootScope.username = $cookies.get("name").replace("+", " ");
     }
 
+    var address = "UKJENT ADRESSE";
+
+    if($routeParams.targetAddress != undefined) {
+        address = decodeURIComponent($routeParams.targetAddress);
+    }
+
     $scope.selectedDokumentnr = null;
 
     $scope.message        = $routeParams.targetId;
-    $scope.address        = decodeURIComponent($routeParams.targetAddress);
+    $scope.address        = address;
     $scope.page           = 1;
     $scope.pageSize       = 10;
     $scope.orderBy        = null;

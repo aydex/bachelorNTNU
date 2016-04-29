@@ -1,27 +1,19 @@
 google.load('visualization', '1', {packages:['corechart']});
 
-var kommunalApp = angular.module('kommunalApp', ['ngRoute', 'ngCookies', 'ui.bootstrap', '720kb.tooltips']);
+var kommunalApp = angular.module('kommunalApp', ['ngRoute', 'ngCookies', 'ui.bootstrap', '720kb.tooltips', 'ngAnimate']);
 
 kommunalApp.config(function($routeProvider, $locationProvider) {
     $routeProvider
 
-        //route for homepage
-        /*.when('/', {
-            templateUrl : '/views/frontpage.html',
-            controllers  : 'mainController'
-        })*/
-
         .when('/search', {
             templateUrl : '/views/search.html',
             controller  : 'searchController',
-            //reloadOnSearch: false
         })
 
 
         .when('/search/:searchType/:searchName/:type/:page/:pageSize/:fylkenr/:kommnr', {
             templateUrl : '/views/search.html',
             controller  : 'searchController',
-            //reloadOnSearch: false
         })
 
         .when('/search/:searchType/:searchName/:type/:page/:pageSize', {
@@ -32,13 +24,11 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
         .when('/unregistered/', {
             templateUrl : '/views/error.html',
             controller  : 'unregisteredController',
-            //reloadOnSearch: false
         })
 
         .when('/unregistered/:code', {
             templateUrl : '/views/error.html',
             controller  : 'unregisteredController',
-            //reloadOnSearch: false
         })
 
         .when('/transactions/deltager/:name/:targetId/:type', {
@@ -72,6 +62,8 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
 
 kommunalApp.run(function($rootScope, $http, $window, $location) {
 
+    $rootScope.open = false;
+
     angular.element(document).on("click", function(e) {
         $rootScope.$broadcast("documentClicked", angular.element(e.target));
     });
@@ -92,6 +84,11 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
                 }
         });
     };
+
+    $rootScope.clickMenu = function() {
+        console.log("clicked menu");
+        $rootScope.open = !$rootScope.open;
+    }
 
     $rootScope.back = function(){
         $window.history.back();

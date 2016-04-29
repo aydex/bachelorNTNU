@@ -67,17 +67,53 @@
     </head>
 <body>
 
+    <div class="body">
     <header>
         <div id="headerWrapper">
 
-            <a href="/"><img src="images/logo.svg" id="logo"></a>
+            <div data-ng-class="{'menu_open' : !open, 'menu_close' : open }" data-ng-click="clickMenu()" class="backgroundTransform"></div>
+            <div class="header-menu animate-show animate-hide" data-ng-show="open" data-ng-class="{'full-opacity' : open }">
+                <ul class="menu">
+                    <li class="menu__item is-leaf first leaf">
+                        <a href="/" class="menu__link active">Forside</a>
+                    </li>
+                    <li class="menu__item is-leaf leaf">
+                        <a href="http://logginn.kommunal-rapport.no" class="menu__link">Bli abonnent</a>
+                    </li>
+                    <li class="menu__item is-leaf leaf">
+                        <a href="http://data.kommunal-rapport.no/ " class="menu__link">Leverandørdatabasen</a>
+                    </li>
+                    <li class="menu__item is-leaf leaf">
+                        <a href="/debatt" class="menu__link">Meninger</a>
+                    </li>
+                    <li class="menu__item is-leaf leaf">
+                        <a href="http://kommunebarometeret.no" class="menu__link">Kommunebarometeret</a>
+                    </li>
+                    <li class="menu__item is-leaf leaf">
+                        <a href="/content/annonsorer" class="menu__link">Annonsører</a>
+                    </li>
+                    <li class="menu__item is-leaf leaf">
+                        <a href="/content/om-kommunal-rapport" class="menu__link">Om Kommunal Rapport</a>
+                    </li>
+                    <li class="menu__item is-leaf leaf">
+                        <a href="/content/etiske-retningslinjer-kommunal-rapport" class="menu__link">Etiske retningslinjer</a>
+                    </li>
+                    <li class="menu__item is-leaf last leaf">
+                        <a href="/content/kommunal-rapports-formal-og-grunnsyn" class="menu__link">Formål og grunnsyn</a>
+                    </li>
+                </ul>
+            </div>
+
+            </div>
+
+            <a href="/"><img src="images/logo.svg" id="logo" alt="logo"></a>
 
             <div id="navigationHeader">
-                <a data-ng-href="api/login.php" target="_self" class="login" data-ng-show="!loggedIn">Logg Inn</a>
-                <a class="login" data-ng-show="loggedIn" data-ng-bind="username" href="http://komrap.dev-id.ramsalt.com/user"></a>
+                <a data-ng-href="api/login.php" target="_self" class="login left" data-ng-show="!loggedIn">Logg Inn</a>
+                <a class="login left" data-ng-show="loggedIn" data-ng-bind="username" href="http://komrap.dev-id.ramsalt.com/user"></a>
                 <span id="separator" class="login">|</span>
-                <a href="http://logginn.kommunal-rapport.no/?origin_uri=/" class="login" data-ng-show="!loggedIn">Abonner</a>
-                <a href="api/logout.php" data-ng-show="loggedIn" class="login" target="_self">Logg Ut</a>
+                <a href="http://logginn.kommunal-rapport.no/?origin_uri=/" class="login right" data-ng-show="!loggedIn">Abonner</a>
+                <a href="api/logout.php" data-ng-show="loggedIn" class="login right" target="_self">Logg Ut</a>
             </div>
 
         </div>
@@ -87,6 +123,8 @@
         <div data-ng-view>
 
         </div>
-
+    </div>
+</div>
+<div id="mainFooter" data-ng-include="'views/footer.html'"></div>
 </body>
 </html>

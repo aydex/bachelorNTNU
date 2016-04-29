@@ -5,10 +5,16 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
         $rootScope.username = $cookies.get("name").replace("+", " ");
     }
 
+    var address = "UKJENT ADRESSE";
+
+    if($routeParams.targetAddress != undefined) {
+        address = decodeURIComponent($routeParams.targetAddress);
+    }
+
     $scope.selectedDokumentnr = null;
 
     $scope.message        = $routeParams.targetId;
-    $scope.address        = decodeURIComponent($routeParams.targetAddress);
+    $scope.address        = address;
     $scope.page           = 1;
     $scope.pageSize       = 10;
     $scope.orderBy        = null;
@@ -30,7 +36,6 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
     $scope.unalteredTransactions;
 
     $scope.queryTransaction = function(){
-
         var queryPromis = $rootScope.doQuery("transactionFromProperty", $routeParams.targetId,
             $scope.page, $scope.pageSize, $scope.order, $scope.orderBy);
         queryPromis.then(function(result){
@@ -43,7 +48,6 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
 
                 $scope.showTable      = true;
                 results               = $scope.getParticipantsCorrectly(result.records);
-
                 $scope.transactions   = result.records.sort(sortFunctionTable);
                 $scope.showNavigation = true;
                 $scope.hideNavigation = false;
@@ -55,15 +59,13 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
 
                 if($scope.unalteredTransactions == undefined) $scope.unalteredTransactions = result.records;
 
-                var storedString   = result.combined[0].Prispunkt;
-                var priceDatePairs = storedString.split(",");
+                var storedString   = result.combined[0].Historie;
+                var priceDatePairs = storedString.split(", ");
                 dokumentnr         = [];
-
 
                 if($scope.chartObj.length == 0) {
                     angular.forEach(priceDatePairs, function(pair, key){
                         var splitValues = pair.split(":");
-
                         $scope.chartObj[splitValues[2]] = {date: splitValues[1], value: splitValues[0], documentnr: splitValues[2]};
                     });
 
@@ -122,8 +124,6 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
                 price, 
                 'Dokumentdato: ' + obj[key].date + '\n Salgssum: ' + $filter('priceFilter')(obj[key].value) + ' \n Dokumentnr: ' + obj[key].documentnr,
                 annotation, annotationText]); 
-            
-            
         });
 
         var options = {
@@ -184,7 +184,6 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
 
         $scope.selectedDokumentnr = selectedDokumentnr; 
         }
-        
     };
 
     $scope.markTableRow = function(selectedDokumentnr) {
@@ -258,9 +257,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             $scope.reverse = !$scope.reverse;
         }
     }
-
     $scope.queryTransaction();
-
 });
 
 function sortFunction(a, b) {

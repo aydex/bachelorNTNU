@@ -181,7 +181,7 @@ kommunalApp.directive('region', ['$compile', '$filter', function ($compile, $fil
                 var countyIndex = element.attr("class").indexOf("county");
                 scope.countyId = String(parseInt(element.attr("class").slice(countyIndex+6, countyIndex+8)));
                 scope.fylke = $filter('filter')(result.records, {'Fylkenr': scope.countyId}, true);
-                scope.fylkenavn = scope.fylke[0]["Fylkenavn"];
+                scope.fylkenavn = $filter('capitalFirstLettersFilter')(scope.fylke[0]["Fylkenavn"]);
                 scope.fylkenr = scope.countyId;
                 scope.elementId = element.attr("id");
 
@@ -191,6 +191,7 @@ kommunalApp.directive('region', ['$compile', '$filter', function ($compile, $fil
                         document.getElementsByClassName("tooltip")[0].remove();
                     } catch(err) {}
                     svgMapCtrl.updateMap(scope.elementId);
+                    document.getElementById("fixedSite").style.opacity=0.5;
                 };
 
                 //<span tooltips tooltip-template="Vis kun deltagere av denne typen" tooltip-size="large" >
@@ -199,10 +200,9 @@ kommunalApp.directive('region', ['$compile', '$filter', function ($compile, $fil
                 //console.log(tooltip);
                 //element.append(tooltip);
                 element.attr('uib-tooltip', '{{fylkenavn}}');
-                element.attr('tooltip', 'dicktip');
-                element.attr('tooltip-placement', 'top');
-                element.attr('data-ng-mousemove', 'move($event)');
-                //element.attr('tooltip-trigger', 'click');
+                element.attr('tooltip-class', 'same-design-tooltip');
+                element.attr('tooltip-placement', 'auto top');
+                element.attr('data-ng-mouseenter', 'move($event)');
                 element.attr('tooltip-append-to-body', true);
                 element.attr("ng-click", "regionClick()");
                 element.removeAttr("region");
@@ -1495,7 +1495,7 @@ kommunalApp.directive('city', ['$compile', '$location', '$http', '$filter', func
                 };
                 $scope.municipalities.then(function(result) {
                     $scope.kommune = $filter('filter')(result.records, {'Kommunenr': $scope.cityId}, true);
-                    $scope.kommunenavn = $scope.kommune[0]["Kommunenavn"];
+                    $scope.kommunenavn = $filter('capitalFirstLettersFilter')($scope.kommune[0]["Kommunenavn"]);
                     $scope.kommunenr = $scope.cityId;
                     $scope.cityName = element.attr("id");
                     $scope.cityId = element.attr("inkscape:label").substring(2);
@@ -1507,6 +1507,7 @@ kommunalApp.directive('city', ['$compile', '$location', '$http', '$filter', func
                     //element.append(tooltip);
 
                     element.attr('uib-tooltip', '{{kommunenavn}}');
+                    element.attr('tooltip-class', 'same-design-tooltip');
                     element.attr('tooltip-placement', 'top');
                     element.attr('data-ng-mousemove', 'move($event)');
                     //element.attr('tooltip-trigger', 'click');
