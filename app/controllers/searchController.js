@@ -156,6 +156,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
     };
 
     $scope.searchDelay = function(){
+    	document.getElementById("fixedSite").style.opacity = 1;
         if(_timeout){ //if there is already a timeout in process cancel it
             $timeout.cancel(_timeout);
         }
