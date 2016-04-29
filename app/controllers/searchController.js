@@ -222,7 +222,10 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             	$scope.searchingForText = ""
         	}
         } else {
+        	if (kommune != ""){
+        		
         		$scope.searchingForText = "Viser eiendommer i " +kommune;
+        	}
         }
  
        
