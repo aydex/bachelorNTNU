@@ -1,6 +1,6 @@
 <!--søkeicon i søkefeltet-->
 
-<div id="fixedSite">
+<div id="fixedSite" data-ng-class="{'half-opacity' : opacityChange }">
     <button type="button" class="btn btn-default backbutton" data-ng-show="showTable" data-ng-click="back()">&lt; Tilbake</button>
     <div id="searchElements">
         <h3 ng-bind="searchingForText" id="searchTitle">Eiendomsdatabasen</h3>
@@ -158,20 +158,22 @@
 
 <div id="bumpDown">
 <div id="tableContainer" class="tableWidth">
-    <span 
-        data-ng-class="{'navButtonInactive' : page == 1 || !showNavigation, 'navButtonActive' : page > 1 && showNavigation}" 
-        class="fa fa-chevron-left" 
-        data-ng-show="hideNavigation" 
-        data-ng-click="navigate(-1)" 
-        id="prevPage">
-    </span>
-    <span 
-        data-ng-class="{'navButtonInactive' : !more_results || !showNavigation, 'navButtonActive' : more_results && showNavigation }" 
-        class="fa fa-chevron-right" 
-        data-ng-show="hideNavigation" 
-        data-ng-click="navigate(1)" 
-        id="nextPage">
-    </span>
+    <div id="valign">
+        <span 
+            data-ng-class="{'navButtonInactive' : page == 1 || !showNavigation, 'navButtonActive' : page > 1 && showNavigation}" 
+            class="fa fa-chevron-left" 
+            data-ng-show="hideNavigation" 
+            data-ng-click="navigate(-1)" 
+            id="prevPage">
+        </span>
+        <span 
+            data-ng-class="{'navButtonInactive' : !more_results || !showNavigation, 'navButtonActive' : more_results && showNavigation }" 
+            class="fa fa-chevron-right" 
+            data-ng-show="hideNavigation" 
+            data-ng-click="navigate(1)" 
+            id="nextPage">
+        </span>
+    </div>
     <p id="noResultDescription" data-ng-show="noResultShow">Ingen resultater...</p>
     <img src="/images/loader.gif" data-ng-show="!showTable && searched && !noResultShow" alt="Loading.." />
        <table data-ng-show="showTable">
@@ -244,7 +246,7 @@
     </table>
 </div>
 </div>
-  <div data-ng-controller="mapController" data-ng-show="!showTable">
+  <div data-ng-show="!showTable">
       <div class="container">
           <a href="#" class="map-link" data-ng-show="countySelected" data-ng-click="showAllCounty()">Klikk her for å se alle transaksjoner i {{countyName}}</a>
           <button type="button" class="btn-map" data-ng-show="countySelected" data-ng-click="back()">x</button>
