@@ -74,4 +74,4 @@ npm-debug.log
 /test
 
 #Jasmine
-/testing/jasmine/lib/
+/app/testing/lib/
