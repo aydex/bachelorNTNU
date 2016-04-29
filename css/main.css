@@ -1033,13 +1033,13 @@ select:disabled{
 
 	.login{
 		width: 50vw;
-	    text-align: center;
-	    position: absolute;
-	    top: 70px;
-	    background-color: #5678A4;
-	    height: 35px;
-	    display: block;
-	    padding-top: 6px;
+    	text-align: center;
+    	position: absolute;
+    	top: 70px;
+   		background-color: #5678A4;
+    	height: 40px;
+    	display: block;
+    	padding-top: 8px;
 	}
 
 	#logo{
@@ -1051,7 +1051,7 @@ select:disabled{
 	}
 
 	#fixedSite{
-		top:30px;
+		top:35px;
 	}
 
 	#separator{
