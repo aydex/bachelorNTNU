@@ -809,7 +809,6 @@ td:nth-child(even){
 .map-link {
     color: black !important;
     font-size: 16px;
-		top:inherit;
 		z-index: 4;
 }
 
@@ -1081,6 +1080,10 @@ select:disabled{
 
 	#fixedSite{
 		top:35px;
+		height: 250px;
+	}
+	#mapButtons{
+		top: 250px;
 	}
 
 	#separator{
