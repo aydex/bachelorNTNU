@@ -1,6 +1,6 @@
 google.load('visualization', '1', {packages:['corechart']});
 
-var kommunalApp = angular.module('kommunalApp', ['ngRoute', 'ngCookies', 'ui.bootstrap', '720kb.tooltips']);
+var kommunalApp = angular.module('kommunalApp', ['ngRoute', 'ngCookies', 'ui.bootstrap', '720kb.tooltips', 'ngAnimate']);
 
 kommunalApp.config(function($routeProvider, $locationProvider) {
     $routeProvider
@@ -62,6 +62,8 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
 
 kommunalApp.run(function($rootScope, $http, $window, $location) {
 
+    $rootScope.open = false;
+
     angular.element(document).on("click", function(e) {
         $rootScope.$broadcast("documentClicked", angular.element(e.target));
     });
@@ -82,6 +84,11 @@ kommunalApp.run(function($rootScope, $http, $window, $location) {
                 }
         });
     };
+
+    $rootScope.clickMenu = function() {
+        console.log("clicked menu");
+        $rootScope.open = !$rootScope.open;
+    }
 
     $rootScope.back = function(){
         $window.history.back();

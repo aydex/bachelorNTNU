@@ -32,7 +32,7 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$filter
                         });
                 }
             };
-            
+
             $scope.getCounties = function() {
                 return $http.get("./api/ask.php?getCounties")
                     .then(function (response) {
@@ -191,6 +191,7 @@ kommunalApp.directive('region', ['$compile', '$filter', function ($compile, $fil
                         document.getElementsByClassName("tooltip")[0].remove();
                     } catch(err) {}
                     svgMapCtrl.updateMap(scope.elementId);
+                    document.getElementById("half-opacity").style.opacity=0.5;
                 };
 
                 //<span tooltips tooltip-template="Vis kun deltagere av denne typen" tooltip-size="large" >
