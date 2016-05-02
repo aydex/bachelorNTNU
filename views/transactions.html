@@ -86,6 +86,11 @@
             <img src="/images/loader.gif" data-ng-show="!showTable" alt="Loading.." />
             <table data-ng-show="showTable">
                 <tr class="show-only-mobile">
+                    <th id="adresseColumn" data-ng-click="orderByMe('Gatenavn')" data-ng-class="{'disableSort' : !sortReady}">
+                        Adresse
+                        <span data-ng-show="orderBy == 'InvolvertKommune' && !reverse" class="fa fa-caret-up"></span>
+                        <span data-ng-show="orderBy == 'InvolvertKommune' && reverse" class="fa fa-caret-down"></span>
+                    </th>
                     <th id="involvedMunicipID" data-ng-click="orderByMe('InvolvertKommune')" data-ng-class="{'disableSort' : !sortReady}">
                         Kommuner
                         <span data-ng-show="orderBy == 'InvolvertKommune' && !reverse" class="fa fa-caret-up"></span>

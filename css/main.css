@@ -1079,6 +1079,10 @@ select:disabled{
 		right:0px;
 	}
 
+	#fixedTransactionSite{
+		height:205px;
+	}
+
 	#mainFooter{
 	    position: absolute;
 	    bottom: -400px;
