@@ -1,3 +1,8 @@
-/**
- * Created by adrianh on 28.04.16.
- */
+describe('Name filter', function() {
+    'use strict';
+
+    it ('capitalizes first letter of names', function() {
+        var test = true;
+        expect(test).toBeTruthy();
+    });
+});

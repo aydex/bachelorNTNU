@@ -1,4 +1,4 @@
-describe('Searching controller', function() {
+describe('Search controller', function() {
    it ('does a search', function() {
        var test = true;
        expect(test).toBeTruthy();

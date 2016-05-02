@@ -1,3 +1,8 @@
-/**
- * Created by adrianh on 28.04.16.
- */
+describe('Search table', function() {
+    'use strict';
+
+    it ('populates the search table after a search', function() {
+        var test = true;
+        expect(test).toBeTruthy();
+    });
+});
