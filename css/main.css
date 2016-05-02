@@ -1,21 +1,25 @@
 /****Header*****/
- 
+
 @import url(http://fonts.googleapis.com/css?family=Exo+2:400,200,700) ;
 
 html{
-	height: 100%;
 	text-align: center;
 	height:auto !important;
+  height: 100%;
+  min-height: 100%;
+	z-index: -1;
 }
 
 body{
-	height: 100%;
 	font-family: 'Exo 2', sans-serif;
 	font-weight:400;
 	height:auto !important;
+  height: 100%;
+  min-height: 100%;
 	position: relative;
 	margin: 0;
 	padding: 0;
+	z-index: 1;
 }
 
 
@@ -197,6 +201,7 @@ header{
 	margin:auto;
 	margin-top:70px;
 	height:100%;
+	z-index: 1;
 }
 
 .text-center{
@@ -254,6 +259,7 @@ div p{
     width: 60%;
     margin-top: 90px;
     min-width: 600px;
+		z-index: auto;
 }
 
 #search{
@@ -298,8 +304,8 @@ table{
 	top: 0;
 	left: 50%;
 	margin-left: -50%;
-	z-index: 1000;
-	height: 320px;
+	z-index: 1;
+	height: 260px;
 	background-color: white;
 }
 
@@ -413,6 +419,7 @@ table{
 #footer{
 	position: fixed;
 	bottom: 0;
+  width:100%
 	text-align: center;
 	display: block;
 }
@@ -685,27 +692,31 @@ td:nth-child(even){
     text-align: center;
     font-size: 32px;
     text-decoration: none;
+		position:fixed;
+		left: 65%;
+		top: 225px;
     padding: 0;
+		z-index: 4;
 }
 
 div .container{
 	width: 42%;
 	height: auto;
-	z-index: 9000000;
+	z-index: auto;
 	margin-top: -105px;
 	position:relative;
-    padding-top: 20px;
+  padding-top: 20px;
 
 }
 
-div .container button {
-     position: absolute;
-     right: 1%;
- }
 
 .map-link {
     color: black !important;
     font-size: 16px;
+		top: 235px;
+		position: fixed;
+		left: 38%;
+		z-index: 4;
 }
 
 svg .land{
