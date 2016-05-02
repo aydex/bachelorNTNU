@@ -36,7 +36,6 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
     $scope.unalteredTransactions;
 
     $scope.queryTransaction = function(){
-
         var queryPromis = $rootScope.doQuery("transactionFromProperty", $routeParams.targetId,
             $scope.page, $scope.pageSize, $scope.order, $scope.orderBy);
         queryPromis.then(function(result){
@@ -49,7 +48,6 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
 
                 $scope.showTable      = true;
                 results               = $scope.getParticipantsCorrectly(result.records);
-
                 $scope.transactions   = result.records.sort(sortFunctionTable);
                 $scope.showNavigation = true;
                 $scope.hideNavigation = false;
@@ -64,7 +62,6 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
                 var storedString   = result.combined[0].Historie;
                 var priceDatePairs = storedString.split(", ");
                 dokumentnr         = [];
-
 
                 if($scope.chartObj.length == 0) {
                     angular.forEach(priceDatePairs, function(pair, key){
@@ -127,8 +124,6 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
                 price, 
                 'Dokumentdato: ' + obj[key].date + '\n Salgssum: ' + $filter('priceFilter')(obj[key].value) + ' \n Dokumentnr: ' + obj[key].documentnr,
                 annotation, annotationText]); 
-            
-            
         });
 
         var options = {
@@ -189,7 +184,6 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
 
         $scope.selectedDokumentnr = selectedDokumentnr; 
         }
-        
     };
 
     $scope.markTableRow = function(selectedDokumentnr) {
@@ -263,9 +257,7 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
             $scope.reverse = !$scope.reverse;
         }
     }
-
     $scope.queryTransaction();
-
 });
 
 function sortFunction(a, b) {

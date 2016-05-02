@@ -191,6 +191,7 @@ kommunalApp.directive('region', ['$compile', '$filter', function ($compile, $fil
                         document.getElementsByClassName("tooltip")[0].remove();
                     } catch(err) {}
                     svgMapCtrl.updateMap(scope.elementId);
+                    document.getElementById("fixedSite").style.opacity=0.5;
                 };
 
                 //<span tooltips tooltip-template="Vis kun deltagere av denne typen" tooltip-size="large" >
