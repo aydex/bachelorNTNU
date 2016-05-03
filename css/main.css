@@ -1064,7 +1064,16 @@ select:disabled{
 	}
 
 	#tabContainer{
-		top:170px;
+	    z-index: 999999;
+	    top: 160px;
+	    left: 1px;
+	    background: white;
+	}
+
+	.nav-tabs{
+		width: 100vw;
+	    padding-top: 20px;
+	    background: white;
 	}
 
 	#search{
