@@ -819,12 +819,11 @@ td:nth-child(even){
 
 div .container{
 	width: 42%;
+	min-width: 400px;
 	height: auto;
 	z-index: auto;
-	margin-top: -105px;
+	margin-top: -45px;
 	position:relative;
-  padding-top: 20px;
-
 }
 
 
@@ -1172,6 +1171,7 @@ select:disabled{
 	div .container{
 		width:100%;
 		padding-top:55px;
+		min-width: initial;
 	}
 
 	#tableHeader, #tableTransactionHeader{
