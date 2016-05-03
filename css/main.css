@@ -264,9 +264,10 @@ header{
 }
 
 #pageElements {
-    margin:auto;
-    width:60%;
-    margin-top: 90px;
+	margin: auto;
+    width: 67%;
+    padding-top: 68px;
+    background: white;
 }
 
 #TransPageElements{
