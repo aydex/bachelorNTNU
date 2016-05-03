@@ -1,25 +1,28 @@
 /****Header*****/
- 
+
 @import url(http://fonts.googleapis.com/css?family=Exo+2:400,200,700) ;
 
 html{
-	height: 100%;
 	text-align: center;
 	height:auto !important;
+  height: 100%;
+  min-height: 100%;
+	z-index: -1;
 }
 
 body{
-	height: 100%;
 	font-family: 'Exo 2', sans-serif;
 	font-weight:400;
 	height:auto !important;
-	position: relative;
+  height: 100%;
+  min-height: 100%;
 	margin: 0;
 	padding: 0;
 	position: absolute !important;
     top: 0px !important;
     left: 0px !important;
     width: 100% !important;
+    z-index: 1;
 }
 
 .half-opacity{
@@ -299,6 +302,7 @@ header{
 	margin:auto;
 	margin-top:70px;
 	height:100%;
+	z-index: 1;
 }
 
 .text-center{
@@ -341,6 +345,7 @@ div p{
 	text-align: center;
 	display: inline-block;
 	margin-bottom: 30px;
+
 }
 
 .backbutton {
@@ -356,6 +361,7 @@ div p{
     width: 60%;
     margin-top: 90px;
     min-width: 600px;
+		z-index: auto;
 }
 
 #search{
@@ -400,9 +406,10 @@ table{
 	top: 0;
 	left: 50%;
 	margin-left: -50%;
-	z-index: 1000;
-	height: 320px;
+	z-index: 1;
+	height: 260px;
 	background-color: white;
+	opacity: 1;
 }
 
 #fixedTransactionSite{
@@ -515,6 +522,7 @@ table{
 #footer{
 	position: fixed;
 	bottom: 0;
+  width:100%
 	text-align: center;
 	display: block;
 }
@@ -782,34 +790,41 @@ td:nth-child(even){
 /***************  MAP CSS  **************/
 /****************************************/
 
+#mapButtons {
+	position:fixed;
+	right: 0;
+	left: 0;
+	margin: auto;
+	top: 225px;
+	z-index: 1;
+	line-height: 0.01;
+}
+
 .btn-map {
     background-color: transparent;
     border: none;
     text-align: center;
     font-size: 32px;
     text-decoration: none;
-    padding: 0;
+    padding: 20px;
+		z-index: 4;
+}
+.map-link {
+    color: black !important;
+    font-size: 16px;
+		z-index: 4;
 }
 
 div .container{
 	width: 42%;
 	height: auto;
-	z-index: 1000;
+	z-index: auto;
 	margin-top: -105px;
 	position:relative;
-    padding-top: 20px;
+  padding-top: 20px;
 
 }
 
-div .container button {
-     position: absolute;
-     right: 1%;
- }
-
-.map-link {
-    color: black !important;
-    font-size: 16px;
-}
 
 svg .land{
     stroke-width: 0.5;
@@ -1027,7 +1042,7 @@ select:disabled{
 
 	#loginInfoCenter {
     	padding: 10px 10px 0px 10px;
-	}	
+	}
 
 	#loginInfo{
 		width:80vw;
@@ -1068,6 +1083,10 @@ select:disabled{
 
 	#fixedSite{
 		top:35px;
+		height: 250px;
+	}
+	#mapButtons{
+		top: 250px;
 	}
 
 	#separator{

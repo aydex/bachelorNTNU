@@ -72,3 +72,6 @@ npm-debug.log
 .ssh/
 /webhook
 /test
+
+#Jasmine
+/app/testing/lib/

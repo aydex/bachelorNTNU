@@ -1,112 +1,114 @@
 <!--søkeicon i søkefeltet-->
 
-<div id="fixedSite" data-ng-class="{'half-opacity' : opacityChange }">
+<div id="fixedSite">
     <button type="button" class="btn btn-default backbutton" data-ng-show="showTable" data-ng-click="back()">&lt; Tilbake</button>
+    <div id="half-opacity">
     <div id="searchElements">
         <h3 ng-bind="searchingForText" id="searchTitle">Eiendomsdatabasen</h3>
         <div>
             <form id="searchForm" data-ng-submit="searchForm(searchForm)">
-                <select  
-                    data-ng-change="advanceChange()" 
-                    data-ng-model="selectedSearchType" 
-                    id="searchTypeSelect" 
+                <select
+                    data-ng-change="advanceChange()"
+                    data-ng-model="selectedSearchType"
+                    id="searchTypeSelect"
                     data-ng-options="a.label for a in searchTypes">
                 </select>
-                <i class="material-icons select-arrow typeSelectArrow ">play_arrow</i> 
+                <i class="material-icons select-arrow typeSelectArrow ">play_arrow</i>
                 <i class="material-icons" id="searchIcon">search</i>
-                <input 
-                    type="text" 
-                    data-ng-model="search.query" 
-                    data-ng-change="searchDelay()" 
-                    placeholder="{{selectedSearchType.placeholder}}" 
-                    id="search"         
+                <input
+                    type="text"
+                    data-ng-model="search.query"
+                    data-ng-change="searchDelay()"
+                    placeholder="{{selectedSearchType.placeholder}}"
+                    id="search"
                     autocomplete="off">
             </form>
         </div>
         <div id="advanced-div" data-ng-show="selectedSearchType.value == 'name'">
             <span tooltips tooltip-template="Vis kun deltagere av denne typen" tooltip-size="large" >
-                <select 
-                    data-ng-model="currentType"  
-                    class="searchSelect" 
-                    data-ng-options="a.type for a in participantSearchTypes" 
+                <select
+                    data-ng-model="currentType"
+                    class="searchSelect"
+                    data-ng-options="a.type for a in participantSearchTypes"
                     data-ng-change="advanceChange()"></select>
             </span>
             <i class="material-icons select-arrow">play_arrow</i>
-            
+
             <span tooltips tooltip-template="Vis kun deltagere som har handlet med dette fylket" tooltip-size="large">
-                <select 
-                    data-ng-model="currentFylke" 
-                    class="searchSelect" 
-                    data-ng-options="fylke.label for fylke in fylker | orderBy:'label'"  
+                <select
+                    data-ng-model="currentFylke"
+                    class="searchSelect"
+                    data-ng-options="fylke.label for fylke in fylker | orderBy:'label'"
                     data-ng-change="   selectedFylkeChanged(fylke)">
                     <option value="">Velg fylke</option>
                 </select>
             </span>
             <i class="material-icons select-arrow">play_arrow</i>
-            
+
             <span tooltips tooltip-template="Vis kun deltagere som har handlet med denne kommunen" tooltip-size="large">
-                <select  
-                    data-ng-change="selectedMunicipalityChanged(kommune)" 
-                    class="searchSelect" 
-                    name="kommune" 
-                    data-ng-model="currentKommune" 
-                    data-ng-options="(    kommune.label | capitalFirstLettersFilter) for kommune in currentFylke.kommuner | orderBy:'label'" 
+                <select
+                    data-ng-change="selectedMunicipalityChanged(kommune)"
+                    class="searchSelect"
+                    name="kommune"
+                    data-ng-model="currentKommune"
+                    data-ng-options="(    kommune.label | capitalFirstLettersFilter) for kommune in currentFylke.kommuner | orderBy:'label'"
                     data-ng-disabled="currentFylke == undefined">
                     <option value="">Velg kommune</option>
                 </select>
-            </span>          
-            <i class="material-icons select-arrow">play_arrow</i>     
+            </span>
+            <i class="material-icons select-arrow">play_arrow</i>
         </div>
         <div id="advanced-div" data-ng-show="selectedSearchType.value == 'address'">
             <span tooltips tooltip-template="Vis kun eiendommer i dette fylket" tooltip-size="large">
-                <select   
-                    data-ng-model="currentFylke" 
-                    class="searchSelect" 
-                    data-ng-options="fylke.label for fylke in fylker | orderBy:'label'"  
+                <select
+                    data-ng-model="currentFylke"
+                    class="searchSelect"
+                    data-ng-options="fylke.label for fylke in fylker | orderBy:'label'"
                     data-ng-change="   selectedFylkeChanged(fylke)">
                     <option value="">Velg fylke</option>
                 </select>
             </span>
                 <i class="material-icons select-arrow">play_arrow</i>
                 <span tooltips tooltip-template="Vis kun eiendommer i denne kommunen" tooltip-size="large">
-                    <select  
-                        data-ng-change="selectedMunicipalityChanged(kommune)" 
-                        class="searchSelect" 
-                        name="kommune" 
-                        data-ng-model="currentKommune" 
-                        data-ng-options="(    kommune.label | capitalFirstLettersFilter) for kommune in currentFylke.kommuner | orderBy:'label'" 
+                    <select
+                        data-ng-change="selectedMunicipalityChanged(kommune)"
+                        class="searchSelect"
+                        name="kommune"
+                        data-ng-model="currentKommune"
+                        data-ng-options="(    kommune.label | capitalFirstLettersFilter) for kommune in currentFylke.kommuner | orderBy:'label'"
                         data-ng-disabled="currentFylke == undefined">
                         <option value="">Velg kommune</option>
                     </select>
-            </span>          
-            <i class="material-icons select-arrow">play_arrow</i>     
+            </span>
+            <i class="material-icons select-arrow">play_arrow</i>
         </div>
     </div>
-    
+
     <div id="pageElements" data-ng-show="showTable">
-        Sidestørrelse: 
-        <input 
-            type="radio" 
-            checked 
-            data-ng-model="search.pageSize" 
-            value="25" 
-            data-ng-change="pageSizeChange()" 
+        Sidestørrelse:
+        <input
+            type="radio"
+            checked
+            data-ng-model="search.pageSize"
+            value="25"
+            data-ng-change="pageSizeChange()"
             id="25">25
-        <input 
-            type="radio" 
-            data-ng-model="search.pageSize" 
-            data-ng-change="pageSizeChange()" 
-            value="75" 
+        <input
+            type="radio"
+            data-ng-model="search.pageSize"
+            data-ng-change="pageSizeChange()"
+            value="75"
             id="75">75
-        <input 
-            type="radio" 
-            data-ng-model="search.pageSize" 
-            data-ng-change="pageSizeChange()" 
-            value="100" 
+        <input
+            type="radio"
+            data-ng-model="search.pageSize"
+            data-ng-change="pageSizeChange()"
+            value="100"
             id="100">100
         <br>
         <span>Trykk på feltene for å endre rekkefølge:</span>
     </div>
+</div>
 </div>
 
 <div id="tableHeader" class="tableWidth" >
@@ -141,7 +143,7 @@
                 <span data-ng-show="orderBy == 'InvolvertKommune' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'InvolvertKommune' && reverse" class="fa fa-caret-down"></span>
             </th>
-            
+
             <th id="involvementID" data-ng-click="orderByMe('Involvering')" data-ng-class="{'disableSort' : !sortReady}">
                 Kommunens Involvering
                 <span data-ng-show="orderBy == 'Involvering' && !reverse" class="fa fa-caret-up"></span>
@@ -159,18 +161,18 @@
 <div id="bumpDown">
 <div id="tableContainer" class="tableWidth">
     <div id="valign">
-        <span 
-            data-ng-class="{'navButtonInactive' : page == 1 || !showNavigation, 'navButtonActive' : page > 1 && showNavigation}" 
-            class="fa fa-chevron-left" 
-            data-ng-show="hideNavigation" 
-            data-ng-click="navigate(-1)" 
+        <span
+            data-ng-class="{'navButtonInactive' : page == 1 || !showNavigation, 'navButtonActive' : page > 1 && showNavigation}"
+            class="fa fa-chevron-left"
+            data-ng-show="hideNavigation"
+            data-ng-click="navigate(-1)"
             id="prevPage">
         </span>
-        <span 
-            data-ng-class="{'navButtonInactive' : !more_results || !showNavigation, 'navButtonActive' : more_results && showNavigation }" 
-            class="fa fa-chevron-right" 
-            data-ng-show="hideNavigation" 
-            data-ng-click="navigate(1)" 
+        <span
+            data-ng-class="{'navButtonInactive' : !more_results || !showNavigation, 'navButtonActive' : more_results && showNavigation }"
+            class="fa fa-chevron-right"
+            data-ng-show="hideNavigation"
+            data-ng-click="navigate(1)"
             id="nextPage">
         </span>
     </div>
@@ -206,7 +208,7 @@
                 <span data-ng-show="orderBy == 'InvolvertKommune' && !reverse" class="fa fa-caret-up"></span>
                 <span data-ng-show="orderBy == 'InvolvertKommune' && reverse" class="fa fa-caret-down"></span>
             </th>
-            
+
             <th id="involvementID" data-ng-click="orderByMe('Involvering')" data-ng-class="{'disableSort' : !sortReady}">
                 Kommunens Involvering
                 <span data-ng-show="orderBy == 'Involvering' && !reverse" class="fa fa-caret-up"></span>
@@ -218,28 +220,28 @@
                 <span data-ng-show="orderBy == 'InvolvertKommune' && reverse" class="fa fa-caret-down"></span>
             </th>
         </tr>
-        <tr 
-            search-table 
-            participant="participant" 
-            uib-tooltip="Trykk for å se mer info" 
-            tooltip-placement="auto top" 
-            tooltip-append-to-body="true" 
-            tooltip-class="enabled-arrow same-design-tooltip" 
-            data-ng-mouseenter="tooltip_show($index, $event)" 
-            data-ng-if="selectedSearchType.value == 'name'" 
-            data-ng-repeat="participant in names | filter:searchName" 
+        <tr
+            search-table
+            participant="participant"
+            uib-tooltip="Trykk for å se mer info"
+            tooltip-placement="auto top"
+            tooltip-append-to-body="true"
+            tooltip-class="enabled-arrow same-design-tooltip"
+            data-ng-mouseenter="tooltip_show($index, $event)"
+            data-ng-if="selectedSearchType.value == 'name'"
+            data-ng-repeat="participant in names | filter:searchName"
             data-ng-click="showTransactionsPerson(participant.id, participant.Navn, participant.Type)">
         </tr>
-         <tr 
-            transaction-table 
-            transaction="transaction" 
-            uib-tooltip="Trykk for å se mer info" 
-            tooltip-placement="auto top" 
-            tooltip-append-to-body="true" 
-            tooltip-class="enabled-arrow same-design-tooltip" 
-            data-ng-mouseenter="tooltip_show($index, $event)" 
-            data-ng-if="selectedSearchType.value == 'address'" 
-            data-ng-repeat="transaction in transactions" 
+         <tr
+            transaction-table
+            transaction="transaction"
+            uib-tooltip="Trykk for å se mer info"
+            tooltip-placement="auto top"
+            tooltip-append-to-body="true"
+            tooltip-class="enabled-arrow same-design-tooltip"
+            data-ng-mouseenter="tooltip_show($index, $event)"
+            data-ng-if="selectedSearchType.value == 'address'"
+            data-ng-repeat="transaction in transactions"
             data-ng-click="showTransactionsProperty(transaction.Eiendomsid, transaction.adresse)">
         </tr>
         </span>
@@ -248,8 +250,10 @@
 </div>
   <div data-ng-controller="mapController" data-ng-show="!showTable">
       <div class="container">
+        <div id="mapButtons">
           <a href="#" class="map-link" data-ng-show="countySelected" data-ng-click="showAllCounty()">Klikk her for å se alle transaksjoner i {{countyName}}</a>
           <button type="button" class="btn-map" data-ng-show="countySelected" data-ng-click="back()">x</button>
+        </div>
           <svg-map></svg-map>
           <div class="description"></div>
     </div>
