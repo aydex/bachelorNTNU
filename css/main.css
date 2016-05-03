@@ -266,7 +266,7 @@ header{
 #pageElements {
 	margin: auto;
     width: 67%;
-    padding-top: 68px;
+    padding-top: 18px;
     background: white;
 }
 
@@ -408,7 +408,7 @@ table{
 	left: 50%;
 	margin-left: -50%;
 	z-index: 1;
-	height: 260px;
+	height: 238px;
 	background-color: white;
 	opacity: 1;
 }
@@ -458,7 +458,7 @@ table{
 
 
 #bumpDown{
-	margin-top: 350px;
+	margin-top: 300px;
 	display: block;
 }
 
@@ -499,7 +499,7 @@ table{
 }
 
 #tableHeader{
-	top:315px;
+	top:265px;
 }
 
 #tableTransactionHeader{
@@ -792,6 +792,7 @@ td:nth-child(even){
 /****************************************/
 
 #mapButtons {
+	background: white;
 	position:fixed;
 	right: 0;
 	left: 0;
@@ -1049,9 +1050,21 @@ select:disabled{
 		width:80vw;
 	}
 
+	#chartContainer{
+		margin-top:37px;
+	}
+
+	#propertyTimelineBumpDown{
+		margin-top:250px;
+	}
+
 	#searchElements{
 		width:100%;
 		min-width: 100%;
+	}
+
+	#tabContainer{
+		top:170px;
 	}
 
 	#search{
@@ -1061,6 +1074,14 @@ select:disabled{
 	.header-menu{
 		top:70px;
 		left:0px;
+	}
+
+	#fixedPropertyTimeline{
+		top:-1px;
+	}
+
+	#fixedPropertyTable{
+		height:345px;
 	}
 
 	.login{
@@ -1084,10 +1105,10 @@ select:disabled{
 
 	#fixedSite{
 		top:35px;
-		height: 250px;
+		height: 207px;
 	}
 	#mapButtons{
-		top: 250px;
+		top: 245px;
 	}
 
 	#separator{
@@ -1141,6 +1162,7 @@ select:disabled{
 
 	div .container{
 		width:100%;
+		padding-top:55px;
 	}
 
 	#tableHeader, #tableTransactionHeader{
@@ -1186,7 +1208,7 @@ select:disabled{
 	}
 
 	#nextPage, #prevPage{
-		margin-top:-25%;
+		margin-top:-22%;
 		z-index: 999999;
 	}
 
@@ -1199,7 +1221,7 @@ select:disabled{
 	}
 
 	#pageElements{
-		margin-top:70px;
+		margin-top:-63px;
 	}
 
 	#nextPage{
