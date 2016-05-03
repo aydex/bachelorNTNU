@@ -32,7 +32,7 @@ kommunalApp.directive('svgMap', ['$compile', '$http', '$templateCache', '$filter
                         });
                 }
             };
-            
+
             $scope.getCounties = function() {
                 return $http.get("./api/ask.php?getCounties")
                     .then(function (response) {
@@ -191,7 +191,7 @@ kommunalApp.directive('region', ['$compile', '$filter', function ($compile, $fil
                         document.getElementsByClassName("tooltip")[0].remove();
                     } catch(err) {}
                     svgMapCtrl.updateMap(scope.elementId);
-                    document.getElementById("fixedSite").style.opacity=0.5;
+                    document.getElementById("half-opacity").style.opacity=0.5;
                 };
 
                 //<span tooltips tooltip-template="Vis kun deltagere av denne typen" tooltip-size="large" >
@@ -1500,7 +1500,6 @@ kommunalApp.directive('city', ['$compile', '$location', '$http', '$filter', func
                     $scope.cityName = element.attr("id");
                     $scope.cityId = element.attr("inkscape:label").substring(2);
                     $scope.kommuneDeltagerId = $scope.municipalityToParticipant[parseInt($scope.cityId)]["Deltagerid"];
-
                     $scope.name_encoded = encodeURIComponent($scope.kommunenavn);
                     element.attr("ng-click", "cityClick()");
                     //var tooltip = angular.element("<md-tooltip style='z-index: 900000000' md-direction='right'>{{kommunenavn}}</md-tooltip>");
