@@ -341,7 +341,7 @@ kommunalApp.controller('searchController', function($scope, $rootScope, $timeout
             self = document.getElementsByClassName("tooltip");
             self = self[self.length-1];
             //self.style.top = ((index - 1) * 35) + "px";
-            self.style.top   = vars.y - 392 + window.scrollY + "px";
+            self.style.top   = vars.y - 41 + window.scrollY + "px";
             self.style.display  = "block";
         }, 10);
     }
