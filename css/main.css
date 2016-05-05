@@ -785,6 +785,8 @@ td:nth-child(even){
 
 #transaksjonsType{
 	text-align: center;
+	margin-top: -20px;
+    padding-bottom: 40px;
 }
 
 .propertyTable tr td{
@@ -989,7 +991,7 @@ select:disabled{
 #tabContainer{
 	position: fixed;
     z-index: 100000000;
-    top: 75px;
+    top: 110px;
     left: 22%;
 }
 
@@ -1092,7 +1094,7 @@ select:disabled{
 
 	#tabContainer{
 	    z-index: 999999;
-	    top: 160px;
+	    top: 135px;
 	    left: 1px;
 	    background: white;
 	}
@@ -1242,6 +1244,8 @@ select:disabled{
 
 	#transaksjonsType{
 		width:100%;
+		margin-top: 20px;
+		padding-bottom: 0px;
 	}
 
 	#nextPage, #prevPage{
