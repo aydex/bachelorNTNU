@@ -29,6 +29,34 @@ body{
 	opacity:0.5;
 }
 
+#footerHeader, span a{
+	color:white;
+	text-decoration: none;
+}
+
+#footerHeader:hover, span a:hover{
+	color:white;
+	text-decoration: underline !important;
+}
+
+/****ABOUT*****/
+
+#omHeader{
+	padding:20px;
+}
+
+#omContent{
+	text-align: justify;
+	width:80%;
+	margin: auto;
+}
+
+#inlinePicture{
+	float:right;
+	margin:20px;
+}
+
+/**************/
 
 /****FOOTER****/
 

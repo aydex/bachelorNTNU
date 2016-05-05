@@ -47,9 +47,8 @@ kommunalApp.config(function($routeProvider, $locationProvider, $compileProvider)
             controller  : 'transactionsDetailedController'
         })
 
-         .when('/test/:targetId', {
-            templateUrl : '/views/transactionsProperty.html',
-            controller  : 'transactionPropertyController'
+        .when('/about', {
+            templateUrl : '/views/about.html'
         })
 
         .otherwise({
