@@ -58,6 +58,7 @@ span a, span a:focus, #footerHeader:focus{
 #inlinePicture{
 	float:right;
 	margin:20px;
+	max-width: 100%;
 }
 
 /**************/
@@ -239,6 +240,7 @@ header{
     padding: 0;
     width: 270px;
 }
+
 
 .menu__link{
 	font-size: 16px;
@@ -790,7 +792,7 @@ td:nth-child(even){
 #transaksjonsType{
 	text-align: center;
 	margin-top: -20px;
-    padding-bottom: 40px;
+  padding-bottom: 30px;
 }
 
 .propertyTable tr td{
@@ -1074,6 +1076,19 @@ select:disabled{
 	#searchTitle{
 		display: block;
 	}
+	#omHeader{
+		margin-top: 96px;
+	}
+	#inlinePicture{
+		margin:0px !important;
+	}
+
+	#searchTypeSelect{
+		height: 33px;
+		width: 20%;
+		padding-bottom: 6px;
+		font-size: 14px;
+	}
 
 	#loginInfoCenter {
     	padding: 10px 10px 0px 10px;
@@ -1111,6 +1126,7 @@ select:disabled{
 
 	#search{
 		width:75% !important;
+		font-size: 15px;
 	}
 
 	.header-menu{
@@ -1147,10 +1163,10 @@ select:disabled{
 
 	#fixedSite{
 		top:35px;
-		height: 207px;
+		height: 218px;
 	}
 	#mapButtons{
-		top: 245px;
+		top: 250px;
 	}
 
 	#separator{
@@ -1253,7 +1269,7 @@ select:disabled{
 	}
 
 	#nextPage, #prevPage{
-		margin-top:-22%;
+		margin-top:-140px;
 		z-index: 999999;
 	}
 
