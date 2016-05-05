@@ -1,7 +1,17 @@
 <?php
 
 require_once('../vendor/autoload.php');
+$lifetime=432000;
+$cookie_lifetime = time() + $lifetime;
+session_set_cookie_params($lifetime);
+session_name("__komra");
 session_start();
+
+if(isset($_COOKIE['name'])){
+    setcookie(session_name(),session_id(),$cookie_lifetime, "/");
+    setcookie("name", $_COOKIE["name"], $cookie_lifetime, "/");
+}
+
 
 $provider = new \ChrisHemmings\OAuth2\Client\Provider\Drupal([
   'clientId'          => 'bachelor.dev.id.ramsalt.com',
@@ -57,12 +67,12 @@ if (isset($_GET['state']) && isset($_GET['code']) && isset($_SESSION['oauth2stat
             try {
             	$_SESSION["loggedIn"] = true;
                 $_SESSION["subscription_id"] = $body[0]["product"]["product_id"];
-            	setcookie("name", $body2["realname"], 0, "/"); 
+            	setcookie("name", $body2["realname"],$cookie_lifetime, "/"); 
             	header('Location: /search');
             } catch (Exception $e) {
                 $_SESSION["loggedIn"] = true;
                 $_SESSION["subscription_id"] = -1;
-                setcookie("name", $body2["realname"], 0, "/"); 
+                setcookie("name", $body2["realname"],$cookie_lifetime, "/"); 
                 header('Location: /search');
             }
             /*} else {
