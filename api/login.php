@@ -1,14 +1,15 @@
 <?php
 
 require_once('../vendor/autoload.php');
+
 $lifetime=432000;
 $cookie_lifetime = time() + $lifetime;
-session_set_cookie_params($lifetime);
+session_set_cookie_params($lifetime, "/", "", false, true);
 session_name("__komra");
 session_start();
 
 if(isset($_COOKIE['name'])){
-    setcookie(session_name(),session_id(),$cookie_lifetime, "/");
+    setcookie(session_name(),session_id(),$cookie_lifetime, "/", "", false, true);
     setcookie("name", $_COOKIE["name"], $cookie_lifetime, "/");
 }
 
