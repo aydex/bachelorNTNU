@@ -29,13 +29,17 @@ body{
 	opacity:0.5;
 }
 
-#footerHeader, span a{
+#footerHeader{
 	color:white;
 	text-decoration: none;
 }
 
+span a, span a:focus, #footerHeader:focus{
+	color:gray;
+}
+
 #footerHeader:hover, span a:hover{
-	color:white;
+	color:gray;
 	text-decoration: underline !important;
 }
 
