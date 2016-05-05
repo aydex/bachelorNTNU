@@ -5,7 +5,18 @@ header("Content-Type: application/json; charset=UTF-8");
 
 require_once("config.php");
 require_once("query.php");
+
+$lifetime=432000;
+$cookie_lifetime = time() + $lifetime;
+session_set_cookie_params($lifetime, "/", "", false, true);
+session_name("__komra");
 session_start();
+
+if(isset($_COOKIE['name'])){
+    setcookie(session_name(),session_id(),$cookie_lifetime, "/", "", false, true);
+    setcookie("name", $_COOKIE["name"], $cookie_lifetime, "/");
+}
+
 
 use bachelor\Config;
 use bachelor\Query;
@@ -20,15 +31,6 @@ $orderBy  = "";
 $filterBy = "";
 $address  = "";
 
-
-    $config   = new Config();
-    $query    = new Query($config->db);
-    $name     = "";
-    $page     = 0;
-    $pageSize = 0;
-    $order    = "";
-    $orderBy  = "";
-    $filterBy = "";
     
 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1 && isset($_SESSION['subscription_id']) && $_SESSION['subscription_id'] != -1) {
 
@@ -103,11 +105,11 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1 && isset($_SESSIO
 } else if(isset($_REQUEST['getCounties'])) {
     echo $query->getCounties();
 } else {
-    /*if(isset($_SESSION["subscription_id"]) && $_SESSION["subscription_id"] != 6) {
+    if(isset($_SESSION["subscription_id"]) && $_SESSION["subscription_id"] == -1) {
         echo json_encode(array("records" => "wrong_subscription"));
-    } else {*/
+    } else {
         echo json_encode(array("records" => "login_required"));
-    //}
+    }
 }
 
 
