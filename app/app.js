@@ -1,8 +1,9 @@
 google.load('visualization', '1', {packages:['corechart']});
 
+var debug       = false;
 var kommunalApp = angular.module('kommunalApp', ['ngRoute', 'ngCookies', 'ui.bootstrap', '720kb.tooltips', 'ngAnimate']);
 
-kommunalApp.config(function($routeProvider, $locationProvider) {
+kommunalApp.config(function($routeProvider, $locationProvider, $compileProvider) {
     $routeProvider
 
         .when('/search', {
@@ -46,9 +47,8 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
             controller  : 'transactionsDetailedController'
         })
 
-         .when('/test/:targetId', {
-            templateUrl : '/views/transactionsProperty.html',
-            controller  : 'transactionPropertyController'
+        .when('/about', {
+            templateUrl : '/views/about.html'
         })
 
         .otherwise({
@@ -58,6 +58,7 @@ kommunalApp.config(function($routeProvider, $locationProvider) {
 
     // use the HTML5 History API
     $locationProvider.html5Mode(true);
+    $compileProvider.debugInfoEnabled(debug);
 });
 
 kommunalApp.run(function($rootScope, $http, $window, $location) {

@@ -1499,7 +1499,12 @@ kommunalApp.directive('city', ['$compile', '$location', '$http', '$filter', func
                     $scope.kommunenr = $scope.cityId;
                     $scope.cityName = element.attr("id");
                     $scope.cityId = element.attr("inkscape:label").substring(2);
-                    $scope.kommuneDeltagerId = $scope.municipalityToParticipant[parseInt($scope.cityId)]["Deltagerid"];
+
+                    try{
+                        $scope.kommuneDeltagerId = $scope.municipalityToParticipant[parseInt($scope.cityId)]["Deltagerid"];
+                    } catch(e){
+                        console.log("No data for municipality with number: " + $scope.cityId);
+                    }
                     $scope.name_encoded = encodeURIComponent($scope.kommunenavn);
                     element.attr("ng-click", "cityClick()");
                     //var tooltip = angular.element("<md-tooltip style='z-index: 900000000' md-direction='right'>{{kommunenavn}}</md-tooltip>");
