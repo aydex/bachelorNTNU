@@ -325,7 +325,7 @@ header{
 	display: inline-block;
 	height: 35px;
 	width: 20%;
-	padding-bottom: 1px;
+	padding-bottom: 0px;
 }
 
 .typeSelectArrow{
@@ -374,6 +374,7 @@ div p{
 
 #navbar{
 	padding-top: 20px;
+	height
 }
 
 #searchTitle{
@@ -486,7 +487,7 @@ table{
 	margin-right:auto;
 	margin-top:70px;
 	z-index: 100000;
-	height: 100px;
+	height: 118px;
 	background-color: white;
 }
 
@@ -513,7 +514,7 @@ table{
 }
 
 #propertyTimelineBumpDown{
-	margin-top: 200px;
+	margin-top: 220px;
 }
 
 
@@ -791,8 +792,8 @@ td:nth-child(even){
 
 #transaksjonsType{
 	text-align: center;
-	margin-top: -20px;
-  padding-bottom: 30px;
+	margin-top: 25px;
+  padding-bottom: 35px;
 }
 
 .propertyTable tr td{
@@ -997,7 +998,9 @@ select:disabled{
 #tabContainer{
 	position: fixed;
     z-index: 100000000;
-    top: 110px;
+		background-color: white;
+		background-size: 50%;
+    top: 150px;
     left: 22%;
 }
 
@@ -1072,7 +1075,7 @@ select:disabled{
 
 /****MOBILE*****/
 
-@media only screen and (max-width: 736px) and (max-width:600px), only screen and (max-device-width: 736px)  and (orientation: landscape){
+@media only screen and (max-width: 766px) and (max-width:700px), only screen and (max-device-width: 766px)  and (orientation: landscape){
 	#searchTitle{
 		display: block;
 	}
@@ -1099,7 +1102,7 @@ select:disabled{
 	}
 
 	#chartContainer{
-		margin-top:65px;
+		margin-top:55px;
 	}
 
 	#propertyTimelineBumpDown{
@@ -1113,7 +1116,8 @@ select:disabled{
 
 	#tabContainer{
 	    z-index: 999999;
-	    top: 135px;
+	    top: 140px;
+			padding-bottom: 0;
 	    left: 1px;
 	    background: white;
 	}
@@ -1264,7 +1268,7 @@ select:disabled{
 
 	#transaksjonsType{
 		width:100%;
-		margin-top: 20px;
+		margin-top: 25px;
 		padding-bottom: 0px;
 	}
 
