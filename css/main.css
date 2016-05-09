@@ -312,9 +312,10 @@ header{
 
 #PropPageElements{
 position: fixed;
-	top: 345px;
-	left:20%;
-    width:60%;
+	top: 364px;
+	text-align: center;
+  width:100%;
+	background: white;
 }
 
 #search {
@@ -505,7 +506,7 @@ table{
 }
 
 #propertyBumpDown{
-	margin-top: 425px;
+	margin-top: 440px;
 }
 
 #tableTimelinePropertyHeader{
@@ -546,8 +547,9 @@ table{
 #tablePropertyHeader{
 	position: fixed;
 	z-index: 1000000;
-	top: 390px;
+	top: 403px;
 	width: 94%;
+	background: white:
 }
 
 
@@ -826,6 +828,7 @@ td:nth-child(even){
 	left: 0;
 	right: 0;
 	position: fixed;
+	background: white;
 }
 
 
@@ -1288,9 +1291,11 @@ select:disabled{
 
 	#PropPageElements{
 		width:100%;
+		background: white;
 		position: fixed;
 		top: 375px;
 		left: 0;
+		height: 0;
 	}
 
 	.scrollX{
@@ -1305,7 +1310,7 @@ select:disabled{
 		width:100%;
 		margin-top: 25px;
 		padding-bottom: 0px;
-		font-size: 20px;
+		font-size: 18px;
 	}
 
 	#nextPage, #prevPage{
