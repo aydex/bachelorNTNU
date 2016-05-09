@@ -1,6 +1,6 @@
 <?php
 
-header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: " + $_SERVER["HTTP_HOST"]);
 header("Content-Type: application/json; charset=UTF-8");
 
 require_once("config.php");
