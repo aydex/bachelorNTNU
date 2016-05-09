@@ -126,12 +126,16 @@ kommunalApp.controller('transactionPropertyController', function($scope, $rootSc
                 annotation, annotationText]); 
         });
 
+        console.log(window.mobilecheck());
+
+        var width = window.mobilecheck() ? window.innerWidth : window.innerWidth * 0.6;
+
         var options = {
             title: 'Eiendomshistorikk',
             tooltip: {trigger: 'both'},
             pointSize: 5,
             interpolateNulls: true,
-            width: window.innerWidth * 0.6
+            width: width
         }
 
         if(chart == undefined){

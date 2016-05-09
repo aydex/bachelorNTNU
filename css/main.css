@@ -58,6 +58,7 @@ span a, span a:focus, #footerHeader:focus{
 #inlinePicture{
 	float:right;
 	margin:20px;
+	max-width: 100%;
 }
 
 /**************/
@@ -240,6 +241,7 @@ header{
     width: 270px;
 }
 
+
 .menu__link{
 	font-size: 16px;
     color: black;
@@ -323,7 +325,7 @@ header{
 	display: inline-block;
 	height: 35px;
 	width: 20%;
-	padding-bottom: 1px;
+	padding-bottom: 0px;
 }
 
 .typeSelectArrow{
@@ -372,6 +374,7 @@ div p{
 
 #navbar{
 	padding-top: 20px;
+	height
 }
 
 #searchTitle{
@@ -484,7 +487,7 @@ table{
 	margin-right:auto;
 	margin-top:70px;
 	z-index: 100000;
-	height: 100px;
+	height: 118px;
 	background-color: white;
 }
 
@@ -511,7 +514,7 @@ table{
 }
 
 #propertyTimelineBumpDown{
-	margin-top: 200px;
+	margin-top: 220px;
 }
 
 
@@ -789,8 +792,8 @@ td:nth-child(even){
 
 #transaksjonsType{
 	text-align: center;
-	margin-top: -20px;
-    padding-bottom: 40px;
+	margin-top: 25px;
+  padding-bottom: 35px;
 }
 
 .propertyTable tr td{
@@ -995,7 +998,9 @@ select:disabled{
 #tabContainer{
 	position: fixed;
     z-index: 100000000;
-    top: 110px;
+		background-color: white;
+		background-size: 50%;
+    top: 150px;
     left: 22%;
 }
 
@@ -1070,9 +1075,27 @@ select:disabled{
 
 /****MOBILE*****/
 
-@media only screen and (max-width: 736px) and (max-width:600px), only screen and (max-device-width: 736px)  and (orientation: landscape){
+@media only screen and (max-width: 766px) and (max-width:700px), only screen and (max-device-width: 766px)  and (orientation: landscape){
 	#searchTitle{
 		display: block;
+	}
+	#omHeader{
+		margin-top: 96px;
+	}
+	#inlinePicture{
+		margin:0px !important;
+	}
+
+	#searchTypeSelect{
+		height: 33px;
+		width: 20%;
+		padding-bottom: 6px;
+		font-size: 14px;
+	}
+
+	#chartContainer{
+		width:100%;
+		margin:auto;
 	}
 
 	#loginInfoCenter {
@@ -1084,7 +1107,7 @@ select:disabled{
 	}
 
 	#chartContainer{
-		margin-top:65px;
+		margin-top:55px;
 	}
 
 	#propertyTimelineBumpDown{
@@ -1098,7 +1121,8 @@ select:disabled{
 
 	#tabContainer{
 	    z-index: 999999;
-	    top: 135px;
+	    top: 140px;
+			padding-bottom: 0;
 	    left: 1px;
 	    background: white;
 	}
@@ -1111,6 +1135,7 @@ select:disabled{
 
 	#search{
 		width:75% !important;
+		font-size: 15px;
 	}
 
 	.header-menu{
@@ -1147,10 +1172,10 @@ select:disabled{
 
 	#fixedSite{
 		top:35px;
-		height: 207px;
+		height: 218px;
 	}
 	#mapButtons{
-		top: 245px;
+		top: 250px;
 	}
 
 	#separator{
@@ -1248,12 +1273,12 @@ select:disabled{
 
 	#transaksjonsType{
 		width:100%;
-		margin-top: 20px;
+		margin-top: 25px;
 		padding-bottom: 0px;
 	}
 
 	#nextPage, #prevPage{
-		margin-top:-22%;
+		margin-top:-140px;
 		z-index: 999999;
 	}
 

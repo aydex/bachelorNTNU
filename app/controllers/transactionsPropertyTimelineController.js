@@ -59,8 +59,6 @@ kommunalApp.controller('transactionPropertyTimelineController', function($scope,
 
                 $scope.unalteredTransactions = result.records;
 
-                var storedString   = result.combined[0].Prispunkt;
-                var priceDatePairs = storedString.split(",");
                 dokumentnr         = [];
 
             }
