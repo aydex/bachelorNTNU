@@ -1093,6 +1093,11 @@ select:disabled{
 		font-size: 14px;
 	}
 
+	#chartContainer{
+		width:100%;
+		margin:auto;
+	}
+
 	#loginInfoCenter {
     	padding: 10px 10px 0px 10px;
 	}
