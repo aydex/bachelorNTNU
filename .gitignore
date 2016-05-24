@@ -32,7 +32,7 @@ bachelor.ini
 /out/
 
 # Composer
-/vender/
+vendor/
 composer.phar
 composer.lock
 
