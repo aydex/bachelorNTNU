@@ -25,6 +25,14 @@ body{
     z-index: 1;
 }
 
+a, a:hover, a:focus{
+	color:initial;
+}
+
+h3{
+	margin-left:3%;
+}
+
 .half-opacity{
 	opacity:0.5;
 }
@@ -32,6 +40,7 @@ body{
 #footerHeader{
 	color:white;
 	text-decoration: none;
+	margin-left:0%;
 }
 
 span a, span a:focus, #footerHeader:focus{
