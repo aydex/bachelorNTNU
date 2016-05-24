@@ -25,6 +25,14 @@ body{
     z-index: 1;
 }
 
+a, a:hover, a:focus{
+	color:initial;
+}
+
+h3{
+	margin-left:3%;
+}
+
 .half-opacity{
 	opacity:0.5;
 }
@@ -32,6 +40,7 @@ body{
 #footerHeader{
 	color:white;
 	text-decoration: none;
+	margin-left:0%;
 }
 
 span a, span a:focus, #footerHeader:focus{
@@ -307,12 +316,15 @@ header{
 #TransPageElements{
 	margin:auto;
     width:60%;
-    margin-top: 50px;
+    margin-top: -10px;
 }
 
 #PropPageElements{
-	margin:auto;
-    width:60%;
+position: fixed;
+	top: 364px;
+	text-align: center;
+  width:100%;
+	background: white;
 }
 
 #search {
@@ -503,7 +515,7 @@ table{
 }
 
 #propertyBumpDown{
-	margin-top: 425px;
+	margin-top: 440px;
 }
 
 #tableTimelinePropertyHeader{
@@ -544,8 +556,9 @@ table{
 #tablePropertyHeader{
 	position: fixed;
 	z-index: 1000000;
-	top: 390px;
+	top: 403px;
 	width: 94%;
+	background: white:
 }
 
 
@@ -821,6 +834,10 @@ td:nth-child(even){
 #chartContainer{
 	width:60%;
 	margin:auto;
+	left: 0;
+	right: 0;
+	position: fixed;
+	background: white;
 }
 
 
@@ -1079,6 +1096,29 @@ select:disabled{
 	#searchTitle{
 		display: block;
 	}
+
+	/* Mobile CSS for timeline*/
+	.cbp_tmlabel{
+		width: 60%;
+	}
+	.cbp_name_col {
+		width: 80% !important;
+	}
+	.cbp_center_col{
+		padding-right: 33%;
+		padding-left: 33%;
+	}
+	.cbp_name_col_v{
+		text-align: center !important;
+	}
+	.cbp_name_col_h{
+		text-align: center !important;
+	}
+	#TransPageElements{
+		margin:auto;
+	  width:60%;
+	  margin-top: 28px;
+	}
 	#omHeader{
 		margin-top: 96px;
 	}
@@ -1107,7 +1147,7 @@ select:disabled{
 	}
 
 	#chartContainer{
-		margin-top:55px;
+		top:200px;
 	}
 
 	#propertyTimelineBumpDown{
@@ -1260,7 +1300,11 @@ select:disabled{
 
 	#PropPageElements{
 		width:100%;
-		margin-top:-24px;
+		background: white;
+		position: fixed;
+		top: 375px;
+		left: 0;
+		height: 0;
 	}
 
 	.scrollX{
@@ -1275,11 +1319,20 @@ select:disabled{
 		width:100%;
 		margin-top: 25px;
 		padding-bottom: 0px;
+		font-size: 18px;
 	}
 
 	#nextPage, #prevPage{
-		margin-top:-140px;
+		top:180px;
 		z-index: 999999;
+	}
+	#prevPage{
+		margin-left: 0;
+		left: -6px;
+	}
+	#nextPage{
+		margin-right: 0;
+		right: -24px;
 	}
 
 	.backbutton{
